@@ -1,6 +1,6 @@
 메모리 할당 함수
 ============
-The 'malloc()', calloc(), valloc(), realloc(), and reallocf() functions allocate memory.
+The '''malloc()''', calloc(), valloc(), realloc(), and reallocf() functions allocate memory.
 </br>
 </br>
 
