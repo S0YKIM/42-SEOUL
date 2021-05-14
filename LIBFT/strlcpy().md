@@ -7,7 +7,6 @@
 </br>
 </br>
 </br>
-</br>
 
 strlcpy()
 ===================
@@ -22,7 +21,6 @@ DESCRIPTION
 
 * `dstsize` - 1 만큼 src 에서 dst 로 복사한다.
 * `dstsize` 가 0 이 아니라면 언제나 '\0' 으로 끝난다.
-</br>
 </br>
 </br>
 </br>
