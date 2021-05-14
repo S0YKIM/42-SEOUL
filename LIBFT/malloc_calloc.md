@@ -1,7 +1,9 @@
 메모리 할당 함수
 ============
+</br>
+</br>
 
-1. malloc
+malloc
 =================
 
 SYNTAX
@@ -18,7 +20,7 @@ DESCRIPTION
 </br>
 </br>
 
-2. calloc
+calloc
 ================
 
 SYNTAX
