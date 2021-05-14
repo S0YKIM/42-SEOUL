@@ -4,6 +4,7 @@
 SYNTAX
 ------
         int				ft_atoi(const char *str)
+ </br>
 
 DESCRIPTION
 -----------
@@ -32,6 +33,7 @@ SYNTAX
 ------
         int		ft_toupper(int c)
         int		ft_tolower(int c)
+</br>
 
 DESCRIPTION
 -----------
