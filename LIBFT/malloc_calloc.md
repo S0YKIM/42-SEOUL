@@ -8,11 +8,11 @@ SYNTAX
 DESCRIPTION
 -----------
         -The malloc(), calloc(), valloc(), realloc(), and reallocf() functions allocate memory.
-        -The __malloc()__ function allocates size bytes of memory and returns a pointer to the allocated memory.
-
-
-
-
+        -The __malloc()__ function allocates size bytes of memory and returns a pointer to the allocated memory.   
+   
+   
+   
+   
 [FUNTION] calloc
 ================
 
