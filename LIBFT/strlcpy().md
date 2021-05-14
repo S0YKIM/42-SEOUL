@@ -43,6 +43,6 @@ DESCRIPTION
 * 문자열 `src` 를 `dst` 의 끝에 추가한다.
 * `dst`의 마지막 위치에 `src` 를 `size` - `strlen(dst)` - 1 만큼 복사하고 끝에 '\0'를 삽입한다.
 * 최종적으로 반환되는 것은 __결합되는 문자열의 총 길이__이다.
-* size < strlen(dst):  strlen(src) + size 를 반환!
-* size > strlen(dst):  strlen(src) + strlen(dst)를 반환!
+* size <= strlen(dst) + 1 :  strlen(src) + size 를 반환!
+* size > strlen(dst) + 1 :  strlen(src) + strlen(dst)를 반환!
 
