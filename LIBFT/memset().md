@@ -34,7 +34,7 @@ SYNTAX
 
 DESCRIPTION
 -----------
-        The bzero() function writes count zeroed bytes to the string s.
+        The bzero() function writes count zeroed bytes to the string ptr.
         If count is zero, bzero() does nothing.
 
 * 어떤 메모리의 시작점부터 count 만큼 연속된 범위를 0으로 모두 지정
