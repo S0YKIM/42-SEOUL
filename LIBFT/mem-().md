@@ -38,8 +38,8 @@ DESCRIPTION
         The bzero() function writes count zeroed bytes to the string ptr.
         If count is zero, bzero() does nothing.
 
-* 어떤 메모리의 시작점부터 `count`만큼 연속된 범위를 0으로 모두 지정
-* `memset(ptr, 0, count)` 와 동일한 기능
+* 어떤 메모리의 시작점부터 `count` 만큼 연속된 범위를 0으로 모두 지정
+* memset(ptr, 0, count) 와 동일한 기능
 * 반환값: `ptr` 의 시작 주소
 
 </br>
@@ -69,8 +69,8 @@ DESCRIPTION
 
 * 문자열 `src` 를 `dest` 에 `len` 만큼 복사한다. 
 * 반환값: `dest` 의 시작 주소
-* `strcpy`와의 차이: 정확히 `len` 만큼만 복사하기 때문에 '\0' 체크와 관계 없음
-* `strcpy(dest, src)` 와 동일하게 작동하려면 `memcpy(dest, src, strlen(src) + 1)`
+* `strcpy` 와의 차이: 정확히 `len` 만큼만 복사하기 때문에 '\0' 체크와 관계 없음
+* strcpy(dest, src) 와 동일하게 작동하려면 memcpy(dest, src, strlen(src) + 1)
 </br>
 </br>
 </br>
