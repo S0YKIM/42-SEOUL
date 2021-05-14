@@ -39,7 +39,7 @@ DESCRIPTION
         The tolower() function converts an upper-case letter to the corresponding lower-case letter.
         The argument must be representable as an unsigned char or the value of EOF.
 
-* `toupper()` 은 소문자를 대문자로, `tolower()` 은 대문자를 소문자로 변환하여 
+* `toupper()` 은 소문자를 대문자로, `tolower()` 은 대문자를 소문자로 변환하여 반환
 </br>
 </br>
 </br>
