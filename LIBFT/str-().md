@@ -4,12 +4,12 @@
 </br>
 </br>
 
-⭐문자열 길이 세기와 비교
+1. 문자열 길이 세기와 비교
 =================
 
 </br>
 
-strlen()
+⭐strlen()
 ===================
 
 SYNTAX
@@ -25,7 +25,7 @@ DESCRIPTION
 </br>
 </br>
 
-strncmp()
+⭐strncmp()
 ===================
 
 SYNTAX
@@ -45,7 +45,7 @@ DESCRIPTION
 </br>
 </br>
 
-⭐문자열 복사와 붙여넣기
+2. 문자열 복사와 붙여넣기
 =================
 
 * The `strlcpy()` and `strlcat()` functions copy and concatenate strings.
@@ -55,7 +55,7 @@ DESCRIPTION
 </br>
 </br>
 
-strlcpy()
+⭐strlcpy()
 ===================
 
 SYNTAX
@@ -73,7 +73,7 @@ DESCRIPTION
 </br>
 </br>
 
-strlcat()
+⭐strlcat()
 ================
 
 SYNTAX
