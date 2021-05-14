@@ -1,4 +1,7 @@
-[FUNCTION] malloc
+메모리 할당 함수
+============
+
+1. malloc
 =================
 
 SYNTAX
@@ -15,7 +18,7 @@ DESCRIPTION
 </br>
 </br>
 
-[FUNTION] calloc
+2. calloc
 ================
 
 SYNTAX
