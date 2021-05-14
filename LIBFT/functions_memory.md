@@ -1,5 +1,6 @@
 메모리 할당 함수
 ============
+        The malloc(), calloc(), valloc(), realloc(), and reallocf() functions allocate memory.
 </br>
 </br>
 
@@ -12,7 +13,6 @@ SYNTAX
 
 DESCRIPTION
 -----------
-        The malloc(), calloc(), valloc(), realloc(), and reallocf() functions allocate memory.
         The malloc() function allocates size bytes of memory and returns a pointer to the allocated memory.   
 
 * 주어진 사이즈만큼 메모리를 할당하고 할당된 메모리에 대한 포인터를 반환
