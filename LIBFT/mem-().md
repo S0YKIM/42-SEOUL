@@ -1,9 +1,9 @@
-⭐메모리 초기화 함수
+메모리 초기화 함수
 ==============
 
 </br>
 
-memset()
+⭐memset()
 ===================
 
 SYNTAX
@@ -26,7 +26,7 @@ DESCRIPTION
 </br>
 </br>
 
-bzero()
+⭐bzero()
 ================
 
 SYNTAX
@@ -48,12 +48,12 @@ DESCRIPTION
 </br>
 </br>
 
-⭐메모리 복사 함수
+메모리 복사 함수
 ==============
 
 </br>
 
-memcpy()
+⭐memcpy()
 ===================
 
 SYNTAX
@@ -77,7 +77,7 @@ DESCRIPTION
 </br>
 </br>
 
-memmove()
+⭐memmove()
 ================
 
 SYNTAX
@@ -100,7 +100,7 @@ DESCRIPTION
 </br>
 </br>
 
-memccpy()
+⭐memccpy()
 ================
 
 SYNTAX
@@ -124,7 +124,7 @@ DESCRIPTION
 </br>
 </br>
 
-memchr()
+⭐memchr()
 ================
 
 SYNTAX
