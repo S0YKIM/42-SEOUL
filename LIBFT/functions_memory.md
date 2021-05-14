@@ -4,8 +4,8 @@ The `malloc()`, `calloc()`, `valloc()`, `realloc()`, and `reallocf()` functions 
 </br>
 </br>
 
-[FUNCTION] malloc
-=================
+[FUNCTION] malloc()
+===================
 
 SYNTAX
 ------
@@ -20,7 +20,7 @@ DESCRIPTION
 </br>
 </br>
 
-calloc
+[FUNCTION] calloc()
 ================
 
 SYNTAX
