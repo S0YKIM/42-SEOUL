@@ -3,7 +3,7 @@
 </br>
 </br>
 
-malloc
+[FUNCTION] malloc
 =================
 
 SYNTAX
