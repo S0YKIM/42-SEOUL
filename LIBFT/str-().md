@@ -60,7 +60,7 @@ DESCRIPTION
 
 SYNTAX
 ------
-        size_t strlcpy(char * restrict dst, const char * restrict src, size_t dstsize);
+        size_t ft_strlcpy(char * restrict dst, const char * restrict src, size_t dstsize);
 
 DESCRIPTION
 -----------
@@ -78,7 +78,7 @@ DESCRIPTION
 
 SYNTAX
 ------
-    size_t strlcat(char * restrict dst, const char * restrict src, size_t size);
+    size_t ft_strlcat(char * restrict dst, const char * restrict src, size_t size);
 
 DESCRIPTION
 -----------
@@ -93,3 +93,53 @@ DESCRIPTION
 * size <= strlen(dst) + 1 :  strlen(src) + size 를 반환!
 * size > strlen(dst) + 1 :  strlen(src) + strlen(dst)를 반환!
 
+</br>
+</br>
+</br>
+</br>
+</br>
+
+문자열 검색
+==============
+</br>
+
+⭐strchr()  ⭐strrchr()
+=======================
+
+SYNTAX
+------
+    char	*ft_strchr(const char *str, int value)
+
+DESCRIPTION
+-----------
+        The strchr() function locates the first occurrence of c (converted to a char) in the string pointed to by s.
+        The terminating null character is considered to be part of the string.
+        Therefore if c is `\0', the functions locate the terminating `\0'.
+        
+* 문자열 `str` 에서 (unsigned char 로 변환된) `value` 를 검색
+* `strchr()` 은 문자열의 앞에서부터 `strrchr()`은 뒤에서부터 검색한다는 점만 다르다
+* 반환값: `value` 가 발견된 `str` 의 주소 또는 발견되지 않은 경우 '널포인터'
+
+</br>
+</br>
+</br>
+</br>
+</br>
+
+⭐strnstr
+==========
+
+SYNTAX
+------
+    char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+
+DESCRIPTION
+-----------
+        The strnstr() function locates the first occurrence of the null-terminated string needle in the string haystack, where not more than len characters are searched.
+        Characters that appear after a `\0' character are not searched.
+        
+* 문자열 `haystack` 에서 문자열 `needle` 을 `len` 만큼만 검색
+* 반환값
+1. `needle` 이 빈 문자열: `haystack`
+2. `needle` 이 `haystack` 에서 발견되지 않는 경우: '널포인터'
+3. `needle`이 `haystack` 에서 발견되는 경우: `needle` 이 발견된 `haystack` 의 메모리 주소
