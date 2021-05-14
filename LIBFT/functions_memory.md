@@ -3,6 +3,7 @@
 The `malloc()`, `calloc()`, `valloc()`, `realloc()`, and `reallocf()` functions allocate memory.
 </br>
 </br>
+</br>
 
 [FUNCTION] malloc()
 ===================
