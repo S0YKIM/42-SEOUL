@@ -103,7 +103,7 @@ DESCRIPTION
 ==============
 </br>
 
-⭐strchr()  ⭐strrchr()
+⭐strchr() 과 strrchr()
 =======================
 
 SYNTAX
