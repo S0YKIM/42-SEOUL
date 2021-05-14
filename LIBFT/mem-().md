@@ -118,5 +118,26 @@ DESCRIPTION
 * src 에서 (unsigned char 로 변환된)c가 발견될 때까지 len 만큼 메모리를 복사
 * 반환값: c가 발견된 src 의 주소 또는 c가 발견되지 않는 경우 널포인터
 
+</br>
+</br>
+</br>
+</br>
+</br>
+
+memchr()
+================
+
+SYNTAX
+------
+    void	*ft_memchr(const void *s, int value, size_t num)
+</br>
+
+DESCRIPTION
+-----------
+        locate byte in byte string
+        The memchr() function locates the first occurrence of value (converted to an unsigned char) in string s.
+
+* 문자열 s에서 (unsigned char 로 변환된)value 를 검색
+* 반환값: value 가 발견된 메모리 주소 또는 발견되지 않은 경우 널포인터
 
 
