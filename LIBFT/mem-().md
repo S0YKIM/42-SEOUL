@@ -139,5 +139,7 @@ DESCRIPTION
 
 * 문자열 `s`에서 (unsigned char 로 변환된)`value` 를 검색
 * 반환값: `value` 가 발견된 메모리 주소 또는 발견되지 않은 경우 널포인터
+* `strchr()` 와 차이: `num` 만큼만 검색하기 떄문에 '\0' 체크와 관계 없음
+* strchr(str, value) 와 동일하게 작동하려면 memchr(str, value, strlen(str) + 1)
 
 
