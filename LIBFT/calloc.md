@@ -1,10 +1,11 @@
 [FUNTION] calloc
 ================
 
-# SYNTAX
+SYNTAX
+------
 
     void *calloc(size_t count, size_t size)
 
-# DESCRIPTION
-
+DESCRIPTION
+-----------
     The malloc(), calloc(), valloc(), realloc(), and reallocf() functions allocate memory.
