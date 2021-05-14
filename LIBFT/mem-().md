@@ -94,4 +94,29 @@ DESCRIPTION
 * dest 와 src 가 중첩되는 경우에는 무조건 memmove()를 사용해야 한다.
 * 반환값: dest 의 시작 주소
 
+</br>
+</br>
+</br>
+</br>
+</br>
+
+memccpy()
+================
+
+SYNTAX
+------
+    void	*ft_memccpy(void *dest, const void *src, int c, size_t len)
+</br>
+
+DESCRIPTION
+-----------
+        copy string until character found
+        The memccpy() function copies bytes from string src to string dst.
+        If the character c occurs in the string src, the copy stops and a pointer to the byte after the copy of c in the string dst is returned.
+        Otherwise, len bytes are copied, and a NULL pointer is returned.
+
+* src 에서 (unsigned char 로 변환된)c가 발견될 때까지 len 만큼 메모리를 복사
+* 반환값: c가 발견된 src 의 주소 또는 c가 발견되지 않는 경우 널포인터
+
+
 
