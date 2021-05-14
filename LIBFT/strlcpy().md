@@ -45,3 +45,4 @@ DESCRIPTION
 * 최종적으로 반환되는 것은 __결합되는 문자열의 총 길이__이다.
 * size < strlen(dst):  strlen(src) + size 를 반환!
 * size > strlen(dst):  strlen(src) + strlen(dst)를 반환!
+
