@@ -1,4 +1,4 @@
-⭐메모리 할당 함수
+메모리 할당 함수
 ============
 The `malloc()`, `calloc()`, `valloc()`, `realloc()`, and `reallocf()` functions allocate memory.
 </br>
@@ -6,7 +6,7 @@ The `malloc()`, `calloc()`, `valloc()`, `realloc()`, and `reallocf()` functions 
 </br>
 </br>
 
-malloc()
+⭐malloc()
 ===================
 
 SYNTAX
@@ -25,7 +25,7 @@ DESCRIPTION
 </br>
 </br>
 
-calloc()
+⭐calloc()
 ================
 
 SYNTAX
