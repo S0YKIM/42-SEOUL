@@ -4,7 +4,7 @@
 </br>
 </br>
 
-⭐문자열 길이 세기와 비교
+문자열 길이 세기와 비교
 =================
 
 </br>
@@ -45,7 +45,7 @@ DESCRIPTION
 </br>
 </br>
 
-2. 문자열 복사와 붙여넣기
+문자열 복사와 붙여넣기
 =================
 
 * The `strlcpy()` and `strlcat()` functions copy and concatenate strings.
