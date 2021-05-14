@@ -9,6 +9,7 @@ memset()
 SYNTAX
 ------
         void	*ft_memset(void *ptr, int value, size_t count)
+</br>
 
 DESCRIPTION
 -----------
@@ -58,6 +59,7 @@ memcpy()
 SYNTAX
 ------
         void	*ft_memcpy(void *dest, const void *src, size_t len)
+</br>
 
 DESCRIPTION
 -----------
@@ -81,6 +83,7 @@ memmove()
 SYNTAX
 ------
     void	*ft_memmove(void *dest, const void *src, size_t len)
+</br>
 
 DESCRIPTION
 -----------
