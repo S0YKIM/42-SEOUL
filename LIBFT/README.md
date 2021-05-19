@@ -1,5 +1,5 @@
-REFERENCE:
-==========
+⭐REFERENCES
+============
 
 https://github.com/hidaehyunlee/Libft
 </br>
