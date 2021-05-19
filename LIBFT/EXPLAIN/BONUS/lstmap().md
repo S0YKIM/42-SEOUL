@@ -67,6 +67,9 @@ EXAMPLE
                 lst = lst->next;
             }
         }
+        
+lst: "Hello" 와 "World" 가 출력됨
+new_lst: "Replaced" 와 "Replaced" 가 
 </br>
 </br>
 </br>
