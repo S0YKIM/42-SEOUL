@@ -1,5 +1,5 @@
-42SEOUL
-=======
+42SEOUL CADET
+=============
 
 ⭐ 2021.05 - PRESENT
 </br>
