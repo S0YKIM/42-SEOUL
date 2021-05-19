@@ -28,7 +28,6 @@ DESCRIPTION
 * `t_list *temp`: 현재 `lst->content` 를 `f` 에 적용시켜 반환된 새로운 문자열을 `content` 로 하는 새로운 구조체를 담는 임시 포인터
 * 만약에 `temp` 에 메모리 할당하는 것을 실패하면 지금까지의 저장한 `result` 의 모든 노드의 `content` 를 `free()` 하고 `NULL` 을 반환한다.
 </br>
-* 순서
 </br>
 
 1. `result` 가 가리키는 값을 `NULL` 로 초기화한다.
