@@ -30,6 +30,7 @@ DESCRIPTION
 </br>
 * 순서
 </br>
+
 1. `result` 가 가리키는 값을 `NULL` 로 초기화한다.
 
 2. `lstnew()` 함수를 이용하여 `f(lst->content)` 의 반환값을 `content` 로 하는 새로운 구조체를 `temp` 에 저장한다.
