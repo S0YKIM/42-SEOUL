@@ -3,8 +3,8 @@
 
 typedef struct          s_list
 {
-        void            `*content`;
-        struct s_list   `*next`;
+        void            *content;
+        struct s_list   *next;
 }                       t_list;
 
 //Here is a description of the fields of the t_list struct:
