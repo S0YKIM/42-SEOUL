@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 17:25:19 by sokim             #+#    #+#             */
-/*   Updated: 2021/05/09 18:49:40 by sokim            ###   ########.fr       */
+/*   Updated: 2021/05/19 15:10:01 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	if (lst == 0 || new == 0)
+	if (!lst || !new)
 		return ;
 	new->next = *lst;
 	*lst = new;
