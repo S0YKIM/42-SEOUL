@@ -29,9 +29,13 @@ DESCRIPTION
 
 * 순서
 1. `result` 가 가리키는 값을 `NULL` 로 초기화한다.
+
 2. `lstnew()` 함수를 이용하여 `f(lst->content)` 의 반환값을 `content` 로 하는 새로운 구조체를 `temp` 에 저장한다.
+
 3. `lstadd_back()` 함수를 이용하여 `result` 에 `temp` 를 추가한다.
+
 4. `temp` 와 `lst` 를 각각 다음 노드로 이동시킨다.
+
 5. 최종적으로 만들어진 리스트 `result` 를 반환한다.
 
 
