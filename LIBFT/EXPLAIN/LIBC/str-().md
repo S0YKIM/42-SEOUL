@@ -143,3 +143,31 @@ DESCRIPTION
 1. `needle` 이 빈 문자열: `haystack`
 2. `needle` 이 `haystack` 에서 발견되지 않는 경우: '널포인터'
 3. `needle`이 `haystack` 에서 발견되는 경우: `needle` 이 발견된 `haystack` 의 메모리 주소
+</br>
+</br>
+</br>
+</br>
+</br>
+
+
+문자열 복제
+==========
+
+</br>
+
+⭐strdup()
+===================
+
+SYNTAX
+------
+        char	*ft_strdup(const char *s1)
+
+DESCRIPTION
+----------- 
+
+* 새로운 메모리 공간을 할당하여 문자열 상수 `s1` 을 복제한다.
+* 반환값: `s1`과 똑같은 내용을 가진 새로운 문자열
+</br>
+</br>
+</br>
+</br>
