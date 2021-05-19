@@ -68,8 +68,8 @@ EXAMPLE
             }
         }
         
-lst: "Hello" 와 "World" 가 출력됨
-new_lst: "Replaced" 와 "Replaced" 가 
+* lst: "Hello" 와 "World" 가 출력됨
+* new_lst: "Replaced" 와 "Replaced" 가 출력됨
 </br>
 </br>
 </br>
