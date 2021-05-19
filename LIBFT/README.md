@@ -1,3 +1,8 @@
+⭐DESCRIPTIONS
+==============
+
+Recreate the functions in libc library.
+
 ⭐REFERENCES
 ============
 
