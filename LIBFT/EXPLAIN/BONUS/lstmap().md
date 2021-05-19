@@ -22,11 +22,12 @@ DESCRIPTION
         Creates a new list resulting of the successive applications of the function ’f’.
         The ’del’ function is used to delete the content of an element if needed.
 
+* 연결리스트 `lst` 의 `content` 를 함수 `f`로 보내서 바뀐 값을 `content` 로 가지는 새로운 연결리스트를 만들어서 반환한다.
 * `del`: 노드 메모리 할당 실패 시 `content` 를 지워줄 함수
-* `t_list *result`: 최종적으로 반환할 구조체 포인터
+* `t_list *result`: 최종적으로 반환할 새로운 연결 리스트
 * `t_list *temp`: 현재 `lst->content` 를 `f` 에 적용시켜 반환된 새로운 문자열을 `content` 로 하는 새로운 구조체를 담는 임시 포인터
 * 만약에 `temp` 에 메모리 할당하는 것을 실패하면 지금까지의 저장한 `result` 의 모든 노드의 `content` 를 `free()` 하고 `NULL` 을 반환한다.
-
+</br>
 * 순서
 1. `result` 가 가리키는 값을 `NULL` 로 초기화한다.
 
@@ -41,18 +42,31 @@ DESCRIPTION
 
 EXAMPLE
 -----------
-        void  f_del(void *content)
+        void  *f_map(void *content)
         {
-            free(content);
-        }
-        int   main(void)
-        {
-            char *str = ft_strdup("Hello");
-            t_list *lst = ft_lstnew(str);
-            
-            ft_lstdelone(lst, f_del);
+            if (!*(char *)content)
+                return (NULL);
+            return ("Replaced");
         }
         
+        void  f_del(void *content)
+        {
+             free(content);
+        }
+        
+        int   main(void)
+        {
+            t_list *lst = ft_lstnew("Hello");
+            ft_lstadd_back(&lst, ft_lstnew("World"));
+            
+            t_list *new_lst = ft_lstmap(lst, f_map, f_del);
+            while (new_lst)
+            {
+                print("lst = %s\n, new_lst = %s\n", lst->content, new_lst->content);
+                new_lst = new_lst->next;
+                lst = lst->next;
+            }
+        }
 </br>
 </br>
 </br>
