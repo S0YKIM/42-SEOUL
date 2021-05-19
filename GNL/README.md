@@ -16,3 +16,5 @@ https://code4human.tistory.com/130
 https://velog.io/@yamkim/42-Seoul-Get-Next-Line2-Overview
 </br>
 https://epicarts.tistory.com/154
+</br>
+https://ohseyong.github.io/study/Get-Next-Line/
