@@ -5,11 +5,13 @@ PROTOTYPE
 ----------
         void	ft_lstdelone(t_list *lst, void (*del)(void*))
 
+</br>
 PARAMETERS
 ----------
         #1. The element to free.
         #2. The address of the function used to delete the content.
         
+</br>
 DESCRIPTION
 -----------
         Takes as a parameter an element and frees the memory of the element’s content using the function ’del’ given as a parameter and free the element.
@@ -22,6 +24,7 @@ DESCRIPTION
 * `free(lst)`를 하고나면 `lst->content`로 접근이 불가능하기 때문이다.
 * 그래서 `del(lst->content)` 먼저 하고나서 `free(lst)` 해주어야 한다.
 
+</br>
 EXAMPLE
 -----------
         void  f_del(void *content)
