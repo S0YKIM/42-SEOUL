@@ -27,8 +27,8 @@ DESCRIPTION
 * 문자열 `s`의 길이가 `start`보다 작으면 `NULL` 문자열을 반환한다.
 * `len`은 부분 문자열의 최대 길이로 제한하였기 때문에 부분 문자열의 길이는
 
-1. `len` < strlen(`s`+`start`): len
-2. `len` > strlen(`s`+`start`): strlen(`s`+`start`)
+1. `len` < strlen(`s`+`start`) :  len
+2. `len` > strlen(`s`+`start`) :  strlen(`s`+`start`)
 
 </br>
 </br>
