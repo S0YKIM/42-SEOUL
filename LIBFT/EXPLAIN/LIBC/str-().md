@@ -165,6 +165,10 @@ SYNTAX
 DESCRIPTION
 ----------- 
 
+        The strdup() function allocates sufficient memory for a copy of the string
+        s1, does the copy, and returns a pointer to it.  The pointer may subsequently
+        be used as an argument to the function free(3).
+
 * 새로운 메모리 공간을 할당하여 문자열 상수 `s1` 을 복제한다.
 * 반환값: `s1`과 똑같은 내용을 가진 새로운 문자열
 </br>
