@@ -1,7 +1,7 @@
 42SEOUL
 =======
 
-## 2021.05 - PRESENT
+⭐ 2021.05 - PRESENT
 </br>
 </br>
 🌱 Have recreated Libc functions
