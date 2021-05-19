@@ -1,3 +1,6 @@
-# 42SEOUL
+42SEOUL
+=======
 
-42서울 본과정 진행하면서 공부한 내용을 정리하는 공간
+🌱 2021.05 - PRESENT
+🌱 Have recreated Libc functions
+🌱 Currently working on a project to read a file using file descriptors
