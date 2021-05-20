@@ -1,8 +1,8 @@
 ⭐DESCRIPTIONS
 ==============
 
-* Read the given file using the file descriptors.
-* The aim of this project is to understand `buffer` and `static variable`.
+* The aim of this project is to make you code a function that returns a line ending with a newline, read from a file descriptor.
+* Key concepts: `buffer` and `static variable`
 </br>
 </br>
 
