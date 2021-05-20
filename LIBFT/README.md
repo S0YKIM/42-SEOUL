@@ -15,11 +15,11 @@ Then create some more useful funtions in your own words.
 
 #### Libc functions
 
-- **Memory** : [`memset`](./LIBC/ft_memset.c) [`bzero`](./ft_bzero.c) [`memcpy`](./ft_memcpy.c) [`memccpy`](./ft_memccpy.c) [`memmove`](./ft_memmove.c) [`memchr`](./ft_memchr.c) [`memcmp`](./ft_memcmp.c) [`calloc`](./ft_calloc.c)
+- **Memory** : [`memset`](./LIBC/ft_memset.c) [`bzero`](./LIBC/ft_bzero.c) [`memcpy`](./LIBC/ft_memcpy.c) [`memccpy`](./LIBC/ft_memccpy.c) [`memmove`](./LIBC/ft_memmove.c) [`memchr`](./LIBC/ft_memchr.c) [`memcmp`](./LIBC/ft_memcmp.c) [`calloc`](./LIBC/ft_calloc.c)
 
-- **String** : [`strlen`](./ft_strlen.c) [`strlcpy`](./ft_strlcpy.c) [`strlcat`](./ft_strlcat.c) [`strchr`](./ft_strchr) [`strrchr`](./ft_strrchr.c) [`strnstr`](./ft_strnstr.c) [`strncmp`](./ft_strncmp) [`strdup`](./ft_strdup.c) [`atoi`](./ft_atoi.c)
+- **String** : [`strlen`](./LIBC/ft_strlen.c) [`strlcpy`](./LIBC/ft_strlcpy.c) [`strlcat`](./LIBC/ft_strlcat.c) [`strchr`](./LIBC/ft_strchr) [`strrchr`](./LIBC/ft_strrchr.c) [`strnstr`](./LIBC/ft_strnstr.c) [`strncmp`](./LIBC/ft_strncmp) [`strdup`](./LIBC/ft_strdup.c) [`atoi`](./LIBC/ft_atoi.c)
 
-- **Type** : [`ft_isdigit`](./ft_isdigit.c) [`ft_isalpha`](./ft_isalpha.c) [`ft_isalnum`](./ft_isalnum.c) [`ft_isprint`](./ft_isprint.c) [`ft_toupper`](./ft_toupper.c) [`ft_tolower`](./ft_tolower.c)
+- **Type** : [`ft_isdigit`](./LIBC/ft_isdigit.c) [`ft_isalpha`](./LIBC/ft_isalpha.c) [`ft_isalnum`](./LIBC/ft_isalnum.c) [`ft_isprint`](./LIBC/ft_isprint.c) [`ft_toupper`](./LIBC/ft_toupper.c) [`ft_tolower`](./LIBC/ft_tolower.c)
 
 #### Additional functions
 
