@@ -2,7 +2,7 @@
 ⭐DESCRIPTIONS
 ==============
 
-The aim of this project is to code a C library regrouping usual functions that you’ll be allowed to use in all your other projects.
+Recreate the functions in `libc` library in C.
 
 </br>
 </br>
