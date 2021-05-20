@@ -4,6 +4,9 @@
 
 The aim of this project is to code a C library regrouping usual functions that you’ll be allowed to use in all your other projects.
 
+</br>
+</br>
+
 ⭐Content
 ==========
 
@@ -27,6 +30,8 @@ The aim of this project is to code a C library regrouping usual functions that y
 
 - **Linked list** : [`ft_lstnew`](./ft_lstnew.c) [`ft_lstadd_front`](./ft_lstadd_front.c) [`ft_lstsize`](./ft_lstsize.c) [`ft_lstlast`](./ft_lstlast.c) [`ft_lstadd_back`](./ft_lstadd_back.c) [`ft_lstdelone`](./ft_lstdelone.c) [`ft_lstclear`](./ft_lstclear.c) [`ft_lstiter`](./ft_lstiter.c) [`ft_lstmap`](./ft_lstmap.c)
 
+</br>
+</br>
 
 
 ⭐REFERENCES
