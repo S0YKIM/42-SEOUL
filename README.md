@@ -4,7 +4,8 @@
 ⭐ 2021.05 - PRESENT
 </br>
 </br>
-🌱 Have recreated Libc functions
+🌱 Reproduce the behaviours of the functions in libc.
+🔗 [`LIBC`](./LIBFT)
 </br>
 🌱 Currently working on a project to read a file using file descriptors
 </br>
