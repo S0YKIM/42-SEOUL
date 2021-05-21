@@ -1,7 +1,8 @@
-42SEOUL CADET
-=============
+42SEOUL
+=======
 
-🌱 2021.05 - PRESENT
+🌱 2021.03 - 2021.04 LA PISCINE
+🌱 2021.05 - PRESENT 42 CADET
 </br>
 </br>
 ### ⭐ [`LIBC`](./LIBFT)
