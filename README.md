@@ -1,8 +1,8 @@
 42SEOUL
 =======
 
-🌱 2021.03 - 2021.04 `LA PISCINE` </br>
-🌱 2021.05 - PRESENT `42 CADET`
+🌱 `LA PISCINE` 2021.03 - 2021.04 </br>
+🌱 `42 CADET` 2021.05 - PRESENT
 </br>
 </br>
 ### ⭐ [`LIBC`](./LIBFT)
