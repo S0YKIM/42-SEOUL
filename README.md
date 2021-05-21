@@ -4,9 +4,10 @@
 🌱 2021.05 - PRESENT
 </br>
 </br>
-## ⭐ [`LIBC`](./LIBFT)
+### ⭐ [`LIBC`](./LIBFT)
 * Reproduced the behaviours of the functions in libc.
 </br>
-## ⭐ [`GET NEXT LINE`](./GNL)
+
+### ⭐ [`GET NEXT LINE`](./GNL)
 * Currently working on a project to read a file using file descriptors
 </br>
