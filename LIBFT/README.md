@@ -23,8 +23,8 @@ Then create some more useful funtions in your own words.
 
 #### Additional functions
 
-- **String** : [`ft_substr`](./ft_substr.c) [`ft_strjoin`](./ft_strjoin.c) [`ft_strtrim`](.ft_strtrim.c) [`ft_split`](./ft_split.c) [`ft_itoa`](./ft_itoa.c) [`ft_strmapi`](./ft_strmapi.c)
-- **Write** : [`ft_putchar_fd`](./ft_putchar_fd.c) [`ft_putstr_fd`](./ft_putstr_fd.c) [`ft_putendl_fd`](./ft_putendl_fd.c) [`ft_putnbr_fd`](./ft_putnbr_fd.c)
+- **String** : [`ft_substr`](./ADDITIONAL/ft_substr.c) [`ft_strjoin`](./ADDITIONAL/ft_strjoin.c) [`ft_strtrim`](./ADDITIONAL/ft_strtrim.c) [`ft_split`](./ADDITIONAL/ft_split.c) [`ft_itoa`](./ADDITIONAL/ft_itoa.c) [`ft_strmapi`](./ADDITIONAL/ft_strmapi.c)
+- **Write** : [`ft_putchar_fd`](./ADDITIONAL/ft_putchar_fd.c) [`ft_putstr_fd`](./ADDITIONAL/ft_putstr_fd.c) [`ft_putendl_fd`](./ADDITIONAL/ft_putendl_fd.c) [`ft_putnbr_fd`](./ADDITIONAL/ft_putnbr_fd.c)
 
 </br>
 </br>
