@@ -24,9 +24,10 @@ DESCRIPTION
         Opens a file. Provided by Linux.
         
 * MODE 의 종류
-1. O_RDONLY: 읽기전용
-2. O_WRONLY: 쓰기전용
-3. O_RDWR:   읽기/쓰기  
+
+       (1) O_RDONLY: 읽기전용
+       (2) O_WRONLY: 쓰기전용
+       (3) O_RDWR:   읽기/쓰기  
 
 REFERENCES
 -----------
