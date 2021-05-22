@@ -11,11 +11,13 @@ OPEN_MAX
 
 
 
-256
-----
+ulimit -a
+---------
 
 * mac ulimit soft fd value
-* 맥이 기본으로 제공하는 한 번에 열 수 있는 파일 개수가 256개
+* 맥이 기본으로 제공하는 한 번에 열 수 있는 파일 개수를 알 수 있는 명령어
+* -n: file descriptors
+* 256개
 
 http://forum.falinux.com/zbxe/index.php?document_srl=466628&mid=C_LIB
 </br>
