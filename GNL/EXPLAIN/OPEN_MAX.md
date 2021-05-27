@@ -19,10 +19,14 @@ ulimit -a
 * -n: file descriptors
 * 256개
 
+</br>
+</br>
+</br>
 http://forum.falinux.com/zbxe/index.php?document_srl=466628&mid=C_LIB
 </br>
 https://velog.io/@hidaehyunlee/GetNextLine-%EC%82%BD%EC%A7%88%EC%9D%98-%EA%B8%B0%EB%A1%9D
 </br>
+https://wilsonmar.github.io/maximum-limits/
 </br>
 </br>
 </br>
