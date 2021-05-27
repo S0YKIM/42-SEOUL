@@ -12,6 +12,7 @@
 
 * 어떠한 파일을 받아와서 '\n'을 기준으로 한 줄씩 가져오는 함수를 만드는 과제
 * 컴파일 과정에서 버퍼 사이즈를 입력 받는다.
+* gcc -D defines a macro to be used by the preprocessor.
 
       gcc -Wall -Wextra -Werror -D BUFFER_SIZE=32 get_next_line.c get_next_line_utils.c
 
