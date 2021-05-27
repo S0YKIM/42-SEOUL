@@ -35,3 +35,5 @@ https://velog.io/@yamkim/42-Seoul-Get-Next-Line2-Overview
 https://epicarts.tistory.com/154
 </br>
 https://ohseyong.github.io/study/Get-Next-Line/
+</br>
+http://bit.ly/gnljs
