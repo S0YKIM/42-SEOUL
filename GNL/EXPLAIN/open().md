@@ -9,7 +9,8 @@ HEADER FILE
         
 SYNTAX
 ------
-        int open (const char *FILENAME, int FLAGS[, mode_t MODE])
+        int open(const char *pathname, int flags);
+        int open(const char *pathname, int flags, mode_t mode)
 
 PARAMETERS
 ----------
