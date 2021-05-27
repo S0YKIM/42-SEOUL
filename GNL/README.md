@@ -20,7 +20,9 @@
 
       fd = open("test.txt", O_RDONLY);
       
-* 여러 파일 디스크립터도 다룰 수 있기 위해서는 `static char *backup[MAX_FD]` 처럼 포인터 배열을 사용한다. 
+* 여러 파일 디스크립터도 다룰 수 있기 위해서는 `static char *backup[MAX_FD]` 처럼 포인터 배열을 사용한다.
+* 처음 시도에는 `char *buf[BUFFER_SIZE + 1]` 로 배열을 선언하였지만,
+* BUFFER_SIZE 가 아주 커지는 경우 SEG FAULT 가 발생하는 문제로 인해 `malloc()` 을 통해 메모리를 할당하는 것으로 변경하였다.
 
 </br>
 </br>
