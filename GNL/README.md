@@ -22,6 +22,9 @@
       
 * 여러 파일 디스크립터도 다룰 수 있기 위해서는 `static char *backup[MAX_FD]` 처럼 포인터 배열을 사용한다. 
 
+</br>
+</br>
+</br>
 
 ⭐REFERENCES
 ============
