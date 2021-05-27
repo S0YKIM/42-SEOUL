@@ -12,7 +12,7 @@ SYNTAX
 PARAMETERS
 ----------
         #1. fd: File Descriptor
-        #2. buf: The buffer to read the file
+        #2. buf: The buffer to save the read file
         #3. nbytes: Buffer size
         
 RETURN VALUE
