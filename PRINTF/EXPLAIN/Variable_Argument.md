@@ -13,7 +13,7 @@
 </br>
 
 
-# HOW TO CREATE A FUNCTION USING VARIABLE ARGUMENTS
+# How to Create A Function Using Variable Arguments
 
 ⭐HEADER FILE
 =============
