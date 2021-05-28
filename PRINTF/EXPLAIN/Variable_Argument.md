@@ -32,10 +32,35 @@
 
 <a href="https://ibb.co/Z2KQ8hc"><img src="https://i.ibb.co/GHkZ2VC/Screen-Shot-2021-05-28-at-5-46-19-PM.png" alt="Screen-Shot-2021-05-28-at-5-46-19-PM" border="0"></a><br />
 
-## ✔️ va_list
+## 1. va_list
+
+* 각 가변인자의 시작 주소를 가리키는 포인터
+
 ## 2. va_start
+
+      void va_start(va_list ap, variable_name);
+      
+* `va_list` 포인터에게 가변인자 중 첫번째 선택적 인수(variable_name)의 주소를 가르쳐주는 매크로
+* `va_arg()`, `va_copy()`, `va_end()` 에 대한 후속 호출에 대해 `ap` 포인터를 초기화한다.
+* `variable_name`: 인수 목록의 첫 번째 인자 바로 앞에 오는 `필수 매개 변수`의 이름. 즉, 마지막 고정된 `필수 인수`가 담긴다.
+
 ## 3. va_copy
+
+      void va_copy(va_list dest, va_list src);
+      
+* `va_start()` 를 `dest` 에 적용한 후 `src` 의 현재 상태에 도달하는 데에 이전에 사용된 것과 동일한 순서로 `va_arg()` 를 사용한 경우와 같이 `dest` 를 `src` 의 사본으로 초기화한다. 
+* `va_copy()` 또는 `va_start()` 는 동일한 `dest` 에 대한 `va_end()` 의 중간 호출 없이 `dest` 를 다시 초기화하도록 호출해야 한다.
+
 ## 4. va_arg
+
+      var_type va_arg(va_list ap, var_type);
+
+* `ap` 로 지정된 위치에서 지정된 `var_type` 값을 검색하고 리스트에서 다음 인수를 가리키도록 `ap` 를 증가 시켜 다음 인수가 시작 되는 위치를 결정한다. 
+* 즉, 특정 가변인자를 가리키고 있는 `va_list` 의 포인터를 다음 가변인자로 이동시켜 주는 매크로이다.
+* `var_type`: `int` 나 `long`, `double` 과 같은 타입 이름이 담긴다.
+* `var_type` 을 설정할 때 `char`, `short` 의 경우에는 `int` 로 대신 쓰고, `flaot` 의 경우에는 `double` 로 대신 쓴 이후 형변환을 해주어야 한다.
+`ex` char ch = (char) va_arg(ap, int);
+
 ## 5. va_end
 
 </br>
