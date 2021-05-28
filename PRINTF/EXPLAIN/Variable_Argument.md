@@ -27,8 +27,7 @@
 ⭐MACROS
 ========
 
-[url=https://ibb.co/Z2KQ8hc][img]https://i.ibb.co/GHkZ2VC/Screen-Shot-2021-05-28-at-5-46-19-PM.png[/img][/url]
-[url=https://imgbb.com/]quality photo[/url]
+(https://i.ibb.co/GHkZ2VC/Screen-Shot-2021-05-28-at-5-46-19-PM.png)
 
 ⭐REFERENCES
 ============
