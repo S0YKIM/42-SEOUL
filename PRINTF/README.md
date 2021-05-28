@@ -6,7 +6,7 @@
 ==============
 
 * The aim of this project is to 
-* Key concepts: 
+* Key concepts: [`Variable Arguments`](./EXPLAIN/Variable_Argument)
 </br>
 </br>
 </br>
