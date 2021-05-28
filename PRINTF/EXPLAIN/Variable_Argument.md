@@ -12,6 +12,14 @@
 </br>
 </br>
 
+
+# HOW TO CREATE A FUNCTION USING VARIABLE ARGUMENTS
+
+⭐HEADER FILE
+=============
+
+      #include <stdarg.h>
+
 ⭐REFERENCES
 ============
 
