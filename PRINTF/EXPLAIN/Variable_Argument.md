@@ -27,8 +27,7 @@
 ⭐MACROS
 ========
 
-![캡쳐]([url=https://ibb.co/Z2KQ8hc][img]https://i.ibb.co/GHkZ2VC/Screen-Shot-2021-05-28-at-5-46-19-PM.png[/img][/url]
-[url=https://imgbb.com/]quality photo[/url])
+<a href="https://ibb.co/Z2KQ8hc"><img src="https://i.ibb.co/GHkZ2VC/Screen-Shot-2021-05-28-at-5-46-19-PM.png" alt="Screen-Shot-2021-05-28-at-5-46-19-PM" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'>quality photo</a><br />
 
 ⭐REFERENCES
 ============
