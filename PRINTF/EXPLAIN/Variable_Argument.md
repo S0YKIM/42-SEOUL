@@ -32,9 +32,15 @@
 
 <a href="https://ibb.co/Z2KQ8hc"><img src="https://i.ibb.co/GHkZ2VC/Screen-Shot-2021-05-28-at-5-46-19-PM.png" alt="Screen-Shot-2021-05-28-at-5-46-19-PM" border="0"></a><br />
 
+</br>
+</br>
+
 ## 1. va_list
 
 * 각 가변인자의 시작 주소를 가리키는 포인터
+
+</br>
+</br>
 
 ## 2. va_start
 
@@ -44,12 +50,18 @@
 * `va_arg()`, `va_copy()`, `va_end()` 에 대한 후속 호출에 대해 `ap` 포인터를 초기화한다.
 * `variable_name`: 인수 목록의 첫 번째 인자 바로 앞에 오는 `필수 매개 변수`의 이름. 즉, 마지막 고정된 `필수 인수`가 담긴다.
 
+</br>
+</br>
+
 ## 3. va_copy
 
       void va_copy(va_list dest, va_list src);
       
 * `va_start()` 를 `dest` 에 적용한 후 `src` 의 현재 상태에 도달하는 데에 이전에 사용된 것과 동일한 순서로 `va_arg()` 를 사용한 경우와 같이 `dest` 를 `src` 의 사본으로 초기화한다. 
 * `va_copy()` 또는 `va_start()` 는 동일한 `dest` 에 대한 `va_end()` 의 중간 호출 없이 `dest` 를 다시 초기화하도록 호출해야 한다.
+
+</br>
+</br>
 
 ## 4. va_arg
 
@@ -64,8 +76,15 @@
 
       ex) char ch = (char) va_arg(ap, int);
 
+</br>
+</br>
+
 ## 5. va_end
 
+      void va_end(va_list arg_ptr);
+
+* 모든 인수가 검색된 후에 포인터를 `NULL` 로 다시 설정한다. 
+* 즉, 사용한 가변인자 변수를 끝낼 때에 사용한다.
 </br>
 </br>
 
