@@ -24,10 +24,22 @@
 * 최소 1개 이상의 고정 인수가 필요하다.
 * 가변인자 `...` 는 파라미터의 마지막 순서에 있어야 한다.
 
+</br>
+</br>
+
 ⭐MACROS
 ========
 
 <a href="https://ibb.co/Z2KQ8hc"><img src="https://i.ibb.co/GHkZ2VC/Screen-Shot-2021-05-28-at-5-46-19-PM.png" alt="Screen-Shot-2021-05-28-at-5-46-19-PM" border="0"></a><br />
+
+## 1. va_list
+## 2. va_start
+## 3. va_copy
+## 4. va_arg
+## 5. va_end
+
+</br>
+</br>
 
 ⭐REFERENCES
 ============
