@@ -36,14 +36,12 @@
 
 </br>
 </br>
-</br>
 
 ⭐DESCRIPTIONS
 ==============
 
 * The aim of this project is to recode `printf` function.
 * Key concepts: [`Variable Arguments`](./EXPLAIN/Variable_Argument.md) [`Format Specifier`](./EXPLAIN/Format_Specifier.md)
-</br>
 </br>
 </br>
 
@@ -54,7 +52,6 @@
 
 * `printf()` 의 두 번째 인자인 `...` 을 `가변인자` 라고 부른다.
 * 가변인자로는 아무 것도 넘겨주지 않을 수도 있고 여러 개를 넘겨줄 수도 있다.
-</br>
 </br>
 </br>
 
@@ -117,9 +114,8 @@
     - `공백` :  양수일때에는 부호를 출력 하지 않고 음수일때에만 - 기호 출력
     - `#` : 진법에 맞게 숫자 앞에 0, 0x, 0X를 출력
 
-
-
-
+</br>
+</br>
 
 ⭐REFERENCES
 ============
