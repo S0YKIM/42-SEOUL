@@ -36,12 +36,30 @@
 </br>
 </br>
 
-⭐ ToDo List
+⭐DESCRIPTIONS
+==============
+
+* The aim of this project is to recode `printf` function.
+* Key concepts: [`Variable Arguments`](./EXPLAIN/Variable_Argument.md) [`Format Specifier`](./EXPLAIN/Format_Specifier.md)
+</br>
+</br>
+</br>
+
+⭐PROTOTYPE
+===========
+
+      int printf(const char* format, ...)
+
+* `printf()` 의 두 번째 인자인 `...` 을 `가변인자` 라고 부른다.
+* 가변인자로는 아무 것도 넘겨주지 않을 수도 있고 여러 개를 넘겨줄 수도 있다.
+</br>
+</br>
+</br>
+
+⭐ FORMAT TAG
 ============
 
-#### Infomation
-
->  Printf 사용법  `%[flags][width][.precision][extend_type]type`
+    %[flags][width][.precision][extend_type]type
 
 | flags                         | extend_type          | type             |
 | ----------------------------- | -------------------- | ---------------- |
@@ -97,26 +115,6 @@
 
 
 
-⭐DESCRIPTIONS
-==============
-
-* The aim of this project is to recode `printf` function.
-* Key concepts: [`Variable Arguments`](./EXPLAIN/Variable_Argument.md) [`Format Specifier`](./EXPLAIN/Format_Specifier.md)
-</br>
-</br>
-</br>
-
-⭐PROTOTYPE
-===========
-
-
-      int printf(const char* format, ...)
-
-* `printf()` 의 두 번째 인자인 `...` 을 `가변인자` 라고 부른다.
-* 가변인자로는 아무 것도 넘겨주지 않을 수도 있고 여러 개를 넘겨줄 수도 있다.
-</br>
-</br>
-</br>
 
 ⭐REFERENCES
 ============
