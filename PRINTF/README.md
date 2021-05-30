@@ -96,3 +96,5 @@ Libft authorized  `yes`
 가변인자: https://norux.me/19
 </br>
 바이트패딩: https://supercoding.tistory.com/37
+</br>
+팔만코딩경: https://www.notion.so/ft_printf-by-suhshin-a2b3b5a4ea45403899cba0304766d77a#4add2bd892c14446b4da52d4489eea31
