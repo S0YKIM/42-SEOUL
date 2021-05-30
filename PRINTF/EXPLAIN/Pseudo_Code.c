@@ -3,7 +3,7 @@
 int ft_printf(const char* format, ...)
 {
 	ap	// 가변인자 포인터 선언
-	len // 총 출력 길이 저장할 변수 선언
+	len     // 총 출력 길이 저장할 변수 선언
 
 	while( /* format[i] 가 '\0'만날때까지  */)
 	{
@@ -21,7 +21,5 @@ int ft_printf(const char* format, ...)
 		}
 		
 	}
-
-
 	return (/* 총 출력 길이 */);
 }
