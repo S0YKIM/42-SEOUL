@@ -2,11 +2,42 @@
 
 </br>
 
+✔️ Mandatory part
+================
+
+Program name       `libftprintf.a`
+
+Turn in ﬁles       `.c`, `/.c`, `*.h`, `/.h`, `Makefile`
+
+Makeﬁle           `all`, `clean`, `fclean`, `re`, `bonus`
+
+External functs.  `malloc`, `free`, `write`, `va_start`, `va_arg`, `va_copy`, `va_end`
+
+Libft authorized  `yes`
+
+
+* The prototype of ft_printf should be `int ft_printf(const char *, ...);`
+
+* You have to recode the libc’s printf function
+
+* It must not do the `buffer management` like the real printf
+
+* It will manage the following conversions: `cspdiuxX%`
+
+* It will manage any combination of the following flags: `’-0.*’` and minimum field width with all conversions
+
+* It will be compared with the real `printf`
+
+* You must use the command `ar` to create your librairy, using the command libtool is forbidden.
+
+</br>
+</br>
+
 ⭐DESCRIPTIONS
 ==============
 
-* The aim of this project is to 
-* Key concepts: [`Variable Arguments`](./EXPLAIN/Variable_Argument.md)
+* The aim of this project is to recode `printf` function.
+* Key concepts: [`Variable Arguments`](./EXPLAIN/Variable_Argument.md) [`Format Specifier`](./EXPLAIN/Format_Specifier.md)
 </br>
 </br>
 </br>
