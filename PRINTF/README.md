@@ -93,4 +93,5 @@ Libft authorized  `yes`
 ⭐REFERENCES
 ============
 
-https://norux.me/19
+가변인자: https://norux.me/19
+바이트패딩: https://supercoding.tistory.com/37
