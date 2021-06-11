@@ -78,14 +78,24 @@ PARAMETERS
 
 ## 4. va_arg
 
-      var_type va_arg(va_list ap, var_type);
+</br>
 
-* 가변 인자 포인터에서 특정 자료형 크기만큼 값을 가져온다.
-* `ap` 로 지정된 위치에서 지정된 `var_type` 값을 검색하고 리스트에서 다음 인수를 가리키도록 `ap` 를 증가 시켜 다음 인수가 시작 되는 위치를 결정한다. 
+<a href="https://ibb.co/RNmbNzj"><img src="https://i.ibb.co/VxZ9x2w/Screen-Shot-2021-06-11-at-6-55-40-PM.png" alt="Screen-Shot-2021-06-11-at-6-55-40-PM" border="0"></a>
+
+</br>
+
+DEFINITION
+----------
+
+      #define va_arg(ap, t) (*(t*)((ap += _INTSIZEOF(t)) - INTSIZEOF(T)));
+
+* `ap` 로 지정된 위치에서 지정된 `t` 값을 검색하고 리스트에서 다음 인수를 가리키도록 `ap` 를 증가 시켜 다음 인수가 시작 되는 위치를 결정한다. 
 * 즉, 특정 가변인자를 가리키고 있는 `va_list` 의 포인터를 다음 가변인자로 이동시켜 주는 매크로이다.
-* `var_type`: `int` 나 `long`, `double` 과 같은 타입 이름이 담긴다.
+* `t`: `int` 나 `long`, `double` 과 같은 타입 이름이 담긴다.
+* `ap`는 
+* `t`: `int` 나 `long`, `double` 과 같은 타입 이름이 담긴다.
 
-❗ `var_type` 을 설정할 때 `char`, `short` 의 경우에는 `int` 로 대신 쓰고, `flaot` 의 경우에는 `double` 로 대신 쓴 이후 형변환을 해주어야 한다.
+❗ `t` 을 설정할 때 `char`, `short` 의 경우에는 `int` 로 대신 쓰고, `flaot` 의 경우에는 `double` 로 대신 쓴 이후 형변환을 해주어야 한다.
 </br>
 
       ex) char ch = (char) va_arg(ap, int);
