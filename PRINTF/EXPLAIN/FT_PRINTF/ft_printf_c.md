@@ -1,3 +1,12 @@
+⭐ ft_printf
+============
+
+- `va_start()`을 통해 `ap`가 첫번째 가변인자를 가리키게 한다.
+- `result`에 `print_and_pars_args()` 로 출력된 바이트 수를 저장한다.
+-  `va_end()`을 통해 `ap` 가 `NULL` 을 가리키게 한다.
+-  최종적으로 읽었던 바이트 수인 `result`를 반환한다.
+
+
 ⭐ print_var_args
 ================
 
