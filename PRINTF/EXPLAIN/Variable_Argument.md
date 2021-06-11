@@ -93,3 +93,5 @@
 velog: https://velog.io/@hidaehyunlee/%EA%B0%80%EB%B3%80%EC%9D%B8%EC%9E%90-Variadic-Arguments
 </br>
 코딩 도장: https://dojang.io/mod/page/view.php?id=577
+<br>
+티스토리: https://jhnyang.tistory.com/293
