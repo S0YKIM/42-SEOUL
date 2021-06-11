@@ -43,6 +43,12 @@
 
 ## 2. va_start
 
+</br>
+
+<a href="https://ibb.co/qr93MLC"><img src="https://i.ibb.co/rwMRGK3/Screen-Shot-2021-06-11-at-6-16-34-PM.png" alt="Screen-Shot-2021-06-11-at-6-16-34-PM" border="0"></a>
+
+</br>
+
 DEFINITION
 ----------
 
@@ -58,7 +64,6 @@ PARAMETERS
 * `va_arg()`, `va_copy()`, `va_end()` 에 대한 후속 호출에 대해 `ap` 포인터를 초기화한다.
 * `v`: 인수 목록의 첫 번째 인자 바로 앞에 오는 `필수 매개 변수`의 이름. 과제에서는 `format` 이라고 불리는 부분.
 
-<a href="https://ibb.co/qr93MLC"><img src="https://i.ibb.co/rwMRGK3/Screen-Shot-2021-06-11-at-6-16-34-PM.png" alt="Screen-Shot-2021-06-11-at-6-16-34-PM" border="0"></a>
 
 </br>
 
