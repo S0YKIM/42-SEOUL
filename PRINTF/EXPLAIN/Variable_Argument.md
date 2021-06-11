@@ -67,16 +67,8 @@ PARAMETERS
 
 </br>
 
-## 3. va_copy
 
-      void va_copy(va_list dest, va_list src);
-      
-* `va_start()` 를 `dest` 에 적용한 후 `src` 의 현재 상태에 도달하는 데에 이전에 사용된 것과 동일한 순서로 `va_arg()` 를 사용한 경우와 같이 `dest` 를 `src` 의 사본으로 초기화한다. 
-* `va_copy()` 또는 `va_start()` 는 동일한 `dest` 에 대한 `va_end()` 의 중간 호출 없이 `dest` 를 다시 초기화하도록 호출해야 한다.
-
-</br>
-
-## 4. va_arg
+## 3. va_arg
 
 </br>
 
