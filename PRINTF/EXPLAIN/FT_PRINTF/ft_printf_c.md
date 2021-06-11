@@ -6,6 +6,30 @@
 -  `va_end()`을 통해 `ap` 가 `NULL` 을 가리키게 한다.
 -  최종적으로 읽었던 바이트 수인 `result`를 반환한다.
 
+</br>
+</br>
+
+⭐ print_and_parse_flags
+=======================
+
+- `tag`에 `malloc`으로 메모리 할당
+- `format[i] == %` 가 나오거나 문자열이 끝날 때까지 출력
+- 만약에 `%`이 등장하면 `tag`을 초기화 한 뒤에 `csdiupxXo%` 가 나올 때까지 `store_flags()`을 통해 플래그 저장
+- 그 다음에 오는 문자를 `tag->type`에 저장한 후에 `print_var_args()`로 넘어간다.
+
+</br>
+</br>
+
+⭐ print_and_parse_flags
+=======================
+
+- `0` `-` `.` `+` ` ` `#` `숫자` 또는 `*` 에 해당하는 플래그를 `tag`의 요소에 저장한다.
+- `숫자` 혹은 `*` 인 경우 `width` 또는 `precision` 두 가지 모두의 가능성이 있다.
+- 이 경우 `store_width_and_prec()` 함수로 넘어간다.
+
+</br>
+</br>
+
 
 ⭐ print_var_args
 ================
