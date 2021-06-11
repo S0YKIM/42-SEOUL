@@ -1,4 +1,5 @@
-# print_var_args
+⭐ print_var_args
+================
 
 - `tag->type` 이 `cspdiuxo%` 중에 무엇인지 검사하여 `print_OOOOO` 선택
 
@@ -8,6 +9,8 @@
 
 (1) `tag->minus == 1`
 - 좌측 정렬인 경우에는 무조건 `0` 플래그가 무시된다
+
+</br>
 
 (2) `c`, `s`, `%` 을 제외한 `tag->precision > -1`
 - 정밀도가 존재하는 경우에는 정밀도 옵션을 통해 `0` 을 채워주기 때문이다.
