@@ -43,12 +43,21 @@
 
 ## 2. va_start
 
-      void va_start(va_list ap, variable_name);
+DEFINITION
+----------
 
-* 가변 인자를 가져올 수 있도록 포인터를 설정한다.
+      #define va_start(ap, v) ( (ap) = (va_list)_ADDRESSOF(v) + _INTSIZEOF(v) );
+      
+PARAMETERS
+----------
+
+      #1. va_list 인스턴스(ap)
+      #2. 고정인수(v)
+
 * `va_list` 포인터에게 가변인자 중 첫번째 선택적 인수(variable_name)의 주소를 가르쳐주는 매크로
 * `va_arg()`, `va_copy()`, `va_end()` 에 대한 후속 호출에 대해 `ap` 포인터를 초기화한다.
-* `variable_name`: 인수 목록의 첫 번째 인자 바로 앞에 오는 `필수 매개 변수`의 이름. 즉, 마지막 고정된 `필수 인수`가 담긴다.
+* `v`: 인수 목록의 첫 번째 인자 바로 앞에 오는 `필수 매개 변수`의 이름. 과제에서는 `format` 이라고 불리는 부분.
+* 
 
 </br>
 
