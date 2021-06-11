@@ -102,7 +102,10 @@ DEFINITION
 
 ## 5. va_end
 
-      void va_end(va_list arg_ptr);
+DEFINITION
+----------
+
+      #define va_end(ap) (ap = (va_list)0);
 
 * 가변 인자 처리가 끝났을 때 포인터를 `NULL`로 초기화한다.
 * 모든 인수가 검색된 후에 포인터를 `NULL` 로 다시 설정한다. 
