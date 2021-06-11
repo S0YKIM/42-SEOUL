@@ -1,6 +1,6 @@
 # print_var_args
 
-- `tag->type` 이 `cspdiuxo%` 중에 무엇인지 검사하여 print_? 선택
+- `tag->type` 이 `cspdiuxo%` 중에 무엇인지 검사하여 `print_OOOOO` 선택
 - `tag->zero = 0` if 문에서 제로 플래그를 끄는 경우?
 
 (1) `tag->minus == 1`
