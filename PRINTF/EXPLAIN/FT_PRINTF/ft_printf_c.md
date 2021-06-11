@@ -70,9 +70,9 @@
 ================
 
 - `tag->type` 이 `cspdiuxo%` 중에 무엇인지 검사하고
-- `c`, `%` -> `print_char()`
-- `s` -> `print_string`
-- `d`, `i`, `u` `x`, `X`, `o`, `p` -> `print_number`
+- `c`, `%` ▶️ `print_char()`
+- `s` ▶️ `print_string`
+- `d`, `i`, `u` `x`, `X`, `o`, `p` ▶️ `print_number`
 
 ❗`tag->zero = 0` if 문에서 `0` 플래그를 끄는 경우?
 
