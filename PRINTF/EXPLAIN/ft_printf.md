@@ -1,7 +1,8 @@
 ⭐ print_var_args
 ================
 
-- `tag->type` 이 `cspdiuxo%` 중에 무엇인지 검사하여 `print_OOOOO` 선택
+- `tag->type` 이 `cspdiuxo%` 중에 무엇인지 검사하고
+- `print_char()`, `print_string`, `print_number` 중에서 선택
 
 - `tag->zero = 0` if 문에서 `0` 플래그를 끄는 경우?
 
