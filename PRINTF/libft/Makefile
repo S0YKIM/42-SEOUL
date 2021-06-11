@@ -39,7 +39,8 @@ FILES = ft_memset \
 		ft_putstr_fd \
 		ft_putendl_fd \
 		ft_putnbr_fd \
-		ft_putchar \
+		ft_putchar_bonus \
+		ft_putstr \
 		ft_lstnew \
 	  	ft_lstadd_front \
 	  	ft_lstsize \

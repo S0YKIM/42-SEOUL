@@ -6,7 +6,7 @@
 #    By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/30 21:42:05 by sokim             #+#    #+#              #
-#    Updated: 2021/05/30 22:11:11 by sokim            ###   ########.fr        #
+#    Updated: 2021/06/11 16:46:11 by sokim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,26 @@ CFLAGS = -Wall -Wextra -Werror
 LIBFT = libft
 LIBFT_LIB = libft.a
 
-SRCS = ./ft_printf.c ./utils.c\
-	   ./print_char.c ./print_nbr.c ./print_string.c
+FILES_UTIL = convert_number \
+			 flag \
+			 hashtag \
+			 init \
+			 number
+
+FILES_PRINT = print_char \
+			  print_number \
+			  print_string
+
+SRC_UTIL_DIR = ./utils/
+SRC_UTIL = $(addprefix $(SRC_UTIL_DIR), $(addsuffix .c, $(FILES_UTIL)))
+
+SRC_PRINT_DIR = ./print/
+SRC_PRINT = $(addprefix $(SRC_PRINT_DIR), $(addsuffix .c, $(FILES_PRINT)))
+
+SRCS = ./ft_printf.c \
+	   $(SRC_UTIL) \
+	   $(SRC_PRINT)
+
 OBJS = $(SRCS:.c=.o)
 INCS = .
 RM = rm -f
@@ -33,6 +51,9 @@ $(NAME): $(OBJS)
 	$(AR) $(NAME) $(OBJS)
 
 all: $(NAME)
+
+bonus:
+	make all
 
 clean:
 	$(RM) $(OBJS)

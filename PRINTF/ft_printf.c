@@ -6,102 +6,99 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 18:44:57 by sokim             #+#    #+#             */
-/*   Updated: 2021/06/01 21:57:22 by sokim            ###   ########.fr       */
+/*   Updated: 2021/06/09 17:34:42 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	print_var_args(va_list ap, t_info *info)
+static int	print_var_args(va_list ap, t_tag *tag)
 {
 	int		result;
 	char	type;
 
+	if ((tag->minus == 1) || ((tag->precision > -1) &&
+				(tag->type != 'c') && (tag->type != 's') && (tag->type != '%')))
+		tag->zero = 0;
 	result = 0;
-	type = info->type;
+	type = tag->type;
 	if (type == 'c')
-		result = print_char(va_arg(ap, int), info);
+		result = print_char(va_arg(ap, int), tag);
 	else if (type == 's')
-		result = print_string(va_arg(ap, char *), info);
+		result = print_string(va_arg(ap, char *), tag);
 	else if (type == 'p')
-		result = print_nbr(va_arg(ap, unsigned long long), info);
+		result = print_number(va_arg(ap, unsigned long long), tag);
 	else if (type == 'd' || type == 'i')
-		result = print_nbr(va_arg(ap, int), info);
-	else if (type == 'u' || type == 'x' || type == 'X')
-		result = print_nbr(va_arg(ap, unsigned int), info);
+		result = print_number(va_arg(ap, int), tag);
+	else if (type == 'u' || type == 'x' || type == 'X' || type == 'o')
+		result = print_number(va_arg(ap, unsigned int), tag);
 	else if (type == '%')
-		result = print_char('%', info);
+		result = print_char('%', tag);
 	return (result);
 }
 
-static void	store_width_and_prec(va_list ap, char *format, t_info *info, int i)
+static void	store_width_and_prec(va_list ap, char *format, t_tag *tag, int i)
 {
 	if (ft_isdigit(format[i]))
 	{
-		if (info->prec == -1)
-			info->width = info->width * 10 + format[i] - '0';
+		if (tag->precision == -1)
+		{
+			init_width(tag);
+			tag->width = tag->width * 10 + format[i] - '0';
+		}
 		else
-			info->prec = info->prec * 10 + format[i] - '0';
+			tag->precision = tag->precision * 10 + format[i] - '0';
 	}
 	else if (format[i] == '*')
 	{
-		if (info->prec == -1)
-		{
-			info->width = va_arg(ap, int);
-			if (info->width < 0)
-			{
-				info->minus = 1;
-				info->width *= -1;
-			}
-		}
-		else
-			info->prec = va_arg(ap, int);
+		tag->star = 1;
+		store_star_flag(ap, format, tag, i);
 	}
 }
 
-static void	store_flags(va_list ap, char *format, t_info *info, int i)
+static void	store_flags(va_list ap, char *format, t_tag *tag, int i)
 {
-	if (format[i] == '0' && info->width == 0 && info->prec == -1)
-		info->zero = 1;
-		// 0 으로 채운다
+	if (format[i] == '0' && tag->width == 0 && tag->precision == -1)
+		tag->zero = 1;
 	if (format[i] == '-')
-		info->minus = 1;
-		// 좌측정렬
+		tag->minus = 1;
 	if (format[i] == '.')
-		info->prec = 0;
-		// 다음 숫자가 있으면그게 precision
+		tag->precision = 0;
+	if (format[i] == '+')
+		tag->plus = 1;
+	if (format[i] == ' ')
+		tag->space = 1;
+	if (format[i] == '#')
+		tag->hashtag = 1;
 	if (ft_isdigit(format[i]) || format[i] == '*')
-		store_width_and_prec(ap, format, info, i);
-		// . 뒤에오면 prec . 없으면 width 
-		// * 의 경우 첫번째 가변인자가 width
+		store_width_and_prec(ap, format, tag, i);
 }
 
 static int	print_and_parse_flags(va_list ap, char *format)
 {
 	int			i;
 	int			result;
-	t_info		*info;
+	t_tag		*tag;
 
 	i = 0;
 	result = 0;
-	if (!(info = (t_info *)malloc(size_of(t_info))))
-		return (-1);
+	if (!(tag = (t_tag *)malloc(sizeof(t_tag))))
+		return (ERROR);
 	while (format[i])
 	{
 		while (format[i] && format[i] != '%')
 			result += ft_putchar(format[i++]);
 		if (format[i] == '%')
 		{
-			init_info(info);
+			init_tag(tag);
 			while (format[++i] && !(ft_strchr(TYPE, format[i])))
-				store_flags(ap, format, info, i);
-			info->type = format[i++];
-			if (((info->minus == 1) || (info->prec > -1)) && (info->type != '%'))
-				info->zero = 0;
-			result += print_var_args(ap, info);
+				store_flags(ap, format, tag, i);
+			if (format[i])
+				tag->type = format[i++];
+			result += print_var_args(ap, tag);
 		}
 	}
-	free(info);
+	free(tag);
 	return (result);
 }
 
