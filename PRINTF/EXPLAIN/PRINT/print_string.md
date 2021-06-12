@@ -15,7 +15,7 @@
 ⭐ trim_string
 ===============
 
-
+- `tag->precision`과 `ft_strlen(str)` 중에서 작은 값을 길이로 가지는 문자열을 반환
 
 
 </br>
