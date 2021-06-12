@@ -7,20 +7,24 @@
 
 ### 3 - `add_prec_to_nbr()` 함수로 `precision`에 따라 문자열을 자르고 해당 진법으로 변환한다.
 
-### 4 - `add_pointer_prefix()` 함수로 포인터를 나타내는 `0x`를 붙이고 `공백`을 더한다.
+### 4 - `add_pointer_prefix()` 함수로 포인터를 나타내는 `0x`를 붙이고 앞이나 뒤에 `공백`을 채운다. 
 
 ### 5 -
 
 #### (1) `0` 플래그가 없는 경우:
 - `d`, `i`: `add_plus_or_minus()` 함수를 통해 부호를 붙인다.
 - `x`, `X`, `o`: `add_hashtag_prefix()` 함수를 통해 `0`, `0x`, `0X`를 붙인다.
-- `add_width_to_buf()` 함수를 통해 뒤에 `공백`을 채운다.
+- `add_width_to_buf()` 함수를 통해 앞이나 뒤에 `공백`을 채운다.
+
+      printf("%#10x\n", 0x123) ▶️      0x123 출력
 
 
 #### (2) `0` 플래그가 있는 경우:
 - `add_width_to_buf()` 함수를 통해 `0`을 먼저 채운다.
 - `d`, `i`: `add_plus_or_minus_with_zero()` 함수를 통해 부호를 붙인다.
 - `x`, `X`, `o`: `add_hashtag_prefix_with_zero()` 함수를 통해 `0`, `0x`, `0X`를 붙인다.
+
+      printf("%#010x\n", 0x123) ▶️ 0x00000123 출력
 
 
 ### 6 - `buf` 를 출력하고 `free()` 해준다.
