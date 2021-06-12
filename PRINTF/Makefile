@@ -6,7 +6,7 @@
 #    By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/30 21:42:05 by sokim             #+#    #+#              #
-#    Updated: 2021/06/11 16:46:11 by sokim            ###   ########.fr        #
+#    Updated: 2021/06/12 17:24:48 by sokim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,8 +52,7 @@ $(NAME): $(OBJS)
 
 all: $(NAME)
 
-bonus:
-	make all
+bonus: $(NAME)
 
 clean:
 	$(RM) $(OBJS)

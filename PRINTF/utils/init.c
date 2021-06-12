@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 17:59:21 by sokim             #+#    #+#             */
-/*   Updated: 2021/06/08 18:23:54 by sokim            ###   ########.fr       */
+/*   Updated: 2021/06/11 19:59:32 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,15 @@ void	init_width(t_tag *tag)
 		tag->width = 0;
 		tag->star = 0;
 	}
+	return ;
+}
+
+void	init_precision(t_tag *tag)
+{
+	if (tag->star == 1)
+	{
+		tag->precision = 0;
+		tag->star = 0;
+	}
+	return ;
 }

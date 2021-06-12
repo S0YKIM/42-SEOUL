@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 18:44:57 by sokim             #+#    #+#             */
-/*   Updated: 2021/06/09 17:34:42 by sokim            ###   ########.fr       */
+/*   Updated: 2021/06/12 17:36:49 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,30 +47,34 @@ static void	store_width_and_prec(va_list ap, char *format, t_tag *tag, int i)
 			tag->width = tag->width * 10 + format[i] - '0';
 		}
 		else
+		{
+			init_precision(tag);
 			tag->precision = tag->precision * 10 + format[i] - '0';
+		}
 	}
 	else if (format[i] == '*')
 	{
 		tag->star = 1;
-		store_star_flag(ap, format, tag, i);
+		store_star_flag(ap, tag);
 	}
+	return ;
 }
 
 static void	store_flags(va_list ap, char *format, t_tag *tag, int i)
 {
 	if (format[i] == '0' && tag->width == 0 && tag->precision == -1)
 		tag->zero = 1;
-	if (format[i] == '-')
+	else if (format[i] == '-')
 		tag->minus = 1;
-	if (format[i] == '.')
+	else if (format[i] == '.')
 		tag->precision = 0;
-	if (format[i] == '+')
+	else if (format[i] == '+')
 		tag->plus = 1;
-	if (format[i] == ' ')
+	else if (format[i] == ' ')
 		tag->space = 1;
-	if (format[i] == '#')
+	else if (format[i] == '#')
 		tag->hashtag = 1;
-	if (ft_isdigit(format[i]) || format[i] == '*')
+	else if (ft_isdigit(format[i]) || format[i] == '*')
 		store_width_and_prec(ap, format, tag, i);
 }
 

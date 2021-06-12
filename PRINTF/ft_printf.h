@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 18:34:39 by sokim             #+#    #+#             */
-/*   Updated: 2021/06/09 18:24:32 by sokim            ###   ########.fr       */
+/*   Updated: 2021/06/12 15:18:28 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 
 # define TYPE "csdiupxXo%"
 # define ERROR -1
@@ -46,9 +45,9 @@ int					print_number(unsigned long long nbr, t_tag *tag);
 
 void				init_tag(t_tag *tag);
 void				init_width(t_tag *tag);
+void				init_precision(t_tag *tag);
 
-void				store_star_flag(va_list ap,
-		char *format, t_tag *tag, int i);
+void				store_star_flag(va_list ap, t_tag *tag);
 int					add_space(int buf_len, t_tag *tag, char **buf);
 int					add_hashtag_prefix(t_tag *tag, char **buf);
 int					add_hashtag_prefix_with_zero(int buf_len, t_tag *tag,

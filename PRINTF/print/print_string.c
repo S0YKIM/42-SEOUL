@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 16:37:17 by sokim             #+#    #+#             */
-/*   Updated: 2021/06/09 19:30:55 by sokim            ###   ########.fr       */
+/*   Updated: 2021/06/12 17:44:11 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int			add_width_to_buf(char **buf, t_tag *tag)
 	if (len <= 0)
 		return ((int)ft_strlen(*buf));
 	if (!(width = (char *)malloc(sizeof(char) * (len + 1))))
-		return (ERROR);
+		return (-1);
 	width[len] = '\0';
 	while (len--)
 	{
@@ -49,10 +49,10 @@ int			add_width_to_buf(char **buf, t_tag *tag)
 	}
 	if (tag->minus == 1)
 		*buf = ft_strjoin(*buf, width, 'B');
-	else
+	else if (tag->minus == 0)
 		*buf = ft_strjoin(width, *buf, 'B');
 	if (!*buf)
-		*buf = ft_strdup("");
+		return (-2);
 	return (tag->width);
 }
 
@@ -71,6 +71,13 @@ int			print_string(char *str, t_tag *tag)
 	if (!(buf = trim_string(str, len)))
 		return (ERROR);
 	result = add_width_to_buf(&buf, tag);
+	if (result == -1)
+	{
+		free(buf);
+		return (ERROR);
+	}
+	else if (result == -2)
+		return (ERROR);
 	ft_putstr(buf);
 	free(buf);
 	return (result);

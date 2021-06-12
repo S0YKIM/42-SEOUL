@@ -63,6 +63,8 @@ OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
 $(NAME): $(OBJS)
 	$(AR) $@ $^
 
+bonus: $(NAME)
+
 all: $(NAME)
 
 clean:
