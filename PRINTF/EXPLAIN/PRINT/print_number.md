@@ -16,12 +16,16 @@
 - `x`, `X`, `o`: `add_hashtag_prefix()` 함수를 통해 `0`, `0x`, `0X`를 붙인다.
 - `add_width_to_buf()` 함수를 통해 앞이나 뒤에 `공백`을 채운다.
 
-      printf("%#10x\n", 0x123) ▶️      0x123 출력
+      printf("%+10d\n", 123)    ▶️       +123 출력
+      printf("%#10x\n", 0x123)  ▶️      0x123 출력
 
 
 #### (2) `0` 플래그가 있는 경우:
 - `add_width_to_buf()` 함수를 통해 `0`을 먼저 채운다.
 - `d`, `i`: `add_plus_or_minus_with_zero()` 함수를 통해 부호를 붙인다.
+
+      printf("%010d\n", -123)   ▶️ -000000123 출력
+
 - `x`, `X`, `o`: `add_hashtag_prefix_with_zero()` 함수를 통해 `0`, `0x`, `0X`를 붙인다.
 
       printf("%#010x\n", 0x123) ▶️ 0x00000123 출력
