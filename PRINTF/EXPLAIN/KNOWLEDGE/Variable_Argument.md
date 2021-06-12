@@ -13,7 +13,7 @@
 </br>
 
 
-# How to Create A Function Using Variable Arguments
+# 가변인자 이용하여 함수 만들기
 
 ⭐HEADER FILE
 =============
