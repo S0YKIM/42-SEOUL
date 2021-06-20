@@ -6,6 +6,7 @@
 </br>
 </br>
 ### ⭐ [`LIBC`](./LIBFT)
+[![jaeskim's 42Project Score](https://badge42.herokuapp.com/api/project/sokim/Libft)](https://github.com/JaeSeoKim/badge42)
 * Reproduced the behaviours of the functions in libc.
 </br>
 
