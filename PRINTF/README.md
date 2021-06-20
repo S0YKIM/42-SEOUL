@@ -1,6 +1,6 @@
 # PRINTF()
 
-[![jaeskim's 42Project Score](https://badge42.herokuapp.com/api/project/sokim/printf)](https://github.com/JaeSeoKim/badge42)
+[![jaeskim's 42Project Score](https://badge42.herokuapp.com/api/project/sokim/ft_printf)](https://github.com/JaeSeoKim/badge42)
 
 </br>
 
