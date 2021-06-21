@@ -67,7 +67,7 @@ int		end_of_file(char **backup, char **line)
 
 int		get_next_line(int fd, char **line)
 {
-	static char		*backup[256];
+	static char		*backup[MAX_FD];
 	char			buf[BUFFER_SIZE + 1];
 	int				read_size;
 	int				newline_index;
