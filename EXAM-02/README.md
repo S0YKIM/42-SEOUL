@@ -2,4 +2,4 @@
 
 - GET NEXT LINE
 - PRINTF
-- You're going to be tested on one of them.
+- You're going to be tested on one of them for two hours.
