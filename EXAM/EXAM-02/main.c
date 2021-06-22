@@ -15,6 +15,7 @@ int		main(void)
 	}
 	printf("return: %d, line: %s\n", ret, line);
 	free(line);
+	line = 0;
 	system("leaks a.out");
 	return (0);
 }
