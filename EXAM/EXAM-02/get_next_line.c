@@ -18,13 +18,9 @@ static char	*ft_strjoin(char *s1, char *s2)
 	int		i;
 	int		j;
 
-	if (!s1 || !s2)
-		return (NULL);
 	s1_len = ft_strlen(s1);
 	s2_len = ft_strlen(s2);
 	result = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
-	if (!result)
-		return (NULL);
 	i = 0;
 	j = 0;
 	while (s1[i])
@@ -50,8 +46,6 @@ static char	*ft_strdup(char *str)
 
 	len = ft_strlen(str);
 	result = (char *)malloc(sizeof(char) * (len + 1));
-	if (!result)
-		return (NULL);
 	i = 0;
 	while (str[i])
 	{
@@ -84,8 +78,6 @@ int			get_next_line(char **line)
 	char		*tmp;
 	int			index;
 
-	if (!line)
-		return (-1);
 	if (!backup)
 	{
 		backup = ft_strdup("");
