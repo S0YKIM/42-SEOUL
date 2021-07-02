@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 20:19:22 by sokim             #+#    #+#             */
-/*   Updated: 2021/07/01 20:33:12 by sokim            ###   ########.fr       */
+/*   Updated: 2021/07/02 15:15:13 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 
 # include "../libft/libft.h"
 # include "get_next_line.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
 # include <stdio.h>
 
 /*

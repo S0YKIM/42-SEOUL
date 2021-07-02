@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 13:49:27 by sokim             #+#    #+#             */
-/*   Updated: 2021/07/01 17:40:14 by sokim            ###   ########.fr       */
+/*   Updated: 2021/07/02 20:07:47 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,15 @@ int	main(int argc, char const *argv[])
 
 	if (argc != 5)
 		return (0);
-	pipe(pipefd);
+	if (pipe(pipefd) == -1)
+		return (0);
 	pid = fork();
 	if (pid > 0)
 	{
+		redirect_stdout(argv[4]);
 		waitpid(pid, &status, 0);
 		if (WIFEXITED(status) == 0)
 			exit(1);
-		redirect_stdout(argv[4]);
 		connect_pipe(pipefd, STDIN_FILENO);
 		run_command(argv[3]);
 	}

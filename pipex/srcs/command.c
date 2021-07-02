@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 14:32:56 by sokim             #+#    #+#             */
-/*   Updated: 2021/07/01 20:52:16 by sokim            ###   ########.fr       */
+/*   Updated: 2021/07/02 15:56:21 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,20 @@ static void	select_path_to_command(const char *cmd, t_path *strc)
 {
 	char	**chunk;
 
-	chunk = ft_split(cmd, ' ');
-	strc->path[0] = ft_strjoin("/usr/local/bin", chunk[0]);
-	strc->path[1] = ft_strjoin("/usr/bin/", chunk[0]);
-	strc->path[2] = ft_strjoin("/bin/", chunk[0]);
-	strc->path[3] = ft_strjoin("/usr/sbin/", chunk[0]);
-	strc->path[4] = ft_strjoin("/sbin/", chunk[0]);
-	strc->path[5] = ft_strjoin("", chunk[0]);
+	if (!(chunk = ft_split(cmd, ' ')))
+		exit(1);
+	if (!(strc->path[0] = ft_strjoin("/usr/local/bin", chunk[0])))
+		exit(1);
+	if (!(strc->path[1] = ft_strjoin("/usr/bin/", chunk[0])))
+		exit(1);
+	if (!(strc->path[2] = ft_strjoin("/bin/", chunk[0])))
+		exit(1);
+	if (!(strc->path[3] = ft_strjoin("/usr/sbin/", chunk[0])))
+		exit(1);
+	if (!(strc->path[4] = ft_strjoin("/sbin/", chunk[0])))
+		exit(1);
+	if (!(strc->path[5] = ft_strjoin("", chunk[0])))
+		exit(1);
 	strc->argv = (char *const *)chunk;
 }
 
@@ -40,4 +47,5 @@ void		run_command(const char *cmd)
 	}
 	free((void *)strc.argv);
 	perror("command not found");
+	exit(1);
 }

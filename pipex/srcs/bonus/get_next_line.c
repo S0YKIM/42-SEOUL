@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 16:27:42 by sokim             #+#    #+#             */
-/*   Updated: 2021/07/01 22:25:50 by sokim            ###   ########.fr       */
+/*   Updated: 2021/07/02 16:16:36 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,8 @@ int				get_next_line(int fd, char **line)
 	int				read_size;
 	int				newline_index;
 
-	if (fd < 0 || fd > MAX_FD || !line || BUFFER_SIZE <= 0)
+	if (!(buf = (char *)malloc(BUFFER_SIZE + 1)))
 		return (FLAG_ERROR);
-	buf = (char *)malloc(BUFFER_SIZE + 1);
 	while ((read_size = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[read_size] = '\0';

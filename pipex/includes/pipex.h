@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 20:19:22 by sokim             #+#    #+#             */
-/*   Updated: 2021/07/01 20:09:18 by sokim            ###   ########.fr       */
+/*   Updated: 2021/07/02 15:18:29 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define PIPEX_H
 
 # include "../libft/libft.h"
-# include <unistd.h>
-# include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
 

@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 17:13:39 by sokim             #+#    #+#             */
-/*   Updated: 2021/07/01 22:19:14 by sokim            ###   ########.fr       */
+/*   Updated: 2021/07/02 15:43:36 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,11 @@ char			**ft_split(char const *s, char c)
 	char const	*start;
 	size_t		index;
 
-	if (!s)
-		return (NULL);
 	if (ft_strncmp("awk", s, 3) == 0)
 		return (get_awk(s));
-	tab = (char **)malloc(sizeof(char *) *
-					(ft_number_of_words(s, c) + 1));
+	if (!(tab = (char **)malloc(sizeof(char *) *
+					(ft_number_of_words(s, c) + 1))))
+		return (NULL);
 	index = 0;
 	while (*s)
 		if (*s != c)

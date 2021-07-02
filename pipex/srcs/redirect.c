@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 13:21:20 by sokim             #+#    #+#             */
-/*   Updated: 2021/07/01 21:47:12 by sokim            ###   ########.fr       */
+/*   Updated: 2021/07/02 15:54:39 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ void	redirect_stdin(const char *file)
 		exit(1);
 	}
 	if (dup2(fd, STDIN_FILENO) < 0)
-		perror("redirect_stdin");
+	{
+		perror("dup2_redirect_stdin");
+		exit(1);
+	}
 	close(fd);
 }
 
@@ -38,6 +41,9 @@ void	redirect_stdout(const char *file)
 		exit(1);
 	}
 	if (dup2(fd, STDOUT_FILENO) < 0)
-		perror("redirect_stdout");
+	{
+		perror("dup2_redirect_stdout");
+		exit(1);
+	}
 	close(fd);
 }

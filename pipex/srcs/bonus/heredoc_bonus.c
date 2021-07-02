@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 19:39:51 by sokim             #+#    #+#             */
-/*   Updated: 2021/07/01 22:19:33 by sokim            ###   ########.fr       */
+/*   Updated: 2021/07/02 16:36:09 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,23 @@
 static void	clear_temp(void)
 {
 	char	**argv;
+	pid_t	pid;
 
-	argv = malloc(sizeof(char *) * 3);
+	if (!(argv = (char **)malloc(sizeof(char *) * 3)))
+	{
+		perror("malloc");
+		exit(1);
+	}
 	argv[0] = "-f";
 	argv[1] = "./temp";
 	argv[2] = NULL;
-	if (fork() == 0)
+	pid = fork();
+	if (pid < 0)
+	{
+		perror("fork");
+		exit(1);
+	}
+	else if (pid == 0)
 		execve("/bin/rm", (char *const *)argv, NULL);
 }
 
@@ -31,8 +42,13 @@ void		heredoc(const char *limiter)
 
 	buf = NULL;
 	fd = open("./temp", O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if (fd == -1)
+	{
+		perror("open");
+		exit(1);
+	}
 	write(1, "heredoc> ", 9);
-	while (get_next_line(0, &buf) != 0)
+	while (get_next_line(0, &buf) > 0)
 	{
 		if (ft_strcmp(buf, limiter) == 0)
 			break ;
