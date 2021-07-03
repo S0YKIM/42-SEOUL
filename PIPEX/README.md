@@ -92,7 +92,7 @@
 ==============
 
 * The aim of this project is to mimic the UNIX mechanism.
-* Key concepts: `Redirection`, `Pipes`, `Process`, `Fork`, `dup2`
+* Key concepts: `Redirection`, `Pipes`, `Process`, `fork()`, `dup2()`
 </br>
 </br>
 
