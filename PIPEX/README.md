@@ -107,3 +107,5 @@
 </br>
 프로세스 생성과 실행: https://love-every-moment.tistory.com/53
 </br>
+파일 디스크립터: https://love-every-moment.tistory.com/45
+</br>
