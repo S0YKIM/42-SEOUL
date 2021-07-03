@@ -13,23 +13,43 @@
 - You are allowed to use the following functions:
 
 ◦ access 
+
 ◦ open
+
 ◦ unlink
+
 ◦ close
+
 ◦ read
+
 ◦ write
+
 ◦ malloc
+
 ◦ waitpid
+
 ◦ wait
+
 ◦ free
+
 ◦ pipe
+
 ◦ dup
+
 ◦ dup2
+
 ◦ execve
+
 ◦ fork
+
 ◦ perror
+
 ◦ strerror
+
 ◦ exit
+
+</br>
+</br>
 
 - The program should be executed in this way:
 
@@ -72,7 +92,7 @@
 ==============
 
 * The aim of this project is to mimic the UNIX mechanism.
-* Key concepts: `Redirection`, `Pipes`, `Process`, `Fork`
+* Key concepts: `Redirection`, `Pipes`, `Process`, `Fork`, `dup2`
 </br>
 </br>
 
