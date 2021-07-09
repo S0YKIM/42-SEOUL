@@ -1,5 +1,5 @@
-#include "get_next_line.h"
 #include <stdio.h>
+#include "get_next_line.h"
 
 int		main(void)
 {
@@ -9,11 +9,11 @@ int		main(void)
 	line = 0;
 	while ((ret = get_next_line(&line)) > 0)
 	{
-		printf("return: %d, line: %s\n", ret, line);
+		printf("return: %i, line: %s\n", ret, line);
 		free(line);
 		line = 0;
 	}
-	printf("return: %d, line: %s\n", ret, line);
+	printf("return: %i, line: %s\n", ret, line);
 	free(line);
 	line = 0;
 	system("leaks a.out");
