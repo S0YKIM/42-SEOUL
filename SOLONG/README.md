@@ -9,14 +9,14 @@
 | Turn in files | All your files |
 | Makefile | all, clean, fclean, re, bonus |
 | Arguments | a map in format *.ber |
-| External functs. | • open, close, read, write, printf, malloc, free, perror, strerror, exit
-• All functions of the MinilibX |
+| External functs. | • open, close, read, write, printf, malloc, free, perror, strerror, exit /br • All functions of the MinilibX |
 | Libft authorized | Yes |
 | Description | You must create a small 2D game where a dolphin escapes earth after eating some fish. Or any hero collects any valuables before leaving the place. |
 
 
 
 The constraints are as follows:
+
 • You must use the miniLibX. Either the version that is available on the operating system, or from its sources. If you choose to work with the sources, you will need to apply the same rules for your libft as those written above in Common Instructions part.
 • The management of your window must remain smooth: changing to another win- dow, minimizing, etc.
 • examples are given with a dolphin theme but you can use anything you want.
