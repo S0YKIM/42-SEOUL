@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 14:32:18 by sokim             #+#    #+#             */
-/*   Updated: 2021/05/13 20:04:21 by sokim            ###   ########.fr       */
+/*   Updated: 2021/12/16 16:56:51 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	ft_get_end(char const *s1, char const *set)
 	return (len - i);
 }
 
-char		*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*ret;
 	size_t	start;

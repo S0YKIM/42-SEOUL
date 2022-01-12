@@ -6,13 +6,13 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 15:23:41 by sokim             #+#    #+#             */
-/*   Updated: 2021/05/14 13:02:48 by sokim            ###   ########.fr       */
+/*   Updated: 2021/12/16 16:50:56 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		ft_print_number(int n, int fd)
+static void	ft_print_number(int n, int fd)
 {
 	long long int	nbr;
 	char			c;
@@ -26,7 +26,7 @@ static void		ft_print_number(int n, int fd)
 	write(fd, &c, 1);
 }
 
-void			ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
 	if (fd < 0)
 		return ;

@@ -12,6 +12,7 @@ FILES = ft_memset \
 		ft_memmove \
 		ft_memchr \
 		ft_memcmp \
+		ft_memset \
 		ft_strlen \
 		ft_strlcpy \
 		ft_strlcat \
@@ -53,10 +54,12 @@ FILES_B = 	ft_lstnew \
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
-SRCS_B = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES_B)))
+SRCS_B_DIR = ./
+SRCS_B = $(addprefix $(SRCS_B_DIR), $(addsuffix .c, $(FILES_B)))
 
 OBJS_DIR = ./
 OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
+OBJS_B_DIR = ./
 OBJS_B = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES_B)))
 
 ifdef WITH_BONUS

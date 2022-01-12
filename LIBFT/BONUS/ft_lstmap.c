@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 14:30:47 by sokim             #+#    #+#             */
-/*   Updated: 2021/05/19 18:08:10 by sokim            ###   ########.fr       */
+/*   Updated: 2021/12/16 16:36:38 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,13 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*result;
 	t_list	*temp;
 
-	if (!lst || !f)
+	if (!lst)
 		return (NULL);
+	if (!f)
+	{
+		free(lst);
+		return (NULL);
+	}
 	result = NULL;
 	while (lst)
 	{

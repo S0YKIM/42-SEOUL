@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 19:06:05 by sokim             #+#    #+#             */
-/*   Updated: 2021/05/10 21:44:53 by sokim            ###   ########.fr       */
+/*   Updated: 2021/12/16 16:50:20 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,14 @@ static long long int	ft_abs(long long int nbr)
 	return (nbr);
 }
 
-static int				ft_int_len(int n)
+static int	ft_int_len(int n)
 {
 	int		len;
 
-	len = (n <= 0) ? 1 : 0;
+	if (n <= 0)
+		len = 1;
+	else
+		len = 0;
 	while (n)
 	{
 		++len;
@@ -32,14 +35,17 @@ static int				ft_int_len(int n)
 	return (len);
 }
 
-char					*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char			*ret;
 	int				len;
 	int				sign;
 	long long int	nbr;
 
-	sign = (n < 0) ? -1 : 1;
+	if (n < 0)
+		sign = -1;
+	else
+		sign = 1;
 	len = ft_int_len(n);
 	ret = (char *)malloc(sizeof(char) * (len + 1));
 	if (!ret)

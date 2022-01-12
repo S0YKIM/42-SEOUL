@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 15:01:44 by sokim             #+#    #+#             */
-/*   Updated: 2021/05/18 14:11:57 by sokim            ###   ########.fr       */
+/*   Updated: 2021/12/16 16:41:02 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-typedef struct		s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
@@ -26,7 +26,7 @@ void				*ft_memset(void *ptr, int value, size_t num);
 void				*ft_bzero(void *ptr, size_t num);
 void				*ft_memcpy(void *dest, const void *src, size_t num);
 void				*ft_memccpy(void *dest, const void *src, int value,
-		size_t num);
+						size_t num);
 void				*ft_memmove(void *dst, const void *src, size_t num);
 void				*ft_memchr(const void *s, int value, size_t num);
 int					ft_memcmp(const void *s1, const void *s2, size_t num);
@@ -36,7 +36,7 @@ size_t				ft_strlcat(char *dest, const char *src, size_t size);
 char				*ft_strchr(const char *str, int value);
 char				*ft_strrchr(const char *str, int value);
 char				*ft_strnstr(const char *haystack, const char *needle,
-		size_t len);
+						size_t len);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_atoi(const char *str);
 int					ft_isalpha(int c);
@@ -70,6 +70,6 @@ void				ft_lstdelone(t_list *lst, void (*del)(void*));
 void				ft_lstclear(t_list **lst, void (*del)(void*));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
-		void (*del)(void *));
+						void (*del)(void *));
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 18:36:41 by sokim             #+#    #+#             */
-/*   Updated: 2021/05/10 18:47:23 by sokim            ###   ########.fr       */
+/*   Updated: 2021/12/16 16:58:50 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isalnum(int c)
+int	ft_isalnum(int c)
 {
 	if (c >= 'a' && c <= 'z')
 		return (1);

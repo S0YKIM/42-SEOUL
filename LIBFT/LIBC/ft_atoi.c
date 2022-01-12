@@ -6,22 +6,22 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 17:38:49 by sokim             #+#    #+#             */
-/*   Updated: 2021/05/13 20:16:17 by sokim            ###   ########.fr       */
+/*   Updated: 2021/12/16 16:58:31 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		is_space(char c)
+static int	is_space(char c)
 {
-	if (c == '\t' || c == '\r' ||
-		c == '\f' || c == '\v' ||
-		c == '\n' || c == ' ')
+	if (c == '\t' || c == '\r'
+		|| c == '\f' || c == '\v'
+		|| c == '\n' || c == ' ')
 		return (1);
 	return (0);
 }
 
-int				ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int		ret;
 	int		i;
