@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:34:31 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/19 17:14:27 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/19 21:25:00 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	sl_parse_map(t_map *map, char *filename)
 	map->map = ft_split(raw, '\n');
 	free(raw);
 	map->width = ft_strlen(map->map[0]);
-	map->screen_width = 1600;
-	map->screen_height = 900;
+	map->window_width = map->width * 32;
+	map->window_height = map->height * 32;
 	return (1);
 }
