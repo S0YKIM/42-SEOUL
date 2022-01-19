@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 18:10:40 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/18 16:08:25 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/18 16:46:55 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@
 /* Map parsing */
 
 int		sl_parse_map(t_map *map, char *filename);
+
+/* Map validation check */
+
+int		sl_is_validate_map(t_map *map);
 
 
 #endif
