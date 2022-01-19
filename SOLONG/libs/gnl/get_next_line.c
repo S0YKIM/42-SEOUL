@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 16:27:42 by sokim             #+#    #+#             */
-/*   Updated: 2021/07/03 15:20:52 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/19 21:23:29 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int	get_next_line(int fd, char **line)
 {
 	static char		*backup[MAX_FD];
 	char			*buf;
-	char			*temp;
 	int				read_size;
 	int				nl_index;
 
@@ -90,13 +89,10 @@ int	get_next_line(int fd, char **line)
 		buf[read_size] = '\0';
 		if (!backup[fd])
 			backup[fd] = ft_strdup("");
-		temp = backup[fd];
 		backup[fd] = ft_strjoin(backup[fd], buf);
-		free(temp);
 		nl_index = get_index_of_newline(backup[fd]);
 		if (nl_index >= 0)
 			return (split_line(&buf, &backup[fd], line, nl_index));
 	}
-	free(buf);
 	return (end_of_file(&buf, &backup[fd], line));
 }
