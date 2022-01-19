@@ -6,13 +6,13 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 16:14:54 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/19 17:14:05 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/19 21:24:34 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	sl_is_rectagle(t_map *map)
+static int	sl_is_rectangle(t_map *map)
 {
 	int	i;
 	int	j;
@@ -20,7 +20,7 @@ static int	sl_is_rectagle(t_map *map)
 	i = 0;
 	while (map->map[i])
 	{
-		if (ft_strlen(map->map[i]) != map->width)
+		if ((int)ft_strlen(map->map[i]) != map->width)
 			return (0);
 		if (map->map[i][0] != '1' || map->map[i][map->width - 1] != '1')
 			return (0);
@@ -38,10 +38,6 @@ static int	sl_is_rectagle(t_map *map)
 
 static int	sl_check_size(t_map *map)
 {
-	if (map->width * 32 > map->screen_width)
-		return (0);
-	if (map->height * 32 > map->screen_height)
-		return (0);
 	if (map->width < 3 || map->height < 3
 		|| map->width * map->height < 15)
 		return (0);
