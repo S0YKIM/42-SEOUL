@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 18:10:29 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/19 17:23:55 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/19 21:29:29 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static void	sl_init_data(t_data *data)
 	data->win = 0;
 	data->count = 0;
 	data->map.map = 0;
+	data->map.height = 0;
+	data->map.width = 0;
 	data->imgs.back.img = 0;
 	data->imgs.wall.img = 0;
 	data->imgs.player.img = 0;
@@ -40,6 +42,7 @@ void	so_long(char *filename)
 
 	/* 새 창 띄우기 */
 	sl_new_window(&data);
+
 	/* 이미지 띄우기*/
 	/* 이벤트 후킹 */
 	/* 루프 돌리기 */
