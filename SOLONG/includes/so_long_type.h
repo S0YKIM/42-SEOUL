@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 19:28:37 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/19 16:13:45 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/19 19:27:37 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ typedef struct s_map
 	char	**map;
 	int		width;
 	int		height;
-	int		screen_width;
-	int		screen_height;
+	int		window_width;
+	int		window_height;
 }	t_map;
 
 typedef struct s_imgs
