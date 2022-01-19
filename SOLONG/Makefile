@@ -2,22 +2,52 @@ NAME = so_long
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-SRCS = src/main.c \ 
-	   src/util.c
+
+SRCS = src/main.c \
+	   src/parse.c 
+
 OBJS = $(SRCS:.c=.o)
 
+GNL = gnl
+SRCS_GNL = libs/gnl/get_next_line.c \
+		   libs/gnl/get_next_line_utils.c
+OBJS_GNL = $(SRCS_GNL:.c=.o)
+
+LIBFT = libft
+LIBFT_FLAGS = -L libs/libft -lft
+
+MLX = mlx
+MLX_FLAGS = -L libs/mlx -lmlx -framework OpenGL -framework Appkit
+
+INC_FLAGS = -I includes -I includes/$(NAME) -I libs/$(LIBFT) -I libs/$(GNL) -I libs/$(MLX)
+
+all : $(LIBFT) $(MLX) $(NAME)
+	$(info <MAKE> all$)
+
 .c.o :
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@ $(INC_FLAGS)
 
-$(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) -L./mlx -lmlx -framework OpenGL -framework Appkit $(OBJS) -o $(NAME)
+$(LIBFT) :
+	@make --silent --directory=libs/$(LIBFT)
+	$(info $<MAKE>	Libft - make$)
 
-all : $(NAME)
+$(MLX) :
+	@make --silent --directory=libs/$(MLX)
+	$(info $<MAKE>	MinilibX - make$)
+
+$(NAME) : $(LIBFT) $(MLX) $(OBJS) $(OBJS_GNL)
+	$(info $<MAKE> NAME$)
+	$(CC) $(CFLAGS) -o $@ $(OBJS) $(OBJS_GNL) $(LIBFT_FLAGS) $(MLX_FLAGS)
 
 clean :
-	rm -rf $(OBJS)
-fclean :	clean
+	@make clean --directory=libs/$(LIBFT)
+	@make clean --directory=libs/$(MLX)
+	rm -rf $(OBJS) $(OBJS_GNL)
+
+fclean : clean
+	@make fclean --directory=libs/$(LIBFT)
 	rm -rf $(NAME)
+
 re :	fclean all
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re libft mlx
