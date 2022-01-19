@@ -1,10 +1,24 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/01/19 21:27:39 by sokim             #+#    #+#              #
+#    Updated: 2022/01/19 21:28:33 by sokim            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = so_long
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 SRCS = src/main.c \
-	   src/parse.c 
+	   src/parse.c \
+	   src/check.c \
+	   src/window.c
 
 OBJS = $(SRCS:.c=.o)
 
