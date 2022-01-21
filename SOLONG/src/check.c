@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 16:14:54 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/19 21:24:34 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/21 20:51:16 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,13 @@ static int	sl_check_elements(t_map *map)
 	return (1);
 }
 
-int	sl_is_validate_map(t_map *map)
+int	sl_is_validate_map(t_data *data)
 {
-	if (sl_is_rectangle(map) == 0)
-		return (0);
-	if (sl_check_size(map) == 0)
-		return (0);
-	if (sl_check_elements(map) == 0)
-		return (0);
+	if (sl_is_rectangle(&(data->map)) == 0)
+		sl_exit_with_message("The map is not rectangle.", data);
+	if (sl_check_size(&(data->map)) == 0)
+		sl_exit_with_message("Invalid map size.", data);
+	if (sl_check_elements(&(data->map)) == 0)
+		sl_exit_with_message("Invalid number of elements.", data);
 	return (1);
 }
