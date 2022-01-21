@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 19:28:37 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/19 19:27:37 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/21 17:31:26 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 typedef struct s_img_info
 {
 	void	*img;
-	char	*path;
-	int		bits_per_pixel;
+	char	*addr;
+	int		bpp;
 	int		line_length;
 	int		endian;
 }	t_img_info;
