@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:14:21 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/21 20:55:25 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/21 21:42:15 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,57 @@ static void	sl_get_image_address(t_imgs *imgs, t_data *data)
 		sl_exit_with_message("Failed to save image info.", data);
 }
 
+static void sl_draw_background(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < data->map.width)
+	{
+		j = 0;
+		while (j < data->map.height)
+		{
+			mlx_put_image_to_window(data->mlx, data->win, data->imgs.back.img, i * 32, j * 32);
+			if (data->map.map[j][i] == '1')
+				mlx_put_image_to_window(data->mlx, data->win, data->imgs.wall.img, i * 32, j * 32);
+			j++;
+		}
+		i++;
+	}
+}
+
+static void	sl_draw_map(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < data->map.width)
+	{
+		j = 0;
+		while (j < data->map.height)
+		{
+			if (data->map.map[j][i] == 'E')
+				mlx_put_image_to_window(data->mlx, data->win,
+					data->imgs.exit.img, i * 32, j * 32);
+			else if (data->map.map[j][i] == 'P')
+				mlx_put_image_to_window(data->mlx, data->win,
+					data->imgs.player.img, i * 32, j * 32);
+			else if (data->map.map[j][i] == 'C')
+				mlx_put_image_to_window(data->mlx, data->win,
+					data->imgs.collects.img, i * 32, j * 32);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	sl_new_image(t_data *data)
 {
 	sl_save_image(data);
 	sl_get_image_address(&data->imgs, data);
+	mlx_clear_window(data->mlx, data->win);
+	sl_draw_background(data);
+	sl_draw_map(data);
 }
