@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 18:10:29 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/21 21:01:24 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/21 21:38:26 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ void	so_long(char *filename)
 	sl_new_image(&data);
 
 	/* 이벤트 후킹 */
+	/* sl_event_hook(&data); */
+
 	/* 루프 돌리기 */
+	mlx_loop(data.mlx);
 }
 
 int     main(int argc, char **argv)
