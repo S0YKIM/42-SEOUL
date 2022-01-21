@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 18:10:29 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/19 21:29:29 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/21 21:01:24 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,17 @@ void	so_long(char *filename)
 	sl_init_data(&data);
 
 	/* 파일을 읽어서 맵 파싱*/
-	sl_parse_map(&data.map, filename);
+	sl_parse_map(&(data.map), filename, &data);
 
 	/* 맵 유효성 검사 */
-	sl_is_validate_map(&data.map);
+	sl_is_validate_map(&data);
 
 	/* 새 창 띄우기 */
-	sl_new_window(&data);
+	sl_new_window(&(data.mlx), &(data.map), &data);
 
 	/* 이미지 띄우기*/
+	sl_new_image(&data);
+
 	/* 이벤트 후킹 */
 	/* 루프 돌리기 */
 }
