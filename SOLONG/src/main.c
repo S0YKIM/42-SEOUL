@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 18:10:29 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/21 21:38:26 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/24 21:58:31 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 static void	sl_init_data(t_data *data)
 {
 	data->mlx = mlx_init();
+	if (!data->mlx)
+		sl_exit_with_message("Failed to initialize.", data);
 	data->win = 0;
 	data->count = 0;
 	data->map.map = 0;
@@ -25,6 +27,8 @@ static void	sl_init_data(t_data *data)
 	data->imgs.player.img = 0;
 	data->imgs.collects.img = 0;
 	data->imgs.exit.img = 0;
+	data->state.collect_cnt = 0;
+	data->state.move_cnt = 0;
 }
 
 void	so_long(char *filename)
@@ -37,17 +41,20 @@ void	so_long(char *filename)
 	/* 파일을 읽어서 맵 파싱*/
 	sl_parse_map(&(data.map), filename, &data);
 
+
+
 	/* 맵 유효성 검사 */
 	sl_is_validate_map(&data);
 
 	/* 새 창 띄우기 */
-	sl_new_window(&(data.mlx), &(data.map), &data);
-
+	sl_new_window(data.mlx, &(data.map), &data);
+	
 	/* 이미지 띄우기*/
 	sl_new_image(&data);
 
 	/* 이벤트 후킹 */
-	/* sl_event_hook(&data); */
+	mlx_key_hook(data.win, &sl_key_hook, &data);
+	mlx_hook(data->win, BUTTON_CLOSE, 0, &sl_button_close, &data);
 
 	/* 루프 돌리기 */
 	mlx_loop(data.mlx);

@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 16:14:54 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/21 20:51:16 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/24 21:49:24 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@ static int	count_letters(t_map *map, char letter)
 		j = 0;
 		while (map->map[i][j])
 		{
+			if (map->map[i][j] != '0' && map->map[i][j] != '1'
+				&& map->map[i][j] != 'P' && map->map[i][j] != 'E'
+				&& map->map[i][j] != 'C')
+				return (-1);
 			if (map->map[i][j] == letter)
 				cnt++;
 			j++;
@@ -66,7 +70,7 @@ static int	count_letters(t_map *map, char letter)
 	return (cnt);
 }
 
-static int	sl_check_elements(t_map *map)
+static int	sl_check_elements(t_map *map, t_data *data)
 {
 	if (count_letters(map, 'P') != 1)
 		return (0);
@@ -74,6 +78,7 @@ static int	sl_check_elements(t_map *map)
 		return (0);
 	if (count_letters(map, 'C') < 1)
 		return (0);
+	data->state.collect_cnt = count_letters(map, 'C');
 	return (1);
 }
 
