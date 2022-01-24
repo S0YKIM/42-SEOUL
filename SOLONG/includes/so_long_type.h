@@ -6,12 +6,18 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 19:28:37 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/21 17:31:26 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/24 22:03:01 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_TYPE_H
 # define SO_LONG_TYPE_H
+
+typedef struct s_position
+{
+	int		x;
+	int		y;
+}	t_position;
 
 typedef struct s_img_info
 {
@@ -40,6 +46,13 @@ typedef struct s_imgs
 	t_img_info	exit;
 }	t_imgs;
 
+typedef struct s_state
+{
+	t_position	player;
+	int			collect_cnt;
+	int			move_cnt;
+}	t_state;
+
 typedef struct s_data
 {
 	void	*mlx;
@@ -47,6 +60,7 @@ typedef struct s_data
 	int		count;
 	t_map	map;
 	t_imgs	imgs;
+	t_state	state;
 }	t_data;
 
 #endif

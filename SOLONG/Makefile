@@ -6,7 +6,7 @@
 #    By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 21:27:39 by sokim             #+#    #+#              #
-#    Updated: 2022/01/21 17:23:37 by sokim            ###   ########.fr        #
+#    Updated: 2022/01/24 20:31:53 by sokim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ SRCS = src/main.c \
 	   src/check.c \
 	   src/window.c \
 	   src/image.c \
-	   src/status.c
+	   src/status.c \
+	   src/hook.c \
+	   src/draw.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -51,7 +53,7 @@ $(MLX) :
 	@make --silent --directory=libs/$(MLX)
 	$(info $<MAKE>	MinilibX - make$)
 
-$(NAME) : $(LIBFT) $(MLX) $(OBJS) $(OBJS_GNL)
+$(NAME) : $(OBJS) $(OBJS_GNL)
 	$(info $<MAKE> NAME$)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $(OBJS_GNL) $(LIBFT_FLAGS) $(MLX_FLAGS)
 

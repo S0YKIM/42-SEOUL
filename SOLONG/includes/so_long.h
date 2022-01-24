@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 18:10:40 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/21 20:52:31 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/24 21:11:35 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,16 @@ void	sl_new_window(void *mlx, t_map *map, t_data *data);
 /* New image */
 
 void	sl_new_image(t_data *data);
+
+/* Draw pixel */
+
+void	sl_pixel_put_img(t_img_info *img, int x, int y, int color);
+
+void	sl_draw_map(t_data *data);
+
+/* Event hook */
+
+int	sl_key_hook(int keycode, t_data *data);
 
 /* Exit with message */
 
