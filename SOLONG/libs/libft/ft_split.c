@@ -6,12 +6,11 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 17:13:39 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/19 16:21:57 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/27 13:55:42 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static char	**ft_malloc_error(char **tab)
 {
