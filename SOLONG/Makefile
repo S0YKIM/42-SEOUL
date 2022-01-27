@@ -6,7 +6,7 @@
 #    By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 21:27:39 by sokim             #+#    #+#              #
-#    Updated: 2022/01/24 20:31:53 by sokim            ###   ########.fr        #
+#    Updated: 2022/01/27 13:47:25 by sokim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,13 +22,13 @@ SRCS = src/main.c \
 	   src/image.c \
 	   src/status.c \
 	   src/hook.c \
-	   src/draw.c
+	   src/draw.c \
+	   src/utils.c
 
 OBJS = $(SRCS:.c=.o)
 
 GNL = gnl
-SRCS_GNL = libs/gnl/get_next_line.c \
-		   libs/gnl/get_next_line_utils.c
+SRCS_GNL = libs/gnl/get_next_line.c
 OBJS_GNL = $(SRCS_GNL:.c=.o)
 
 LIBFT = libft
@@ -55,7 +55,7 @@ $(MLX) :
 
 $(NAME) : $(OBJS) $(OBJS_GNL)
 	$(info $<MAKE> NAME$)
-	$(CC) $(CFLAGS) -o $@ $(OBJS) $(OBJS_GNL) $(LIBFT_FLAGS) $(MLX_FLAGS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBFT_FLAGS) $(MLX_FLAGS)
 
 clean :
 	@make clean --directory=libs/$(LIBFT)
@@ -68,4 +68,4 @@ fclean : clean
 
 re :	fclean all
 
-.PHONY : all clean fclean re libft mlx
+.PHONY : all clean fclean re bonus $(LIBFT) $(MLX) $(NAME)

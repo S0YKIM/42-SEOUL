@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 18:49:43 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/24 20:59:20 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/26 14:30:07 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define KEY_A 0
 # define KEY_S 1
 # define KEY_D 2
+# define KEY_Q 12
 # define KEY_UP 126
 # define KEY_DOWN 125
 # define KEY_LEFT 123
