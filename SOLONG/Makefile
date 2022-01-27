@@ -6,7 +6,7 @@
 #    By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 21:27:39 by sokim             #+#    #+#              #
-#    Updated: 2022/01/27 15:38:21 by sokim            ###   ########.fr        #
+#    Updated: 2022/01/27 21:18:04 by sokim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,4 +95,4 @@ fclean : clean
 
 re :	fclean all
 
-.PHONY : all clean fclean re bonus 
+.PHONY : all clean fclean re bonus $(LIBFT) $(MLX) $(NAME)
