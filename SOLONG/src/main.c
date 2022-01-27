@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 18:10:29 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/24 21:58:31 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/26 17:20:30 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	sl_init_data(t_data *data)
 {
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		sl_exit_with_message("Failed to initialize.", data);
+		sl_exit_with_message("Error:\nFailed to initialize.\n", data);
 	data->win = 0;
 	data->count = 0;
 	data->map.map = 0;
@@ -41,8 +41,6 @@ void	so_long(char *filename)
 	/* 파일을 읽어서 맵 파싱*/
 	sl_parse_map(&(data.map), filename, &data);
 
-
-
 	/* 맵 유효성 검사 */
 	sl_is_validate_map(&data);
 
@@ -54,7 +52,7 @@ void	so_long(char *filename)
 
 	/* 이벤트 후킹 */
 	mlx_key_hook(data.win, &sl_key_hook, &data);
-	mlx_hook(data->win, BUTTON_CLOSE, 0, &sl_button_close, &data);
+	mlx_hook(data.win, BUTTON_CLOSE, 0, &sl_exit_with_button_close, &data);
 
 	/* 루프 돌리기 */
 	mlx_loop(data.mlx);
@@ -63,9 +61,9 @@ void	so_long(char *filename)
 int     main(int argc, char **argv)
 {
 	if (argc != 2)
-		printf("Invalid number of arguments.");
+		printf("Error:\nInvalid number of arguments.\n");
 	else if (ft_strcmp(argv[1] + ft_strlen(argv[1]) - 4, ".ber") != 0)
-		printf("Invalid file format.");
+		printf("Error:\nInvalid file format.\n");
 	else
 		so_long(argv[1]);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:42:35 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/24 19:18:23 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/26 18:15:43 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void sl_free_map(char **map)
 		free(map[i]);
 		++i;
 	}
+	free(map[i]);
 	free(map);
 }
 
@@ -39,9 +40,19 @@ static void	sl_destroy_window_images(t_data *data)
 		mlx_destroy_image(data->mlx, data->imgs.collects.img);
 }
 
+int	sl_exit_with_button_close(t_data *data)
+{
+	printf("You closed the game.\n");
+	if (data->map.map)
+		sl_free_map(data->map.map);
+	sl_destroy_window_images(data);
+	exit (0);
+	return (1);
+}
+
 void	sl_exit_with_message(char *msg, t_data *data)
 {
-	printf("%s\n", msg);
+	printf("%s", msg);
 	if (data->map.map)
 		sl_free_map(data->map.map);
 	sl_destroy_window_images(data);
