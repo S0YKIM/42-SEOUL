@@ -6,21 +6,11 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 19:37:56 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/27 14:01:36 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/27 14:09:04 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-/*
-void	sl_pixel_put_img(t_img_info *img, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = img->addr + (y * img->line_length + x * (img->bpp / 8));
-	*(unsigned int *)dst = color;
-}
-*/
 
 static void	sl_draw_background(t_data *data)
 {
