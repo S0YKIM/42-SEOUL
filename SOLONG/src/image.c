@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:14:21 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/27 14:11:19 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/27 14:34:38 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	sl_save_image(t_data *data, t_imgs *imgs, void *mlx)
 	if (!(imgs->back.img) || !(imgs->wall.img)
 		|| !(imgs->player.img) || !(imgs->collects.img)
 		|| !(imgs->exit.img))
-		sl_exit_with_message("Error:\nFailed to save image path.\n", data);
+		sl_exit_with_message("Error\nFailed to save image path.\n", data);
 }
 
 static void	sl_get_image_address(t_imgs *imgs, t_data *data)
@@ -49,7 +49,7 @@ static void	sl_get_image_address(t_imgs *imgs, t_data *data)
 	if (!(imgs->back.addr) || !(imgs->wall.addr)
 		|| !(imgs->player.addr) || !(imgs->collects.addr)
 		|| !(imgs->exit.addr))
-		sl_exit_with_message("Error:\nFailed to save image info.\n", data);
+		sl_exit_with_message("Error\nFailed to save image info.\n", data);
 }
 
 void	sl_new_image(t_data *data)

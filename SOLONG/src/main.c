@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 18:10:29 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/27 14:12:41 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/27 14:34:05 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	sl_init_data(t_data *data)
 {
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		sl_exit_with_message("Error:\nFailed to initialize.\n", data);
+		sl_exit_with_message("Error\nFailed to initialize.\n", data);
 	data->win = 0;
 	data->count = 0;
 	data->map.map = 0;
@@ -48,9 +48,9 @@ void	so_long(char *filename)
 int	main(int argc, char **argv)
 {
 	if (argc != 2)
-		printf("Error:\nInvalid number of arguments.\n");
+		printf("Error\nInvalid number of arguments.\n");
 	else if (ft_strcmp(argv[1] + ft_strlen(argv[1]) - 4, ".ber") != 0)
-		printf("Error:\nInvalid file format.\n");
+		printf("Error\nInvalid file format.\n");
 	else
 		so_long(argv[1]);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:34:31 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/27 14:13:01 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/27 14:34:53 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ static int	sl_open_file(char *filename, t_data *data)
 	int		fd;
 
 	if (!filename)
-		sl_exit_with_message("Error:\nInvalid file name.\n", data);
+		sl_exit_with_message("Error\nInvalid file name.\n", data);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		sl_exit_with_message("Error:\nFailed to open the file.\n", data);
+		sl_exit_with_message("Error\nFailed to open the file.\n", data);
 	return (fd);
 }
 
@@ -74,7 +74,7 @@ int	sl_parse_map(t_map *map, char *filename, t_data *data)
 	}
 	free(line);
 	if (map->height == 0)
-		sl_exit_with_message("Error: \nEmpty map.\n", data);
+		sl_exit_with_message("Error\nEmpty map.\n", data);
 	map->map = ft_split(raw, '\n');
 	free(raw);
 	map->width = ft_strlen(map->map[0]);
