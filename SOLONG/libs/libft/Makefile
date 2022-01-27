@@ -6,7 +6,7 @@
 #    By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/01 22:27:05 by sokim             #+#    #+#              #
-#    Updated: 2022/01/15 17:17:45 by sokim            ###   ########.fr        #
+#    Updated: 2022/01/26 21:59:33 by sokim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,8 @@ FILES = ft_memset \
 	  	ft_lstclear \
 	  	ft_lstiter \
 	  	ft_lstmap \
-		ft_strcmp
+		ft_strcmp \
+		ft_strjoin_free
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
