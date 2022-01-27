@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 16:27:42 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/19 21:23:29 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/27 13:42:06 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,11 @@ static int	get_index_of_newline(char *backup)
 	return (FLAG_ERROR);
 }
 
-static int	split_line(char **buf, char **backup, char **line, int nl_index)
+static int	split_line(char **backup, char **line, int nl_index)
 {
 	char	*temp;
 	int		len;
 
-	free(*buf);
 	(*backup)[nl_index] = '\0';
 	*line = ft_strdup(*backup);
 	if (!(*line))
@@ -51,7 +50,7 @@ static int	split_line(char **buf, char **backup, char **line, int nl_index)
 	return (FLAG_SUCCESS);
 }
 
-static int	end_of_file(char **buf, char **backup, char **line)
+static int	end_of_file(char **backup, char **line)
 {
 	int		nl_index;
 
@@ -64,7 +63,7 @@ static int	end_of_file(char **buf, char **backup, char **line)
 	}
 	nl_index = get_index_of_newline(*backup);
 	if (nl_index >= 0)
-		return (split_line(buf, backup, line, nl_index));
+		return (split_line(backup, line, nl_index));
 	else
 	{
 		*line = *backup;
@@ -76,12 +75,11 @@ static int	end_of_file(char **buf, char **backup, char **line)
 int	get_next_line(int fd, char **line)
 {
 	static char		*backup[MAX_FD];
-	char			*buf;
+	char			buf[BUFFER_SIZE + 1];
 	int				read_size;
 	int				nl_index;
 
-	buf = (char *)malloc(BUFFER_SIZE + 1);
-	if (!buf)
+	if ((fd < 0) || (!line) || (BUFFER_SIZE <= 0))
 		return (FLAG_ERROR);
 	read_size = read(fd, buf, BUFFER_SIZE);
 	while (read_size > 0)
@@ -89,10 +87,11 @@ int	get_next_line(int fd, char **line)
 		buf[read_size] = '\0';
 		if (!backup[fd])
 			backup[fd] = ft_strdup("");
-		backup[fd] = ft_strjoin(backup[fd], buf);
+		backup[fd] = ft_strjoin_free(backup[fd], buf, 'L');
 		nl_index = get_index_of_newline(backup[fd]);
 		if (nl_index >= 0)
-			return (split_line(&buf, &backup[fd], line, nl_index));
+			return (split_line(&backup[fd], line, nl_index));
+		read_size = read(fd, buf, BUFFER_SIZE);
 	}
-	return (end_of_file(&buf, &backup[fd], line));
+	return (end_of_file(&backup[fd], line));
 }
