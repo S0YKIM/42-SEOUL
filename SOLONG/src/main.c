@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 18:10:29 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/27 14:34:05 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/27 15:25:32 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static void	sl_init_data(t_data *data)
 	if (!data->mlx)
 		sl_exit_with_message("Error\nFailed to initialize.\n", data);
 	data->win = 0;
-	data->count = 0;
 	data->map.map = 0;
 	data->map.height = 0;
 	data->map.width = 0;
