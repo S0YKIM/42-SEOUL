@@ -6,7 +6,7 @@
 #    By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 21:27:39 by sokim             #+#    #+#              #
-#    Updated: 2022/01/27 13:47:25 by sokim            ###   ########.fr        #
+#    Updated: 2022/01/27 14:23:07 by sokim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ $(MLX) :
 
 $(NAME) : $(OBJS) $(OBJS_GNL)
 	$(info $<MAKE> NAME$)
-	$(CC) $(CFLAGS) -o $@ $^ $(LIBFT_FLAGS) $(MLX_FLAGS)
+	$(CC) $(CFLAGS) -o $@ $(OBJS) $(OBJS_GNL) $(LIBFT_FLAGS) $(MLX_FLAGS)
 
 clean :
 	@make clean --directory=libs/$(LIBFT)
@@ -68,4 +68,4 @@ fclean : clean
 
 re :	fclean all
 
-.PHONY : all clean fclean re bonus $(LIBFT) $(MLX) $(NAME)
+.PHONY : all clean fclean re bonus 
