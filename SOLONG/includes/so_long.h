@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 18:10:40 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/26 14:43:36 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/27 20:11:31 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,16 @@ void	sl_draw_map(t_data *data);
 
 /* Event hook */
 
-int	sl_key_hook(int keycode, t_data *data);
+int		sl_key_hook(int keycode, t_data *data);
 
 /* Utilities */
 
-int	sl_is_possible_to_move(t_data *data, t_position player);
+int		sl_is_possible_to_move(t_data *data, t_position player);
 void	sl_print_move_count(t_data *data);
 
 /* Game end */
 
 void	sl_exit_with_message(char *msg, t_data *data);
-int	sl_exit_with_button_close(t_data *data);
+int		sl_exit_with_button_close(t_data *data);
 
 #endif

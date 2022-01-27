@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 19:37:56 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/27 15:49:56 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/27 19:28:29 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ static void	sl_draw_background(t_data *data)
 			if (data->map.map[j][i] == '1')
 				mlx_put_image_to_window(data->mlx, data->win, \
 					data->imgs.wall.img, i * 32, j * 32);
+			else if (data->map.map[j][i] == 'A')
+				mlx_put_image_to_window(data->mlx, data->win, \
+					data->imgs.enemy.img, i * 32, j * 32);
 			j++;
 		}
 		i++;

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_macro.h                                    :+:      :+:    :+:   */
+/*   so_long_macro_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 18:49:43 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/26 14:30:07 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/27 20:12:39 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_MACRO_H
-# define SO_LONG_MACRO_H
+#ifndef SO_LONG_MACRO_BONUS_H
+# define SO_LONG_MACRO_BONUS_H
 
 /* 
  * Key and mouse button press

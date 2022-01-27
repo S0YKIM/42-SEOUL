@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:14:21 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/27 15:17:47 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/27 19:27:13 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@ static void	sl_save_image(t_data *data, t_imgs *imgs, void *mlx)
 			"img/apple.xpm", &width, &height);
 	imgs->exit.img = mlx_xpm_file_to_image(mlx, \
 			"img/ladder.xpm", &width, &height);
+	imgs->enemy.img = mlx_xpm_file_to_image(mlx, \
+			"img/fire.xpm", &width, &height);
 	if (!(imgs->back.img) || !(imgs->wall.img)
 		|| !(imgs->player.img) || !(imgs->collects.img)
-		|| !(imgs->exit.img))
+		|| !(imgs->exit.img) || !(imgs->enemy.img))
 		sl_exit_with_message("Error\nFailed to save image path.\n", data);
 }
 
@@ -46,9 +48,11 @@ static void	sl_get_image_address(t_imgs *imgs, t_data *data)
 			&imgs->collects.endian);
 	imgs->exit.addr = mlx_get_data_addr(imgs->exit.img, \
 			&imgs->exit.bpp, &imgs->exit.line_length, &imgs->exit.endian);
+	imgs->enemy.addr = mlx_get_data_addr(imgs->enemy.img, \
+			&imgs->enemy.bpp, &imgs->enemy.line_length, &imgs->enemy.endian);
 	if (!(imgs->back.addr) || !(imgs->wall.addr)
 		|| !(imgs->player.addr) || !(imgs->collects.addr)
-		|| !(imgs->exit.addr))
+		|| !(imgs->exit.addr) || !(imgs->enemy.addr))
 		sl_exit_with_message("Error\nFailed to save image info.\n", data);
 }
 

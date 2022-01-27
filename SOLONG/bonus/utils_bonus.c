@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:38:02 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/27 15:17:56 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/27 20:06:16 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ int	sl_is_possible_to_move(t_data *data, t_position player)
 	{
 		data->map.map[player.y][player.x] = '0';
 		data->state.collect_cnt--;
+	}
+	else if (sl_get_char(data, player) == 'A')
+	{
+		data->state.move_cnt++;
+		sl_print_move_count(data);
+		sl_exit_with_message("Oops! Try again.\n", data);
 	}
 	else if (sl_get_char(data, player) == 'E'
 		&& data->state.collect_cnt == 0)
