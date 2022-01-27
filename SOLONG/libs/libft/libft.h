@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 15:01:44 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/18 14:57:19 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/26 22:00:32 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }					t_list;
+
+/* Mandatory */
 
 void				*ft_memset(void *ptr, int value, size_t num);
 void				*ft_bzero(void *ptr, size_t num);
@@ -64,6 +66,9 @@ void				ft_putnbr_fd(int n, int fd);
 int					ft_putchar(char c);
 int					ft_putstr(char *s);
 int					ft_putnbr(int n);
+char				*ft_strjoin_free(char *s1, char *s2, char c);
+
+/* Bonus */
 
 t_list				*ft_lstnew(void *content);
 void				ft_lstadd_front(t_list **lst, t_list *new);
@@ -75,5 +80,8 @@ void				ft_lstclear(t_list **lst, void (*del)(void*));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
+
+/* Custom */
+char				*ft_strjoin_free(char *s1, char *s2, char c);
 
 #endif
