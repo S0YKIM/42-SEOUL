@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 12:40:36 by sokim             #+#    #+#             */
-/*   Updated: 2021/06/12 19:22:58 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/26 19:14:17 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ char	*ft_strjoin(char *s1, char *s2, char c)
 		free(s1);
 		free(s2);
 	}
+	else if (c == 'L')
+		free(s1);
 	else if (c == 'R')
 		free(s2);
 	return (ret);
