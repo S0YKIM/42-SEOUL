@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_type.h                                     :+:      :+:    :+:   */
+/*   so_long_type_bonus.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 19:28:37 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/27 15:22:37 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/27 20:13:01 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_TYPE_H
-# define SO_LONG_TYPE_H
+#ifndef SO_LONG_TYPE_BONUS_H
+# define SO_LONG_TYPE_BONUS_H
 
 typedef struct s_position
 {
@@ -44,6 +44,7 @@ typedef struct s_imgs
 	t_img_info	player;
 	t_img_info	collects;
 	t_img_info	exit;
+	t_img_info	enemy;
 }	t_imgs;
 
 typedef struct s_state

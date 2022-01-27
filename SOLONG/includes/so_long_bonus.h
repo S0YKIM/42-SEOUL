@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 18:10:40 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/27 20:11:31 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/27 20:11:57 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -21,8 +21,8 @@
 # include "mlx.h"
 # include "libft.h"
 # include "get_next_line.h"
-# include "so_long_macro.h"
-# include "so_long_type.h"
+# include "so_long_macro_bonus.h"
+# include "so_long_type_bonus.h"
 
 /* Map parsing */
 

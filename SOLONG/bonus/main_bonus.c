@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 18:10:29 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/27 15:25:32 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/27 19:32:25 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static void	sl_init_data(t_data *data)
 {
@@ -30,6 +30,21 @@ static void	sl_init_data(t_data *data)
 	data->state.move_cnt = 0;
 }
 
+static void	sl_set_enemy(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = data->map.width / 2;
+	j = data->map.height / 2;
+	if (data->map.map[j][i] == '0')
+		data->map.map[j][i] = 'A';
+	else if (data->map.map[j - 1][i - 1] == '0')
+		data->map.map[j - 1][i - 1] = 'A';
+	else if (data->map.map[j + 1][i + 1] == '0')
+		data->map.map[j + 1][i + 1] = 'A';
+}
+
 void	so_long(char *filename)
 {
 	t_data	data;
@@ -37,6 +52,7 @@ void	so_long(char *filename)
 	sl_init_data(&data);
 	sl_parse_map(&(data.map), filename, &data);
 	sl_is_validate_map(&data);
+	sl_set_enemy(&data);
 	sl_new_window(data.mlx, &(data.map), &data);
 	sl_new_image(&data);
 	mlx_key_hook(data.win, &sl_key_hook, &data);
