@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 16:14:54 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/27 14:33:29 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/27 20:32:19 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ static int	sl_is_rectangle(t_map *map)
 {
 	int	i;
 	int	j;
+	int	len;
 
 	i = 0;
 	while (map->map[i])
 	{
-		if ((int)ft_strlen(map->map[i]) != map->width)
+		len = ft_strlen(map->map[i]);
+		if (len < 5 || len != map->width)
 			return (0);
 		if (map->map[i][0] != '1' || map->map[i][map->width - 1] != '1')
 			return (0);

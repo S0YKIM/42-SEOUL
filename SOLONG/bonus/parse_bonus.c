@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:34:31 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/27 19:32:21 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/27 21:05:30 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,16 @@ static void	sl_init_data_plus(t_data *data)
 	data->state.player = sl_get_player_position(&data->map);
 }
 
+static int	sl_count_map_lines(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (map->map[i])
+		i++;
+	return (i);
+}
+
 int	sl_parse_map(t_map *map, char *filename, t_data *data)
 {
 	int		fd;
@@ -77,6 +87,8 @@ int	sl_parse_map(t_map *map, char *filename, t_data *data)
 		sl_exit_with_message("Error\nEmpty map.\n", data);
 	map->map = ft_split(raw, '\n');
 	free(raw);
+	if (sl_count_map_lines(map) != map->height)
+		sl_exit_with_message("Error\nWrong map.\n", data);
 	map->width = ft_strlen(map->map[0]);
 	sl_init_data_plus(data);
 	return (1);
