@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 19:15:35 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/24 19:09:38 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/26 16:55:31 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ void	sl_new_window(void *mlx, t_map *map, t_data *data)
 {	
 	data->win = mlx_new_window(mlx, map->window_width, map->window_height, "so_long");
 	if(!(data->win))
-		sl_exit_with_message("Failed to create new window.", data);
+		sl_exit_with_message("Error:\nFailed to create new window.\n", data);
 }
