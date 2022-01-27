@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:14:21 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/26 18:00:14 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/27 14:11:19 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ static void	sl_get_image_address(t_imgs *imgs, t_data *data)
 	imgs->player.addr = mlx_get_data_addr(imgs->player.img, \
 			&imgs->player.bpp, &imgs->player.line_length, &imgs->player.endian);
 	imgs->collects.addr = mlx_get_data_addr(imgs->collects.img, \
-			&imgs->collects.bpp, &imgs->collects.line_length, &imgs->collects.endian);
+			&imgs->collects.bpp, &imgs->collects.line_length, \
+			&imgs->collects.endian);
 	imgs->exit.addr = mlx_get_data_addr(imgs->exit.img, \
 			&imgs->exit.bpp, &imgs->exit.line_length, &imgs->exit.endian);
 	if (!(imgs->back.addr) || !(imgs->wall.addr)

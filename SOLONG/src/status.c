@@ -6,13 +6,13 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:42:35 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/26 18:15:43 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/27 14:13:17 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void sl_free_map(char **map)
+static void	sl_free_map(char **map)
 {
 	int	i;
 

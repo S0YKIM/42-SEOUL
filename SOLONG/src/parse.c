@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:34:31 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/26 21:56:06 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/27 14:13:01 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static int	sl_open_file(char *filename, t_data *data)
 static t_position	sl_get_player_position(t_map *map)
 {
 	t_position	position;
-	int	x;
-	int	y;
+	int			x;
+	int			y;
 
 	y = 0;
 	while (y < map->height)

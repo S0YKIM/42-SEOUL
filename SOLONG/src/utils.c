@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 21:38:02 by sokim             #+#    #+#             */
-/*   Updated: 2022/01/26 17:05:00 by sokim            ###   ########.fr       */
+/*   Updated: 2022/01/27 14:14:10 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ int	sl_is_possible_to_move(t_data *data, t_position player)
 		data->map.map[player.y][player.x] = '0';
 		data->state.collect_cnt--;
 	}
-	else if (sl_get_char(data, player) == 'E' &&
-			data->state.collect_cnt == 0)
+	else if (sl_get_char(data, player) == 'E'
+		&& data->state.collect_cnt == 0)
 	{
 		data->state.move_cnt++;
 		sl_print_move_count(data);
 		sl_exit_with_message("Congrats! The end.\n", data);
 	}
-	else if (sl_get_char(data, player) == 'E' &&
-			data->state.collect_cnt != 0)
+	else if (sl_get_char(data, player) == 'E'
+		& data->state.collect_cnt != 0)
 		return (0);
 	return (1);
 }
