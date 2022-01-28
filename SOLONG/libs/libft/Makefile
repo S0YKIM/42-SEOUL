@@ -6,7 +6,7 @@
 #    By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/01 22:27:05 by sokim             #+#    #+#              #
-#    Updated: 2022/01/26 21:59:33 by sokim            ###   ########.fr        #
+#    Updated: 2022/01/28 12:55:14 by sokim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,9 +78,9 @@ OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
 $(NAME): $(OBJS)
 	$(AR) $@ $^
 
-bonus: $(NAME)
-
 all: $(NAME)
+
+bonus: $(NAME)
 
 clean:
 	$(RM) $(OBJS) 
@@ -90,4 +90,4 @@ fclean: clean
 
 re: clean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
