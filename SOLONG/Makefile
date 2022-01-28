@@ -6,7 +6,7 @@
 #    By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 21:27:39 by sokim             #+#    #+#              #
-#    Updated: 2022/01/27 21:18:04 by sokim            ###   ########.fr        #
+#    Updated: 2022/01/28 12:52:54 by sokim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ LIBFT_FLAGS = -L libs/libft -lft
 MLX = mlx
 MLX_FLAGS = -L libs/mlx -lmlx -framework OpenGL -framework Appkit
 
-INC_FLAGS = -I includes -I includes/$(NAME) -I includes/so_long_bonus -I libs/$(LIBFT) -I libs/$(GNL) -I libs/$(MLX)
+INC_FLAGS = -I includes -I libs/$(LIBFT) -I libs/$(GNL) -I libs/$(MLX)
 
 ifdef WITH_BONUS
 	SRCS_SL = $(SRCS_B)
@@ -95,4 +95,4 @@ fclean : clean
 
 re :	fclean all
 
-.PHONY : all clean fclean re bonus $(LIBFT) $(MLX) $(NAME)
+.PHONY : all clean fclean re bonus
