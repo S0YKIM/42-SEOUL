@@ -35,7 +35,8 @@
 
   **`rrr`** : rra and rrb at the same time.
   
-  
+</br>
+
 ## 🔄 Push_swap
 
 > ### 🚀 build
@@ -70,6 +71,9 @@
 > ```
 >
 > ⚠️ If your program checker displays KO, it means that your push_swap came up with a list of instructions that doesn’t sort the list.
+
+</br>
+
 - You have to write a program named push_swap which will receive as an argument the stack a formatted as a list of integers. The first argument should be at the top of the stack (be careful about the order).
 - The program must display the smallest list of instructions possible to sort the stack a, the smallest number being at the top.
 - Instructions must be separaed by a ’\n’ and nothing else.
