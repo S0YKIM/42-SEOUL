@@ -12,7 +12,7 @@
 
 #include "deque.h"
 
-int	isLinkedDequeEmpty(LinkedDeque* pDeque)
+int	isDequeEmpty(t_deque* pDeque)
 {
 	if (!pDeque)
 		return FALSE;

@@ -12,12 +12,15 @@
 
 #include "deque.h"
 
-LinkedDeque*	createLinkedDeque()
+t_deque*	createDeque()
 {
-	LinkedDeque	*myDeque;
+	t_deque	*myDeque;
 
-	myDeque = (LinkedDeque *)calloc(1, sizeof(LinkedDeque));
+	myDeque = (t_deque *)malloc(sizeof(t_deque));
 	if (!myDeque)
 		return FALSE;
+	myDeque->currentElementCount = 0;
+	myDeque->pFrontNode = NULL;
+	myDeque->pRearNode = NULL;
 	return (myDeque);
 }

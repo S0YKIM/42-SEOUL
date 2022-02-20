@@ -13,38 +13,40 @@
 #ifndef DEQUE_H
 # define DEQUE_H
 
-# include <stdlib.h>
-
-typedef struct				DequeNodeType
-{
-	int						data;
-	struct DequeNodeType*	pRLink;
-	struct DequeNodeType*	pLLink;
-}							DequeNode;
-
-typedef struct	LinkedDequeType
-{
-	int			currentElementCount;
-	DequeNode*	pFrontNode;
-	DequeNode*	pRearNode;
-}				LinkedDeque;
-
-LinkedDeque		*createLinkedDeque();
-int				insertFrontLD(LinkedDeque* pDeque, DequeNode element);
-int				insertRearLD(LinkedDeque* pDeque, DequeNode element);
-DequeNode*		deleteFrontLD(LinkedDeque* pDeque);
-DequeNode*		deleteRearLD(LinkedDeque* pDeque);
-DequeNode*		peekFrontLD(LinkedDeque* pDeque);
-DequeNode*		peekRearLD(LinkedDeque* pDeque);
-void			deleteLinkedDeque(LinkedDeque** pDeque);
-int				isLinkedDequeEmpty(LinkedDeque* pDeque);
-
-#endif
-
-#ifndef _COMMON_QUEUE_DEF_
-# define _COMMON_QUEUE_DEF_
-
 # define TRUE		1
 # define FALSE		0
+
+# include <stdlib.h>
+
+typedef struct		s_node
+{
+	int				num;
+	char			*binary;
+	struct s_node*	pRLink;
+	struct s_node*	pLLink;
+}					t_node;
+
+typedef struct	s_deque
+{
+	int		currentElementCount;
+	t_node*	pFrontNode;
+	t_node*	pRearNode;
+}				t_deque;
+
+typedef struct	s_push_swap
+{
+	t_deque		*a;
+	t_deque		*b;
+}				t_push_swap;
+
+t_deque		*createDeque();
+int			insertFrontLD(t_deque* pDeque, t_node element);
+int			insertRearLD(t_deque* pDeque, t_node element);
+t_node*		deleteFrontLD(t_deque* pDeque);
+t_node*		deleteRearLD(t_deque* pDeque);
+t_node*		peekFrontLD(t_deque* pDeque);
+t_node*		peekRearLD(t_deque* pDeque);
+void		deleteDeque(t_deque** pDeque);
+int			isDequeEmpty(t_deque* pDeque);
 
 #endif

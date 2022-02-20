@@ -12,13 +12,13 @@
 
 #include "deque.h"
 
-DequeNode*	deleteFrontLD(LinkedDeque* pDeque)
+t_node*	deleteFrontLD(t_deque* pDeque)
 {
-	DequeNode *delNode;
+	t_node *delNode;
 	
 	if (!pDeque)
 		return NULL;
-	if (isLinkedDequeEmpty(pDeque))
+	if (isDequeEmpty(pDeque))
 		return NULL;
 
 	delNode = pDeque->pFrontNode;
@@ -37,13 +37,13 @@ DequeNode*	deleteFrontLD(LinkedDeque* pDeque)
 	return (delNode);
 }
 
-DequeNode*	deleteRearLD(LinkedDeque* pDeque)
+t_node*	deleteRearLD(t_deque* pDeque)
 {
-	DequeNode *delNode;
+	t_node *delNode;
 	
 	if (!pDeque)
 		return NULL;
-	if (isLinkedDequeEmpty(pDeque))
+	if (isDequeEmpty(pDeque))
 		return NULL;
 
 	delNode = pDeque->pRearNode;
@@ -60,4 +60,24 @@ DequeNode*	deleteRearLD(LinkedDeque* pDeque)
 	}
 	pDeque->currentElementCount--;
 	return (delNode);
+}
+
+void	deleteDeque(t_deque** pDeque)
+{
+	t_node	*curr;	
+	t_node	*temp;
+	
+	
+	if (!pDeque || !(*pDeque))
+		return ;
+	curr = (*pDeque)->pFrontNode;
+	while (curr)
+	{
+		temp = curr;
+		curr = curr->pRLink;
+		free(temp);
+		temp = NULL;
+	}
+	free(*pDeque);
+	*pDeque = NULL;
 }
