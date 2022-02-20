@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 15:01:44 by sokim             #+#    #+#             */
-/*   Updated: 2022/02/21 01:37:06 by sokim            ###   ########.fr       */
+/*   Updated: 2022/02/21 04:18:58 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,9 @@ void				*ft_bzero(void *ptr, size_t num);
 int					ft_isdigit(int c);
 long long			ft_atol(const char *str);
 void				*ft_memset(void *ptr, int value, size_t num);
+char				*ft_itoa_binary(int num);
+char				*ft_strjoin(char const *s1, char const *s2);
+size_t				ft_strlcat(char *dest, const char *src, size_t size);
+char				*ft_strdup(const char *s1);
 
 #endif

@@ -35,6 +35,7 @@ typedef struct	s_deque
 
 typedef struct	s_push_swap
 {
+	t_deque		*tmp;
 	t_deque		*a;
 	t_deque		*b;
 }				t_push_swap;

@@ -12,16 +12,6 @@
 
 #include "push_swap.h"
 
-static char	**parse_argument_by_space(char *argument)
-{
-	char	**input;
-
-	input = ft_split(argument, ' ');
-	if (!input)
-		return NULL;
-	return (input);
-}
-
 static void	add_integers_into_deque(char **input, t_deque **deque)
 {
 	int		i;
@@ -48,7 +38,7 @@ static int	insert_numbers_into_deque(int argc, char **argv, t_deque **deque)
 	i = 0;
 	while (++i < argc)
 	{
-		input = parse_argument_by_space(argv[i]);
+		input = ft_split(argv[i], ' ');
 		if (!input)
 			exit_with_memory_free("Failed to parse arguments.", *deque, NULL, NULL);
 		result = check_validate_integer(input);

@@ -25,6 +25,9 @@ int	check_validate_integer(char **str);
 int	check_duplicates(t_deque *deque);
 int	check_deque_sorted(t_deque *deque);
 
+/* Change integer into index and move it to A (tmp->A) */
+void	create_deque_a(t_push_swap *data);
+
 /* Error handling */
 void	exit_with_error_message(char *msg);
 void	exit_with_memory_free(char *msg, t_deque *a, t_deque *b, char **str);

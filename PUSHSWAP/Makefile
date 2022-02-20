@@ -6,7 +6,8 @@ CFLAGS = -Wall -Wextra -Werror
 SRCS = srcs/main.c \
 		srcs/state.c \
 		srcs/check.c \
-		srcs/parse.c
+		srcs/parse.c \
+		srcs/index.c
 OBJS = $(SRCS:.c=.o)
 
 LIBFT = libft
