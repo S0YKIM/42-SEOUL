@@ -12,6 +12,9 @@ FILES = ft_strlen \
 		ft_split \
 		ft_itoa \
 		ft_putstr_fd \
+		ft_isdigit \
+		ft_atol \
+		ft_memset
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
