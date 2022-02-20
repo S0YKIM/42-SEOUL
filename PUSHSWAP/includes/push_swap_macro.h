@@ -10,3 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef PUSH_SWAP_MACRO_H
+# define PUSH_SWAP_MACRO_H
+
+# define FT_FALSE 0
+# define FT_TRUE 1
+# define FT_INT_MIN -2147483648
+# define FT_INT_MAX 2147483647
+
+#endif
