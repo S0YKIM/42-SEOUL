@@ -10,3 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
+
+# include "libft.h"
+# include "deque.h"
+# include "push_swap_macro.h"
+
+/* Create deques */
+t_deque	*create_deque_with_arguments(int argc, char **argv);
+
+/* Check validation */
+int	check_validate_integer(char **str);
+int	check_duplicates(t_deque *deque);
+int	check_stack_sorted(t_deque *deque);
+
+/* Error handling */
+void	exit_with_error_message(char *msg);
+void	exit_with_memory_free(char *msg, t_deque *a, t_deque *b, char **str);
+
+/* Memory Free */
+void	free_double_char(char **str);
+
+#endif
