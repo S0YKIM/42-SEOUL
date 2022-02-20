@@ -23,7 +23,7 @@ t_deque	*create_deque_with_arguments(int argc, char **argv);
 /* Check validation */
 int	check_validate_integer(char **str);
 int	check_duplicates(t_deque *deque);
-int	check_stack_sorted(t_deque *deque);
+int	check_deque_sorted(t_deque *deque);
 
 /* Error handling */
 void	exit_with_error_message(char *msg);

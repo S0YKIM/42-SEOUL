@@ -62,13 +62,20 @@ static int	insert_numbers_into_tmp(int argc, char **argv, t_deque **tmp)
 
 t_deque	*create_deque_with_arguments(int argc, char **argv)
 {
-	//t_deque	*result;
+	//t_deque	*a;
 	t_deque *tmp;
+	int		result;
 
 	tmp = createDeque();
 	if (!tmp)
 		return NULL;
 	insert_numbers_into_tmp(argc, argv, &tmp);
+	result = check_duplicates(tmp);
+	if (result)
+		exit_with_memory_free("Numbers duplicated.", tmp, NULL, NULL);
+	result = check_deque_sorted(tmp);
+	if (result)
+		exit_with_memory_free("Numbers already sorted.", tmp, NULL, NULL);
 	return (tmp);
-	//return (result);
+	//return (a);
 }

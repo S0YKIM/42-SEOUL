@@ -58,43 +58,32 @@ int	check_validate_integer(char **str)
 
 int	check_duplicates(t_deque *deque)
 {
-	// t_list	*item;
-	// t_list	*item_next;
-	// int		i;
+	t_node	*curr;
 
-	// item = deque->top;
-	// while (item)
-	// {
-	// 	item_next = item->next;
-	// 	i = 0;
-	// 	while (item_next)
-	// 	{
-	// 		if (item_value(item) == item_value(item_next))
-	// 			return (FT_FALSE);
-	// 		item_next = item_next->next;
-	// 		i++;
-	// 	}
-	// 	item = item->next;
-	// }
-	// return (FT_TRUE);
-	if (!deque)
-		return (0);
-	return (0);
+	if (deque->currentElementCount == 1)
+		return (FT_FALSE);
+	curr = deque->pFrontNode;
+	while (curr->pRLink)
+	{
+		if (curr->num == curr->pRLink->num)
+			return (FT_TRUE);
+		curr = curr->pRLink;
+	}
+	return (FT_FALSE);
 }
 
 int	check_deque_sorted(t_deque *deque)
 {
-	// t_list	*tmp;
+	t_node	*curr;
 
-	// tmp = deque->top;
-	// while (tmp->next)
-	// {
-	// 	if (item_value(tmp) > item_value(tmp->next))
-	// 		return (FT_FALSE);
-	// 	tmp = tmp->next;
-	// }
-	// return (FT_TRUE);
-	if (!deque)
-		return (0);
-	return (0);
+	if (deque->currentElementCount == 1)
+		return (FT_FALSE);
+	curr = deque->pFrontNode;
+	while (curr->pRLink)
+	{
+		if (curr->num > curr->pRLink->num)
+			return (FT_FALSE);
+		curr = curr->pRLink;
+	}
+	return (FT_TRUE);
 }
