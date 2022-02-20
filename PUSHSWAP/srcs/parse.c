@@ -22,7 +22,7 @@ static char	**parse_argument_by_space(char *argument)
 	return (input);
 }
 
-static void	add_integers_into_tmp(char **input, t_deque **tmp)
+static void	add_integers_into_deque(char **input, t_deque **deque)
 {
 	int		i;
 	int		result;
@@ -32,14 +32,14 @@ static void	add_integers_into_tmp(char **input, t_deque **tmp)
 	while (input[i])
 	{
 		node.num = ft_atoi(input[i]);
-		result = insertRearLD(*tmp, node);
+		result = insertRearLD(*deque, node);
 		if (!result)
-			exit_with_memory_free("Failed to insert node.", *tmp, NULL, input);
+			exit_with_memory_free("Failed to insert node.", *deque, NULL, input);
 		i++;
 	}
 }
 
-static int	insert_numbers_into_tmp(int argc, char **argv, t_deque **tmp)
+static int	insert_numbers_into_deque(int argc, char **argv, t_deque **deque)
 {
 	char	**input;
 	int		result;
@@ -50,11 +50,11 @@ static int	insert_numbers_into_tmp(int argc, char **argv, t_deque **tmp)
 	{
 		input = parse_argument_by_space(argv[i]);
 		if (!input)
-			exit_with_memory_free("Failed to parse arguments.", *tmp, NULL, NULL);
+			exit_with_memory_free("Failed to parse arguments.", *deque, NULL, NULL);
 		result = check_validate_integer(input);
 		if (!result)
-			exit_with_memory_free("Not a valid integer.", *tmp, NULL, input);
-		add_integers_into_tmp(input, tmp);
+			exit_with_memory_free("Not a valid integer.", *deque, NULL, input);
+		add_integers_into_deque(input, deque);
 		free_double_char(input);
 	}
 	return (FT_TRUE);
@@ -62,20 +62,18 @@ static int	insert_numbers_into_tmp(int argc, char **argv, t_deque **tmp)
 
 t_deque	*create_deque_with_arguments(int argc, char **argv)
 {
-	//t_deque	*a;
-	t_deque *tmp;
+	t_deque *deque;
 	int		result;
 
-	tmp = createDeque();
-	if (!tmp)
+	deque = createDeque();
+	if (!deque)
 		return NULL;
-	insert_numbers_into_tmp(argc, argv, &tmp);
-	result = check_duplicates(tmp);
+	insert_numbers_into_deque(argc, argv, &deque);
+	result = check_duplicates(deque);
 	if (result)
-		exit_with_memory_free("Numbers duplicated.", tmp, NULL, NULL);
-	result = check_deque_sorted(tmp);
+		exit_with_memory_free("Numbers duplicated.", deque, NULL, NULL);
+	result = check_deque_sorted(deque);
 	if (result)
-		exit_with_memory_free("Numbers already sorted.", tmp, NULL, NULL);
-	return (tmp);
-	//return (a);
+		exit_with_memory_free("Numbers already sorted.", deque, NULL, NULL);
+	return (deque);
 }
