@@ -12,7 +12,14 @@
 
 #include "push_swap.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
+	t_push_swap	data;
+
+	if (argc < 2)
+		exit_with_error_message("Too few arguments.");
+	ft_memset(&data, 0, sizeof(data));
+	data.a = create_deque_with_arguments(argc, argv);
+	data.b = NULL;
 	return (0);
 }
