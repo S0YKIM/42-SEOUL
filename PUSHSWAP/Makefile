@@ -3,7 +3,10 @@ NAME = push_swap
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = srcs/main.c
+SRCS = srcs/main.c \
+		srcs/state.c \
+		srcs/check.c \
+		srcs/parse.c
 OBJS = $(SRCS:.c=.o)
 
 LIBFT = libft
