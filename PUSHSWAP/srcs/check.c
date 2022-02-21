@@ -77,7 +77,7 @@ int	check_deque_sorted(t_deque *deque)
 	t_node	*curr;
 
 	if (deque->currentElementCount == 1)
-		return (FT_FALSE);
+		return (FT_TRUE);
 	curr = deque->pFrontNode;
 	while (curr->pRLink)
 	{

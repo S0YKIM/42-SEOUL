@@ -41,9 +41,13 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		exit_with_error_message("Too few arguments.");
-	ft_memset(&data, 0, sizeof(data));
 	create_deque_with_arguments(argc, argv, &data);
-	add_index_and_binary(data.a);
+	if (data.a->currentElementCount <= 3)
+		sort_three(&data);
+	else if (data.a->currentElementCount <= 5)
+		sort_five(&data);
+	else
+		sort_many(&data);
 	displayDeque(data.a);
 	displayDeque(data.b);
 	return (0);

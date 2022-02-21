@@ -31,6 +31,11 @@ void	add_index_and_binary(t_deque *deque);
 /* Operation (pa, pb, sa, sb, ra, rb, ...) */
 void	operator(char *op, t_push_swap *data);
 
+/* Sort functions */
+void	sort_three(t_push_swap *data);
+void	sort_five(t_push_swap *data);
+void	sort_many(t_push_swap *data);
+
 /* Print deque */
 void	print_deque_ab(t_deque *a, t_deque *b);
 

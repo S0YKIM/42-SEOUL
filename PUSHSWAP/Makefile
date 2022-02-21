@@ -9,7 +9,8 @@ SRCS = srcs/main.c \
 		srcs/parse.c \
 		srcs/index.c \
 		srcs/operator.c \
-		srcs/print.c
+		srcs/print.c \
+		srcs/sort.c
 OBJS = $(SRCS:.c=.o)
 
 LIBFT = libft
