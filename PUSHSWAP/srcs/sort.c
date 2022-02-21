@@ -29,34 +29,69 @@ static void	radix_sort(t_push_swap *data)
 		{
 			curr = peekFrontLD(data->a);
 			if (curr->binary[i] == '0')
-			{
 				operator("pb", data);
-				ft_putendl_fd("pb", 1);
-			}
 			else
-			{
 				operator("ra", data);
-				ft_putendl_fd("ra", 1);
-			}
 		}
 		while (!isDequeEmpty(data->b))
-		{
 			operator("pa", data);
-			ft_putendl_fd("pa", 1);
-		}
 	}
 }
 
-void	sort_three(t_push_swap *data)
+int	sort_three(t_push_swap *data)
 {
-	add_index_and_binary(data->a);
-	radix_sort(data);
+	int	min;
+	int	max;
+	int	cnt;
+
+	cnt = data->a->currentElementCount;
+	if (cnt == 2)
+		return (operator("sa", data));
+	min = get_minimum_number(data->a);
+	max = get_maximum_number(data->a);
+	if (check_deque_sorted(data->a))
+		return (FT_TRUE);
+	if (min == data->a->pFrontNode->num)
+		return (operator("sa", data) && operator("ra", data));
+	if (max == data->a->pRearNode->num)
+		return (operator("sa", data));
+	if (max == data->a->pFrontNode->num && min == data->a->pRearNode->num)
+		return (operator("ra", data) && operator("sa", data));
+	if (max == data->a->pFrontNode->num)
+		return (operator("ra", data));
+	if (min == data->a->pRearNode->num)
+		return (operator("rra", data));
+	return (FT_FALSE);
 }
 
 void	sort_five(t_push_swap *data)
 {
-	add_index_and_binary(data->a);
-	radix_sort(data);
+	int	min;
+	int	cnt;
+
+	cnt = data->a->currentElementCount;
+	while (--cnt)
+	{
+		if (data->a->currentElementCount == 3)
+		{
+			sort_three(data);
+			break ;
+		}
+		min = get_minimum_number(data->a);
+		while (min != data->a->pFrontNode->num)
+		{
+			if (min == data->a->pFrontNode->pRLink->num
+				|| min == data->a->pFrontNode->pRLink->pRLink->num)
+				operator("ra", data);
+			else
+				operator("rra", data);
+		}
+		if (check_deque_sorted(data->a) && isDequeEmpty(data->b))
+			return ;
+		operator("pb", data);
+	}
+	while (!isDequeEmpty(data->b))
+		operator("pa", data);
 }
 
 void	sort_many(t_push_swap *data)

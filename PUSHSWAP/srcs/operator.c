@@ -52,7 +52,7 @@ static void	rrotate(t_deque *deque)
 	free(lastnode);
 }
 
-void	operator(char *op, t_push_swap *data)
+int	operator(char *op, t_push_swap *data)
 {
 	if (!ft_strcmp(op, "sa") || !ft_strcmp(op, "ss"))
 		swap(data->a);
@@ -70,4 +70,6 @@ void	operator(char *op, t_push_swap *data)
 		rrotate(data->a);
 	if (!ft_strcmp(op, "rrb") || !ft_strcmp(op, "rrr"))
 		rrotate(data->b);
+	ft_putendl_fd(op, 1);
+	return (FT_TRUE);
 }

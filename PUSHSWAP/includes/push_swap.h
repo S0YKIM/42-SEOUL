@@ -21,20 +21,24 @@
 void	create_deque_with_arguments(int argc, char **argv, t_push_swap *data);
 
 /* Check validation */
-int	check_validate_integer(char **str);
-int	check_duplicates(t_deque *deque);
-int	check_deque_sorted(t_deque *deque);
+int		check_validate_integer(char **str);
+int		check_duplicates(t_deque *deque);
+int		check_deque_sorted(t_deque *deque);
 
 /* Change integer into index and change it to binary*/
 void	add_index_and_binary(t_deque *deque);
 
 /* Operation (pa, pb, sa, sb, ra, rb, ...) */
-void	operator(char *op, t_push_swap *data);
+int		operator(char *op, t_push_swap *data);
 
 /* Sort functions */
-void	sort_three(t_push_swap *data);
+int		sort_three(t_push_swap *data);
 void	sort_five(t_push_swap *data);
 void	sort_many(t_push_swap *data);
+
+/* Util functions */
+int		get_minimum_number(t_deque *deque);
+int		get_maximum_number(t_deque *deque);
 
 /* Print deque */
 void	print_deque_ab(t_deque *a, t_deque *b);

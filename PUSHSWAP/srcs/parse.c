@@ -43,7 +43,7 @@ static int	insert_numbers_into_deque(int argc, char **argv, t_deque *deque)
 			exit_with_memory_free("Failed to parse arguments.", deque, NULL, NULL);
 		result = check_validate_integer(input);
 		if (!result)
-			exit_with_memory_free("Not a valid integer.", deque, NULL, input);
+			exit_with_memory_free("Error", deque, NULL, input);
 		add_integers_into_deque(input, deque);
 		free_double_char(input);
 	}
@@ -56,14 +56,14 @@ void	create_deque_with_arguments(int argc, char **argv, t_push_swap *data)
 
 	data->a = createDeque();
 	if (!data->a)
-		exit_with_error_message("Failed to create deque A");
+		exit_with_error_message("Failed to create deque A.");
 	insert_numbers_into_deque(argc, argv, data->a);
 	result = check_duplicates(data->a);
 	if (result)
-		exit_with_memory_free("Numbers duplicated.", data->a, NULL, NULL);
+		exit_with_memory_free("Error", data->a, NULL, NULL);
 	result = check_deque_sorted(data->a);
 	if (result)
-		exit_with_memory_free("Numbers already sorted.", data->a, NULL, NULL);
+		exit_with_memory_free(NULL, data->a, NULL, NULL);
 	data->b = createDeque();
 	if (!data->b)
 		exit_with_memory_free("Failed to create deque B.", data->a, NULL, NULL);
