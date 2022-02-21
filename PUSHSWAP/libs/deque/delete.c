@@ -20,9 +20,7 @@ t_node*	deleteFrontLD(t_deque* pDeque)
 		return NULL;
 	if (isDequeEmpty(pDeque))
 		return NULL;
-
 	delNode = pDeque->pFrontNode;
-
 	if (pDeque->currentElementCount == 1)
 	{
 		pDeque->pFrontNode = NULL;
@@ -45,9 +43,7 @@ t_node*	deleteRearLD(t_deque* pDeque)
 		return NULL;
 	if (isDequeEmpty(pDeque))
 		return NULL;
-
 	delNode = pDeque->pRearNode;
-
 	if (pDeque->currentElementCount == 1)
 	{
 		pDeque->pFrontNode = NULL;
@@ -66,7 +62,6 @@ void	deleteDeque(t_deque** pDeque)
 {
 	t_node	*curr;	
 	t_node	*temp;
-	
 	
 	if (!pDeque || !(*pDeque))
 		return ;

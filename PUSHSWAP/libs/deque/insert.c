@@ -22,7 +22,6 @@ int	insertFrontLD(t_deque* pDeque, t_node element)
 	if (!frontNode)
 		return FALSE;
 	*frontNode = element;
-
     if (isDequeEmpty(pDeque))
 	{
 		pDeque->pRearNode = frontNode;
@@ -33,10 +32,8 @@ int	insertFrontLD(t_deque* pDeque, t_node element)
 		pDeque->pFrontNode->pLLink = frontNode;
 		frontNode->pRLink = pDeque->pFrontNode;
 	}
-
 	pDeque->pFrontNode = frontNode;
 	frontNode->pLLink = NULL;
-	
 	pDeque->currentElementCount++;
 	return (TRUE);
 }
@@ -51,7 +48,6 @@ int insertRearLD(t_deque* pDeque, t_node element)
 	if (!rearNode)
 		return FALSE;
 	*rearNode = element;
-	
 	if (isDequeEmpty(pDeque))
 	{
 		pDeque->pFrontNode = rearNode;
@@ -62,10 +58,8 @@ int insertRearLD(t_deque* pDeque, t_node element)
 		pDeque->pRearNode->pRLink = rearNode;
 		rearNode->pLLink = pDeque->pRearNode;
 	}
-
 	pDeque->pRearNode = rearNode;
 	rearNode->pRLink = NULL;
-	
 	pDeque->currentElementCount++;
 	return (TRUE);
 }
