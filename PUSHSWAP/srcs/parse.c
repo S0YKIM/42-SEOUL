@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static void	add_integers_into_deque(char **input, t_deque **deque)
+static void	add_integers_into_deque(char **input, t_deque *deque)
 {
 	int		i;
 	int		result;
@@ -22,14 +22,14 @@ static void	add_integers_into_deque(char **input, t_deque **deque)
 	while (input[i])
 	{
 		node.num = ft_atoi(input[i]);
-		result = insertRearLD(*deque, node);
+		result = insertRearLD(deque, node);
 		if (!result)
-			exit_with_memory_free("Failed to insert node.", *deque, NULL, input);
+			exit_with_memory_free("Failed to insert node.", deque, NULL, input);
 		i++;
 	}
 }
 
-static int	insert_numbers_into_deque(int argc, char **argv, t_deque **deque)
+static int	insert_numbers_into_deque(int argc, char **argv, t_deque *deque)
 {
 	char	**input;
 	int		result;
@@ -40,10 +40,10 @@ static int	insert_numbers_into_deque(int argc, char **argv, t_deque **deque)
 	{
 		input = ft_split(argv[i], ' ');
 		if (!input)
-			exit_with_memory_free("Failed to parse arguments.", *deque, NULL, NULL);
+			exit_with_memory_free("Failed to parse arguments.", deque, NULL, NULL);
 		result = check_validate_integer(input);
 		if (!result)
-			exit_with_memory_free("Not a valid integer.", *deque, NULL, input);
+			exit_with_memory_free("Not a valid integer.", deque, NULL, input);
 		add_integers_into_deque(input, deque);
 		free_double_char(input);
 	}
@@ -57,7 +57,7 @@ void	create_deque_with_arguments(int argc, char **argv, t_push_swap *data)
 	data->a = createDeque();
 	if (!data->a)
 		exit_with_error_message("Failed to create deque A");
-	insert_numbers_into_deque(argc, argv, &data->a);
+	insert_numbers_into_deque(argc, argv, data->a);
 	result = check_duplicates(data->a);
 	if (result)
 		exit_with_memory_free("Numbers duplicated.", data->a, NULL, NULL);
