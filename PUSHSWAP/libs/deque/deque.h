@@ -21,6 +21,7 @@
 typedef struct		s_node
 {
 	int				num;
+	int				index;
 	char			*binary;
 	struct s_node*	pRLink;
 	struct s_node*	pLLink;

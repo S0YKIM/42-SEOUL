@@ -7,11 +7,14 @@ RM = rm -f
 
 FILES = ft_strlen \
 		ft_strlcpy \
-		ft_strncmp \
+		ft_strcmp \
 		ft_atoi \
 		ft_split \
 		ft_itoa \
 		ft_putstr_fd \
+		ft_putchar_fd \
+		ft_putendl_fd \
+		ft_putnbr_fd \
 		ft_isdigit \
 		ft_atol \
 		ft_memset \

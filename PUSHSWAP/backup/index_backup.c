@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/21 20:50:35 by sokim             #+#    #+#             */
-/*   Updated: 2022/02/21 20:50:35 by sokim            ###   ########.fr       */
+/*   Created: 2022/02/21 03:20:11 by sokim             #+#    #+#             */
+/*   Updated: 2022/02/21 03:20:11 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,26 +53,31 @@ static int	get_max_digit(int cnt)
 static void	change_raw_data_into_index(t_push_swap *data)
 {
 	int		current;
+	int		index;
 	t_node	*i;
 	t_node	*j;
+	t_node	element;
 
-	i = data->a->pFrontNode;
+	i = data->tmp->pFrontNode;
 	while (i)
 	{
-		i->index = 0;
+		index = 0;
 		current = i->num;
-		j = data->a->pFrontNode;
+		j = data->tmp->pFrontNode;
 		while (j)
 		{
 			if (current > j->num)
-				i->index++;
+				index++;
 			j = j->pRLink;
 		}
+		element.num = index;
+		element.binary = NULL;
+		insertRearLD(data->a, element);
 		i = i->pRLink;
 	}
 }
 
-void	add_index_and_binary(t_push_swap *data)
+void	create_deque_a(t_push_swap *data)
 {
 	int		max_digit;
 	t_node	*curr;
@@ -82,7 +87,7 @@ void	add_index_and_binary(t_push_swap *data)
 	curr = data->a->pFrontNode;
 	while (curr)
 	{
-		curr->binary = change_index_into_binary(curr->index, max_digit);
+		curr->binary = change_index_into_binary(curr->num, max_digit);
 		curr = curr->pRLink;
 	}
 }

@@ -26,7 +26,13 @@ int	check_duplicates(t_deque *deque);
 int	check_deque_sorted(t_deque *deque);
 
 /* Change integer into index and move it to A (tmp->A) */
-void	create_deque_a(t_push_swap *data);
+void	add_index_and_binary(t_push_swap *data);
+
+/* Operation (pa, pb, sa, sb, ra, rb, ...) */
+void	operator(char *op, t_push_swap *data);
+
+/* Print deque */
+void	print_deque_ab(t_deque *a, t_deque *b);
 
 /* Error handling */
 void	exit_with_error_message(char *msg);

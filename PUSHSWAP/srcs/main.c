@@ -27,6 +27,7 @@ static void	displayDeque(t_deque *pDeque)
 	{
 		printf("Current element count[%i]: %d\n", i, pDeque->currentElementCount);
 		printf("Number: %d\n", curr->num);
+		printf("Index: %d\n", curr->index);
 		printf("Binary number: %s\n", curr->binary);
 		curr = curr->pRLink;
 		i++;
@@ -41,11 +42,10 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		exit_with_error_message("Too few arguments.");
 	ft_memset(&data, 0, sizeof(data));
-	data.tmp = create_deque_with_arguments(argc, argv);
-	data.a = createDeque();
+	data.a = create_deque_with_arguments(argc, argv);
+	add_index_and_binary(&data);
 	data.b = createDeque();
-	create_deque_a(&data);
-	displayDeque(data.tmp);
 	displayDeque(data.a);
+	displayDeque(data.b);
 	return (0);
 }
