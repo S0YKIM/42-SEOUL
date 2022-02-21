@@ -36,8 +36,11 @@ void	exit_with_error_message(char *msg)
 
 void	exit_with_memory_free(char *msg, t_deque *a, t_deque *b, char **str)
 {
-	ft_putstr_fd(msg, 1);
-	write(1, "\n", 1);
+	if (msg)
+	{
+		ft_putstr_fd(msg, 1);
+		write(1, "\n", 1);
+	}
 	if (a)
 		deleteDeque(&a);
 	if (b)
