@@ -50,20 +50,21 @@ static int	insert_numbers_into_deque(int argc, char **argv, t_deque **deque)
 	return (FT_TRUE);
 }
 
-t_deque	*create_deque_with_arguments(int argc, char **argv)
+void	create_deque_with_arguments(int argc, char **argv, t_push_swap *data)
 {
-	t_deque *deque;
 	int		result;
 
-	deque = createDeque();
-	if (!deque)
-		return NULL;
-	insert_numbers_into_deque(argc, argv, &deque);
-	result = check_duplicates(deque);
+	data->a = createDeque();
+	if (!data->a)
+		exit_with_error_message("Failed to create deque A");
+	insert_numbers_into_deque(argc, argv, &data->a);
+	result = check_duplicates(data->a);
 	if (result)
-		exit_with_memory_free("Numbers duplicated.", deque, NULL, NULL);
-	result = check_deque_sorted(deque);
+		exit_with_memory_free("Numbers duplicated.", data->a, NULL, NULL);
+	result = check_deque_sorted(data->a);
 	if (result)
-		exit_with_memory_free("Numbers already sorted.", deque, NULL, NULL);
-	return (deque);
+		exit_with_memory_free("Numbers already sorted.", data->a, NULL, NULL);
+	data->b = createDeque();
+	if (!data->b)
+		exit_with_memory_free("Failed to create deque B.", data->a, NULL, NULL);
 }

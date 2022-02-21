@@ -17,8 +17,8 @@
 # include "deque.h"
 # include "push_swap_macro.h"
 
-/* Create deques */
-t_deque	*create_deque_with_arguments(int argc, char **argv);
+/* Create deque A(w/numbers) and B(empty) */
+void	create_deque_with_arguments(int argc, char **argv, t_push_swap *data);
 
 /* Check validation */
 int	check_validate_integer(char **str);
