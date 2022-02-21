@@ -25,8 +25,8 @@ int	check_validate_integer(char **str);
 int	check_duplicates(t_deque *deque);
 int	check_deque_sorted(t_deque *deque);
 
-/* Change integer into index and move it to A (tmp->A) */
-void	add_index_and_binary(t_push_swap *data);
+/* Change integer into index and change it to binary*/
+void	add_index_and_binary(t_deque *deque);
 
 /* Operation (pa, pb, sa, sb, ra, rb, ...) */
 void	operator(char *op, t_push_swap *data);

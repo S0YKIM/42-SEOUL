@@ -50,18 +50,18 @@ static int	get_max_digit(int cnt)
 	return (num);
 }
 
-static void	change_raw_data_into_index(t_push_swap *data)
+static void	change_raw_data_into_index(t_deque *deque)
 {
 	int		current;
 	t_node	*i;
 	t_node	*j;
 
-	i = data->a->pFrontNode;
+	i = deque->pFrontNode;
 	while (i)
 	{
 		i->index = 0;
 		current = i->num;
-		j = data->a->pFrontNode;
+		j = deque->pFrontNode;
 		while (j)
 		{
 			if (current > j->num)
@@ -72,14 +72,14 @@ static void	change_raw_data_into_index(t_push_swap *data)
 	}
 }
 
-void	add_index_and_binary(t_push_swap *data)
+void	add_index_and_binary(t_deque *deque)
 {
 	int		max_digit;
 	t_node	*curr;
 
-	change_raw_data_into_index(data);
-	max_digit = get_max_digit(data->a->currentElementCount);
-	curr = data->a->pFrontNode;
+	change_raw_data_into_index(deque);
+	max_digit = get_max_digit(deque->currentElementCount);
+	curr = deque->pFrontNode;
 	while (curr)
 	{
 		curr->binary = change_index_into_binary(curr->index, max_digit);
