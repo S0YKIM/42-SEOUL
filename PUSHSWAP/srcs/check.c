@@ -59,14 +59,20 @@ int	check_validate_integer(char **str)
 int	check_duplicates(t_deque *deque)
 {
 	t_node	*curr;
+	t_node	*tmp;
 
 	if (deque->currentElementCount == 1)
 		return (FT_FALSE);
 	curr = deque->pFrontNode;
 	while (curr->pRLink)
 	{
-		if (curr->num == curr->pRLink->num)
-			return (FT_TRUE);
+		tmp = curr->pRLink;
+		while (tmp)
+		{
+			if (curr->num == tmp->num)
+				return (FT_TRUE);
+			tmp = tmp->pRLink;
+		}
 		curr = curr->pRLink;
 	}
 	return (FT_FALSE);
