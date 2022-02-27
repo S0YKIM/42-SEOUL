@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 23:46:01 by sokim             #+#    #+#             */
-/*   Updated: 2022/02/20 23:46:01 by sokim            ###   ########.fr       */
+/*   Updated: 2022/02/27 21:10:23 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ static int	insert_numbers_into_deque(int argc, char **argv, t_deque *deque)
 		if (!input)
 			exit_with_memory_free("Failed to parse arguments.",
 				deque, NULL, NULL);
+		if (!input[0])
+			exit_with_memory_free("Error", deque, NULL, input);
 		result = check_validate_integer(input);
 		if (!result)
 			exit_with_memory_free("Error", deque, NULL, input);
