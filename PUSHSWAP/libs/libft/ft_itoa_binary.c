@@ -25,7 +25,7 @@ char	*make_reverse_array(int num)
 		num = num / 2;
 		i++;
 		if (num == 0)
-			break;
+			break ;
 	}
 	binary[i++] = '\0';
 	result = ft_strdup(binary);

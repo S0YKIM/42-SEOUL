@@ -12,12 +12,12 @@
 
 #include "deque.h"
 
-int	isDequeEmpty(t_deque* pDeque)
+int	isDequeEmpty(t_deque *pDeque)
 {
 	if (!pDeque)
-		return FALSE;
+		return (FALSE);
 	if (pDeque->currentElementCount == 0)
-		return TRUE;
+		return (TRUE);
 	else
-		return FALSE;
+		return (FALSE);
 }

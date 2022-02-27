@@ -12,22 +12,22 @@
 
 #include "deque.h"
 
-t_node*	peekFrontLD(t_deque* pDeque)
+t_node	*peekFrontLD(t_deque *pDeque)
 {
-	t_node *frontNode;
-	
+	t_node	*frontNode;
+
 	if (!pDeque)
-		return NULL;
+		return (NULL);
 	frontNode = pDeque->pFrontNode;
 	return (frontNode);
 }
 
-t_node*	peekRearLD(t_deque* pDeque)
+t_node	*peekRearLD(t_deque *pDeque)
 {
-  t_node *rearNode;
+	t_node	*rearNode;
 
-  if (!pDeque)
-    return NULL;
-  rearNode = pDeque->pRearNode;
-  return (rearNode);
+	if (!pDeque)
+		return (NULL);
+	rearNode = pDeque->pRearNode;
+	return (rearNode);
 }

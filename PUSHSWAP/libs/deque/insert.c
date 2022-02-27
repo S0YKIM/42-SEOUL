@@ -12,17 +12,17 @@
 
 #include "deque.h"
 
-int	insertFrontLD(t_deque* pDeque, t_node element)
+int	insertFrontLD(t_deque *pDeque, t_node element)
 {
-	t_node *frontNode;
-	
+	t_node	*frontNode;
+
 	if (!pDeque)
-		return FALSE;
+		return (FALSE);
 	frontNode = (t_node *)malloc(sizeof(t_node));
 	if (!frontNode)
-		return FALSE;
+		return (FALSE);
 	*frontNode = element;
-    if (isDequeEmpty(pDeque))
+	if (isDequeEmpty(pDeque))
 	{
 		pDeque->pRearNode = frontNode;
 		frontNode->pRLink = NULL;
@@ -38,15 +38,15 @@ int	insertFrontLD(t_deque* pDeque, t_node element)
 	return (TRUE);
 }
 
-int insertRearLD(t_deque* pDeque, t_node element)
+int	insertRearLD(t_deque *pDeque, t_node element)
 {
-	t_node *rearNode;
-	
+	t_node	*rearNode;
+
 	if (!pDeque)
-		return FALSE;
+		return (FALSE);
 	rearNode = (t_node *)malloc(sizeof(t_node));
 	if (!rearNode)
-		return FALSE;
+		return (FALSE);
 	*rearNode = element;
 	if (isDequeEmpty(pDeque))
 	{

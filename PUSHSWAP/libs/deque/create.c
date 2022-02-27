@@ -12,13 +12,13 @@
 
 #include "deque.h"
 
-t_deque*	createDeque()
+t_deque	*createDeque(void)
 {
 	t_deque	*myDeque;
 
 	myDeque = (t_deque *)malloc(sizeof(t_deque));
 	if (!myDeque)
-		return FALSE;
+		return (FALSE);
 	myDeque->currentElementCount = 0;
 	myDeque->pFrontNode = NULL;
 	myDeque->pRearNode = NULL;

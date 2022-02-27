@@ -40,7 +40,8 @@ static int	insert_numbers_into_deque(int argc, char **argv, t_deque *deque)
 	{
 		input = ft_split(argv[i], ' ');
 		if (!input)
-			exit_with_memory_free("Failed to parse arguments.", deque, NULL, NULL);
+			exit_with_memory_free("Failed to parse arguments.",
+				deque, NULL, NULL);
 		result = check_validate_integer(input);
 		if (!result)
 			exit_with_memory_free("Error", deque, NULL, input);

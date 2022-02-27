@@ -18,14 +18,15 @@ static void	displayDeque(t_deque *pDeque)
 {
 	t_node	*curr;
 	int		i;
-	
+
 	if (!pDeque)
 		return ;
 	curr = pDeque->pFrontNode;
 	i = 0;
 	while (curr)
 	{
-		printf("Current element count[%i]: %d\n", i, pDeque->currentElementCount);
+		printf("Current element count[%i]: %d\n", i,
+			pDeque->currentElementCount);
 		printf("Number: %d\n", curr->num);
 		printf("Index: %d\n", curr->index);
 		printf("Binary number: %s\n", curr->binary);

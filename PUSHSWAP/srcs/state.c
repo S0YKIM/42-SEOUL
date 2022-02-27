@@ -12,6 +12,16 @@
 
 #include "push_swap.h"
 
+void	free_all(t_push_swap *data)
+{
+	if (!data)
+		return ;
+	if (data->a)
+		deleteDeque(&data->a);
+	if (data->b)
+		deleteDeque(&data->b);
+}
+
 void	free_double_char(char **str)
 {
 	int	i;

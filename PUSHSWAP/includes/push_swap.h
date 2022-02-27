@@ -49,5 +49,6 @@ void	exit_with_memory_free(char *msg, t_deque *a, t_deque *b, char **str);
 
 /* Memory Free */
 void	free_double_char(char **str);
+void	free_all(t_push_swap *data);
 
 #endif

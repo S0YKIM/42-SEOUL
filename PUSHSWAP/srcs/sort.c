@@ -19,7 +19,7 @@ static void	radix_sort(t_push_swap *data)
 	int		i;
 	int		j;
 
-	curr = peekFrontLD(data->a); 
+	curr = peekFrontLD(data->a);
 	len = ft_strlen(curr->binary);
 	i = len;
 	while (i--)
@@ -70,13 +70,8 @@ void	sort_five(t_push_swap *data)
 	int	cnt;
 
 	cnt = data->a->currentElementCount;
-	while (--cnt)
+	while (cnt > 3)
 	{
-		if (data->a->currentElementCount == 3)
-		{
-			sort_three(data);
-			break ;
-		}
 		min = get_minimum_number(data->a);
 		while (min != data->a->pFrontNode->num)
 		{
@@ -89,7 +84,9 @@ void	sort_five(t_push_swap *data)
 		if (check_deque_sorted(data->a) && isDequeEmpty(data->b))
 			return ;
 		operator("pb", data);
+		cnt--;
 	}
+	sort_three(data);
 	while (!isDequeEmpty(data->b))
 		operator("pa", data);
 }

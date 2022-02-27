@@ -28,7 +28,7 @@ static void	swap(t_deque *deque)
 static void	push(t_deque *from, t_deque *to)
 {
 	t_node	*pushnode;
-	
+
 	pushnode = deleteFrontLD(from);
 	insertFrontLD(to, *pushnode);
 	free(pushnode);

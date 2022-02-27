@@ -25,5 +25,6 @@ int	main(int argc, char **argv)
 		sort_five(&data);
 	else
 		sort_many(&data);
+	free_all(&data);
 	return (0);
 }
