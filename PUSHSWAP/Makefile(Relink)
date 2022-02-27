@@ -14,40 +14,42 @@ SRCS = srcs/main.c \
 		srcs/utils.c
 OBJS = $(SRCS:.c=.o)
 
-LIBFT_DIR = libs/libft
-LIBFT = $(LIBFT_DIR)/libft.a
+LIBFT = libft
 LIBFT_FLAGS = -L libs/libft -lft
 
-DEQUE_DIR = libs/deque
-DEQUE = $(DEQUE_DIR)/libdeque.a
+DEQUE = deque
 DEQUE_FLAGS = -L libs/deque -ldeque
 
-INC_FLAGS = -I includes -I $(LIBFT_DIR) -I $(DEQUE_DIR)
+INC_FLAGS = -I includes -I libs/$(LIBFT) -I libs/$(DEQUE)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(INC_FLAGS)
 
-all : $(NAME)
+all : $(LIBFT) $(DEQUE) $(NAME)
+	$(info <MAKE> all$)
 
 $(LIBFT) :
-	@make --silent --directory=$(LIBFT_DIR)
+	@make --silent --directory=libs/$(LIBFT)
+	$(info $<MAKE>	Libft - make$)
 
 $(DEQUE) :
-	@make --silent --directory=$(DEQUE_DIR)
+	@make --silent --directory=libs/$(DEQUE)
+	$(info $<MAKE>	Deque - make$)
 
-$(NAME) : $(LIBFT) $(DEQUE) $(OBJS)
+$(NAME) : $(OBJS)
+	$(info $<MAKE> NAME$)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIBFT_FLAGS) $(DEQUE_FLAGS)
 
 bonus : $(NAME)
 
 clean :
-	@make clean --silent --directory=$(LIBFT_DIR)
-	@make clean --silent --directory=$(DEQUE_DIR)
+	@make clean --directory=libs/$(LIBFT)
+	@make clean --directory=libs/$(DEQUE)
 	rm -rf $(OBJS)
 
 fclean : clean
-	@make fclean --silent --directory=$(LIBFT_DIR)
-	@make fclean --silent --directory=$(DEQUE_DIR)
+	@make fclean --directory=libs/$(LIBFT)
+	@make fclean --directory=libs/$(DEQUE)
 	rm -rf $(NAME)
 
 re :	fclean all
