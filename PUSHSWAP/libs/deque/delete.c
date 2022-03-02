@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 22:17:22 by sokim             #+#    #+#             */
-/*   Updated: 2022/02/20 22:17:22 by sokim            ###   ########.fr       */
+/*   Updated: 2022/03/02 14:53:30 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,9 @@ void	deleteDeque(t_deque **pDeque)
 	curr = (*pDeque)->pFrontNode;
 	while (curr)
 	{
-		temp = curr;
-		curr = curr->pRLink;
-		free(temp);
-		temp = NULL;
+		temp = curr->pRLink;
+		free(curr);
+		curr = temp;
 	}
 	free(*pDeque);
 	*pDeque = NULL;

@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 20:50:35 by sokim             #+#    #+#             */
-/*   Updated: 2022/02/21 20:50:35 by sokim            ###   ########.fr       */
+/*   Updated: 2022/03/02 14:21:44 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static int	get_max_digit(int cnt)
 
 	str = ft_itoa_binary(cnt - 1);
 	num = ft_strlen(str);
+	if (str)
+		free(str);
 	return (num);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 02:59:54 by sokim             #+#    #+#             */
-/*   Updated: 2022/02/21 02:59:54 by sokim            ###   ########.fr       */
+/*   Updated: 2022/03/02 14:07:44 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ char	*ft_itoa_binary(int num)
 		result[i] = tmp[len];
 		i++;
 	}
+	free(tmp);
 	result[i++] = '\0';
 	return (result);
 }

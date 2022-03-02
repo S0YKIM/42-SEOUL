@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 23:01:53 by sokim             #+#    #+#             */
-/*   Updated: 2022/02/20 23:01:53 by sokim            ###   ########.fr       */
+/*   Updated: 2022/03/02 14:55:46 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ void	exit_with_memory_free(char *msg, t_deque *a, t_deque *b, char **str)
 	if (b)
 		deleteDeque(&b);
 	if (str)
-		free(str);
+		free_double_char(str);
 	exit(EXIT_FAILURE);
 }
