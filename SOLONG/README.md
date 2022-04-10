@@ -2,7 +2,6 @@
 
 [![sokim's 42 so_long Score](https://badge42.vercel.app/api/v2/cl1sxc9pb003009jgq7f86utb/project/2388526)](https://github.com/JaeSeoKim/badge42)
 
-</br>
 
 ✔️ Mandatory Part
 ================
