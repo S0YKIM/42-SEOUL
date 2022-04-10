@@ -1,4 +1,4 @@
-[![jaeskim's 42Project Score](https://badge42.herokuapp.com/api/project/sokim/netwhat)](https://github.com/JaeSeoKim/badge42)
+[![sokim's 42 netwhat Score](https://badge42.vercel.app/api/v2/cl1sxc9pb003009jgq7f86utb/project/2200411)](https://github.com/JaeSeoKim/badge42)
 -------------------------
 
 ⭐DESCRIPTIONS
