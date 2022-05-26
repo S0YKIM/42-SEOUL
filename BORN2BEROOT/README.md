@@ -1,7 +1,7 @@
 BORN2BEROOT
 ===========
 
-[![sokim's 42 Born2beroot Score](https://badge42.vercel.app/api/v2/cl1sxc9pb003009jgq7f86utb/project/2178392)]
+![sokim's 42 Born2beroot Score](https://badge42.vercel.app/api/v2/cl1sxc9pb003009jgq7f86utb/project/2178392)
 
 🗒️[Developer Note](https://pouncing-elbow-0a4.notion.site/Pushswap-e7a657feae1248ddb8ae974377e4ee23)
 
