@@ -2,7 +2,7 @@
 
 [![sokim's 42 so_long Score](https://badge42.vercel.app/api/v2/cl1sxc9pb003009jgq7f86utb/project/2388526)](https://github.com/JaeSeoKim/badge42)
 
-🔗 [Notion](https://pouncing-elbow-0a4.notion.site/Solong-2db1e3d2978d45abb567afbac53d8b26)
+🗒️ [노션 정리](https://pouncing-elbow-0a4.notion.site/Solong-2db1e3d2978d45abb567afbac53d8b26)
 
 
 ✔️ Mandatory Part
