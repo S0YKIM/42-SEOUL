@@ -10,10 +10,8 @@
 </br>
 </br>
 
-⭐HOW TO SOLVE
+⭐MY ARTICLES
 ==============
-
-* 자세한 개념들은 아래의 블로그에 정리해두었다.
 
 https://love-every-moment.tistory.com/50
 </br>
