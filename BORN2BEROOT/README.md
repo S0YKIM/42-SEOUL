@@ -12,7 +12,7 @@ You will create your first machine in VirtualBox (or UTM if you can’t use Virt
 
 # 🎲 GENERAL INSTRUCTIONS
 
-- This project consists of having you set up your first server by following specific rules.
+This project consists of having you set up your first server by following specific rules:
 - You must choose as an operating system either the latest stable version of Debian (no testing/unstable), or the latest stable version of CentOS. Debian is highly recommended if you are new to system administration.
 - You must create at least 2 encrypted partitions using LVM.
 
@@ -26,10 +26,11 @@ You will create your first machine in VirtualBox (or UTM if you can’t use Virt
 - Of course, your root password has to comply with this policy.
 
 # 🎲 SUDO
-- You have to install and configure sudo following strict rules.
+You have to install and configure sudo following strict rules:
 - In addition to the root user, a user with your login as username has to be present.
 - This user has to belong to the user42 and sudo groups.
-- To set up a strong configuration for your sudo group, you have to comply with the following requirements:
+
+To set up a strong configuration for your sudo group, you have to comply with the following requirements:
 - Authentication using sudo has to be limited to 3 attempts in the event of an incor- rect password.
 - A custom message of your choice has to be displayed if an error due to a wrong password occurs when using sudo.
 - Each action using sudo has to be archived, both inputs and outputs. The log file has to be saved in the /var/log/sudo/ folder.
