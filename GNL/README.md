@@ -7,7 +7,7 @@ GET NEXT LINE
 # ⭐ DESCRIPTIONS
 
 > "The aim of this project is to make you code a function that returns a line ending with a newline, read from a file descriptor."
-`buffer` `static variable`
+
 
 # 🚀 Content
 
@@ -44,6 +44,7 @@ GET NEXT LINE
 
 # ⭐HOW TO SOLVE IT
 
+* Key concept: `buffer` `static variables`
 * 어떠한 파일을 받아와서 '\n'을 기준으로 한 줄씩 가져오는 함수를 만드는 과제
 * 컴파일 과정에서 버퍼 사이즈를 입력 받는다.
 * gcc -D defines a macro to be used by the preprocessor.
