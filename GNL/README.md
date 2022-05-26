@@ -7,7 +7,7 @@ GET NEXT LINE
 # ⭐ DESCRIPTIONS
 
 > "The aim of this project is to make you code a function that returns a line ending with a newline, read from a file descriptor."
-> Key concepts: `buffer` and `static variable`
+- Key concepts: `buffer` and `static variable`
 
 # 🚀 Content
 
