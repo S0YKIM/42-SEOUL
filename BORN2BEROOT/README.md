@@ -3,7 +3,7 @@ BORN2BEROOT
 
 ![sokim's 42 Born2beroot Score](https://badge42.vercel.app/api/v2/cl1sxc9pb003009jgq7f86utb/project/2178392)
 
-🗒️[Developer Note](https://pouncing-elbow-0a4.notion.site/Pushswap-e7a657feae1248ddb8ae974377e4ee23)
+🗒️[Developer Note](https://pouncing-elbow-0a4.notion.site/Born2beroot-210713ff7390427f914cee59e2c16bce)
 
 > This project aims to introduce you to the wonderful world of virtualization.
 You will create your first machine in VirtualBox (or UTM if you can’t use VirtualBox) under specific instructions. Then, at the end of this project, you will be able to set up your own operating system while implementing strict rules.
