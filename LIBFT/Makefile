@@ -5,7 +5,7 @@ CFLAGS = -Wall -Wextra -Werror
 AR = ar rc
 RM = rm -f
 
-FILES = ft_memset \
+FILES_LIBC = ft_memset \
 		ft_bzero \
 		ft_memcpy \
 		ft_memccpy \
@@ -29,20 +29,20 @@ FILES = ft_memset \
 		ft_toupper \
 		ft_tolower \
 		ft_calloc \
-		ft_strdup \
-		ft_substr \
-		ft_strjoin \
-		ft_strtrim \
-		ft_split \
-		ft_itoa \
-		ft_strmapi \
-		ft_putchar_fd \
-		ft_putstr_fd \
-		ft_putendl_fd \
-		ft_putnbr_fd \
-		ft_putchar
+		ft_strdup
 
-FILES_B = 	ft_lstnew \
+FILES_ADDITIONAL = ft_itoa \
+				ft_putchar_fd \
+				ft_putstr_fd \
+				ft_putendl_fd \
+				ft_putnbr_fd \
+				ft_substr \
+				ft_strjoin \
+				ft_strtrim \
+				ft_split \
+				ft_strmapi	
+
+FILES_BONUS = ft_lstnew \
 	  		ft_lstadd_front \
 	  		ft_lstsize \
 	  		ft_lstlast \
@@ -52,22 +52,26 @@ FILES_B = 	ft_lstnew \
 	  		ft_lstiter \
 	  		ft_lstmap
 
-SRCS_DIR = ./
-SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
-SRCS_B_DIR = ./
-SRCS_B = $(addprefix $(SRCS_B_DIR), $(addsuffix .c, $(FILES_B)))
+LIBC_DIR = ./LIBC/
+ADDITIONAL_DIR = ./ADDITIONAL/
+BONUS_DIR = ./BONUS/
 
-OBJS_DIR = ./
-OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
-OBJS_B_DIR = ./
-OBJS_B = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES_B)))
+SRCS_LIBC = $(addprefix $(LIBC_DIR), $(addsuffix .c, $(FILES_LIBC)))
+SRCS_ADDITIONAL = $(addprefix $(ADDITIONAL_DIR), $(addsuffix .c, $(FILES_ADDIIONAL)))
+SRCS_BONUS = $(addprefix $(BONUS_DIR), $(addsuffix .c, $(FILES_BONUS)))
+
+OBJS_LIBC = $(addprefix $(LIBC_DIR), $(addsuffix .o, $(FILES_LIBC)))
+OBJS_ADDITIONAL = $(addprefix $(ADDITIONAL_DIR), $(addsuffix .o, $(FILES_ADDITIONAL)))
+OBJS_BONUS = $(addprefix $(BONUS_DIR), $(addsuffix .o, $(FILES_BONUS)))
+
+INC_FLAGS = -I ./
 
 ifdef WITH_BONUS
-	SRCS_FILES = $(SRCS) $(SRCS_B)
-	OBJ_FILES = $(OBJS) $(OBJS_B)
+	SRCS_FILES = $(SRCS_LIBC) $(SRCS_ADDITIONAL) $(SRCS_BONUS)
+	OBJ_FILES = $(OBJS_LIBC) $(OBJS_ADDITIONAL) $(OBJS_BONUS)
 else
-	SRCS_FILES = $(SRCS)
-	OBJ_FILES = $(OBJS)
+	SRCS_FILES = $(SRCS_LIBC) $(SRCS_ADDITIONAL)
+	OBJ_FILES = $(OBJS_LIBC) $(OBJS_ADDITIONAL)
 endif
 
 all: $(NAME)
@@ -79,10 +83,10 @@ bonus:
 	make WITH_BONUS=1 all
 
 .c.o: $(SRCS_FILES)
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) -c -o $@ $< $(INC_FLAGS)
 
 clean:
-	$(RM) $(OBJS) $(OBJS_B)
+	$(RM) $(OBJS_LIBC) $(OBJS_ADDITIONAL) $(OBJS_BONUS)
 
 fclean: clean
 	$(RM) $(NAME)
