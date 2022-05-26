@@ -29,7 +29,7 @@
 
 | PROJECT                                                                       | LANGUAGE          | TOPICS                               | Date        |
 | ----------------------------------------------------------------------------- | ----------------- | ------------------------------------ | ----------------- |
-| [Data Structure Workshop](https://github.com/S0YKIM/DATA-STRUCTURE) | C | `linked list` `array` `stack` `queue` `deque` `binary search tree` `graph` `sort` `dijkstra` | 2022-01-21 ~ 2022-03-18         |
+| [Data Structure Workshop](https://github.com/S0YKIM/DATA-STRUCTURE) | C | `linked list` `array` `stack` `queue` `deque` `binary search tree` `graph` `sort` `mst` `dijkstra` `floyd` `prim` `kruskal` | 2022-01-21 ~ 2022-03-18         |
 
 ## Reference
 [🚀 badge42](https://github.com/JaeSeoKim/badge42)
