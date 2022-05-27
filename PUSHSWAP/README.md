@@ -8,7 +8,9 @@
 
 </br>
 
-## 🎲 INSTRUCTIONS
+# 🚀 Contents
+
+## 🚩 Instructions
 
 - The game is composed of 2 stacks named a and b.
 - To start with:
@@ -41,7 +43,7 @@
   
 </br>
 
-## 🔄 Push_swap
+# 🎲 Push_swap
 
 > ### 🚀 build
 >
