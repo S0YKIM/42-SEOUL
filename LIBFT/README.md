@@ -1,21 +1,16 @@
 [![sokim's 42 Libft Score](https://badge42.vercel.app/api/v2/cl1sxc9pb003009jgq7f86utb/project/2166491)](https://github.com/JaeSeoKim/badge42)
 -------------------
 
-⭐DESCRIPTIONS
-==============
-
-Reproduce the bahaviours of the functions in `libc` library in C.
-Then create some more useful funtions in your own words.
+> Reproduce the bahaviours of the functions in `libc` library in C. Then create some more useful funtions in your own words.
 
 </br>
 </br>
 
-⭐Content
-==========
+# 🚀 Content
 
-## Mandatory part
+## 🚩 Mandatory part
 
-#### Libc functions
+### Libc functions
 
 - **Memory** : [`memset`](./LIBC/ft_memset.c) [`bzero`](./LIBC/ft_bzero.c) [`memcpy`](./LIBC/ft_memcpy.c) [`memccpy`](./LIBC/ft_memccpy.c) [`memmove`](./LIBC/ft_memmove.c) [`memchr`](./LIBC/ft_memchr.c) [`memcmp`](./LIBC/ft_memcmp.c) [`calloc`](./LIBC/ft_calloc.c)
 
@@ -23,7 +18,7 @@ Then create some more useful funtions in your own words.
 
 - **Type** : [`ft_isdigit`](./LIBC/ft_isdigit.c) [`ft_isalpha`](./LIBC/ft_isalpha.c) [`ft_isalnum`](./LIBC/ft_isalnum.c) [`ft_isprint`](./LIBC/ft_isprint.c) [`ft_toupper`](./LIBC/ft_toupper.c) [`ft_tolower`](./LIBC/ft_tolower.c)
 
-#### Additional functions
+### Additional functions
 
 - **String** : [`ft_substr`](./ADDITIONAL/ft_substr.c) [`ft_strjoin`](./ADDITIONAL/ft_strjoin.c) [`ft_strtrim`](./ADDITIONAL/ft_strtrim.c) [`ft_split`](./ADDITIONAL/ft_split.c) [`ft_itoa`](./ADDITIONAL/ft_itoa.c) [`ft_strmapi`](./ADDITIONAL/ft_strmapi.c)
 - **Write** : [`ft_putchar_fd`](./ADDITIONAL/ft_putchar_fd.c) [`ft_putstr_fd`](./ADDITIONAL/ft_putstr_fd.c) [`ft_putendl_fd`](./ADDITIONAL/ft_putendl_fd.c) [`ft_putnbr_fd`](./ADDITIONAL/ft_putnbr_fd.c)
@@ -31,16 +26,14 @@ Then create some more useful funtions in your own words.
 </br>
 </br>
 
-⭐Bonus part
-============
+## 🚩 Bonus part
 
 - **Linked list** : [`ft_lstnew`](./BONUS/ft_lstnew.c) [`ft_lstadd_front`](./BONUS/ft_lstadd_front.c) [`ft_lstsize`](./BONUS/ft_lstsize.c) [`ft_lstlast`](./BONUS/ft_lstlast.c) [`ft_lstadd_back`](./BONUS/ft_lstadd_back.c) [`ft_lstdelone`](./BONUS/ft_lstdelone.c) [`ft_lstclear`](./BONUS/ft_lstclear.c) [`ft_lstiter`](./BONUS/ft_lstiter.c) [`ft_lstmap`](./BONUS/ft_lstmap.c)
 
 </br>
 </br>
 
-⭐REFERENCES
-============
+## ⭐ REFERENCES
 
 https://github.com/hidaehyunlee/Libft
 </br>
