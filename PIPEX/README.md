@@ -1,11 +1,26 @@
-# PIPEX()
+# PIPEX
 
 [![sokim's 42 pipex Score](https://badge42.vercel.app/api/v2/cl1sxc9pb003009jgq7f86utb/project/2209830)](https://github.com/JaeSeoKim/badge42)
 
-✔️ Mandatory Part
-================
+> The aim of this project is to mimic the UNIX mechanism.
+
+# ⭐ Key concepts
+`Redirection`, `Pipes`, `Process`, `fork()`, `dup2()`
+
+# ⭐ Developer notes
+리디렉션과 파이프: https://love-every-moment.tistory.com/52
+</br>
+리눅스 명령 탐색 경로: https://love-every-moment.tistory.com/54
+</br>
+프로세스 생성과 실행: https://love-every-moment.tistory.com/53
+</br>
+파일 디스크립터: https://love-every-moment.tistory.com/45
+</br>
 
 
+# 🚀 Contents
+
+## 🚩 Mandatory Part
 - The executable file must be named pipex.
 - Handle the errors like the shell command < file1 cmd1 | cmd2 > file2.
 - You are allowed to use the following functions:
@@ -69,8 +84,7 @@
 </br>
 </br>
 
-✔️ Bonus Part
-============
+## 🚩 Bonus Part
 
 - Handle multiple pipes :
 
@@ -81,29 +95,3 @@
 
        ./pipex here_doc LIMITER cmd cmd1 file
        cmd << LIMITER | cmd1 >> file
-
-</br>
-</br>
-</br>
-
-⭐DESCRIPTIONS
-==============
-
-* The aim of this project is to mimic the UNIX mechanism.
-* Key concepts: `Redirection`, `Pipes`, `Process`, `fork()`, `dup2()`
-</br>
-</br>
-
-
-
-⭐MY ARTICLES
-=============
-
-리디렉션과 파이프: https://love-every-moment.tistory.com/52
-</br>
-리눅스 명령 탐색 경로: https://love-every-moment.tistory.com/54
-</br>
-프로세스 생성과 실행: https://love-every-moment.tistory.com/53
-</br>
-파일 디스크립터: https://love-every-moment.tistory.com/45
-</br>
