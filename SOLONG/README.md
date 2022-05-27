@@ -28,8 +28,10 @@ Bonus list:
 - There’s some sprite animation.
 - Movement count is directly displayed on the screen instead of shell output.
 
+</br>
+</br>
 
-# 💡 Step
+# 💡 Steps to make it
 
 ## (1) 데이터 초기화
 
