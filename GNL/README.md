@@ -7,7 +7,7 @@ GET NEXT LINE
 > "The aim of this project is to make you code a function that returns a line ending with a newline, read from a file descriptor."
 
 
-# 🚀 Content
+# 🚀 Contents
 
 ## 🚩 Mandatory part
 
@@ -40,7 +40,7 @@ GET NEXT LINE
 - To succeed get_next_line with a single static variable.
 - To be able to manage multiple file descriptor with your get_next_line. For example, if the file descriptors 3, 4 and 5 are accessible for reading, then you can call get_next_line once on 3, once on 4, once again on 3 then once on 5 etc. without losing the reading thread on each of the descriptors.
 
-# ⭐KEY POINT
+# ⭐ Key points
 
 - Key concept: `buffer` `static variables`
 - 어떠한 파일을 받아와서 '\n'을 기준으로 한 줄씩 가져오는 함수를 만드는 과제
@@ -58,16 +58,16 @@ GET NEXT LINE
 - BUFFER_SIZE 가 아주 커지는 경우 SEG FAULT 가 발생하는 문제로 인해 `malloc()` 을 통해 메모리를 할당하는 것으로 변경하였다.
 
 
-# ⭐REFERENCE
+# ⭐ Reference
 
-https://github.com/hidaehyunlee/Get-Next-Line
+🔗 [hidaehyunlee's Github](https://github.com/hidaehyunlee/Get-Next-Line)
 </br>
-https://code4human.tistory.com/130
+🔗 [배경지식 정리](https://code4human.tistory.com/130)
 </br>
-https://velog.io/@yamkim/42-Seoul-Get-Next-Line2-Overview
+🔗 [Overview](https://velog.io/@yamkim/42-Seoul-Get-Next-Line2-Overview)
 </br>
-https://epicarts.tistory.com/154
+🔗 [테스터 참고](https://epicarts.tistory.com/154)
 </br>
-https://ohseyong.github.io/study/Get-Next-Line/
+🔗 [GNL 과제 수행 전 알아야할 내용](https://ohseyong.github.io/study/Get-Next-Line/)
 </br>
 http://bit.ly/gnljs
