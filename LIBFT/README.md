@@ -26,8 +26,10 @@
 
 - **Linked list** : [`ft_lstnew`](./BONUS/ft_lstnew.c) [`ft_lstadd_front`](./BONUS/ft_lstadd_front.c) [`ft_lstsize`](./BONUS/ft_lstsize.c) [`ft_lstlast`](./BONUS/ft_lstlast.c) [`ft_lstadd_back`](./BONUS/ft_lstadd_back.c) [`ft_lstdelone`](./BONUS/ft_lstdelone.c) [`ft_lstclear`](./BONUS/ft_lstclear.c) [`ft_lstiter`](./BONUS/ft_lstiter.c) [`ft_lstmap`](./BONUS/ft_lstmap.c)
 
+## ⭐ Key point
+> Make your own library!
 
-## ⭐ REFERENCES
+## ⭐ Reference
 
 https://github.com/hidaehyunlee/Libft
 </br>
