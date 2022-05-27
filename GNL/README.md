@@ -70,4 +70,4 @@ GET NEXT LINE
 </br>
 🔗 [GNL 과제 수행 전 알아야할 내용](https://ohseyong.github.io/study/Get-Next-Line/)
 </br>
-http://bit.ly/gnljs
+🔗 [참고자료 모음](http://bit.ly/gnljs)
