@@ -8,13 +8,13 @@
 `Redirection`, `Pipes`, `Process`, `fork()`, `dup2()`
 
 # ⭐ Developer notes
-리디렉션과 파이프: https://love-every-moment.tistory.com/52
+🔗[리디렉션과 파이프](https://love-every-moment.tistory.com/52)
 </br>
-리눅스 명령 탐색 경로: https://love-every-moment.tistory.com/54
+🔗[리눅스 명령 탐색 경로](https://love-every-moment.tistory.com/54)
 </br>
-프로세스 생성과 실행: https://love-every-moment.tistory.com/53
+🔗[프로세스 생성과 실행](https://love-every-moment.tistory.com/53)
 </br>
-파일 디스크립터: https://love-every-moment.tistory.com/45
+🔗[파일 디스크립터](https://love-every-moment.tistory.com/45)
 </br>
 
 
