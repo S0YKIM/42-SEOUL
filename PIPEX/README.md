@@ -61,8 +61,7 @@
 
 ◦ exit
 
-</br>
-</br>
+
 
 - The program should be executed in this way:
 
@@ -80,9 +79,7 @@
        
        ./pipex infile ``grep a1'' ``wc -w'' outfile
        < infile grep a1 | wc -w > outfile
-</br>
-</br>
-</br>
+
 
 ## 🚩 Bonus Part
 
