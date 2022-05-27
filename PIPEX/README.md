@@ -4,10 +4,11 @@
 
 > The aim of this project is to mimic the UNIX mechanism.
 
-# ⭐ Key concepts
+## ⭐ Key concepts
 `Redirection`, `Pipes`, `Process`, `fork()`, `dup2()`
 
-# ⭐ Developer notes
+
+## ⭐ Developer notes
 🔗[리디렉션과 파이프](https://love-every-moment.tistory.com/52)
 </br>
 🔗[리눅스 명령 탐색 경로](https://love-every-moment.tistory.com/54)
@@ -18,9 +19,9 @@
 </br>
 
 
-# 🚀 Contents
+## 🚀 Contents
 
-## 🚩 Mandatory Part
+### 🚩 Mandatory Part
 - The executable file must be named pipex.
 - Handle the errors like the shell command < file1 cmd1 | cmd2 > file2.
 - You are allowed to use the following functions:
@@ -81,7 +82,7 @@
        < infile grep a1 | wc -w > outfile
 
 
-## 🚩 Bonus Part
+### 🚩 Bonus Part
 
 - Handle multiple pipes :
 
