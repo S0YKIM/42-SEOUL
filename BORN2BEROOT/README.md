@@ -10,13 +10,15 @@ You will create your first machine in VirtualBox (or UTM if you can’t use Virt
 
 </br>
 
-# 🎲 GENERAL INSTRUCTIONS
+# 🚀Contents
+
+## 🚩 GENERAL INSTRUCTIONS
 
 This project consists of having you set up your first server by following specific rules:
 - You must choose as an operating system either the latest stable version of Debian (no testing/unstable), or the latest stable version of CentOS. Debian is highly recommended if you are new to system administration.
 - You must create at least 2 encrypted partitions using LVM.
 
-# 🎲 SSH, HOSTNAME, PASSWORD
+## 🚩 SSH, HOSTNAME, PASSWORD
 - A SSH service will be running on port 4242 only. For security reasons, it must not be possible to connect using SSH as root.
 - You have to configure your operating system with the UFW firewall and thus leave only port 4242 open.
 - The hostname of your virtual machine must be your login ending with 42 (e.g., wil42). You will have to modify this hostname during your evaluation.
@@ -25,7 +27,7 @@ This project consists of having you set up your first server by following specif
 - The following rule does not apply to the root password: The password must have at least 7 characters that are not part of the former password.
 - Of course, your root password has to comply with this policy.
 
-# 🎲 SUDO
+## 🚩 SUDO
 You have to install and configure sudo following strict rules:
 - In addition to the root user, a user with your login as username has to be present.
 - This user has to belong to the user42 and sudo groups.
@@ -37,7 +39,7 @@ To set up a strong configuration for your sudo group, you have to comply with th
 - The TTY mode has to be enabled for security reasons.
 - For security reasons too, the paths that can be used by sudo must be restricted. Example: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
 
-# 🎲 CRONTAB
+## 🚩 CRONTAB
 Finally, you have to create a simple script called monitoring.sh. It must be developed in bash.
 At server startup, the script will display some information (listed below) on all ter- minals every 10 minutes (take a look at wall). The banner is optional. No error must be visible.
 Your script must always be able to display the following information:
