@@ -1,10 +1,16 @@
 # PUSH SWAP
 
+[![sokim's 42 push_swap Score](https://badge42.vercel.app/api/v2/cl1sxc9pb003009jgq7f86utb/project/2207160)](https://github.com/JaeSeoKim/badge42)
+
+🗒️[Developer Note](https://pouncing-elbow-0a4.notion.site/Pushswap-e7a657feae1248ddb8ae974377e4ee23)
+
 > This project will make you sort data on a stack, with a limited set of instructions, using the lowest possible number of actions. To succeed you’ll have to manipulate various types of algorithms and choose the one (of many) most appropriate solution for an optimized data sorting.
 
 </br>
 
-## 🎲 INSTRUCTIONS
+# 🚀 Contents
+
+## 🚩 Instructions
 
 - The game is composed of 2 stacks named a and b.
 - To start with:
@@ -37,7 +43,7 @@
   
 </br>
 
-## 🔄 Push_swap
+# 🎲 Push_swap
 
 > ### 🚀 build
 >

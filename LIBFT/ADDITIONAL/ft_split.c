@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_norm.c                                    :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 17:13:39 by sokim             #+#    #+#             */
-/*   Updated: 2021/12/16 17:20:06 by sokim            ###   ########.fr       */
+/*   Updated: 2022/05/26 18:44:42 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,13 @@ char	**split(char const *s, char c, char **tab)
 		else
 			++s;
 	}
+	tab[index] = NULL;
 	return (tab);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	char		**tab;
-	char const	*start;
-	size_t		index;
 
 	if (!s)
 		return (NULL);
@@ -86,25 +85,5 @@ char	**ft_split(char const *s, char c)
 	if (!tab)
 		return (NULL);
 	split(s, c, tab);
-	tab[index] = 0;
 	return (tab);
-}
-
-
-#include <stdio.h>
-
-int	main(void)
-{
-	char	**tab;
-	int	i;
-	char const *s = "0aaa00bbb000ccc";
-	char c = '0';
-
-	tab = ft_split(s, c);
-	i = 0;
-	while (tab[i])
-	{
-		printf("%s", tab[i]);
-		++i;
-	}
 }
