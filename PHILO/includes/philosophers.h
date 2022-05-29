@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:02:12 by sokim             #+#    #+#             */
-/*   Updated: 2022/04/02 19:41:38 by sokim            ###   ########.fr       */
+/*   Updated: 2022/05/29 22:10:09 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef struct	s_table
 	long long		start_time;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	*print;
-	t_philo			*philo;
 }	t_table;
 
 typedef struct	s_philo
