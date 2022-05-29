@@ -7,7 +7,7 @@ static int	is_num(char c)
 	return (FALSE);
 }
 
-static int	validate_argv(int argc, char **argv)
+static int	is_validate_num(int argc, char **argv)
 {
 	int	i;
 	int	j;
@@ -25,11 +25,11 @@ static int	validate_argv(int argc, char **argv)
 	return (TRUE);
 }
 
-int	check_arguments(int argc, char **argv)
+int	is_valid_arguments(int argc, char **argv)
 {
 	if (argc != 5 && argc != 6)
-		return (ERROR);
-	if (!validate_argv(argc, argv))
-		return (ERROR);
-	return (SUCCESS);
+		return (FALSE);
+	if (!is_validate_num(argc, argv))
+		return (FALSE);
+	return (TRUE);
 }
