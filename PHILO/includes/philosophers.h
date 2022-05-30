@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:02:12 by sokim             #+#    #+#             */
-/*   Updated: 2022/05/29 22:27:52 by sokim            ###   ########.fr       */
+/*   Updated: 2022/05/30 13:02:12 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct	s_table
 	long long		start_time;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	*print;
-	t_philo			*philo;
+	struct s_philo	*philo;
 }	t_table;
 
 typedef struct	s_philo
@@ -58,12 +58,12 @@ typedef struct	s_philo
 /*
  * init.c
 */
-int	init(char **argv, t_table *table);
+int	init(int argc, char **argv, t_table *table);
 
 /*
  * validate.c
 */
-int	check_arguments(int argc, char **argv);
+int	is_valid_arguments(int argc, char **argv);
 
 /*
  * utils.c
