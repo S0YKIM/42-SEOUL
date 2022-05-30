@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:02:08 by sokim             #+#    #+#             */
-/*   Updated: 2022/04/02 19:39:10 by sokim            ###   ########.fr       */
+/*   Updated: 2022/05/30 13:04:49 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	validate_table(t_table *table)
 	return (TRUE);
 }
 
-static int	init_table(char **argv, t_table *table)
+static int	init_table(int argc, char **argv, t_table *table)
 {
 	if (!memset(table, 0, sizeof(t_table)))
 		return (ERROR);
@@ -62,8 +62,9 @@ static int	init_mutex(t_table *table)
 	table->print = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
 	if (!table->print)
 		return (ERROR);
-	if (pthread_mutex_init(&table->print, NULL) == ERROR)
+	if (pthread_mutex_init(table->print, NULL) == ERROR)
 		return (ERROR);
+	return (SUCCESS);
 }
 
 static int	init_philo(t_table *table)
@@ -71,10 +72,10 @@ static int	init_philo(t_table *table)
 	int	i;
 
 	i = 0;
-	table->philo = (t_philo *)malloc(sizeof(t_philo) * table->num_of_philos));
+	table->philo = (t_philo *)malloc(sizeof(t_philo) * table->num_of_philos);
 	if (!table->philo)
 		return (ERROR);
-	while (++i =< table->num_of_philos)
+	while (++i <= table->num_of_philos)
 	{
 		if (!memset(&table->philo[i], 0, sizeof(t_philo)))
 			return (ERROR);
@@ -87,9 +88,9 @@ static int	init_philo(t_table *table)
 
 }
 
-int	init(char **argv, t_table *table)
+int	init(int argc, char **argv, t_table *table)
 {
-	if (init_table(argv, table) == ERROR)
+	if (init_table(argc, argv, table) == ERROR)
 		return (FALSE);
 	if (init_mutex(table) == ERROR)
 		return (FALSE);
