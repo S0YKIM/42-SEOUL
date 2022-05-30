@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:02:08 by sokim             #+#    #+#             */
-/*   Updated: 2022/05/29 22:16:32 by sokim            ###   ########.fr       */
+/*   Updated: 2022/05/30 13:05:44 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	main(int argc, char **argv)
 {
 	t_table	table;
 
-	if (is_valid_arguments(argc, argv) == ERROR)
+	if (!is_valid_arguments(argc, argv))
 		return (print_error("Invalid arguments."));
-	if (init(argv, &table) == ERROR)
+	if (!init(argc, argv, &table))
 		return (print_error("Failed to initialize."));
 	return (EXIT_SUCCESS);
 }
