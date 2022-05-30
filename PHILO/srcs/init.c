@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:02:08 by sokim             #+#    #+#             */
-/*   Updated: 2022/05/30 13:04:49 by sokim            ###   ########.fr       */
+/*   Updated: 2022/05/30 13:15:08 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ static int	init_philo(t_table *table)
 		table->philo[i].table = table;
 	}
 	return (SUCCESS);
-
 }
 
 int	init(int argc, char **argv, t_table *table)
