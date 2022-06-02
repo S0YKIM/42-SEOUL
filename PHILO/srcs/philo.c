@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:08:08 by sokim             #+#    #+#             */
-/*   Updated: 2022/06/02 16:53:16 by sokim            ###   ########.fr       */
+/*   Updated: 2022/06/02 17:28:31 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	*routine(void *void_philo)
 
 	philo = (t_philo *)void_philo;
 	if (philo->id % 2 == 0)
-		usleep(philo->table->time_to_eat * 800);
+		usleep(philo->table->time_to_eat * 500);
 	while (!(philo->table->exit))
 	{
 		eating(philo);

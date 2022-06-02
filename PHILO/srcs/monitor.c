@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 15:12:51 by sokim             #+#    #+#             */
-/*   Updated: 2022/06/02 16:34:44 by sokim            ###   ########.fr       */
+/*   Updated: 2022/06/02 17:05:25 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void		monitor(t_table *table)
 		}
 		if (table->num_of_must_eat != 0 && check_full(table))
 			return ;
-		usleep(100);
+		usleep(10);
 	}
 }
 
