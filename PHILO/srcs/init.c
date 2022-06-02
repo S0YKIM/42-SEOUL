@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:02:08 by sokim             #+#    #+#             */
-/*   Updated: 2022/05/30 13:15:08 by sokim            ###   ########.fr       */
+/*   Updated: 2022/06/02 14:31:28 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ static int	init_mutex(t_table *table)
 	int	i;
 
 	i = 0;
-	table->fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * table->num_of_philos);
+	table->fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) \
+	* table->num_of_philos);
 	if (!table->fork)
 		return (ERROR);
 	while (i < table->num_of_philos)

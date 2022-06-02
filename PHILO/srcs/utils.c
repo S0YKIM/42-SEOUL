@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 18:43:22 by sokim             #+#    #+#             */
-/*   Updated: 2022/06/02 14:26:40 by sokim            ###   ########.fr       */
+/*   Updated: 2022/06/02 14:32:07 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 long long	get_time(void)
 {
 	struct timeval	time;
-	long long 		ms;
+	long long		ms;
 
 	gettimeofday(&time, NULL);
 	ms = (time.tv_sec * 1000) + (time.tv_usec / 1000);
@@ -46,9 +46,9 @@ void	ph_usleep(t_table *table, long long time)
 
 static int	is_space(char c)
 {
-	if (c == '\t' || c == '\r' ||
-		c == '\f' || c == '\v' ||
-		c == '\n' || c == ' ')
+	if (c == '\t' || c == '\r' \
+	|| c == '\f' || c == '\v' \
+	|| c == '\n' || c == ' ')
 		return (TRUE);
 	return (FALSE);
 }

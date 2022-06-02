@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:02:12 by sokim             #+#    #+#             */
-/*   Updated: 2022/06/02 14:25:16 by sokim            ###   ########.fr       */
+/*   Updated: 2022/06/02 14:37:46 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define MIN_INT -2147483648
 
 struct	s_philo;
-typedef struct	s_table
+typedef struct s_table
 {
 	int				num_of_philos;
 	int				time_to_die;
@@ -44,7 +44,7 @@ typedef struct	s_table
 	struct s_philo	*philo;
 }	t_table;
 
-typedef struct	s_philo
+typedef struct s_philo
 {
 	pthread_t	thread;
 	int			id;
@@ -58,12 +58,12 @@ typedef struct	s_philo
 /*
  * init.c
 */
-int	init(int argc, char **argv, t_table *table);
+int			init(int argc, char **argv, t_table *table);
 
 /*
  * validate.c
 */
-int	is_valid_arguments(int argc, char **argv);
+int			is_valid_arguments(int argc, char **argv);
 
 /*
  * utils.c
@@ -76,6 +76,6 @@ int			ft_atoi(const char *str);
 /*
  * philo.c
 */
-int	philosophers(t_table *table);
+int			philosophers(t_table *table);
 
 #endif
