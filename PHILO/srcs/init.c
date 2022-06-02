@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:02:08 by sokim             #+#    #+#             */
-/*   Updated: 2022/06/02 15:11:40 by sokim            ###   ########.fr       */
+/*   Updated: 2022/06/02 16:55:38 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,16 @@ static int	init_philo(t_table *table)
 	table->philo = (t_philo *)malloc(sizeof(t_philo) * table->num_of_philos);
 	if (!table->philo)
 		return (ERROR);
-	while (++i <= table->num_of_philos)
+	while (i < table->num_of_philos)
 	{
 		if (!memset(&table->philo[i], 0, sizeof(t_philo)))
 			return (ERROR);
-		table->philo[i].id = i;
+		table->philo[i].id = i + 1;
 		table->philo[i].left_fork = i;
 		table->philo[i].right_fork = (i + 1) % table->num_of_philos;
 		table->philo[i].table = table;
+		table->philo[i].last_eat_time = get_time();
+		i++;
 	}
 	return (SUCCESS);
 }
