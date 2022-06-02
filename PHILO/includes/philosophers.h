@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:02:12 by sokim             #+#    #+#             */
-/*   Updated: 2022/06/02 14:37:46 by sokim            ###   ########.fr       */
+/*   Updated: 2022/06/02 15:13:45 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_table
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				num_of_must_eat;
-	int				someone_is_dead;
+	int				exit;
 	long long		start_time;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	*print;
@@ -76,6 +76,12 @@ int			ft_atoi(const char *str);
 /*
  * philo.c
 */
-int			philosophers(t_table *table);
+int			start_dining(t_table *table);
+
+/*
+ * monitor.c
+*/
+void		monitor(t_table *table);
+void		end_dining(t_table *table);
 
 #endif
