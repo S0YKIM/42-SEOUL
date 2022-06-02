@@ -6,7 +6,7 @@
 #    By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 16:02:32 by sokim             #+#    #+#              #
-#    Updated: 2022/05/29 22:15:09 by sokim            ###   ########.fr        #
+#    Updated: 2022/06/02 13:23:48 by sokim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ CFLAGS = -Wall -Wextra -Werror
 SRCS = srcs/main.c \
 		srcs/init.c \
 		srcs/utils.c \
-		srcs/validate.c
+		srcs/validate.c \
+		srcs/philo.c
 OBJS = $(SRCS:.c=.o)
 
 INC_FLAGS = -I includes
