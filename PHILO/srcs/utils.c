@@ -6,11 +6,21 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 18:43:22 by sokim             #+#    #+#             */
-/*   Updated: 2022/04/02 19:45:58 by sokim            ###   ########.fr       */
+/*   Updated: 2022/06/02 12:45:43 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+long long	get_time(void)
+{
+	struct timeval	time;
+	long long 		ms;
+
+	gettimeofday(&time, NULL);
+	ms = (time.tv_sec * 1000) + (time.tv_usec / 1000);
+	return (ms);
+}
 
 static int	is_space(char c)
 {
