@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:08:08 by sokim             #+#    #+#             */
-/*   Updated: 2022/06/02 15:12:20 by sokim            ###   ########.fr       */
+/*   Updated: 2022/06/02 16:53:16 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	start_dining(t_table *table)
 		if (pthread_create(&(table->philo[i].thread), NULL, routine, \
 		(void *)&table->philo[i]))
 			return (ERROR);
+		pthread_detach(table->philo[i].thread);
 		i++;
 	}
 	return (SUCCESS);
