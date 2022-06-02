@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:02:08 by sokim             #+#    #+#             */
-/*   Updated: 2022/06/02 14:31:28 by sokim            ###   ########.fr       */
+/*   Updated: 2022/06/02 15:11:40 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	init_table(int argc, char **argv, t_table *table)
 	table->time_to_eat = ft_atoi(argv[3]);
 	table->time_to_sleep = ft_atoi(argv[4]);
 	table->num_of_must_eat = 0;
-	table->someone_is_dead = FALSE;
+	table->exit = FALSE;
 	table->start_time = 0;
 	if (argc == 6)
 		table->num_of_must_eat = ft_atoi(argv[5]);
