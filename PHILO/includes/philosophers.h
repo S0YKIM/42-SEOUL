@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:02:12 by sokim             #+#    #+#             */
-/*   Updated: 2022/06/02 13:58:09 by sokim            ###   ########.fr       */
+/*   Updated: 2022/06/02 14:25:16 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ int	is_valid_arguments(int argc, char **argv);
  * utils.c
 */
 long long	get_time(void);
-void		print_philo(t_philo *philo, long long time, char *msg);
+void		ph_print(t_philo *philo, long long time, char *msg);
+void		ph_usleep(t_table *table, long long time);
 int			ft_atoi(const char *str);
 
 /*
