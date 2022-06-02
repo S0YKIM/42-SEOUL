@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 18:43:22 by sokim             #+#    #+#             */
-/*   Updated: 2022/06/02 14:32:07 by sokim            ###   ########.fr       */
+/*   Updated: 2022/06/02 15:11:59 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ long long	get_time(void)
 
 void	ph_print(t_philo *philo, long long time, char *msg)
 {
+	pthread_mutex_lock(philo->table->print);
 	printf("%lld ", time - philo->table->start_time);
 	printf("%i ", philo->id);
 	printf("%s\n", msg);
+	pthread_mutex_unlock(philo->table->print);
 }
 
 void	ph_usleep(t_table *table, long long time)
@@ -35,7 +37,7 @@ void	ph_usleep(t_table *table, long long time)
 	long long	now;
 
 	start = get_time();
-	while (!table->someone_is_dead)
+	while (!table-> exit)
 	{
 		now = get_time();
 		if (now - start >= time)
