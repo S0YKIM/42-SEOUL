@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 18:43:22 by sokim             #+#    #+#             */
-/*   Updated: 2022/06/02 13:50:08 by sokim            ###   ########.fr       */
+/*   Updated: 2022/06/02 14:26:40 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,26 @@ long long	get_time(void)
 	return (ms);
 }
 
-void	print_philo(t_philo *philo, long long time, char *msg)
+void	ph_print(t_philo *philo, long long time, char *msg)
 {
 	printf("%lld ", time - philo->table->start_time);
 	printf("%i ", philo->id);
 	printf("%s\n", msg);
+}
+
+void	ph_usleep(t_table *table, long long time)
+{
+	long long	start;
+	long long	now;
+
+	start = get_time();
+	while (!table->someone_is_dead)
+	{
+		now = get_time();
+		if (now - start >= time)
+			break ;
+		usleep(100);
+	}
 }
 
 static int	is_space(char c)
