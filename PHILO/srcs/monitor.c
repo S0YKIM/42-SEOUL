@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 15:12:51 by sokim             #+#    #+#             */
-/*   Updated: 2022/06/02 17:05:25 by sokim            ###   ########.fr       */
+/*   Updated: 2022/06/04 17:50:51 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	check_full(t_table *table)
 	return (TRUE);
 }
 
-void		monitor(t_table *table)
+void	monitor(t_table *table)
 {
 	int	i;
 
@@ -58,7 +58,7 @@ void		monitor(t_table *table)
 	}
 }
 
-void		end_dining(t_table *table)
+void	end_dining(t_table *table)
 {
 	int	i;
 
