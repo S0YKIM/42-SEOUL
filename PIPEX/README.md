@@ -64,7 +64,7 @@
 
 
 
-- The program should be executed in this way:
+- The program should be executed in this way
 
        ./pipex file1 cmd1 cmd2 file2
 
@@ -73,7 +73,7 @@
 
       < file1 cmd1 | cmd2 > file2
 
-- Examples:
+- Examples
 
        ./pipex infile ``ls -l'' ``wc -l'' outfile
        < infile ls -l | wc -l > outfile
@@ -84,12 +84,12 @@
 
 ### 🚩 Bonus Part
 
-- Handle multiple pipes :
+- Handle multiple pipes
 
        ./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2
        < file1 cmd1 | cmd2 | cmd3 ... | cmdn > file2
        
-- Support « and » when the first parameter is "here_doc" :
+- Support « and » when the first parameter is "here_doc"
 
        ./pipex here_doc LIMITER cmd cmd1 file
        cmd << LIMITER | cmd1 >> file
