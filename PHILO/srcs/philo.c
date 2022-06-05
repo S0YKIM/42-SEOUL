@@ -5,17 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/30 14:08:08 by sokim             #+#    #+#             */
-/*   Updated: 2022/06/02 17:28:31 by sokim            ###   ########.fr       */
+/*   Created: 2022/06/05 14:06:57 by sokim             #+#    #+#             */
+/*   Updated: 2022/06/05 14:15:15 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static void	eating(t_philo *philo)
+int	eating(t_philo *philo)
 {
-	if (philo->table->exit)
-		return ;
+	if (check_exit(philo))
+		return (PH_EXIT);
 	pthread_mutex_lock(&philo->table->fork[philo->left_fork]);
 	ph_print(philo, get_time(), "has taken a fork");
 	pthread_mutex_lock(&philo->table->fork[philo->right_fork]);
@@ -24,58 +24,37 @@ static void	eating(t_philo *philo)
 	philo->last_eat_time = get_time();
 	ph_usleep(philo->table, philo->table->time_to_eat);
 	philo->eat_cnt++;
-	if (philo->table->exit)
-		return ;
 	pthread_mutex_unlock(&philo->table->fork[philo->left_fork]);
 	pthread_mutex_unlock(&philo->table->fork[philo->right_fork]);
+	if (check_exit(philo))
+		return (PH_EXIT);
+	return (PH_CONTINUE);
 }
 
-static void	sleeping(t_philo *philo)
+int	sleeping(t_philo *philo)
 {
-	if (philo->table->exit)
-		return ;
+	if (check_exit(philo))
+		return (PH_EXIT);
 	ph_print(philo, get_time(), "is sleeping");
 	ph_usleep(philo->table, philo->table->time_to_sleep);
+	return (PH_CONTINUE);
 }
 
-static void	thinking(t_philo *philo)
+int	thinking(t_philo *philo)
 {
-	if (philo->table->exit)
-		return ;
+	if (check_exit(philo))
+		return (PH_EXIT);
 	ph_print(philo, get_time(), "is thinking");
+	return (PH_CONTINUE);
 }
 
-static void	*routine(void *void_philo)
+void	*philo_one(t_philo *philo)
 {
-	t_philo	*philo;
-
-	philo = (t_philo *)void_philo;
-	if (philo->id % 2 == 0)
-		usleep(philo->table->time_to_eat * 500);
-	while (!(philo->table->exit))
-	{
-		eating(philo);
-		if (philo->table->exit)
-			break ;
-		sleeping(philo);
-		thinking(philo);
-	}
-	return (NULL);
-}
-
-int	start_dining(t_table *table)
-{
-	int	i;
-
-	i = 0;
-	table->start_time = get_time();
-	while (i < table->num_of_philos)
-	{
-		if (pthread_create(&(table->philo[i].thread), NULL, routine, \
-		(void *)&table->philo[i]))
-			return (ERROR);
-		pthread_detach(table->philo[i].thread);
-		i++;
-	}
-	return (SUCCESS);
+	pthread_mutex_lock(&philo->table->fork[philo->left_fork]);
+	ph_print(philo, get_time(), "has taken a fork");
+	ph_usleep(philo->table, philo->table->time_to_die);
+	pthread_mutex_unlock(&philo->table->fork[philo->left_fork]);
+	ph_print(philo, get_time(), "died");
+	philo->table->exit = TRUE;
+	return ((void *) NULL);
 }
