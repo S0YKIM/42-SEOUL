@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:02:08 by sokim             #+#    #+#             */
-/*   Updated: 2022/06/02 15:10:00 by sokim            ###   ########.fr       */
+/*   Updated: 2022/06/05 14:16:03 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	main(int argc, char **argv)
 		return (print_error("Failed to initialize."));
 	if (!start_dining(&table))
 		return (print_error("Failed to create philo threads."));
-	monitor(&table);
 	end_dining(&table);
 	return (EXIT_SUCCESS);
 }
