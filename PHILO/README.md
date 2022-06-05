@@ -1,5 +1,7 @@
 # PHILOSOPHERS
 
+[![sokim's 42 Philosophers Score](https://badge42.vercel.app/api/v2/cl1sxc9pb003009jgq7f86utb/project/2519938)](https://github.com/JaeSeoKim/badge42)
+
 > In this project, you will learn the basics of threading a process. You will learn how to make threads. You will discover the mutex.
 
 
