@@ -6,7 +6,7 @@
 #    By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 16:02:32 by sokim             #+#    #+#              #
-#    Updated: 2022/06/05 14:12:05 by sokim            ###   ########.fr        #
+#    Updated: 2022/06/05 14:21:38 by sokim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,8 +48,5 @@ re :
 
 test :
 	$(CC) $(CFLAGS) -g -o $(NAME) $(SRCS) $(INC_FLAGS)
-
-leak :
-	$(CC) $(CFLAGS) -g3 -fsanitize=address -o $(NAME) $(SRCS) $(INC_FLAGS)
 
 .PHONY : all clean fclean re bonus
