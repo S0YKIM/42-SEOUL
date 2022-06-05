@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 18:43:22 by sokim             #+#    #+#             */
-/*   Updated: 2022/06/05 13:57:35 by sokim            ###   ########.fr       */
+/*   Updated: 2022/06/05 14:27:42 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	ph_usleep(t_table *table, long long time)
 		now = get_time();
 		if (now - start >= time)
 			break ;
-		usleep(10);
 	}
 }
 
