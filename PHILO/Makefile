@@ -6,7 +6,7 @@
 #    By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 16:02:32 by sokim             #+#    #+#              #
-#    Updated: 2022/06/02 15:16:53 by sokim            ###   ########.fr        #
+#    Updated: 2022/06/05 14:12:05 by sokim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SRCS = srcs/main.c \
 		srcs/utils.c \
 		srcs/validate.c \
 		srcs/philo.c \
-		srcs/monitor.c 
+		srcs/monitor.c \
+		srcs/routine.c
 OBJS = $(SRCS:.c=.o)
 
 INC_FLAGS = -I includes
