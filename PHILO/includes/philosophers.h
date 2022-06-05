@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:02:12 by sokim             #+#    #+#             */
-/*   Updated: 2022/06/05 14:20:30 by sokim            ###   ########.fr       */
+/*   Updated: 2022/06/05 14:27:03 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,12 @@ int			ft_atoi(const char *str);
 */
 void		*routine(void *void_philo);
 int			start_dining(t_table *table);
+void		end_dining(t_table *table);
 
 /*
  * monitor.c
 */
 int			check_exit(t_philo *philo);
-void		end_dining(t_table *table);
 
 /*
  * philo.c
