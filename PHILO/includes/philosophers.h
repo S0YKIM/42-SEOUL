@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:02:12 by sokim             #+#    #+#             */
-/*   Updated: 2022/06/02 15:13:45 by sokim            ###   ########.fr       */
+/*   Updated: 2022/06/05 14:20:30 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # define TRUE 1
 # define SUCCESS 1
 # define ERROR -1
+# define PH_EXIT 1
+# define PH_CONTINUE 0
 
 # define MAX_PHILOS 200
 # define MAX_INT 2147483647
@@ -39,6 +41,7 @@ typedef struct s_table
 	int				num_of_must_eat;
 	int				exit;
 	long long		start_time;
+	pthread_mutex_t	*monitor;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	*print;
 	struct s_philo	*philo;
@@ -74,14 +77,23 @@ void		ph_usleep(t_table *table, long long time);
 int			ft_atoi(const char *str);
 
 /*
- * philo.c
+ * routine.c
 */
+void		*routine(void *void_philo);
 int			start_dining(t_table *table);
 
 /*
  * monitor.c
 */
-void		monitor(t_table *table);
+int			check_exit(t_philo *philo);
 void		end_dining(t_table *table);
+
+/*
+ * philo.c
+*/
+int			eating(t_philo *philo);
+int			sleeping(t_philo *philo);
+int			thinking(t_philo *philo);
+void		*philo_one(t_philo *philo);
 
 #endif
