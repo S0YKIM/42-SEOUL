@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 18:43:22 by sokim             #+#    #+#             */
-/*   Updated: 2022/06/02 17:24:28 by sokim            ###   ########.fr       */
+/*   Updated: 2022/06/05 13:57:35 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ long long	get_time(void)
 
 void	ph_print(t_philo *philo, long long time, char *msg)
 {
+	if (check_exit(philo))
+		return ;
 	pthread_mutex_lock(philo->table->print);
 	printf("%lld ", time - philo->table->start_time);
 	printf("%i ", philo->id);
