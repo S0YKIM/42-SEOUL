@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 15:12:51 by sokim             #+#    #+#             */
-/*   Updated: 2022/06/05 14:16:18 by sokim            ###   ########.fr       */
+/*   Updated: 2022/06/05 14:26:49 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,4 @@ int	check_exit(t_philo *philo)
 	}
 	pthread_mutex_unlock(philo->table->monitor);
 	return (FALSE);
-}
-
-void	end_dining(t_table *table)
-{
-	int	i;
-	int	status;
-
-	i = 0;
-	while (i < table->num_of_philos)
-	{
-		pthread_join(table->philo[i].thread, (void *)&status);
-		pthread_mutex_destroy(&table->fork[i]);
-		i++;
-	}
-	pthread_mutex_destroy(table->print);
-	pthread_mutex_destroy(table->monitor);
 }
