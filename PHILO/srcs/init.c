@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:02:08 by sokim             #+#    #+#             */
-/*   Updated: 2022/06/02 16:55:38 by sokim            ###   ########.fr       */
+/*   Updated: 2022/06/05 13:23:37 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,11 @@ static int	init_mutex(t_table *table)
 	if (!table->print)
 		return (ERROR);
 	if (pthread_mutex_init(table->print, NULL) == ERROR)
+		return (ERROR);
+	table->monitor = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
+	if (!table->monitor)
+		return (ERROR);
+	if (pthread_mutex_init(table->monitor, NULL) == ERROR)
 		return (ERROR);
 	return (SUCCESS);
 }
