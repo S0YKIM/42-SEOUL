@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 16:14:37 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/03 20:29:59 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/03 21:26:14 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,20 @@ void	PhoneBook::Add()
 
 void	PhoneBook::Search() const
 {
-	int	idx;
+	int	input;
 
-	std::cout << "Enter the index you want to search." << std::endl;
-	std::cin >> idx;
+	std::cout << "Search contact by index: " << std::endl;
+	std::cin >> input;
+	if (std::cin.eof())
+		exit(0);
+	std::cin.ignore();
+	if (std::cin.fail() || input < 0 || input > 7)
+	{
+		std::cout << "******************  ERROR  ******************" << std::endl;
+		std::cout << "Invalid input! Enter number between 0 and 7." << std::endl;
+		std::cout << "*********************************************" << std::endl << std::endl;
+		return ;
+	}
+	contact[input].DisplayContact();
 }
 
