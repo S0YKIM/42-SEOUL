@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 16:06:18 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/03 20:32:07 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/03 21:13:50 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ int	main(void)
 		else if (command == "EXIT" || std::cin.eof())
 			break ;
 		else
+		{
 			std::cout << "*******************  ERROR  *******************" << std::endl;
 			std::cout << "ERROR: Available options are (ADD, SEARCH, EXIT)" << std::endl;
 			std::cout << "***********************************************" << std::endl << std::endl;
+		}
 	}
 	return (0);
 }
