@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 16:06:18 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/03 21:13:50 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/04 17:18:59 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ int	main(void)
 	std::string	command;
 	PhoneBook	phonebook;
 
-	phonebook.Start();
 	while (true)
-	{
+	{	
+		phonebook.Start();
 		std::cout << "> ";
 		std::getline(std::cin, command);
 		if (command == "ADD")
-			phonebook.Add();
+			phonebook.AddContact();
 		else if (command == "SEARCH")
-			phonebook.Search();
+			phonebook.SearchContact();
 		else if (command == "EXIT" || std::cin.eof())
 			break ;
 		else
