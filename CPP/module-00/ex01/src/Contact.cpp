@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 16:14:38 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/04 17:11:17 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/04 17:38:38 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,13 @@ void	Contact::DisplayContact() const
 
 void	Contact::DisplaySearchedContact() const
 {
+	if (index == -1)
+	{
+		std::cout << "******************  ERROR  ******************" << std::endl;
+		std::cout << "Invalid input! No contact saved there yet." << std::endl;
+		std::cout << "*********************************************" << std::endl << std::endl;
+		return ;
+	}
 	std::cout << "*********************************************" << std::endl;
 	std::cout << "First name: " << first_name << std::endl;
 	std::cout << "Last name: " << last_name << std::endl;
