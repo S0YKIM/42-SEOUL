@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 16:14:38 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/04 16:03:22 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/04 17:11:17 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,34 @@ Contact::Contact(int index, std::string first_name, std::string last_name, \
 	this->darkest_secret = darkest_secret;
 }
 
-void	Contact::DisplayContact()
+std::string	Contact::Truncate(std::string original) const
 {
-	std::cout << "Index: " << index << std::endl;
+	if (original.length() > MAX_FIELD_LEN)
+		return (original.substr(0, MAX_FIELD_LEN - 1) + ".");
+	return (original);
+}
+
+int		Contact::GetIndex() const
+{
+	return (index);
+}
+
+void	Contact::DisplayContact() const
+{
+	std::cout << "|" << std::setw(MAX_FIELD_LEN) << index;
+	std::cout << "|" << std::setw(MAX_FIELD_LEN) << Truncate(first_name);
+	std::cout << "|" << std::setw(MAX_FIELD_LEN) << Truncate(last_name);
+	std::cout << "|" << std::setw(MAX_FIELD_LEN) << Truncate(nickname);
+	std::cout << "|" << std::endl;
+}
+
+void	Contact::DisplaySearchedContact() const
+{
+	std::cout << "*********************************************" << std::endl;
 	std::cout << "First name: " << first_name << std::endl;
 	std::cout << "Last name: " << last_name << std::endl;
 	std::cout << "Nickname: " << nickname << std::endl;
+	std::cout << "Phone number: " << phone_number << std::endl;
+	std::cout << "Darkest secret: " << darkest_secret << std::endl;
+	std::cout << "*********************************************" << std::endl << std::endl;
 }
-
