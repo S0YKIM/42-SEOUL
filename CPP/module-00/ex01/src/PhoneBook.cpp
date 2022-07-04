@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 16:14:37 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/04 17:19:24 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/04 17:27:35 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,24 @@ void	PhoneBook::AddContact()
 	std::cout << "*********************************" << std::endl << std::endl;
 	std::cout << "First name: ";
 	std::getline(std::cin, input[0]);
+	if (std::cin.eof())
+		exit(0);
 	std::cout << "Last name: ";
 	std::getline(std::cin, input[1]);
+	if (std::cin.eof())
+		exit(0);
 	std::cout << "Nickname: ";
 	std::getline(std::cin, input[2]);
+	if (std::cin.eof())
+		exit(0);
 	std::cout << "Phone number: ";
 	std::getline(std::cin, input[3]);
+	if (std::cin.eof())
+		exit(0);
 	std::cout << "Darkest secret: ";
 	std::getline(std::cin, input[4]);
+	if (std::cin.eof())
+		exit(0);
 	if (input[0] == "" || input[1] == "" || input[2] == "" || input[3] == "" || input[4] == "")
 	{
 		std::cout << "***********  ERROR  ***********" << std::endl;
