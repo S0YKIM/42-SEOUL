@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 16:14:37 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/04 16:02:08 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/04 17:19:24 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ PhoneBook::PhoneBook() {
 
 void	PhoneBook::Start() const
 {
-	std::cout << "*********************************" << std::endl;
-	std::cout << "Welcome to awesome phonebook!" << std::endl;
+	std::cout << std::endl << "*********************************" << std::endl;
+	std::cout << "Awesome phonebook!" << std::endl;
 	std::cout << "Below are the commands you can use." << std::endl << std::endl;
 	std::cout << "ADD : Save a new contact" << std::endl;
 	std::cout << "SEARCH : Display a specific contact" << std::endl;
@@ -27,7 +27,7 @@ void	PhoneBook::Start() const
 	std::cout << "*********************************" << std::endl << std::endl;
 }
 
-void	PhoneBook::Add()
+void	PhoneBook::AddContact()
 {
 	std::string	input[5];
 
@@ -58,15 +58,39 @@ void	PhoneBook::Add()
 		idx += 1;
 }
 
-void	PhoneBook::Search()
+int	PhoneBook::DisplayContactList()
+{
+	int	cnt;
+
+	cnt = 0;
+	for (int i = 0; i < 8; i++)
+	{
+		if (contacts[i].GetIndex() == -1)
+			break ;
+		contacts[i].DisplayContact();
+		cnt++;
+	}
+	if (cnt == 0)
+	{
+		std::cout << "There is no contact saved yet." << std::endl;
+		return (false);
+	}
+	return (true);
+}
+
+void	PhoneBook::SearchContact()
 {
 	int	input;
+	int	exist;
 
+	exist = DisplayContactList();
+	if (!exist)
+		return ;
 	std::cout << "Search contact by index: " << std::endl;
 	std::cin >> input;
+	std::cin.ignore();
 	if (std::cin.eof())
 		exit(0);
-	std::cin.ignore();
 	if (std::cin.fail() || input < 0 || input > 7)
 	{
 		std::cout << "******************  ERROR  ******************" << std::endl;
@@ -76,4 +100,3 @@ void	PhoneBook::Search()
 	}
 	contacts[input].DisplayContact();
 }
-
