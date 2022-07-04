@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 16:14:37 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/03 21:26:14 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/04 16:02:08 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ void	PhoneBook::Add()
 		std::cout << "*******************************" << std::endl << std::endl;
 		return ;
 	}
-	contacts[idx] = Contact(input[0], input[1], input[2], input[3], input[4]);
+	contacts[idx] = Contact(idx, input[0], input[1], input[2], input[3], input[4]);
 	if (idx == 7)
 		idx = 0;
 	else
 		idx += 1;
 }
 
-void	PhoneBook::Search() const
+void	PhoneBook::Search()
 {
 	int	input;
 
@@ -74,6 +74,6 @@ void	PhoneBook::Search() const
 		std::cout << "*********************************************" << std::endl << std::endl;
 		return ;
 	}
-	contact[input].DisplayContact();
+	contacts[input].DisplayContact();
 }
 
