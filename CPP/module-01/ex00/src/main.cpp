@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:30:59 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/04 22:10:10 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/04 22:17:41 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	main(void)
 	zombie2->announce();
 	zombie3->announce();
 
-	zombie1->~Zombie();
-	zombie2->~Zombie();
-	zombie3->~Zombie();
+	delete zombie1;
+	delete zombie2;
+	delete zombie3;
 
 	randomChump(randomName());
 	randomChump(randomName());
