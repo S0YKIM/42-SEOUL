@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 16:14:41 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/03 20:20:57 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/04 16:02:55 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@
 
 class	Contact {
 private:
-	std::string first_name;
+	int	index;
+	std::string	first_name;
 	std::string	last_name;
 	std::string	nickname;
-	std::string phone_number;
+	std::string	phone_number;
 	std::string	darkest_secret;
 
 public:
 	Contact();
-	Contact(std::string first_name, std::string last_name, \
+	Contact(int index, std::string first_name, std::string last_name, \
 		std::string nickname, std::string phone_number, std::string darkest_secret);
-	void	Add();
-	void	Search();
+	void	DisplayContact();
 };
 
 #endif
