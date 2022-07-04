@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 16:14:33 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/03 21:34:56 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/04 17:13:46 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ private:
 public:
 	PhoneBook();
 	void	Start() const;
-	void	Add();
-	void	Search();
+	void	AddContact();
+	int		DisplayContactList();
+	void	SearchContact();
 };
 
 #endif
