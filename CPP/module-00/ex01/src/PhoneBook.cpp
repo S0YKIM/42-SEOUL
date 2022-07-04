@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 16:14:37 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/04 17:27:35 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/04 17:30:24 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,5 @@ void	PhoneBook::SearchContact()
 		std::cout << "*********************************************" << std::endl << std::endl;
 		return ;
 	}
-	contacts[input].DisplayContact();
+	contacts[input].DisplaySearchedContact();
 }
