@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:54:49 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/05 19:26:09 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/05 19:32:11 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ std::string	replaceWord(std::string line, std::string s1, std::string s2) {
 
 int	replaceFile(std::string filename, std::string s1, std::string s2) {
 	std::ifstream			ifile(filename);
-	std::ofstream			ofile(filename + ".replace");
 	std::string				line;
 	std::string::size_type	found;
 
@@ -41,6 +40,8 @@ int	replaceFile(std::string filename, std::string s1, std::string s2) {
 		std::cout << "<ERROR> : " << filename << " does not exist." << std::endl;
 		return (false);
 	}
+
+	std::ofstream	ofile(filename + ".replace");
 	while (std::getline(ifile, line)) {
 		found = line.find(s1);
 		if (found != std::string::npos) {
@@ -67,7 +68,10 @@ int	main(int argc, char **argv) {
 	s1 = argv[2];
 	s2 = argv[3];
 	if (filename.empty() || s1.empty() || s2.empty())
+	{
+		std::cout << "<ERROR> Some strings are empty." << std::endl;
 		return (1);
+	}
 
 	result = replaceFile(filename, s1, s2);
 	if (!result)
