@@ -6,11 +6,11 @@
 #    By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/05 15:38:54 by sokim             #+#    #+#              #
-#    Updated: 2022/07/05 15:55:59 by sokim            ###   ########.fr        #
+#    Updated: 2022/07/05 16:04:35 by sokim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = zombie
+NAME = brain
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
@@ -34,6 +34,6 @@ re :
 	make all
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $(OBJS) -I $(INC_DIR)
+	$(CC) $(CFLAGS) -o $@ $(OBJS)
 
 .PHONY : all clean fclean re
