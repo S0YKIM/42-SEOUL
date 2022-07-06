@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 14:18:46 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/06 19:31:46 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/06 19:53:58 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class	Fixed {
 private:
 	int					fixedPointValue;
-	static const int	fractionalBits;
+	static const int	fractionalBits = 8;
 
 public:
 	Fixed();
