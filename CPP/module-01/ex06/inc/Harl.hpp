@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 11:39:13 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/06 11:39:17 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/06 13:20:26 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ public:
 	Harl();
 	~Harl();
 
+	int		selectOption(std::string level);
 	void	complain(std::string level);
 };
 
