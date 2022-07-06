@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 11:39:38 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/06 11:58:07 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/06 13:19:50 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,21 @@ Harl::Harl() {
 Harl::~Harl() {
 }
 
+int		Harl::selectOption(std::string level) {
+	std::string levels[4] = {
+		"DEBUG",
+		"INFO",
+		"WARNING",
+		"ERROR"
+	};
+	int	option = -1;
+	for (int i = 0; i < 4; i++) {
+		if (level == levels[i])
+			option = i;
+	}
+	return (option);
+}
+
 void	Harl::complain(std::string level) {
 	void	(Harl::*func[4])() = {
 		&Harl::debug,
@@ -44,19 +59,8 @@ void	Harl::complain(std::string level) {
 		&Harl::error
 	};
 
-	std::string levels[4] = {
-		"DEBUG",
-		"INFO",
-		"WARNING",
-		"ERROR"
-	};
-
-	int	option = -1;
-	for (int i = 0; i < 4; i++) {
-		if (level == levels[i])
-			option = i;
-	}
-
+	int	option;
+	option = selectOption(level);
 	switch (option) {
 		case 0:
 			(this->*func[0])();
