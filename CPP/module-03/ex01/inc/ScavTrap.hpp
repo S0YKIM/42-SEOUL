@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:12:30 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/07 16:45:56 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/07 17:12:40 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@ class	ScavTrap : public ClapTrap {
 		~ScavTrap();
 
 		void	attack(const std::string &target);
-		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount);
-		void	displayStatus();
 
 		void	guardGate();
 };
