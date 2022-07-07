@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 11:56:08 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/07 15:29:56 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/07 15:58:33 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 class	ClapTrap {
 protected:
 	std::string	name;
-	int			max_hit_points;
-	int			hit_points;
-	int			energy_points;
-	int			attack_damage;
+	int			maxHitPoints;
+	int			hitPoints;
+	int			energyPoints;
+	int			attackDamage;
 
 public:
 	ClapTrap();
