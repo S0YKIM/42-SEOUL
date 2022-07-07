@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 09:37:10 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/07 10:19:48 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/07 11:04:30 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,38 +78,38 @@ Fixed	Fixed::operator-(const Fixed target) {
 Fixed	Fixed::operator*(const Fixed target) {
 	Fixed	result;
 
-	result.setRawBits(this->getRawBits() * target.getRawBits());
+	result.setRawBits(this->getRawBits() * target.getRawBits() / (1 << this->fractionalBits));
 	return (result);
 }
 
 Fixed	Fixed::operator/(const Fixed target) {
 	Fixed	result;
 
-	result.setRawBits(this->getRawBits() / target.getRawBits());
+	result.setRawBits(this->getRawBits() / target.getRawBits() * (1 << this->fractionalBits));
 	return (result);
 }
 
 Fixed	&Fixed::operator++(void) {
-	this->setRawBits(this->getRawBits() + 1);
+	++(this->fixedPointValue);
 	return (*this);
 }
 
 Fixed	&Fixed::operator--(void) {
-	this->setRawBits(this->getRawBits() - 1);
+	--(this->fixedPointValue);
 	return (*this);
 }
 
 Fixed	Fixed::operator++(int) {
 	Fixed	temp(*this);
 
-	this->setRawBits(this->getRawBits() + 1);
+	++(this->fixedPointValue);
 	return (temp);
 }
 
 Fixed	Fixed::operator--(int) {
 	Fixed	temp(*this);
 
-	this->setRawBits(this->getRawBits() - 1);
+	--(this->fixedPointValue);
 	return (temp);
 }
 
@@ -150,7 +150,7 @@ void	Fixed::setRawBits(int const raw) {
 }
 
 float Fixed::toFloat(void) const {
-	return ((float)this->fixedPointValue / (float)(1 << this->fractionalBits));
+	return ((float)this->fixedPointValue / (1 << this->fractionalBits));
 }
 
 int Fixed::toInt(void) const {
