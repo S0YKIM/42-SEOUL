@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 11:56:13 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/07 15:59:13 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/07 16:05:10 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &origin) {
 	if (this == &origin)
 		return (*this);
 	this->name = origin.name;
+	this->maxHitPoints = origin.maxHitPoints;
 	this->hitPoints = origin.hitPoints;
 	this->energyPoints = origin.energyPoints;
 	this->attackDamage = origin.attackDamage;
