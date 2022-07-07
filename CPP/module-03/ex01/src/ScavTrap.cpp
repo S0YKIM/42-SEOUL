@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:11:37 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/07 16:50:03 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/07 17:11:22 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ ScavTrap::ScavTrap(const ScavTrap &origin) {
 }
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &origin) {
-	std::cout << "ClapTrap " << origin.name << " assigned." << std::endl;
+	std::cout << "ScavTrap " << origin.name << " assigned." << std::endl;
 	if (this == &origin)
 		return (*this);
 	this->name = origin.name;
@@ -60,46 +60,6 @@ void	ScavTrap::attack(const std::string &target) {
 	std::cout << ", causing " << this->attackDamage;
 	std::cout << " points of damage!" << std::endl;
 	this->energyPoints -= 1;
-}
-
-void	ScavTrap::takeDamage(unsigned int amount) {
-	if (this->hitPoints <= 0) {
-		std::cout << "ScavTrap " << this->name << "'s HP is already zero!" << std::endl;
-		return ;
-	}
-	else if (this->hitPoints - (int)amount < 0)
-		amount = this->hitPoints;
-	this->hitPoints -= amount;
-	std::cout << "ScavTrap " << this->name << " takes damage, losing ";
-	std::cout << amount << " points of HP!" << std::endl;
-	std::cout << "ScavTrap " << this->name << "'s HP is now " << this->hitPoints << "." << std::endl;
-}
-
-void	ScavTrap::beRepaired(unsigned int amount) {
-	if (this->hitPoints <= 0 || this->energyPoints <= 0) {
-		std::cout << "ScavTrap " << this->name << " can't be repaired. It seems to be broken." << std::endl;
-		return ;
-	}
-	else if (this->hitPoints == this->maxHitPoints) {
-		std::cout << "ScavTrap " << this->name << "'s HP is already full." << std::endl;
-		return ;
-	}
-	else if (this->hitPoints + (int)amount > this->maxHitPoints) {
-		amount = this->maxHitPoints - this->hitPoints;
-	}
-	this->energyPoints -= 1;
-	if (this->hitPoints > this->maxHitPoints)
-		amount = this->maxHitPoints - this->hitPoints;
-	this->hitPoints += amount;
-	std::cout << this->name << " got " << amount << " HP points back from repair." << std::endl;
-}
-
-void	ScavTrap::displayStatus() {
-	std::cout << "******************** " << this->name << "'s status " << "********************" << std::endl;
-	std::cout << "- Hit Points: " << this->hitPoints << std::endl;
-	std::cout << "- Energy Points: " << this->energyPoints << std::endl;
-	std::cout << "- Attack Damage: " << this->attackDamage << std::endl;
-	std::cout << "**********************************************************" << std::endl;
 }
 
 void	ScavTrap::guardGate() {
