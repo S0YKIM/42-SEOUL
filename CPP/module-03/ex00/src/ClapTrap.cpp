@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 11:56:13 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/07 15:33:04 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/07 15:54:48 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,18 @@ void	ClapTrap::beRepaired(unsigned int amount) {
 		std::cout << "ClapTrap " << this->name << " can't be repaired. It seems to be broken." << std::endl;
 		return ;
 	}
-	std::cout << this->name << " got " << amount << " HP points back from repair." << std::endl;
+	else if (this->hit_points == this->max_hit_points) {
+		std::cout << "ClapTrap " << this->name << "'s HP is already full." << std::endl;
+		return ;
+	}
+	else if (this->hit_points + (int)amount > this->max_hit_points) {
+		amount = this->max_hit_points - this->hit_points;
+	}
 	this->energy_points -= 1;
-	this->hit_points += amount;
 	if (this->hit_points > this->max_hit_points)
-		this->hit_points = this->max_hit_points;
+		amount = this->max_hit_points - this->hit_points;
+	this->hit_points += amount;
+	std::cout << this->name << " got " << amount << " HP points back from repair." << std::endl;
 }
 
 void	ClapTrap::displayStatus() {
