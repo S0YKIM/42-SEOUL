@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 11:56:13 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/07 16:05:10 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/07 17:10:15 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ ClapTrap::~ClapTrap() {
 
 void	ClapTrap::attack(const std::string &target) {
 	if (this->hitPoints <= 0 || this->energyPoints <= 0) {
-		std::cout << this->name << " can't attack anyone. It seems to be broken!" << std::endl;
+		std::cout << "ClapTrap " << this->name << " can't attack anyone. It seems to be broken!" << std::endl;
 		return ;
 	}
 	std::cout << "ClapTrap " << this->name << " attacks " << target;
@@ -64,24 +64,24 @@ void	ClapTrap::attack(const std::string &target) {
 
 void	ClapTrap::takeDamage(unsigned int amount) {
 	if (this->hitPoints <= 0) {
-		std::cout << "ClapTrap " << this->name << "'s HP is already zero!" << std::endl;
+		std::cout << this->name << "'s HP is already zero!" << std::endl;
 		return ;
 	}
+	else if (this->hitPoints - (int)amount < 0)
+		amount = this->hitPoints;
 	this->hitPoints -= amount;
-	if (this->hitPoints <= 0)
-		this->hitPoints = 0;
-	std::cout << "ClapTrap " << this->name << " takes damage, losing ";
+	std::cout << this->name << " takes damage, losing ";
 	std::cout << amount << " points of HP!" << std::endl;
-	std::cout << "ClapTrap " << this->name << "'s HP is now " << this->hitPoints << "." << std::endl;
+	std::cout << this->name << "'s HP is now " << this->hitPoints << "." << std::endl;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount) {
 	if (this->hitPoints <= 0 || this->energyPoints <= 0) {
-		std::cout << "ClapTrap " << this->name << " can't be repaired. It seems to be broken." << std::endl;
+		std::cout << this->name << " can't be repaired. It seems to be broken." << std::endl;
 		return ;
 	}
 	else if (this->hitPoints == this->maxHitPoints) {
-		std::cout << "ClapTrap " << this->name << "'s HP is already full." << std::endl;
+		std::cout << this->name << "'s HP is already full." << std::endl;
 		return ;
 	}
 	else if (this->hitPoints + (int)amount > this->maxHitPoints) {
