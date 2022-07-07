@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 11:56:11 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/07 15:28:52 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/07 15:56:13 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ int	main(void) {
 	robot.displayStatus();
 
 	robot.takeDamage(3);
+	robot.displayStatus();
+
+	robot.beRepaired(20);
 	robot.displayStatus();
 
 	robot.beRepaired(1);
