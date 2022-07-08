@@ -6,7 +6,7 @@
 #    By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/07 11:56:15 by sokim             #+#    #+#              #
-#    Updated: 2022/07/08 10:18:08 by sokim            ###   ########.fr        #
+#    Updated: 2022/07/08 11:14:11 by sokim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 SRCS = src/main.cpp \
 		src/ClapTrap.cpp \
 		src/ScavTrap.cpp \
+		src/FragTrap.cpp \
 		src/DiamondTrap.cpp
 OBJS = $(SRCS:.cpp=.o)
 
