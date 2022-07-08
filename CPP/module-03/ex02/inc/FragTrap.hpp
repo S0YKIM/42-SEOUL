@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:57:45 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/07 17:00:44 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/08 09:44:13 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ class	FragTrap : public ClapTrap {
 		~FragTrap();
 
 		void highFivesGuys();
-}
+};
 
 #endif
