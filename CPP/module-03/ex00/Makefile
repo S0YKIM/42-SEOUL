@@ -6,14 +6,14 @@
 #    By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/07 11:56:15 by sokim             #+#    #+#              #
-#    Updated: 2022/07/07 11:56:42 by sokim            ###   ########.fr        #
+#    Updated: 2022/07/08 16:30:34 by sokim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = claptrap
 
-CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCS = src/main.cpp \
 		src/ClapTrap.cpp
@@ -22,7 +22,7 @@ OBJS = $(SRCS:.cpp=.o)
 INC_DIR = inc
 
 %.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@ -I $(INC_DIR)
 
 all : $(NAME)
 
@@ -37,6 +37,6 @@ re :
 	make all
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $(OBJS) -I $(INC_DIR)
+	$(CXX) $(CXXFLAGS) -o $@ $(OBJS) -I $(INC_DIR)
 
 .PHONY : all clean fclean re
