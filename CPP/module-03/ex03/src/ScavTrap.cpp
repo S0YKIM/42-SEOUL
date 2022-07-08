@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:11:37 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/07 17:11:22 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/08 15:47:00 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &origin) {
 	return (*this);
 }
 
-ScavTrap:: ~ScavTrap() {
+ScavTrap::~ScavTrap() {
 	std::cout << "ScavTrap " << this->name << " destructed." << std::endl;
 }
 
