@@ -6,28 +6,28 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 09:54:52 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/08 10:15:39 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/08 15:40:42 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap() : ClapTrap("Default_clap_name"), DiamondTrap(), FragTrap() {
+DiamondTrap::DiamondTrap() : ClapTrap("Default_clap_name"), ScavTrap(), FragTrap() {
 	std::cout << "DiamondTrap default constructor called." << std::endl;
 	this->name = "Default";
-	this->maxHitPoints = this->FragTrap::maxHitPoints;
-	this->hitPoints = this->FragTrap::hitPoints;
-	this->energyPoints = this->DiamondTrap::energyPoints;
-	this->attackDamage = this->FragTrap::attackDamage;
+	this->maxHitPoints = FragTrap::MAX_HIT_POINTS;
+	this->hitPoints = FragTrap::MAX_HIT_POINTS;
+	this->energyPoints = ScavTrap::ENERGY_POINTS;
+	this->attackDamage = FragTrap::ATTACK_DAMAGE;
 }
 
-DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), DiamondTrap(name), FragTrap(name) {
+DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name) {
 	std::cout << "DiamondTrap " << name << " constructed." << std::endl;
 	this->name = name;
-	this->maxHitPoints = this->FragTrap::maxHitPoints;
-	this->hitPoints = this->FragTrap::hitPoints;
-	this->energyPoints = this->DiamondTrap::energyPoints;
-	this->attackDamage = this->FragTrap::attackDamage;
+	this->maxHitPoints = FragTrap::MAX_HIT_POINTS;
+	this->hitPoints = FragTrap::MAX_HIT_POINTS;
+	this->energyPoints = ScavTrap::ENERGY_POINTS;
+	this->attackDamage = FragTrap::ATTACK_DAMAGE;
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap &origin) {
@@ -48,7 +48,7 @@ DiamondTrap &DiamondTrap::operator=(const DiamondTrap &origin) {
 	return (*this);
 }
 
-DiamondTrap:: ~DiamondTrap() {
+DiamondTrap::~DiamondTrap() {
 	std::cout << "DiamondTrap " << this->name << " destructed." << std::endl;
 }
 
