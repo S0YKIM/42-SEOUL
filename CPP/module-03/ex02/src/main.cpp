@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 11:56:11 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/07 16:57:25 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/08 09:43:57 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	main(void) {
 	robot.attack("Target 3");
 	robot.displayStatus();
 
-	robot.guardGate();
 	robot.takeDamage(3);
 	robot.displayStatus();
 
@@ -31,5 +30,7 @@ int	main(void) {
 
 	robot.beRepaired(1);
 	robot.displayStatus();
+	
+	robot.highFivesGuys();
 	return (0);
 }
