@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 17:12:08 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/09 14:02:45 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/09 14:05:41 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ protected:
 
 public:
 	Animal();
-	Animal(std::string type);
 	Animal(const Animal &origin);
 	Animal &operator=(const Animal &origin);
 	virtual ~Animal();

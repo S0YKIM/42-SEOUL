@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 17:12:03 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/09 13:37:05 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/09 14:05:26 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 Animal::Animal() : type_("") {
 	std::cout << "Animal default constructor called." << std::endl;
-}
-
-Animal::Animal(std::string type) : type_(type) {
-	std::cout << "Animal of which type is " << type << " constructor called." << std::endl;
 }
 
 Animal::Animal(const Animal &origin) {
