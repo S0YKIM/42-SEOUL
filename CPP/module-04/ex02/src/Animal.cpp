@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 17:12:03 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/09 16:48:01 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/09 16:58:25 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,4 @@ void	Animal::setType(std::string type) {
 
 void	Animal::makeSound() const {
 	std::cout << "Animal can't make sound yet." << std::endl;
-}
-
-Brain	*Animal::getBrain() const {
-	return (NULL);
 }
