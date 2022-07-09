@@ -6,12 +6,13 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 17:08:56 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/09 13:55:24 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/09 14:20:11 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 #include "Dog.hpp"
+#include "WrongCat.hpp"
 
 int	main(void) {
 	{
@@ -30,15 +31,18 @@ int	main(void) {
 		delete j;
 		delete i;
 	}
-	std::cout << "**********************************" << std::endl;
-	// {
-	// 	const WrongAnimal* meta = new WrongAnimal();
-	// 	const WrongAnimal* j = new WrongCat();
+	std::cout << "******************************************" << std::endl;
+	{
+		const WrongAnimal* meta = new WrongAnimal();
+		const WrongAnimal* j = new WrongCat();
 
-	// 	std::cout << j->getType() << " " << std::endl;
+		std::cout << j->getType() << " " << std::endl;
 
-	// 	j->makeSound();
-	// 	meta->makeSound();
-	// }
+		j->makeSound();
+		meta->makeSound();
+
+		delete meta;
+		delete j;
+	}
 	return (0);
 }
