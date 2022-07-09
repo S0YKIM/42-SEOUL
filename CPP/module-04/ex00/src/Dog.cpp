@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 17:12:01 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/09 13:40:59 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/09 14:18:32 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ Dog::~Dog() {
 }
 
 void	Dog::makeSound() const {
-	std::cout << "Bark!" << std::endl;
+	std::cout << "🐶 Bark 🐶" << std::endl;
 }
