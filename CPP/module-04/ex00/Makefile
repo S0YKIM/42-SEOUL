@@ -6,7 +6,7 @@
 #    By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/08 17:08:01 by sokim             #+#    #+#              #
-#    Updated: 2022/07/08 17:12:41 by sokim            ###   ########.fr        #
+#    Updated: 2022/07/09 14:14:55 by sokim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,9 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 SRCS = src/main.cpp \
 		src/Animal.cpp \
 		src/Cat.cpp \
-		src/Dog.cpp
+		src/Dog.cpp \
+		src/WrongAnimal.cpp \
+		src/WrongCat.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 INC_DIR = inc
