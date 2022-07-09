@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 17:12:08 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/08 17:45:03 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/09 13:21:31 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,19 @@
 
 class Animal {
 protected:
-	std::string	type;
+	std::string	type_;
 
 public:
 	Animal();
 	Animal(std::string type);
 	Animal(const Animal &origin);
 	Animal &operator=(const Animal &origin);
-	~Animal();
+	virtual ~Animal();
+
+	std::string			getType() const;
+	void				setType(std::string type);
+
+	virtual void	makeSound() const;
 };
 
 #endif
