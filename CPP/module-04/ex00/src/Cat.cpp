@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 17:11:59 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/09 13:40:30 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/09 14:18:19 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ Cat::~Cat() {
 }
 
 void	Cat::makeSound() const {
-	std::cout << "Meow!" << std::endl;
+	std::cout << "🐈 Meow 🐈" << std::endl;
 }
