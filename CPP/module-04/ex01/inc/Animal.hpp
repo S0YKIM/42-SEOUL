@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 17:12:08 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/09 15:14:30 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/09 16:47:26 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ public:
 	void			setType(std::string type);
 
 	virtual void	makeSound() const;
-	virtual Brain*	getBrain() const = 0;
+	virtual Brain*	getBrain() const;
 };
 
 #endif
