@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 17:08:56 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/09 15:46:39 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/09 16:42:06 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,13 @@ int	main(void) {
 	std::cout << "******************************************" << std::endl;
 	std::cout << "*                DEEP COPY               *" << std::endl;
 	std::cout << "******************************************" << std::endl;
-	Cat	*copycat = new Cat(dynamic_cast<Cat&>(*animals[4]));
+	Cat *temp = dynamic_cast<Cat*>(animals[4]);
+	if (!temp) {
+		for (int i = 0; i < 10; i++)
+			delete animals[i];
+		return (0);
+	}
+	Cat	*copycat = new Cat(*temp);
 	copycat->getBrain()->setIdea(2, "Grrrrrrrrr");
 	copycat->makeSound();
 	std::cout << "copycat 0💬: " << copycat->getBrain()->getIdea(0) << std::endl;
