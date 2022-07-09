@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 17:08:56 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/09 13:35:16 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/09 13:55:24 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ int	main(void) {
 		i->makeSound();
 		j->makeSound();
 		meta->makeSound();
+
+		delete meta;
+		delete j;
+		delete i;
 	}
 	std::cout << "**********************************" << std::endl;
 	// {
