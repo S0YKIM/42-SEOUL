@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 17:27:18 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/10 19:20:43 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/10 20:25:56 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,17 @@
 Form::Form() : name_("Default"), isSigned_(false), gradeToSign_(LOWEST_GRADE), gradeToExecute_(LOWEST_GRADE) {}
 
 Form::Form(const std::string name, int gradeToSign, int gradeToExecute) : name_(name), isSigned_(false), gradeToSign_(gradeToSign), gradeToExecute_(gradeToExecute) {
-	try {
-		if (gradeToSign_ < HIGHEST_GRADE || gradeToExecute_ < HIGHEST_GRADE)
-			throw GradeTooHighException();
-		else if (gradeToSign_ > LOWEST_GRADE || gradeToExecute_ > LOWEST_GRADE)
-			throw GradeTooLowException();
-	}
-	catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
+	if (gradeToSign_ < HIGHEST_GRADE || gradeToExecute_ < HIGHEST_GRADE)
+		throw GradeTooHighException();
+	else if (gradeToSign_ > LOWEST_GRADE || gradeToExecute_ > LOWEST_GRADE)
+		throw GradeTooLowException();
 }
 
 Form::Form(const Form &origin) : name_(origin.getName()), isSigned_(origin.getIsSigned()), gradeToSign_(origin.getGradeToSign()), gradeToExecute_(origin.getGradeToExecute()) {
-	try {
-		if (gradeToSign_ < HIGHEST_GRADE || gradeToExecute_ < HIGHEST_GRADE)
-			throw GradeTooHighException();
-		else if (gradeToSign_ > LOWEST_GRADE || gradeToExecute_ > LOWEST_GRADE)
-			throw GradeTooLowException();
-	}
-	catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
+	if (gradeToSign_ < HIGHEST_GRADE || gradeToExecute_ < HIGHEST_GRADE)
+		throw GradeTooHighException();
+	else if (gradeToSign_ > LOWEST_GRADE || gradeToExecute_ > LOWEST_GRADE)
+		throw GradeTooLowException();
 }
 
 Form &Form::operator=(const Form &origin) {
