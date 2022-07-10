@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 17:27:20 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/10 19:09:04 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/10 20:43:17 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ public:
 	Form(const std::string name, int gradeToSign, int gradeToExecute);
 	Form(Form const &origin);
 	Form &operator=(Form const &origin);
-	~Form();
+	virtual ~Form();
 
 	const std::string	getName() const;
 	bool				getIsSigned() const;
 	int					getGradeToSign() const;
 	int					getGradeToExecute() const;
 
-	// 관료의 그레이드가 충분하면 사인하고 아니면 실패
 	void				beSigned(const Bureaucrat &signer);
+	virtual void		execute(const Bureaucrat &executor) const = 0;
 
 	class GradeTooHighException : public std::exception {
 	public:
