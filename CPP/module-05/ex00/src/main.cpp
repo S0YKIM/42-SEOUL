@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 11:26:14 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/10 19:39:35 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/10 19:44:42 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,6 @@ int	main(void) {
 	Bureaucrat	wrong1("Wrong1", 0);
 	Bureaucrat	wrong2("Wrong2", 151);
 	std::cout << "*****************************************" << std::endl << std::endl;
+
+	return (0);
 }
