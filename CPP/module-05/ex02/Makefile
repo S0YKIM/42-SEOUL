@@ -6,7 +6,7 @@
 #    By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/10 11:26:15 by sokim             #+#    #+#              #
-#    Updated: 2022/07/10 17:26:34 by sokim            ###   ########.fr        #
+#    Updated: 2022/07/10 19:52:28 by sokim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,10 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCS = src/main.cpp \
 		src/Bureaucrat.cpp \
-		src/Form.cpp
+		src/Form.cpp \
+		src/ShrubberyCreationForm.cpp \
+		src/RobotomyRequestForm.cpp \
+		src/PresidentialPardonForm.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 INC_DIR = inc
