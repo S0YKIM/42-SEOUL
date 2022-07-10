@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 11:26:19 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/10 17:03:20 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/10 17:20:30 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,12 @@ public:
 
 	class GradeTooLowException : public std::exception {
 	public:
-		const char *what() const throw() {
-			return ("Grade too low");
-		}
+		const char *what() const throw();
 	};
 
 	class GradeTooHighException : public std::exception {
 	public:
-		const char *what() const throw() {
-			return ("Grade too high");
-		}
+		const char *what() const throw();
 	};
 };
 

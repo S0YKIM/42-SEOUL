@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 11:26:17 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/10 17:03:48 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/10 17:23:04 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,14 @@ void	Bureaucrat::decrementGrade() {
 		throw Bureaucrat::GradeTooLowException();
 	}
 	grade_ += 1;
+}
+
+const char	*Bureaucrat::GradeTooHighException::what() const throw() {
+	return ("Grade is too high");
+}
+
+const char	*Bureaucrat::GradeTooLowException::what() const throw() {
+	return ("Grade is too low");
 }
 
 std::ostream &operator<<(std::ostream &out, Bureaucrat const &origin) {
