@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 17:27:20 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/10 19:09:04 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/11 10:41:56 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ public:
 	Form &operator=(Form const &origin);
 	~Form();
 
-	const std::string	getName() const;
+	std::string	getName() const;
 	bool				getIsSigned() const;
 	int					getGradeToSign() const;
 	int					getGradeToExecute() const;
