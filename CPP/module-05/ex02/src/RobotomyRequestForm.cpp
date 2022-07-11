@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:54:04 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/11 12:13:32 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/11 15:43:47 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ void	RobotomyRequestForm::execute(Bureaucrat const &executor) const {
 		throw GradeTooLowException();
 
 	std::cout << "* Drrrrrrrrrrrrrrrriiiiiiillllllllllll... *" << std::endl;
-	if (std::rand() % 2)
+	std::srand(std::time(NULL));
+	int	random = std::rand();
+	if (random % 2)
 		std::cout << target_ << " failed to be robotomized!" << std::endl;
 	else
 		std::cout << target_ << " has been successfully robotomized!" << std::endl;
