@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 17:27:18 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/10 20:25:56 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/11 10:53:16 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ Form &Form::operator=(const Form &origin) {
 
 Form::~Form() {}
 
-const std::string	Form::getName() const {
+std::string	Form::getName() const {
 	return (name_);
 }
 
