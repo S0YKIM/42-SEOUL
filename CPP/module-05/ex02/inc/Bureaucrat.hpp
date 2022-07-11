@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 11:26:19 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/10 18:56:28 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/11 10:48:26 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ public:
 	void		decrementGrade();
 
 	void		signForm(Form &form);
+	void		executeForm(Form const &form);
 
 	class GradeTooLowException : public std::exception {
 	public:
