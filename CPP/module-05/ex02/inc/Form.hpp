@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 17:27:20 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/11 10:43:25 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/11 10:46:45 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ public:
 	class GradeTooLowException : public std::exception {
 	public:
 		const char	*what() const throw();
+	};
+
+	class NotSignedException : public std::exception {
+	public:
+		const char *what() const throw();
 	};
 };
 
