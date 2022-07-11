@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 17:27:18 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/11 10:53:16 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/11 10:57:01 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,10 @@ const char	*Form::GradeTooHighException::what() const throw() {
 
 const char	*Form::GradeTooLowException::what() const throw() {
 	return ("Grade is too low");
+}
+
+const char	*Form::NotSignedException::what() const throw() {
+	return ("Form is not signed yet.");
 }
 
 std::ostream	&operator<<(std::ostream &out, const Form &form) {
