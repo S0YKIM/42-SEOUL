@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 17:38:04 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/12 15:11:43 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/12 17:25:57 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,25 @@
 
 Convert::Convert() : input_(NULL), value_(0.0), isValid_(false) {}
 
+static bool	is_char(std::string const &str) {
+	if	(str.length() != 1)
+		return (false);
+	else if (str.at(0) < CHAR_MIN || str.at(0) > CHAR_MAX)
+		return (false);
+	else if (!std::isprint(str.at(0)))
+		return (false);
+	return (true);
+}
+
 Convert::Convert(std::string input) : input_(input) {
+	if (is_char(input)) {
+		if (input.at(0) == '0')
+			value_ = 0;
+		else
+			value_ = static_cast<double>(input.at(0));
+		isValid_ = true;
+		return ;
+	}
 	// 마지막 유효한 숫자 뒤의 문자열에 대한 포인터
 	char	*end = NULL;
 	value_ = std::strtod(input.c_str(), &end);
