@@ -6,14 +6,13 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 13:11:31 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/13 15:18:03 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/13 15:39:20 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ARRAY_HPP
 #define ARRAY_HPP
 
-#include <ctime>
 #include <iostream>
 
 template <typename T>
