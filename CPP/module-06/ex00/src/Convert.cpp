@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 17:38:04 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/12 17:25:57 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/13 10:11:34 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ void	Convert::printFloat() {
 			std::cout << std::showpos << f << "f" << std::endl;
 		else if (f != std::floor(f))
 			std::cout << f << "f" << std::endl;
-		// 내림 함수를 사용했는데 결과가 원본과 같으면 소수부가 0 이라는 의미
+		// 바닥 함수를 사용했는데 결과가 원본과 같으면 소수부가 0 이라는 의미
 		else
 			std::cout << f << ".0f" << std::endl;
 	}
@@ -184,7 +184,7 @@ void	Convert::printDouble() {
 			std::cout << std::showpos << d << std::endl;
 		else if (d != std::floor(d))
 			std::cout << d << std::endl;
-		// 내림 함수를 사용했는데 결과가 원본과 같으면 소수부가 0 이라는 의미
+		// 바닥 함수를 사용했는데 결과가 원본과 같으면 소수부가 0 이라는 의미
 		else
 			std::cout << d << ".0" << std::endl;
 	}
