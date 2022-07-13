@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 13:11:31 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/13 15:39:20 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/13 16:02:24 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ public:
 	}
 
 	// 마치 배열처럼 인덱스로 접근 가능하도록 [] 연산자 오버라이딩
-	T &operator[](long long idx) const {
+	T &operator[](long int idx) const {
 		if (idx < 0 || idx >= size_)
 			throw IndexOutOfRangeException();
 		return (array_[idx]);
