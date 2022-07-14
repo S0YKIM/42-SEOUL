@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 10:56:31 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/14 11:49:06 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/14 14:39:48 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ int	main() {
 		std::cout << "*******************************************" << std::endl;
 		Span	test = Span(10000);
 
+		std::vector<int>	tmp;
 		for (int i = 1; i <= 10000; i++) {
-			test.addNumber(i);
+			tmp.push_back(i);
 		}
+		test.addNumbers(tmp.begin(), tmp.end());
 
 		std::cout << "Shortest span: " << test.shortestSpan() << std::endl;
 		std::cout << "Longest span: " << test.longestSpan() << std::endl << std::endl;

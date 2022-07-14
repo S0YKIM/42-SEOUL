@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 10:56:54 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/14 11:52:23 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/14 14:38:16 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,14 @@ void	Span::addNumber(int num) {
 	if (container_.size() == maxsize_)
 		throw	FullException();
 	container_.push_back(num);
+}
+
+void	Span::addNumbers(const std::vector<int>::iterator &begin, const std::vector<int>::iterator &end) {
+	for (std::vector<int>::iterator it = begin; it != end; it++) {
+		if (container_.size() == maxsize_)
+			throw	FullException();
+		container_.push_back(*it);
+	}
 }
 
 // 간격의 차이가 가장 작은 숫자들 간의 간격

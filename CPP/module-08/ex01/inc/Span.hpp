@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 10:56:59 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/14 11:44:58 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/14 14:34:46 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ public:
 	const unsigned int		&getMaxsize() const;
 
 	void					addNumber(int num);
+	void					addNumbers(const std::vector<int>::iterator &begin, const std::vector<int>::iterator &end);
 	
 	unsigned int			shortestSpan() const;
 	unsigned int			longestSpan() const;
