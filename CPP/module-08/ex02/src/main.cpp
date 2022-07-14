@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 12:00:22 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/14 14:29:34 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/14 14:32:50 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main() {
 		for (int i = 1; i <= 5; i++)
 			mstack.push(i);
 
-		std::cout << "Top: " << mstack.top() << std::endl;
+		std::cout << "Top : " << mstack.top() << std::endl;
 		std::cout << "Size : " << mstack.size() << std::endl;
 
 		MutantStack<int>::iterator it = mstack.begin();
