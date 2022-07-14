@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:46:28 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/13 19:10:07 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/14 10:53:48 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@
 
 class NotFoundException : public std::exception {
 public:
-	const char	*what() const throw() {
-		return ("Couldn't find the target.");
-	}
+	const char	*what() const throw();
 };
 
 template <typename T>

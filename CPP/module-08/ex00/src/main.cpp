@@ -6,13 +6,17 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:46:25 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/13 19:10:51 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/14 10:54:22 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "easyfind.hpp"
 #include <vector>
 #include <deque>
+
+const char	*NotFoundException::what() const throw() {
+		return ("Couldn't find the target.");
+}
 
 int	main() {
 	std::vector<int> v;
