@@ -39,6 +39,7 @@
 
 ![image](https://github.com/S0YKIM/42-SEOUL/blob/main/CPP/module-07/img/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202022-07-22%20%EC%98%A4%ED%9B%84%206.44.54.png)
 
+
 > ```
 > When you pass `string` type to template parameter
 > ```
