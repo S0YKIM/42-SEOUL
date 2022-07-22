@@ -3,10 +3,8 @@
 [![sokim's 42 CPP Module 00 Score](https://badge42.vercel.app/api/v2/cl1sxc9pb003009jgq7f86utb/project/2612594)](https://github.com/JaeSeoKim/badge42)
 
 > This first module of C++ is designed to help you understand the specifities of the language when compared to C. Time to dive into Object Oriented Programming!
->
-> #### 📝 PDF
->
-> - [**`FILE LINK`**](https://github.com/JaeSeoKim/42cursus/42cursus/blob/master/pdf/en.subject-C++-Module00.pdf)
+
+🗒️ [Developer note](https://pouncing-elbow-0a4.notion.site/Module-00-89ab561bcea040ddb09a9b013bb7f240)
 
 
 # 🚀 Contents
