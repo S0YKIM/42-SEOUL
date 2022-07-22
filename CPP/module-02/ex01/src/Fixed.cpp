@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 19:52:18 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/06 20:53:18 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/07 11:16:48 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	Fixed::setRawBits(int const raw) {
 }
 
 float Fixed::toFloat(void) const {
-	return ((float)this->fixedPointValue / (float)(1 << this->fractionalBits));
+	return ((float)this->fixedPointValue / (1 << this->fractionalBits));
 }
 
 int Fixed::toInt(void) const {
