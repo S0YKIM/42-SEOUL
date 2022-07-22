@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 11:26:14 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/11 16:18:52 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/22 18:14:23 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ int	main(void) {
 		Form	*form;
 		try {
 			form = intern.makeForm("unknown", "target");
+			delete form;
 		}
 		catch (std::exception &e) {
 			std::cout << e.what() << std::endl;
 		}
-		delete form;
 		std::cout << std::endl << std::endl;
 	}
 
@@ -40,14 +40,14 @@ int	main(void) {
 		Form	*form;
 		try {
 			form = intern.makeForm("shrubbery creation", "city");
+			std::cout << *form << std::endl;
+			a.signForm(*form);
+			a.executeForm(*form);
+			delete form;
 		}
 		catch (std::exception &e) {
 			std::cout << e.what() << std::endl;
 		}
-		std::cout << *form << std::endl;
-		a.signForm(*form);
-		a.executeForm(*form);
-		delete form;
 		std::cout << std::endl << std::endl;
 	}
 
@@ -59,14 +59,14 @@ int	main(void) {
 		Form	*form;
 		try {
 			form = intern.makeForm("robotomy request", "robot");
+			std::cout << *form << std::endl;
+			a.signForm(*form);
+			a.executeForm(*form);
+			delete form;
 		}
 		catch (std::exception &e) {
 			std::cout << e.what() << std::endl;
 		}
-		std::cout << *form << std::endl;
-		a.signForm(*form);
-		a.executeForm(*form);
-		delete form;
 		std::cout << std::endl << std::endl;
 	}
 
@@ -78,14 +78,14 @@ int	main(void) {
 		Form	*form;
 		try {
 			form = intern.makeForm("presidential pardon", "president");
+			std::cout << *form << std::endl;
+			a.signForm(*form);
+			a.executeForm(*form);
+			delete form;
 		}
 		catch (std::exception &e) {
 			std::cout << e.what() << std::endl;
 		}
-		std::cout << *form << std::endl;
-		a.signForm(*form);
-		a.executeForm(*form);
-		delete form;
 		std::cout << std::endl << std::endl;
 	}
 	return (0);
