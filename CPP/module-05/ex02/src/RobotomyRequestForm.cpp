@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:54:04 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/11 15:43:47 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/25 19:30:06 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &o
 
 RobotomyRequestForm::~RobotomyRequestForm() {}
 
-std::string	RobotomyRequestForm::getTarget() const {
+const std::string	&RobotomyRequestForm::getTarget() const {
 	return (target_);
 }
 
