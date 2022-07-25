@@ -2,7 +2,7 @@
 
 > In this project, you will learn the C++ language. You will discover the Object Oriented Programming.
 
-| CIRCLE | PROJECT                      | LANGUAGE | TOPICS                                                                                                                 |  Date of Completion |
+| CIRCLE | PROJECT                      | LANGUAGE | TOPICS                                                                                                                 |  DATE OF COMPLETION |
 | ------ | ---------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | 04     | [CPP Module 00](./module-00) | C++      | `Namespace` `class` `member functions` `stdio stream` `initialization lists` `static` `const` `and lots of basic stuf` |  2022-07-04  |
 | 04     | [CPP Module 01](./module-01) | C++      | `Memory allocation` `References` `Pointers to members` `File streams`                                                  |  2022-07-06  |
