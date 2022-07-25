@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 17:27:20 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/11 10:46:45 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/25 19:27:49 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ public:
 	Form &operator=(Form const &origin);
 	virtual ~Form();
 
-	std::string		getName() const;
-	bool			getIsSigned() const;
-	int				getGradeToSign() const;
-	int				getGradeToExecute() const;
+	const std::string	&getName() const;
+	const bool			&getIsSigned() const;
+	const int			&getGradeToSign() const;
+	const int			&getGradeToExecute() const;
 
 	void			beSigned(const Bureaucrat &signer);
 	virtual void	execute(const Bureaucrat &executor) const = 0;

@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:54:12 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/11 11:17:42 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/25 19:29:06 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ public :
 	ShrubberyCreationForm &operator=(const ShrubberyCreationForm &origin);
 	~ShrubberyCreationForm();
 
-	std::string	getTarget() const;
+	const std::string	&getTarget() const;
 
 	void		execute(Bureaucrat const &executor) const;
 };
