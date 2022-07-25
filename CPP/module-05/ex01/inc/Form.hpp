@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 17:27:20 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/11 10:43:13 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/25 19:20:34 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ public:
 	Form &operator=(Form const &origin);
 	~Form();
 
-	std::string	getName() const;
-	bool		getIsSigned() const;
-	int			getGradeToSign() const;
-	int			getGradeToExecute() const;
+	const std::string	&getName() const;
+	const bool			&getIsSigned() const;
+	const int			&getGradeToSign() const;
+	const int			&getGradeToExecute() const;
 
 	// 관료의 그레이드가 충분하면 사인하고 아니면 실패
 	void		beSigned(const Bureaucrat &signer);
