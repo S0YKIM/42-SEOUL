@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 14:08:07 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/09 14:13:10 by sokim            ###   ########.fr       */
+/*   Updated: 2022/12/07 14:21:17 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ WrongCat::~WrongCat() {
 }
 
 void	WrongCat::makeSound() const {
-	std::cout << "Meow?" << std::endl;
+	std::cout << "Meow" << std::endl;
 }

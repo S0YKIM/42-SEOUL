@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 14:00:28 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/09 14:05:31 by sokim            ###   ########.fr       */
+/*   Updated: 2022/12/07 14:12:20 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ public:
 	WrongAnimal();
 	WrongAnimal(const WrongAnimal &origin);
 	WrongAnimal &operator=(const WrongAnimal &origin);
-	virtual ~WrongAnimal();
+	~WrongAnimal();
 
 	std::string		getType() const;
 	void			setType(std::string type);
 
-	virtual void	makeSound() const;
+	void	makeSound() const;
 };
 
 #endif
