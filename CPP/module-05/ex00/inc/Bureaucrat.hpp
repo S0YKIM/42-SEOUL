@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 11:26:19 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/10 17:20:30 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/25 19:01:03 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ public:
 	Bureaucrat &operator=(const Bureaucrat &origin);
 	~Bureaucrat();
 
-	std::string	getName() const;
-	int			getGrade() const;
+	const std::string	&getName() const;
+	const int			&getGrade() const;
 	void		incrementGrade();
 	void		decrementGrade();
 

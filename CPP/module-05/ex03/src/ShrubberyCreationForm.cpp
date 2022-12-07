@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:54:15 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/11 12:18:13 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/25 19:28:59 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
-std::string	ShrubberyCreationForm::getTarget() const {
+const std::string	&ShrubberyCreationForm::getTarget() const {
 	return (target_);
 }
 

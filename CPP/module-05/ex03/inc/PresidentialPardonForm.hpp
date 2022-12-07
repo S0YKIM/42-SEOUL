@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:53:53 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/11 11:33:41 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/25 19:28:26 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ public:
 	PresidentialPardonForm &operator=(const PresidentialPardonForm &origin);
 	~PresidentialPardonForm();
 
-	std::string	getTarget() const;
+	const std::string	&getTarget() const;
 
 	void		execute(Bureaucrat const &executor) const;
 };

@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:54:08 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/11 11:51:37 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/25 19:28:47 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ public:
 	RobotomyRequestForm &operator=(const RobotomyRequestForm& origin);
 	~RobotomyRequestForm();
 
-	std::string	getTarget() const;
+	const std::string	&getTarget() const;
 
 	void		execute(Bureaucrat const &executor) const;
 };

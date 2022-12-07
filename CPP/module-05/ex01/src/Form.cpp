@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 17:27:18 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/11 10:53:22 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/25 19:20:44 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,19 @@ Form &Form::operator=(const Form &origin) {
 
 Form::~Form() {}
 
-std::string	Form::getName() const {
+const std::string	&Form::getName() const {
 	return (name_);
 }
 
-bool	Form::getIsSigned() const {
+const bool	&Form::getIsSigned() const {
 	return (isSigned_);
 }
 
-int	Form::getGradeToSign() const {
+const int	&Form::getGradeToSign() const {
 	return (gradeToSign_);
 }
 
-int	Form::getGradeToExecute() const {
+const int	&Form::getGradeToExecute() const {
 	return (gradeToExecute_);
 }
 

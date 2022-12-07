@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 11:26:17 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/11 16:01:51 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/25 19:27:26 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &origin) {
 Bureaucrat::~Bureaucrat() {
 }
 
-std::string	Bureaucrat::getName() const {
+const std::string	&Bureaucrat::getName() const {
 	return (name_);
 }
 
-int	Bureaucrat::getGrade() const {
+const int	&Bureaucrat::getGrade() const {
 	return (grade_);
 }
 

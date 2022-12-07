@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:53:51 by sokim             #+#    #+#             */
-/*   Updated: 2022/07/11 12:19:21 by sokim            ###   ########.fr       */
+/*   Updated: 2022/07/25 19:28:37 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
 
 PresidentialPardonForm::~PresidentialPardonForm() {}
 
-std::string	PresidentialPardonForm::getTarget() const {
+const std::string	&PresidentialPardonForm::getTarget() const {
 	return (target_);
 }
 
