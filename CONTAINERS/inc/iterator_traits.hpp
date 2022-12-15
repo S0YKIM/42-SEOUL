@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.hpp                                          :+:      :+:    :+:   */
+/*   iterator_traits.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 16:18:05 by sokim             #+#    #+#             */
-/*   Updated: 2022/12/15 16:45:47 by sokim            ###   ########.fr       */
+/*   Updated: 2022/12/15 17:09:38 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_HPP
-# define UTILS_HPP
+#ifndef ITERATOR_TRAITS_HPP
+# define ITERATOR_TRAITS_HPP
 
-/* 
+namespace ft {
+/*
 	Membergeneric definition
 */
 template <class Iter>
@@ -48,5 +49,7 @@ struct iterator_traits<const T *> {
 	typedef typename const T* pointer;
 	typedef typename const T& reference;
 };
+}
+
 
 #endif
