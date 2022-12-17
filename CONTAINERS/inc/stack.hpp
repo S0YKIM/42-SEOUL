@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:49:23 by sokim             #+#    #+#             */
-/*   Updated: 2022/12/17 13:48:00 by sokim            ###   ########.fr       */
+/*   Updated: 2022/12/17 14:09:19 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,18 @@ public:
 	typedef typename Container::reference		reference;
 	typedef typename Container::const_reference	const_reference;
 
+protected:
+	Container	c_;
+
 public:
 	/* Default constructor or copy constructor */
-	explicit stack(const Container& cont = Container()) {};
+	explicit stack(const Container& c = Container()) : c_(c) {};
 
-	/* Copy constructor */
-	stack(const stack& other) {};
+	/* Returns a read/write reference to the data at the first element of the stack */
+	reference	top() { return c.back(); };
 
-	/* Copy assignment operator overloading */
-	stack& operator=(const stack& other) {};
-
-	/* Destructor */
-	~stack() {};
+	/* Returns a read-only constant reference to the data at the first element of the stack */
+	const_reference	top() const { return c.back(); };
 };
 }
 
