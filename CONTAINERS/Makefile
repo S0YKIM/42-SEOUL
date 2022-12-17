@@ -6,7 +6,7 @@
 #    By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 19:27:06 by sokim             #+#    #+#              #
-#    Updated: 2022/12/14 19:27:26 by sokim            ###   ########.fr        #
+#    Updated: 2022/12/17 15:38:33 by sokim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = containers
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = src/main.cpp
+SRCS = src/custom_main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 INC_DIR = inc
