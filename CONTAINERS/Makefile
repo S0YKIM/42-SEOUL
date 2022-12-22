@@ -6,7 +6,7 @@
 #    By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 19:27:06 by sokim             #+#    #+#              #
-#    Updated: 2022/12/17 19:55:41 by sokim            ###   ########.fr        #
+#    Updated: 2022/12/22 21:26:41 by sokim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,10 +18,12 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 SRCS = src/custom_main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
-INC_DIR = inc
+DATA_STRUCTURE_DIR = inc/data_structure
+ITERATOR_DIR = inc/iterator
+INC_FLAGS = -I $(DATA_STRUCTURE_DIR) -I $(ITERATOR_DIR)
 
 %.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@ -I $(INC_DIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@ $(INC_FLAGS)
 
 all : $(NAME)
 
@@ -36,6 +38,6 @@ re :
 	make all
 
 $(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $@ $(OBJS) -I $(INC_DIR)
+	$(CXX) $(CXXFLAGS) -o $@ $(OBJS) $(INC_FLAGS)
 
 .PHONY : all clean fclean re
