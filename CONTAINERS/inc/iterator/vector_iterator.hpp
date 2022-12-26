@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 21:11:36 by sokim             #+#    #+#             */
-/*   Updated: 2022/12/26 13:23:45 by sokim            ###   ########.fr       */
+/*   Updated: 2022/12/26 13:42:15 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,22 @@ public:
 	template <typename I1>
 	inline vector_iterator(const vector_iterator<I1> &other) : current_(other.base()) {}
 
-	// Getter function for current
+	/* Getter function for current */
 	const Iter &base() const { return current_; }
+
+	/* Forward iterator requirements */
+	reference operator *() const { return *current_; }
+	pointer operator->() const { return current_; }
+	vector_iterator &operator++() {
+		++current_;
+		return *this;
+	}
+	vector_iterator operator++(int) {
+		vector_iterator	tmp;
+
+		tmp(current_++);
+		return tmp;
+	}
 };
 }
 #endif
