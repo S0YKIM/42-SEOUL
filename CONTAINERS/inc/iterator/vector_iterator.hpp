@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 21:11:36 by sokim             #+#    #+#             */
-/*   Updated: 2022/12/26 13:42:15 by sokim            ###   ########.fr       */
+/*   Updated: 2022/12/26 13:47:09 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,19 @@ public:
 		tmp(current_++);
 		return tmp;
 	}
+
+	/* Bidirectional iterator requirements */
+	vector_iterator &operator--() {
+		--current_;
+		return *this;
+	}
+	vector_iterator oprator--(int) {
+		vector_iterator	tmp;
+
+		tmp(current_--);
+		return tmp;
+	}
+	
 };
 }
 #endif
