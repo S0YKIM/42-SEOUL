@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 21:11:36 by sokim             #+#    #+#             */
-/*   Updated: 2022/12/26 13:47:09 by sokim            ###   ########.fr       */
+/*   Updated: 2022/12/26 14:02:39 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ public:
 		return *this;
 	}
 	vector_iterator operator++(int) {
-		vector_iterator	tmp;
+		vector_iterator	tmp(current_);
 
-		tmp(current_++);
+		++current_;
 		return tmp;
 	}
 
@@ -64,12 +64,32 @@ public:
 		return *this;
 	}
 	vector_iterator oprator--(int) {
-		vector_iterator	tmp;
+		vector_iterator	tmp(current_);
 
-		tmp(current_--);
+		--current_;
 		return tmp;
 	}
-	
+
+	/* Random access iterator requirements */
+	reference operator[](const difference_type& n) const { return current_[n]; }
+	vector_iterator operator+(const difference_type &n) const {
+		vector_iterator tmp(current_ + n);
+
+		return tmp;
+	}
+	vector_iterator &operator+=(const difference_type &n) {
+		current_ += n;
+		return *this;
+	}
+	vector_iterator operator-(const difference_type &n) const {
+		vector_iterator tmp(current_ - n);
+
+		return tmp;
+	}
+	vector_iterator &operator-=(const difference_type &n) {
+		current_ -= n;
+		return *this;
+	}
 };
 }
 #endif
