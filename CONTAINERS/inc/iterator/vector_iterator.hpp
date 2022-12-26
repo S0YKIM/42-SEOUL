@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 21:11:36 by sokim             #+#    #+#             */
-/*   Updated: 2022/12/26 14:02:39 by sokim            ###   ########.fr       */
+/*   Updated: 2022/12/26 14:48:30 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 # define VECTOR_ITERATOR_HPP
 
 # include "iterator_base_types.hpp"
+# include <vector>
 
 namespace ft {
-/* std::allocator::pointer (ex. int *) */
-template <typename Iter>
+template <typename Iter> // T*
 class vector_iterator {
 public:
 	typedef typename iterator_traits<Iter>		traits;
 
-	typedef typename traits::iterator_category	itertator_category;
+	typedef typename traits::iterator_category	iterator_category;
 	typedef typename traits::value_type			value_type;
 	typedef typename traits::difference_type	difference_type;
 	typedef typename traits::pointer			pointer;
@@ -45,7 +45,7 @@ public:
 	const Iter &base() const { return current_; }
 
 	/* Forward iterator requirements */
-	reference operator *() const { return *current_; }
+	reference operator*() const { return *current_; }
 	pointer operator->() const { return current_; }
 	vector_iterator &operator++() {
 		++current_;
@@ -91,5 +91,8 @@ public:
 		return *this;
 	}
 };
+
+/* Relational operators */
+
 }
 #endif
