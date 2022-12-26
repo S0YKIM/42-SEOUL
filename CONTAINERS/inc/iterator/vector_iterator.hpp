@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 21:11:36 by sokim             #+#    #+#             */
-/*   Updated: 2022/12/22 22:00:53 by sokim            ###   ########.fr       */
+/*   Updated: 2022/12/26 13:23:45 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,33 @@
 # include "iterator_base_types.hpp"
 
 namespace ft {
+/* std::allocator::pointer (ex. int *) */
 template <typename Iter>
 class vector_iterator {
 public:
-	/* std::allocator::pointer (ex. int *) */
-	typedef Iter														iterator_type;
-	typedef typename iterator_traits<iterator_type>::iterator_category	itertator_category;
-	typedef typename iterator_traits<iterator_type>::value_type			value_type;
-	typedef typename iterator_traits<iterator_type>::difference_type	difference_type;
-	typedef typename iterator_traits<iterator_type>::pointer			pointer;
-	typedef typename iterator_traits<iterator_type>::reference			reference;
+	typedef typename iterator_traits<Iter>		traits;
+
+	typedef typename traits::iterator_category	itertator_category;
+	typedef typename traits::value_type			value_type;
+	typedef typename traits::difference_type	difference_type;
+	typedef typename traits::pointer			pointer;
+	typedef typename traits::reference			reference;
 
 private:
-	iterator_type	it_;
+	Iter	current_;
 
 public:
 	/* Default constructor */
 	vector_iterator() {}
-	
+
+	explicit vector_iterator(const Iter &current) : current_(current) {}
+
+	/* Copy constructor */
+	template <typename I1>
+	inline vector_iterator(const vector_iterator<I1> &other) : current_(other.base()) {}
+
+	// Getter function for current
+	const Iter &base() const { return current_; }
 };
 }
-
 #endif
