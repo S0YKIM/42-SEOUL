@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 21:11:36 by sokim             #+#    #+#             */
-/*   Updated: 2022/12/27 12:41:55 by sokim            ###   ########.fr       */
+/*   Updated: 2022/12/27 13:42:20 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ public:
 	/* Getter function for current */
 	const Iter &base() const { return current_; }
 
-	/* Operator overloading */
+	// NOTE Operator overloading
 	// SECTION Forward iterator requirements
 	reference operator*() const { return *current_; }
 	pointer operator->() const { return current_; }
@@ -98,7 +98,8 @@ public:
 	} // !SECTION
 };
 
-/* Relational operators */
+// NOTE Non-member functions
+// NOTE Relational operators
 // SECTION Forward iterator requirements
 template<typename IterTypeL, typename IterTypeR>
 inline bool operator==(const vector_iterator<IterTypeL> &lhs, const vector_iterator<IterTypeR> &rhs) {
@@ -141,26 +142,6 @@ inline bool operator>=(const vector_iterator<IterTypeL> &lhs, const vector_itera
 	return lhs.base() >= rhs.base();
 }
 
-template<typename IterType>
-inline bool operator<(const vector_iterator<IterType> &lhs, const vector_iterator<IterType> &rhs) {
-	return lhs.base() < rhs.base();
-}
-
-template<typename IterType>
-inline bool operator<=(const vector_iterator<IterType> &lhs, const vector_iterator<IterType> &rhs) {
-	return lhs.base() <= rhs.base();
-}
-
-template<typename IterType>
-inline bool operator>(const vector_iterator<IterType> &lhs, const vector_iterator<IterType> &rhs) {
-	return lhs.base() > rhs.base();
-}
-
-template<typename IterType>
-inline bool operator>=(const vector_iterator<IterType> &lhs, const vector_iterator<IterType> &rhs) {
-	return lhs.base() >= rhs.base();
-} // !SECTION
-
 template<typename IterTypeL, typename IterTypeR>
 inline typename vector_iterator<IterTypeL>::difference_type operator-(const vector_iterator<IterTypeL> &lhs, const vector_iterator<IterTypeR> &rhs) {
 	return lhs.base() - rhs.base();
@@ -171,6 +152,6 @@ inline vector_iterator<IterType> operator+(const typename vector_iterator<IterTy
 	vector_iterator	tmp(n + i.base());
 
 	return tmp;
-}
+} // !SECTION
 }
 #endif
