@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 21:11:36 by sokim             #+#    #+#             */
-/*   Updated: 2022/12/28 14:22:20 by sokim            ###   ########.fr       */
+/*   Updated: 2022/12/28 16:13:08 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 #define VECTOR_ITERATOR_HPP
 
 #include "iterator_base_types.hpp"
-#include <vector>
 
 namespace ft {
-template <typename Iter> // T*
+template <typename Iter>  // T*
 class vector_iterator {
-public:
+ public:
   typedef typename iterator_traits<Iter> traits;
 
   typedef typename traits::iterator_category iterator_category;
@@ -28,10 +27,10 @@ public:
   typedef typename traits::pointer pointer;
   typedef typename traits::reference reference;
 
-private:
+ private:
   Iter current_;
 
-public:
+ public:
   /* Default constructor */
   vector_iterator() {}
 
@@ -59,7 +58,7 @@ public:
 
     ++current_;
     return tmp;
-  } // !SECTION
+  }  // !SECTION
 
   // SECTION Bidirectional iterator requirements
   vector_iterator &operator--() {
@@ -72,7 +71,7 @@ public:
 
     --current_;
     return tmp;
-  } // !SECTION
+  }  // !SECTION
 
   // SECTION Random access iterator requirements
   reference operator[](const difference_type &n) const { return current_[n]; }
@@ -96,7 +95,7 @@ public:
   vector_iterator &operator-=(const difference_type &n) {
     current_ -= n;
     return *this;
-  } // !SECTION
+  }  // !SECTION
 };
 
 // NOTE Non-member functions
@@ -124,7 +123,7 @@ template <typename IterType>
 inline bool operator!=(const vector_iterator<IterType> &lhs,
                        const vector_iterator<IterType> &rhs) {
   return lhs.base() != rhs.base();
-} // !SECTION
+}  // !SECTION
 
 // SECTION Random access iterator requirements
 template <typename IterTypeL, typename IterTypeR>
@@ -152,19 +151,19 @@ inline bool operator>=(const vector_iterator<IterTypeL> &lhs,
 }
 
 template <typename IterTypeL, typename IterTypeR>
-inline typename vector_iterator<IterTypeL>::difference_type
-operator-(const vector_iterator<IterTypeL> &lhs,
-          const vector_iterator<IterTypeR> &rhs) {
+inline typename vector_iterator<IterTypeL>::difference_type operator-(
+    const vector_iterator<IterTypeL> &lhs,
+    const vector_iterator<IterTypeR> &rhs) {
   return lhs.base() - rhs.base();
 }
 
 template <typename IterType>
-inline vector_iterator<IterType>
-operator+(const typename vector_iterator<IterType>::difference_type n,
-          const vector_iterator<IterType> &i) {
+inline vector_iterator<IterType> operator+(
+    const typename vector_iterator<IterType>::difference_type n,
+    const vector_iterator<IterType> &i) {
   vector_iterator tmp(n + i.base());
 
   return tmp;
-} // !SECTION
-} // namespace ft
+}  // !SECTION
+}  // namespace ft
 #endif
