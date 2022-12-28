@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 21:11:36 by sokim             #+#    #+#             */
-/*   Updated: 2022/12/28 16:39:51 by sokim            ###   ########.fr       */
+/*   Updated: 2022/12/28 18:44:40 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ class vector_iterator
                       typename iterator_traits<Iter>::difference_type,
                       typename iterator_traits<Iter>::pointer,
                       typename iterator_traits<Iter>::reference> {
-  // FIXME 만약 테스트했는데 iterator 상속 받는 것만으로 typedef 가 된다면 아래
-  // 코드 지우기
  public:
   typedef typename iterator_traits<Iter> traits;
 
