@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 13:50:36 by sokim             #+#    #+#             */
-/*   Updated: 2022/12/29 12:16:05 by sokim            ###   ########.fr       */
+/*   Updated: 2022/12/29 15:40:36 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,15 @@ class reverse_iterator
   reference operator*() const {
     Iter tmp = current;
 
-    tmp--;
+    --tmp;
     return *tmp;
   }
 
   pointer operator->() const {
     Iter tmp = current;
 
-    tmp--;
-    return tmp
+    --tmp;
+    return tmp;
   }  // !SECTION
 
   // SECTION: Subscript operator
@@ -79,24 +79,26 @@ class reverse_iterator
 
   // SECTION: Increment and decrement operators
   reverse_iterator &operator++() {
-    current--;
+    --current;
     return *this;
   }
 
   reverse_iterator operator++(int) {
     reverse_iterator tmp(*this);
-    current--;
+
+    --current;
     return tmp;
   }
 
   reverse_iterator &operator--() {
-    current++;
+    ++current;
     return *this;
   }
 
   reverse_iterator operator--(int) {
     reverse_iterator tmp(*this);
-    current++;
+
+    ++current;
     return tmp;
   }  // !SECTION
 
@@ -126,39 +128,39 @@ class reverse_iterator
 
 // NOTE: Non-member functions
 // SECTION: Relational operators
-template <typename Iter>
-inline bool operator==(const reverse_iterator<Iter> &lhs,
-                       const reverse_iterator<Iter> &rhs) {
+template <typename IterTypeL, typename IterTypeR>
+inline bool operator==(const reverse_iterator<IterTypeL> &lhs,
+                       const reverse_iterator<IterTypeR> &rhs) {
   return lhs.base() == rhs.base();
 }
 
-template <typename Iter>
-inline bool operator!=(const reverse_iterator<Iter> &lhs,
-                       const reverse_iterator<Iter> &rhs) {
+template <typename IterTypeL, typename IterTypeR>
+inline bool operator!=(const reverse_iterator<IterTypeL> &lhs,
+                       const reverse_iterator<IterTypeR> &rhs) {
   return lhs.base() != rhs.base();
 }
 
-template <typename Iter>
-inline bool operator<(const reverse_iterator<Iter> &lhs,
-                      const reverse_iterator<Iter> &rhs) {
+template <typename IterTypeL, typename IterTypeR>
+inline bool operator<(const reverse_iterator<IterTypeL> &lhs,
+                      const reverse_iterator<IterTypeR> &rhs) {
   return lhs.base() > rhs.base();
 }
 
-template <typename Iter>
-inline bool operator<=(const reverse_iterator<Iter> &lhs,
-                       const reverse_iterator<Iter> &rhs) {
+template <typename IterTypeL, typename IterTypeR>
+inline bool operator<=(const reverse_iterator<IterTypeL> &lhs,
+                       const reverse_iterator<IterTypeR> &rhs) {
   return lhs.base() >= rhs.base();
 }
 
-template <typename Iter>
-inline bool operator>(const reverse_iterator<Iter> &lhs,
-                      const reverse_iterator<Iter> &rhs) {
+template <typename IterTypeL, typename IterTypeR>
+inline bool operator>(const reverse_iterator<IterTypeL> &lhs,
+                      const reverse_iterator<IterTypeR> &rhs) {
   return lhs.base() < rhs.base();
 }
 
-template <typename Iter>
-inline bool operator>=(const reverse_iterator<Iter> &lhs,
-                       const reverse_iterator<Iter> &rhs) {
+template <typename IterTypeL, typename IterTypeR>
+inline bool operator>=(const reverse_iterator<IterTypeL> &lhs,
+                       const reverse_iterator<IterTypeR> &rhs) {
   return lhs.base() <= rhs.base();
 }  // !SECTION
 
