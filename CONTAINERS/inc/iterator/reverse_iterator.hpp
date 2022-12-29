@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 13:50:36 by sokim             #+#    #+#             */
-/*   Updated: 2022/12/28 19:02:50 by sokim            ###   ########.fr       */
+/*   Updated: 2022/12/29 12:16:05 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,10 +133,49 @@ inline bool operator==(const reverse_iterator<Iter> &lhs,
 }
 
 template <typename Iter>
+inline bool operator!=(const reverse_iterator<Iter> &lhs,
+                       const reverse_iterator<Iter> &rhs) {
+  return lhs.base() != rhs.base();
+}
+
+template <typename Iter>
 inline bool operator<(const reverse_iterator<Iter> &lhs,
                       const reverse_iterator<Iter> &rhs) {
   return lhs.base() > rhs.base();
 }
-// !SECTION
+
+template <typename Iter>
+inline bool operator<=(const reverse_iterator<Iter> &lhs,
+                       const reverse_iterator<Iter> &rhs) {
+  return lhs.base() >= rhs.base();
+}
+
+template <typename Iter>
+inline bool operator>(const reverse_iterator<Iter> &lhs,
+                      const reverse_iterator<Iter> &rhs) {
+  return lhs.base() < rhs.base();
+}
+
+template <typename Iter>
+inline bool operator>=(const reverse_iterator<Iter> &lhs,
+                       const reverse_iterator<Iter> &rhs) {
+  return lhs.base() <= rhs.base();
+}  // !SECTION
+
+// SECTION: Arithmetic operators
+template <typename Iter>
+inline typename reverse_iterator<Iter>::difference_type operator-(
+    const reverse_iterator<Iter> &lhs, const reverse_iterator<Iter> &rhs) {
+  return rhs.base() - lhs.base();
+}
+
+template <typename Iter>
+inline reverse_iterator<Iter> operator+(
+    typename reverse_iterator<Iter>::difference_type n,
+    const reverse_iterator<Iter> &rhs) {
+  reverse_iterator<Iter> tmp(rhs.base() - n);
+
+  return tmp;
+}  // !SECTION
 }  // namespace ft
 #endif
