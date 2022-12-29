@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 21:11:36 by sokim             #+#    #+#             */
-/*   Updated: 2022/12/28 18:44:40 by sokim            ###   ########.fr       */
+/*   Updated: 2022/12/29 15:38:23 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,18 +117,6 @@ inline bool operator!=(const vector_iterator<IterTypeL> &lhs,
                        const vector_iterator<IterTypeR> &rhs) {
   return lhs.base() != rhs.base();
 }
-
-template <typename IterType>
-inline bool operator==(const vector_iterator<IterType> &lhs,
-                       const vector_iterator<IterType> &rhs) {
-  return lhs.base() == rhs.base();
-}
-
-template <typename IterType>
-inline bool operator!=(const vector_iterator<IterType> &lhs,
-                       const vector_iterator<IterType> &rhs) {
-  return lhs.base() != rhs.base();
-}  // !SECTION
 
 // SECTION Random access iterator requirements
 template <typename IterTypeL, typename IterTypeR>
