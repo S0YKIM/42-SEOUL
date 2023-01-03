@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:49:23 by sokim             #+#    #+#             */
-/*   Updated: 2022/12/28 16:02:47 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/03 15:41:50 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,28 +50,42 @@ class stack {
   Container c_;
 
  public:
-  /* Default constructor or copy constructor */
+  /**
+   * @brief Default constructor or copy constructor
+   */
   explicit stack(const container_type& c = container_type()) : c_(c) {}
 
-  /* Returns a read/write reference to the data at the first element of the
-   * stack */
+  /**
+   * @brief Returns a read or write reference to the data at the first element
+   * of the stack
+   */
   reference top() { return c_.back(); }
 
-  /* Returns a read-only constant reference to the data at the first element of
-   * the stack */
+  /**
+   * @brief Returns a read-only constant reference to the data at the first
+   * element of the stack
+   */
   const_reference top() const { return c_.back(); }
 
-  /* Returns true if the stack is empty */
+  /**
+   * @brief Returns true if the stack is empty
+   */
   bool empty() const { return c_.empty(); }
 
-  /* Returns the number of elements in the stack */
+  /**
+   * @brief Returns the number of elements in the stack
+   */
   size_type size() const { return c_.size(); }
 
-  /* Creates an element at the top of the stack and assigns the given data to it
+  /**
+   * @brief Creates an element at the top of the stack and assigns the given
+   * data to it
    */
   void push(const value_type& value) { c_.push_back(value); }
 
-  /* Removes the top element from the stack */
+  /**
+   * @brief Removes the top element from the stack
+   */
   void pop() { c_.pop_back(); }
 };
 
