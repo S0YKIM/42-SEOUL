@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2022/12/29 17:29:03 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/03 13:58:30 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,30 @@
 #include "vector_iterator.hpp"
 
 namespace ft {
+template <typename T, typename Allocator>
+class vector_base {
+ protected:
+  typedef typename Allocator::pointer pointer;
+
+  Allocator alloc_;
+  pointer start_;
+  pointer end_;
+  pointer end_of_capacity_;
+
+  vector_base(const Allocator &a)
+      : alloc_(a), start_(0), end_(0), end_of_capacity_(0) {}
+
+  vector_base(const Allocator &a, size_t n)
+      : alloc_(a),
+        start_(alloc_.allocate(n)),
+        end_(start_),
+        end_of_capacity_(start_ + n) {}
+
+  ~vector_base() {
+    if (start_) alloc.deallocate(start_, end_of_capacity_ - start_);
+  }
+};
+
 template <typename T, typename Allocator = std::allocator<T> >
 class vector {
  public:
