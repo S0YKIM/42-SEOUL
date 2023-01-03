@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/03 17:33:58 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/03 17:41:30 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ class vector : private vector_base<T, Allocator> {
   vector(InputIterator first, InputIterator last,
          const allocator type &a = allocator_type())
       : base(a) {}
+
+  ~vector() { std::destroy(this->begin_, this->end_); }
 };
 }  // namespace ft
 
