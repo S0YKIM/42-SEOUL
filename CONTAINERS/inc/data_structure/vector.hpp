@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/03 14:19:02 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/03 15:18:53 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,17 @@ namespace ft {
 template <typename T, typename Allocator>
 class vector_base {
  public:
-  typedef typename Allocator::pointer pointer;
+  typedef Allocator allocator_type;
+  typedef typename allocator_type::pointer pointer;
 
  protected:
-  Allocator alloc_;
+  allocator_type alloc_;
   pointer start_;
   pointer end_;
   pointer end_of_capacity_;
 
   vector_base(const Allocator &a)
-      : alloc_(a), start_(0), end_(0), end_of_capacity_(0) {}
+      : alloc_(a), start_(nullptr), end_(nullptr), end_of_capacity_(nullptr) {}
 
   vector_base(const Allocator &a, size_t n)
       : alloc_(a),
@@ -64,6 +65,9 @@ class vector : private vector_base<T, Allocator> {
 
   typedef ptrdiff_t difference_type;
   typedef size_t size_type;
+
+ public:
+  explicit vector(const)
 };
 }  // namespace ft
 
