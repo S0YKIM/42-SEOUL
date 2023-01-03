@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/03 13:58:30 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/03 14:19:02 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@
 namespace ft {
 template <typename T, typename Allocator>
 class vector_base {
- protected:
+ public:
   typedef typename Allocator::pointer pointer;
 
+ protected:
   Allocator alloc_;
   pointer start_;
   pointer end_;
@@ -44,9 +45,13 @@ class vector_base {
 };
 
 template <typename T, typename Allocator = std::allocator<T> >
-class vector {
+class vector : private vector_base<T, Allocator> {
+ private:
+  vector_base<T, Allocator> base;
+  vector<T, Allocator> self;
+
  public:
-  typedef Allocator<T> allocator_type;
+  typedef Allocator allocator_type;
 
   typedef typename allocator_type::reference reference;
   typedef typename allocator_type::const_reference const_reference;
