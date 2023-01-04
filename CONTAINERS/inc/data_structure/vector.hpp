@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/04 15:12:22 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/04 15:32:07 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ class vector_base {
   typedef typename allocator_type::pointer pointer;
 
  protected:
-  allocator_type alloc_;
-  pointer begin_;
-  pointer end_;
-  pointer end_of_capacity_;
+  allocator_type _alloc;
+  pointer _begin;
+  pointer _end;
+  pointer _end_of_capacity_;
 
   /**
    * @brief Default constructor allocates no storage
    */
   vector_base(const Allocator &a)
-      : alloc_(a), begin_(nullptr), end_(nullptr), end_of_capacity_(nullptr) {}
+      : _alloc(a), _begin(nullptr), _end(nullptr), _end_of_capacity_(nullptr) {}
 
   /**
    * @brief Allocate storage of n size
@@ -44,16 +44,16 @@ class vector_base {
    * @param n The size of storage to allocate
    */
   vector_base(const Allocator &a, size_t n)
-      : alloc_(a),
-        begin_(alloc_.allocate(n)),
-        end_(begin_),
-        end_of_capacity_(begin_ + n) {}
+      : _alloc(a),
+        _begin(_alloc.allocate(n)),
+        _end(_begin),
+        _end_of_capacity_(_begin + n) {}
 
   /**
    * @brief Deallocate the storage of vector
    */
   ~vector_base() {
-    if (begin_) alloc.deallocate(begin_, end_of_capacity_ - begin_);
+    if (_begin) alloc.deallocate(_begin, _end_of_capacity_ - _begin);
   }
 };
 
@@ -94,7 +94,7 @@ class vector : private vector_base<T, Allocator> {
   explicit vector(size_type n, const value_type &value = value_type(),
                   const allocator_type &a = allocator_type())
       : _base(a, n) {
-    this->end_ = std::uninitialized_fill_n(this->begin_, n, value);
+    this->_end = std::uninitialized_fill_n(this->_begin, n, value);
   }
 
   // TODO: getAlloc(), size() 구현
@@ -105,8 +105,8 @@ class vector : private vector_base<T, Allocator> {
    * of it. Therefore any extra memory in the source vector will not be copied.
    */
   vector(const vector &other) : _base(other.getAlloc(), other.size()) {
-    this->end_ =
-        std::uninitialzied_copy(other.begin(), other.end(), this->begin_);
+    this->_end =
+        std::uninitialzied_copy(other.begin(), other.end(), this->_begin);
   }
 
   // TODO: is_integral, enable_if 클래스 구현
@@ -121,7 +121,7 @@ class vector : private vector_base<T, Allocator> {
     _range_initialize(first, last, iterator_category);
   }
 
-  ~vector() { std::destroy(this->begin_, this->end_); }
+  ~vector() { std::destroy(this->_begin, this->_end); }
 
  private:
   // TODO: InputIterator 범위 생성자 구현
