@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/03 17:41:30 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/04 15:09:08 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ class vector_base {
 template <typename T, typename Allocator = std::allocator<T> >
 class vector : private vector_base<T, Allocator> {
  private:
-  vector_base<T, Allocator> base;
-  vector<T, Allocator> self;
+  vector_base<T, Allocator> _base;
+  vector<T, Allocator> _self;
 
  public:
   typedef T value_type;
@@ -82,7 +82,7 @@ class vector : private vector_base<T, Allocator> {
   /**
    * @brief Default constructor creates no elements
    */
-  explicit vector(const allocator_type &a = allocator_type()) : base(a) {}
+  explicit vector(const allocator_type &a = allocator_type()) : _base(a) {}
 
   /**
    * @brief Create a vector with copies of an exemplar element
@@ -92,7 +92,7 @@ class vector : private vector_base<T, Allocator> {
    */
   explicit vector(size_type n, const value_type &value = value_type(),
                   const allocator_type &a = allocator_type())
-      : base(a, n) {
+      : _base(a, n) {
     this->end_ = std::uninitialized_fill_n(this->begin_, n, value);
   }
 
@@ -103,7 +103,7 @@ class vector : private vector_base<T, Allocator> {
    * The size of storage will be the size of the source vector, not the capacity
    * of it. Therefore any extra memory in the source vector will not be copied.
    */
-  vector(const vector &other) : base(other.getAlloc(), other.size()) {
+  vector(const vector &other) : _base(other.getAlloc(), other.size()) {
     this->end_ =
         std::uninitialzied_copy(other.begin(), other.end(), this->begin_);
   }
@@ -111,11 +111,27 @@ class vector : private vector_base<T, Allocator> {
   // TODO: is_integral, enable_if 클래스 구현
   // TODO: range constructor 마저 구현
   template <typename InputIterator>
-  vector(InputIterator first, InputIterator last,
-         const allocator type &a = allocator_type())
-      : base(a) {}
+  vector(typename enable_if<!is_integral<InputIterator>::value,
+                            InputIterator>::type first,
+         InputIterator last, const allocator type &a = allocator_type())
+      : _base(a) {
+    typedef typename iterator_traits<InputIterator>::iterator_category
+        iterator_category;
+    _range_initialize(first, last, iterator_category);
+  }
 
   ~vector() { std::destroy(this->begin_, this->end_); }
+
+ private:
+  // TODO: InputIterator 범위 생성자 구현
+  template <typename InputIerator>
+  void _range_initialize(InputIterator first, InputIterator last,
+                         input_iterator_tag) {}
+
+  // TODO: ForwardIterator 범위 생성자 구현
+  template <typename ForwardIterator>
+  void _range_initialize(ForwardIterator first, ForwardIterator last,
+                         forward_iterator_tag) {}
 };
 }  // namespace ft
 
