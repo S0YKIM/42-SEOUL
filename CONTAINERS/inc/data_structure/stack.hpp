@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:49:23 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/03 15:41:50 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/04 15:30:09 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,58 +47,58 @@ class stack {
   typedef typename Container::const_reference const_reference;
 
  protected:
-  Container c_;
+  Container _c;
 
  public:
   /**
    * @brief Default constructor or copy constructor
    */
-  explicit stack(const container_type& c = container_type()) : c_(c) {}
+  explicit stack(const container_type& c = container_type()) : _c(c) {}
 
   /**
    * @brief Returns a read or write reference to the data at the first element
    * of the stack
    */
-  reference top() { return c_.back(); }
+  reference top() { return _c.back(); }
 
   /**
    * @brief Returns a read-only constant reference to the data at the first
    * element of the stack
    */
-  const_reference top() const { return c_.back(); }
+  const_reference top() const { return _c.back(); }
 
   /**
    * @brief Returns true if the stack is empty
    */
-  bool empty() const { return c_.empty(); }
+  bool empty() const { return _c.empty(); }
 
   /**
    * @brief Returns the number of elements in the stack
    */
-  size_type size() const { return c_.size(); }
+  size_type size() const { return _c.size(); }
 
   /**
    * @brief Creates an element at the top of the stack and assigns the given
    * data to it
    */
-  void push(const value_type& value) { c_.push_back(value); }
+  void push(const value_type& value) { _c.push_back(value); }
 
   /**
    * @brief Removes the top element from the stack
    */
-  void pop() { c_.pop_back(); }
+  void pop() { _c.pop_back(); }
 };
 
 template <typename T, typename Container>
 inline bool operator==(const ft::stack<T, Container>& lhs,
                        const ft::stack<T, Container>& rhs) {
-  return lhs.c_ == rhs.c_;
+  return lhs._c == rhs._c;
 }
 
 template <typename T, typename Container>
 inline bool operator<(const ft::stack<T, Container>& lhs,
                       const ft::stack<T, Container>& rhs) {
-  return lhs.c_ < rhs.c_;
+  return lhs._c < rhs._c;
 }
 
 template <typename T, typename Container>
