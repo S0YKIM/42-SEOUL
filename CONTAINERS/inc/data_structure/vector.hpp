@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/04 15:09:08 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/04 15:12:22 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <memory>
 
 #include "reverse_iterator.hpp"
+#include "type_traits.hpp"
 #include "vector_iterator.hpp"
 
 namespace ft {
