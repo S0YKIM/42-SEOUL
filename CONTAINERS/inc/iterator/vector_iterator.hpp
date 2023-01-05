@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 21:11:36 by sokim             #+#    #+#             */
-/*   Updated: 2022/12/29 15:38:23 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/05 11:56:06 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,72 +33,72 @@ class vector_iterator
   typedef typename traits::reference reference;
 
  private:
-  Iter current_;
+  Iter _current;
 
  public:
   /* Default constructor */
   vector_iterator() {}
 
-  explicit vector_iterator(const Iter &current) : current_(current) {}
+  explicit vector_iterator(const Iter &current) : _current(current) {}
 
   /* Copy constructor */
   template <typename I1>
   inline vector_iterator(const vector_iterator<I1> &other)
-      : current_(other.base()) {}
+      : _current(other.base()) {}
 
   /* Getter function for current */
-  const Iter &base() const { return current_; }
+  const Iter &base() const { return _current; }
 
   // NOTE Operator overloading
   // SECTION Forward iterator requirements
-  reference operator*() const { return *current_; }
-  pointer operator->() const { return current_; }
+  reference operator*() const { return *_current; }
+  pointer operator->() const { return _current; }
   vector_iterator &operator++() {
-    ++current_;
+    ++_current;
     return *this;
   }
 
   vector_iterator operator++(int) {
-    vector_iterator tmp(current_);
+    vector_iterator tmp(_current);
 
-    ++current_;
+    ++_current;
     return tmp;
   }  // !SECTION
 
   // SECTION Bidirectional iterator requirements
   vector_iterator &operator--() {
-    --current_;
+    --_current;
     return *this;
   }
 
   vector_iterator oprator--(int) {
-    vector_iterator tmp(current_);
+    vector_iterator tmp(_current);
 
-    --current_;
+    --_current;
     return tmp;
   }  // !SECTION
 
   // SECTION Random access iterator requirements
-  reference operator[](const difference_type &n) const { return current_[n]; }
+  reference operator[](const difference_type &n) const { return _current[n]; }
   vector_iterator operator+(const difference_type &n) const {
-    vector_iterator tmp(current_ + n);
+    vector_iterator tmp(_current + n);
 
     return tmp;
   }
 
   vector_iterator &operator+=(const difference_type &n) {
-    current_ += n;
+    _current += n;
     return *this;
   }
 
   vector_iterator operator-(const difference_type &n) const {
-    vector_iterator tmp(current_ - n);
+    vector_iterator tmp(_current - n);
 
     return tmp;
   }
 
   vector_iterator &operator-=(const difference_type &n) {
-    current_ -= n;
+    _current -= n;
     return *this;
   }  // !SECTION
 };
