@@ -6,12 +6,20 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 10:55:02 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/05 11:54:38 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/05 12:34:21 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPE_TRAITS_HPP
 #define TYPE_TRAITS_HPP
+
+template <bool B, class T = void>
+struct enable_if {};
+
+template <typename T>
+struct enable_if<true, T> {
+  typedef T type
+};
 
 template <typename T, T v>
 struct _integral_constant {
