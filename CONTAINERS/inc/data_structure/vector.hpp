@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/05 14:38:57 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/05 16:03:24 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 #include <memory>
 
-#include "reverse_iterator.hpp"
-#include "type_traits.hpp"
-#include "vector_iterator.hpp"
+#include "reverse_iterator.hpp"  // reverse_iterator
+#include "type_traits.hpp"       // is_integral, enable_if
+#include "vector_iterator.hpp"   // vector_iterator
 
 namespace ft {
 template <typename T, typename Allocator>
@@ -60,8 +60,8 @@ class vector_base {
 template <typename T, typename Allocator = std::allocator<T> >
 class vector : private vector_base<T, Allocator> {
  private:
-  vector_base<T, Allocator> _base;
-  vector<T, Allocator> _self;
+  typedef vector_base<T, Allocator> _base;
+  typedef vector<T, Allocator> _self;
 
  public:
   typedef T value_type;
@@ -122,6 +122,17 @@ class vector : private vector_base<T, Allocator> {
 
   ~vector() { std::destroy(this->begin_, this->end_); }
 
+  // SECTION: Getter functions
+  allocator_type get_allocator() const { return this->alloc_; }
+
+  iterator begin() { return iterator(this->begin_); }
+
+  const_iterator begin() const { return const_iterator(this->begin_); }
+
+  iterator end() { return ierator(this->end_); }
+  // TODO: operator = 구현
+  vector &operator=(const vector &other);
+
  private:
   // TODO: push_back() 구현
   /**
@@ -137,7 +148,6 @@ class vector : private vector_base<T, Allocator> {
     for (; first != last; ++first) push_back(*first);
   }
 
-  // TODO: ForwardIterator 범위 생성자 구현
   /**
    * @brief Initialize values of elements in range constructor
    *
