@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 10:55:02 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/05 11:52:31 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/05 11:54:38 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 #define TYPE_TRAITS_HPP
 
 template <typename T, T v>
-struct integral_constant {
-  typedef integral_constant<T, v> type;
+struct _integral_constant {
+  typedef _integral_constant<T, v> type;
   typedef T value_type;
   static const T value = v;
   operator value_type() const throw() { return value; }
 };
 
-typedef integral_constant<bool, true> true_type;
-typedef integral_constant<bool, false> false_type;
+typedef _integral_constant<bool, true> true_type;
+typedef _integral_constant<bool, false> false_type;
 
 /**
  * @brief Membergeneric definition of is_integral
