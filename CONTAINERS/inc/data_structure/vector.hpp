@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/05 16:38:24 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/05 16:56:32 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,17 @@ class vector : private vector_base<T, Allocator> {
   const_reverse_iterator rend() const {
     return const_reverse_iterator(begin());
   }
+
+  /**
+   * @brief Returns the number of elements in the vector.
+   */
+  size_type size() const { return size_type(end() - begin()); }
+
+  /**
+   * @brief Returns the size of the largest possible vector.
+   */
+  size_type max_size() const { return this->alloc_.max_size(); }
+
   // !SECTION
 
   // TODO: operator = 구현
