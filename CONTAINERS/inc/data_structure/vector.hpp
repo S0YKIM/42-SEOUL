@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/05 16:03:24 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/05 16:32:37 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,13 +123,64 @@ class vector : private vector_base<T, Allocator> {
   ~vector() { std::destroy(this->begin_, this->end_); }
 
   // SECTION: Getter functions
+  /**
+   * @brief Get a copy of the memory allocator object
+   */
   allocator_type get_allocator() const { return this->alloc_; }
 
+  /**
+   * @brief Returns a read/write iterator that points to the first element in
+   * the vector. Iteration is done in ordinary element order.
+   */
   iterator begin() { return iterator(this->begin_); }
 
+  /**
+   * @brief Returns a read-only (constant) iterator that points to the first
+   * element in the vector. Iteration is done in ordinary element order.
+   */
   const_iterator begin() const { return const_iterator(this->begin_); }
 
-  iterator end() { return ierator(this->end_); }
+  /**
+   * @brief Returns a read/write iterator that points to the one past the last
+   * element in the vector. Iteration is done in ordinary element order.
+   */
+  iterator end() { return iterator(this->end_); }
+
+  /**
+   * @brief Returns a read-only iterator that points to the one past the last
+   * element in the vector. Iteration is done in ordinary element order.
+   */
+  const_iterator end() const { return const_iterator(this->end_); }
+
+  /**
+   * @brief Returns a read/write reverse iterator that points to the last
+   * element in the vector. Iteration is done in reverse element order.
+   */
+  reverse_iterator rbegin() { return reverse_iterator(end()); }
+
+  /**
+   * @brief Returns a read-only reverse iterator that points to the last
+   * element in the vector. Iteration is done in reverse element order.
+   */
+  const_reverse_iterator rbegin() const {
+    return const_reverse_iterator(end());
+  }
+
+  /**
+   * @brief Returns a read/write reverse iterator that points to the first
+   * element in the vector. Iteration is done in reverse element order.
+   */
+  reverse_iterator rend() { return reverse_iterator(begin()); }
+
+  /**
+   * @brief Returns a read-only (const) reverse iterator that points to the
+   * first element in the vector. Iteration is done in reverse element order.
+   */
+  const_reverse_iterator rend() const {
+    return const_reverse_iterator(begin());
+  }
+  // !SECTION
+
   // TODO: operator = 구현
   vector &operator=(const vector &other);
 
