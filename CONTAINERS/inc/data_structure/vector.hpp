@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/04 15:33:43 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/05 14:38:57 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ class vector_base {
    * @brief Default constructor allocates no storage
    */
   vector_base(const Allocator &a)
-      : alloc_(a), begin_(nullptr), end_(nullptr), end_of_capacity_(nullptr) {}
+      : alloc_(a), begin_(0), end_(0), end_of_capacity_(0) {}
 
   /**
    * @brief Allocate storage of n size
@@ -109,7 +109,6 @@ class vector : private vector_base<T, Allocator> {
         std::uninitialzied_copy(other.begin(), other.end(), this->begin_);
   }
 
-  // TODO: is_integral, enable_if 클래스 구현
   // TODO: range constructor 마저 구현
   template <typename InputIterator>
   vector(typename enable_if<!is_integral<InputIterator>::value,
@@ -118,21 +117,42 @@ class vector : private vector_base<T, Allocator> {
       : _base(a) {
     typedef typename iterator_traits<InputIterator>::iterator_category
         iterator_category;
-    _range_initialize(first, last, iterator_category);
+    _range_initialize(first, last, iterator_category());
   }
 
   ~vector() { std::destroy(this->begin_, this->end_); }
 
  private:
-  // TODO: InputIterator 범위 생성자 구현
-  template <typename InputIerator>
+  // TODO: push_back() 구현
+  /**
+   * @brief Initialize values of elements in range constructor
+   *
+   * @tparam InputIterator Only input iterator can call this function
+   * @param first
+   * @param last
+   */
+  template <typename InputIterator>
   void _range_initialize(InputIterator first, InputIterator last,
-                         input_iterator_tag) {}
+                         input_iterator_tag) {
+    for (; first != last; ++first) push_back(*first);
+  }
 
   // TODO: ForwardIterator 범위 생성자 구현
+  /**
+   * @brief Initialize values of elements in range constructor
+   *
+   * @tparam ForwardIterator Forward iterator or its derived classes
+   * @param first
+   * @param last
+   */
   template <typename ForwardIterator>
   void _range_initialize(ForwardIterator first, ForwardIterator last,
-                         forward_iterator_tag) {}
+                         forward_iterator_tag) {
+    size_type n = std::distance(first, last);
+    this->begin_ = alloc_.allocate(n);
+    this->end_of_capacity_ = this->begin_ + n;
+    this->end_ = std::uninitialized_copy(first, last, this->_begin);
+  }
 };
 }  // namespace ft
 
