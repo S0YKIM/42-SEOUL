@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/05 16:32:37 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/05 16:38:24 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,14 +167,15 @@ class vector : private vector_base<T, Allocator> {
   }
 
   /**
-   * @brief Returns a read/write reverse iterator that points to the first
-   * element in the vector. Iteration is done in reverse element order.
+   * @brief Returns a read/write reverse iterator that points to one before the
+   * first element in the vector. Iteration is done in reverse element order.
    */
   reverse_iterator rend() { return reverse_iterator(begin()); }
 
   /**
-   * @brief Returns a read-only (const) reverse iterator that points to the
-   * first element in the vector. Iteration is done in reverse element order.
+   * @brief Returns a read-only (const) reverse iterator that points to one
+   * before the first element in the vector. Iteration is done in reverse
+   * element order.
    */
   const_reverse_iterator rend() const {
     return const_reverse_iterator(begin());
