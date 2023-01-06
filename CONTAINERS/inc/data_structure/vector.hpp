@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/06 15:30:04 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/06 15:32:23 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -344,7 +344,7 @@ class vector : private vector_base<T, Allocator> {
         alloc_.construct(new_end.base(), value);
         ++new_end;
         new_end =
-            std::uninitialized_copy(position, iterator(this->end_), new_end)
+            std::uninitialized_copy(position, iterator(this->end_), new_end);
       } catch (...) {
         std::destroy(new_start, new_end);
         alloc_.deallocate(new_begin.base(), len);
