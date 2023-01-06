@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/06 12:10:05 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/06 12:51:19 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,117 +122,128 @@ class vector : private vector_base<T, Allocator> {
 
   ~vector() { std::destroy(this->begin_, this->end_); }
 
-  // SECTION: Getter functions
+  // TODO: operator = 구현
+  vector &operator=(const vector &other);
+
+  // TODO: assign() 구현
+  void assign(size_type n, const T &value);
+
+  // SECTION: Get allocator
+  // NOTHROW
   /**
    * @brief Get a copy of the memory allocator object
    */
   allocator_type get_allocator() const { return this->alloc_; }
+  // !SECTION
 
+  // SECTION: Iterators
+  // NOTHROW
   /**
-   * @brief Returns a read/write iterator that points to the first element in
-   * the vector. Iteration is done in ordinary element order.
+   * @brief Returns a iterator that points to the first element in the vector.
+   * Iteration is done in ordinary element order.
+   *
+   * @return Read/write iterator
+   * @return Read-only (const) iterator
    */
   iterator begin() { return iterator(this->begin_); }
-
-  /**
-   * @brief Returns a read-only (constant) iterator that points to the first
-   * element in the vector. Iteration is done in ordinary element order.
-   */
   const_iterator begin() const { return const_iterator(this->begin_); }
 
+  // NOTHROW
   /**
-   * @brief Returns a read/write iterator that points to the one past the last
-   * element in the vector. Iteration is done in ordinary element order.
+   * @brief Returns a iterator that points to the one past the last element in
+   * the vector. Iteration is done in ordinary element order.
+   *
+   * @return Read/write iterator
+   * @return Read-only (const) iterator
    */
   iterator end() { return iterator(this->end_); }
-
-  /**
-   * @brief Returns a read-only iterator that points to the one past the last
-   * element in the vector. Iteration is done in ordinary element order.
-   */
   const_iterator end() const { return const_iterator(this->end_); }
 
+  // NOTHROW
   /**
-   * @brief Returns a read/write reverse iterator that points to the last
-   * element in the vector. Iteration is done in reverse element order.
+   * @brief Returns a reverse iterator that points to the last element in the
+   * vector. Iteration is done in reverse element order.
+   *
+   * @return Read/write reverse iterator
+   * @return Read-only (const) reverse iterator
    */
   reverse_iterator rbegin() { return reverse_iterator(end()); }
-
-  /**
-   * @brief Returns a read-only reverse iterator that points to the last
-   * element in the vector. Iteration is done in reverse element order.
-   */
   const_reverse_iterator rbegin() const {
     return const_reverse_iterator(end());
   }
 
+  // NOTHROW
   /**
-   * @brief Returns a read/write reverse iterator that points to one before the
-   * first element in the vector. Iteration is done in reverse element order.
+   * @brief Returns reverse iterator that points to the one before the first
+   * element in the vector. Iteration is done in reverse element order.
+   *
+   * @return Read/write reverse iterator
+   * @return Read-only (const) reverse iterator
    */
   reverse_iterator rend() { return reverse_iterator(begin()); }
-
-  /**
-   * @brief Returns a read-only (const) reverse iterator that points to one
-   * before the first element in the vector. Iteration is done in reverse
-   * element order.
-   */
   const_reverse_iterator rend() const {
     return const_reverse_iterator(begin());
   }
   // !SECTION
 
   // SECTION: Size and capacity
+  // NOTHROW
   /**
    * @brief Returns the number of elements in the vector.
    */
   size_type size() const { return size_type(end() - begin()); }
 
+  // NOTHROW
   /**
    * @brief Returns the size of the largest possible vector.
    */
   size_type max_size() const { return this->alloc_.max_size(); }
 
+  // TODO: resize() 구현
+  void resize(size_type n, value_type value = value_type()) {}
+
+  // NOTHROW
   /**
-   * @brief Returns the total number of elements that the vector can hold before
-   * needing to allocate more memory. The extra space where memory is allocated
-   * but no elements constructed yet.
+   * @brief The extra space where memory is allocated but no elements
+   * constructed yet.
+   *
+   * @return size_type The total number of elements that the vector can hold
+   * before needing to allocate more memory.
    */
   size_type capacity() const {
     return size_type(const_iterator(this->end_of_capacity_) - begin());
   }
 
+  // NOTHROW
   /**
    * @brief Returns true if the vector is empty.
    */
   bool empty() const { return begin() == end(); }
+
+  // TODO: reserve() 구현
+  void reserve(size_type n) {}
   // !SECTION
 
-  // SECTION: Access to element
+  // SECTION: Element access
+  // NOTHROW: If n < size(). Otherwise, undefined behavior.
   /**
    * @brief Subscript access to the data contained in the vector.
    *
    * @return Read/write reference to data.
-   *
-   * It doens't check if the index is out of range or not. However, member
-   * function at() provides range check.
-   */
-  reference operator[](size_type n) { return *(begin() + n); }
-
-  /**
-   * @brief Subscript access to the data contained in the vector.
-   *
    * @return Read-only (constant) reference to data.
    *
    * It doens't check if the index is out of range or not. However, member
    * function at() provides range check.
    */
+  reference operator[](size_type n) { return *(begin() + n); }
   const reference operator[](size_type n) const { return *(begin() + n); }
 
+  // STRONG GUARANTEE
   /**
    * @brief Provides access to the data contained in the vector.
    *
    * @return Read/write reference to data.
+   * @return Read-only (constant) reference to data.
    *
    * Provides safer data access than operator [].
    */
@@ -242,41 +253,32 @@ class vector : private vector_base<T, Allocator> {
     return (*this)[n];
   }
 
-  /**
-   * @brief Provides access to the data contained in the vector.
-   *
-   * @return Read-only (constant) reference to data.
-   *
-   * Provides safer data access than operator [].
-   */
   const_reference at(size_type n) const {
     if (n >= size())
       throw std::out_of_range("ft::vector::at() n is out of range.");
     return (*this)[n];
   }
 
+  // NOTHROW: If container is not empty. Otherwise, undefined behavior.
   /**
-   * @brief Returns a read/write reference to the data at the first element of
-   * the vector.
+   * @brief Returns reference to the data at the first element of the vector.
+   *
+   * @return Read/write reference
+   * @return Read-only reference
    */
   reference front() { return *begin(); }
 
-  /**
-   * @brief Returns a read-only (constant) reference to the data at the first
-   * element of the vector.
-   */
   const_reference front() const { return *begin(); }
 
+  // NOTHROW: If container is not empty. Otherwise, undefined behavior.
   /**
-   * @brief Returns a read/write reference to the data at the last element of
-   * the vector.
+   * @brief Returns reference to the data at the last element of the vector.
+   *
+   * @return Read/write reference
+   * @return Read-only reference
    */
   reference back() { return *(end() - 1); }
 
-  /**
-   * @brief Returns a read-only (constant) reference to the data at the last
-   * element of the vector.
-   */
   const_reference back() const { return *(end() - 1); }
 
   // NOTHROW
@@ -294,12 +296,34 @@ class vector : private vector_base<T, Allocator> {
   const value_type *data() const { return begin_; }
   // !SECTION
 
+  // SECTION: Modifiers
+  // TODO: clear() 구현
+  void clear();
+
+  // TODO: insert() 구현
+  iterator insert(const_iterator pos, const value_type &value);
+  void insert(iterator pos, size_type n, const value_type &value);
+  template <typename InputIterator>
+  void insert(iterator pos, InputIterator first, InputIterator last);
+
+  // TODO: erase() 구현
+  iterator erase(iterator pos);
+  iterator erase(iterator first, iterator last);
+
+  // TODO: push_back() 구현
+  void push_back(const value_type &value);
+
+  // TODO: pop_back() 구현
+  void pop_back();
+
+  // TODO: resize() 구현
+  void resize(size_type n, value_type value = value_type());
+
+  // TODO: swap() 구현
+  void swap(vector &other);
   // !SECTION
-  // TODO: operator = 구현
-  vector &operator=(const vector &other);
 
  private:
-  // TODO: push_back() 구현
   /**
    * @brief Initialize values of elements in range constructor
    *
