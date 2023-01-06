@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/06 12:51:19 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/06 15:30:04 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ class vector : private vector_base<T, Allocator> {
   typedef size_t size_type;
 
  public:
+  // STRONG GUARANTEE
   /**
    * @brief Default constructor creates no elements
    */
@@ -109,7 +110,6 @@ class vector : private vector_base<T, Allocator> {
         std::uninitialzied_copy(other.begin(), other.end(), this->begin_);
   }
 
-  // TODO: range constructor 마저 구현
   template <typename InputIterator>
   vector(typename enable_if<!is_integral<InputIterator>::value,
                             InputIterator>::type first,
@@ -120,6 +120,10 @@ class vector : private vector_base<T, Allocator> {
     _range_initialize(first, last, iterator_category());
   }
 
+  // NOTHROW
+  /**
+   * @brief Destructor of vector
+   */
   ~vector() { std::destroy(this->begin_, this->end_); }
 
   // TODO: operator = 구현
@@ -146,6 +150,7 @@ class vector : private vector_base<T, Allocator> {
    * @return Read-only (const) iterator
    */
   iterator begin() { return iterator(this->begin_); }
+
   const_iterator begin() const { return const_iterator(this->begin_); }
 
   // NOTHROW
@@ -157,6 +162,7 @@ class vector : private vector_base<T, Allocator> {
    * @return Read-only (const) iterator
    */
   iterator end() { return iterator(this->end_); }
+
   const_iterator end() const { return const_iterator(this->end_); }
 
   // NOTHROW
@@ -168,6 +174,7 @@ class vector : private vector_base<T, Allocator> {
    * @return Read-only (const) reverse iterator
    */
   reverse_iterator rbegin() { return reverse_iterator(end()); }
+
   const_reverse_iterator rbegin() const {
     return const_reverse_iterator(end());
   }
@@ -181,6 +188,7 @@ class vector : private vector_base<T, Allocator> {
    * @return Read-only (const) reverse iterator
    */
   reverse_iterator rend() { return reverse_iterator(begin()); }
+
   const_reverse_iterator rend() const {
     return const_reverse_iterator(begin());
   }
@@ -204,8 +212,8 @@ class vector : private vector_base<T, Allocator> {
 
   // NOTHROW
   /**
-   * @brief The extra space where memory is allocated but no elements
-   * constructed yet.
+   * @brief The capacity including the extra space where memory is allocated but
+   * no elements constructed yet.
    *
    * @return size_type The total number of elements that the vector can hold
    * before needing to allocate more memory.
@@ -236,6 +244,7 @@ class vector : private vector_base<T, Allocator> {
    * function at() provides range check.
    */
   reference operator[](size_type n) { return *(begin() + n); }
+
   const reference operator[](size_type n) const { return *(begin() + n); }
 
   // STRONG GUARANTEE
@@ -283,16 +292,14 @@ class vector : private vector_base<T, Allocator> {
 
   // NOTHROW
   /**
-   * @brief Returns a direct pointer(read/write) to the memory array used
-   * interanally by the vector to store its owned elements.
+   * @brief Returns a direct pointer to the memory array used interanally by the
+   * vector to store its owned elements.
+   *
+   * @return Read/write pointer
+   * @return Read-only (constant) pointer
    */
   value_type *data() { return begin_; }
 
-  // NOTHROW
-  /**
-   * @brief Returns a direct pointer(read-only) to the memory array used
-   * interanally by the vector to store its owned elements.
-   */
   const value_type *data() const { return begin_; }
   // !SECTION
 
@@ -301,13 +308,64 @@ class vector : private vector_base<T, Allocator> {
   void clear();
 
   // TODO: insert() 구현
-  iterator insert(const_iterator pos, const value_type &value);
-  void insert(iterator pos, size_type n, const value_type &value);
+  iterator insert(iterator position, const value_type &value) {
+    size_type n = position - begin();
+
+    // STRONG GUARANTEE
+    // CASE 1: Insert a single element at the end, and no reallocations happen.
+    if (this->end_ != this->end_of_capacity_ && position == end()) {
+      alloc_.construct(this->end_, value);
+      ++this->end_;
+    }
+
+    // BASIC GUARANTEE
+    // CASE 2: Insert a single element at the beginning or in the middle of the
+    // vector, and no reallocations happen.
+    else if (this->end_ != this->end_of_capacity_) {
+      alloc_.construct(this->end_, *(this->end_ - 1));
+      ++this->end_;
+      std::copy_backward(position, iterator(this->end_ - 2),
+                         iterator(this->end_ - 1));
+      value_type tmp = value;
+      *position = tmp;
+    }
+
+    // STRONG GUARANTEE
+    // CASE 3: Insert a single element when reallocations needed.
+    else {
+      const size_type old_size = size();
+      const size_type len = old_size != 0 ? old_size * 2 : 1;
+      iterator new_begin(alloc_.allocate(len));
+      iterator new_end(new_start);
+
+      try {
+        new_end = std::uninitialized_copy(iterator(this->begin_), position,
+                                          new_begin);
+        alloc_.construct(new_end.base(), value);
+        ++new_end;
+        new_end =
+            std::uninitialized_copy(position, iterator(this->end_), new_end)
+      } catch (...) {
+        std::destroy(new_start, new_end);
+        alloc_.deallocate(new_begin.base(), len);
+        throw std::exception("ft::vector::insert() exception occured.");
+      }
+      std::destroy(begin(), end());
+      alloc_.deallocate(this->begin_, capacity());
+      this->begin_ = new_begin.base();
+      this->end_ = new_end().base();
+      this->end_of_capacity_ = new_begin.base() + len;
+    }
+
+    return begin() + n;
+  }
+
+  void insert(iterator position, size_type n, const value_type &value);
   template <typename InputIterator>
-  void insert(iterator pos, InputIterator first, InputIterator last);
+  void insert(iterator position, InputIterator first, InputIterator last);
 
   // TODO: erase() 구현
-  iterator erase(iterator pos);
+  iterator erase(iterator position);
   iterator erase(iterator first, iterator last);
 
   // TODO: push_back() 구현
