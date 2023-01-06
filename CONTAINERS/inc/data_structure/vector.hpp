@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/06 11:43:57 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/06 11:48:44 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,6 +254,30 @@ class vector : private vector_base<T, Allocator> {
       throw std::out_of_range("ft::vector::at() n is out of range.");
     return (*this)[n];
   }
+
+  /**
+   * @brief Returns a read/write reference to the data at the first element of
+   * the vector.
+   */
+  reference front() { return *begin(); }
+
+  /**
+   * @brief Returns a read-only (constant) reference to the data at the first
+   * element of the vector.
+   */
+  const_reference front() const { return *begin(); }
+
+  /**
+   * @brief Returns a read/write reference to the data at the last element of
+   * the vector.
+   */
+  reference back() { return *(end() - 1); }
+
+  /**
+   * @brief Returns a read-only (constant) reference to the data at the last
+   * element of the vector.
+   */
+  const_reference back() const { return *(end() - 1); }
   // !SECTION
 
   // !SECTION
