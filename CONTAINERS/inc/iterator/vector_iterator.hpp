@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 21:11:36 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/05 11:56:06 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/06 11:24:41 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ class vector_iterator
   // NOTE Operator overloading
   // SECTION Forward iterator requirements
   reference operator*() const { return *_current; }
+
   pointer operator->() const { return _current; }
+
   vector_iterator &operator++() {
     ++_current;
     return *this;
@@ -80,6 +82,7 @@ class vector_iterator
 
   // SECTION Random access iterator requirements
   reference operator[](const difference_type &n) const { return _current[n]; }
+
   vector_iterator operator+(const difference_type &n) const {
     vector_iterator tmp(_current + n);
 
