@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/06 11:20:26 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/06 11:30:44 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,28 @@ class vector : private vector_base<T, Allocator> {
    * @brief Returns true if the vector is empty.
    */
   bool empty() const { return begin() == end(); }
+  // !SECTION
+
+  // SECTION: Access to element
+  /**
+   * @brief Subscript access to the data contained in the vector.
+   *
+   * @return Read/write reference to data.
+   *
+   * It doens't check if the index is out of range or not. However, member
+   * function at() provides range check.
+   */
+  reference operator[](size_type n) { return *(begin() + n); }
+
+  /**
+   * @brief Subscript access to the data contained in the vector.
+   *
+   * @return Read-only (constant) reference to data.
+   *
+   * It doens't check if the index is out of range or not. However, member
+   * function at() provides range check.
+   */
+  const reference operator[](size_type n) const { return *(begin() + n); }
   // !SECTION
 
   // !SECTION
