@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/05 16:56:32 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/06 11:20:26 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,9 @@ class vector : private vector_base<T, Allocator> {
   const_reverse_iterator rend() const {
     return const_reverse_iterator(begin());
   }
+  // !SECTION
 
+  // SECTION: Size and capacity
   /**
    * @brief Returns the number of elements in the vector.
    */
@@ -191,8 +193,22 @@ class vector : private vector_base<T, Allocator> {
    */
   size_type max_size() const { return this->alloc_.max_size(); }
 
+  /**
+   * @brief Returns the total number of elements that the vector can hold before
+   * needing to allocate more memory. The extra space where memory is allocated
+   * but no elements constructed yet.
+   */
+  size_type capacity() const {
+    return size_type(const_iterator(this->end_of_capacity_) - begin());
+  }
+
+  /**
+   * @brief Returns true if the vector is empty.
+   */
+  bool empty() const { return begin() == end(); }
   // !SECTION
 
+  // !SECTION
   // TODO: operator = 구현
   vector &operator=(const vector &other);
 
