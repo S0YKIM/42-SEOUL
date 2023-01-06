@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/06 11:48:44 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/06 12:10:05 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,6 +278,20 @@ class vector : private vector_base<T, Allocator> {
    * element of the vector.
    */
   const_reference back() const { return *(end() - 1); }
+
+  // NOTHROW
+  /**
+   * @brief Returns a direct pointer(read/write) to the memory array used
+   * interanally by the vector to store its owned elements.
+   */
+  value_type *data() { return begin_; }
+
+  // NOTHROW
+  /**
+   * @brief Returns a direct pointer(read-only) to the memory array used
+   * interanally by the vector to store its owned elements.
+   */
+  const value_type *data() const { return begin_; }
   // !SECTION
 
   // !SECTION
