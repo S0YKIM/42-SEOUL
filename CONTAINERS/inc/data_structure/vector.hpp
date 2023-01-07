@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/07 19:22:37 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/07 19:27:57 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -417,9 +417,9 @@ class vector : private vector_base<T, Allocator> {
 
  private:
   /**
-   * @brief Initialize values of elements in range constructor
+   * @brief Initialize values of elements in range constructor.
    *
-   * @tparam InputIterator Only input iterator can call this function
+   * @tparam InputIterator Only input iterator calls this function
    * @param first
    * @param last
    */
@@ -430,7 +430,7 @@ class vector : private vector_base<T, Allocator> {
   }
 
   /**
-   * @brief Initialize values of elements in range constructor
+   * @brief Initialize values of elements in range constructor.
    *
    * @tparam ForwardIterator Forward iterator or its derived classes
    * @param first
@@ -445,6 +445,14 @@ class vector : private vector_base<T, Allocator> {
     this->end_ = std::uninitialized_copy(first, last, this->_begin);
   }
 
+  /**
+   * @brief Insert elements from first to last in the vector.
+   *
+   * @tparam InputIterator Only input iterator calls this function
+   * @param position The position where the elements are inserted
+   * @param first
+   * @param last
+   */
   template <typename InputIterator>
   void _range_insert(iterator position, InputIterator first, InputIterator last,
                      input_iterator_tag) {
@@ -454,6 +462,14 @@ class vector : private vector_base<T, Allocator> {
     }
   }
 
+  /**
+   * @brief Insert elements from first to last in the vector.
+   *
+   * @tparam ForwardIterator Forward iterator or its derived classes
+   * @param position The position where the elements are inserted
+   * @param first
+   * @param last
+   */
   template <typename ForwardIterator>
   void _range_insert(iterator position, ForwardIterator first,
                      ForwardIterator last, forward_iterator_tag) {
