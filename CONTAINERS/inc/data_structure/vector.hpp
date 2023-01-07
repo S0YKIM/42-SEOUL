@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/06 15:32:23 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/07 13:58:15 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -326,35 +326,33 @@ class vector : private vector_base<T, Allocator> {
       ++this->end_;
       std::copy_backward(position, iterator(this->end_ - 2),
                          iterator(this->end_ - 1));
-      value_type tmp = value;
-      *position = tmp;
+      // TEST: value_type tmp 와 같은 복사본이 필요한가?
+      *position = value;
     }
 
     // STRONG GUARANTEE
     // CASE 3: Insert a single element when reallocations needed.
     else {
       const size_type old_size = size();
-      const size_type len = old_size != 0 ? old_size * 2 : 1;
-      iterator new_begin(alloc_.allocate(len));
-      iterator new_end(new_start);
+      const size_type new_size = old_size != 0 ? old_size * 2 : 1;
+      iterator new_begin(alloc_.allocate(new_size));
+      iterator new_end(new_begin);
 
       try {
-        new_end = std::uninitialized_copy(iterator(this->begin_), position,
-                                          new_begin);
+        new_end = std::uninitialized_copy(begin(), position, new_begin);
         alloc_.construct(new_end.base(), value);
         ++new_end;
-        new_end =
-            std::uninitialized_copy(position, iterator(this->end_), new_end);
+        new_end = std::uninitialized_copy(position, end(), new_end);
       } catch (...) {
-        std::destroy(new_start, new_end);
-        alloc_.deallocate(new_begin.base(), len);
+        std::destroy(new_begin, new_end);
+        alloc_.deallocate(new_begin.base(), new_size);
         throw std::exception("ft::vector::insert() exception occured.");
       }
       std::destroy(begin(), end());
       alloc_.deallocate(this->begin_, capacity());
       this->begin_ = new_begin.base();
       this->end_ = new_end().base();
-      this->end_of_capacity_ = new_begin.base() + len;
+      this->end_of_capacity_ = new_begin.base() + new_size;
     }
 
     return begin() + n;
@@ -368,8 +366,42 @@ class vector : private vector_base<T, Allocator> {
   iterator erase(iterator position);
   iterator erase(iterator first, iterator last);
 
-  // TODO: push_back() 구현
-  void push_back(const value_type &value);
+  /**
+   * @brief Add a single element to the end of the vector.
+   *
+   * @param value Data to be added.
+   */
+  void push_back(const value_type &value) {
+    // STRONG GUARANTEE
+    // Case 1: There is enough capacity left to add the data.
+    if (this->end_ != this->end_of_capacity_) {
+      alloc_.construct(this->end_, value);
+      ++this->end_;
+    }
+    // STRONG GUARANTEE
+    // Case 2: Reallocation is needed to add the data.
+    else {
+      size_type old_size = size();
+      size_type new_size = old_size ? old_size * 2 : 1;
+      iterator new_begin(alloc_.allocate(new_size));
+      iterator new_end(new_begin);
+
+      try {
+        new_end = std::uninitialized_copy(begin(), end(), new_begin);
+        alloc_.construct(new_end, value);
+        ++new_end;
+      } catch (...) {
+        std::destroy(new_begin, new_end);
+        alloc_.deallocate(new_begin, new_size);
+        throw std::exception("ft::vector::push_back() exception occured.");
+      }
+      std::destroy(begin(), end());
+      alloc_.deallocate(this->begin_, capacity());
+      this->begin_ = new_begin.base();
+      this->end_ = new_end.base();
+      this->end_of_capacity_ = new_begin.base() + 1;
+    }
+  }
 
   // TODO: pop_back() 구현
   void pop_back();
