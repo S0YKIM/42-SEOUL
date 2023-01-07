@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/07 16:40:40 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/07 19:22:37 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,63 +308,6 @@ class vector : private vector_base<T, Allocator> {
   void clear();
 
   /**
-   * @brief Inserts the given value into the vector.
-   *
-   * @param position The position where the value will be inserted.
-   * @param value Data to be inserted.
-   * @return iterator An iterator that points to the inserted data.
-   */
-  iterator insert(iterator position, const value_type &value) {
-    size_type n = position - begin();
-
-    // STRONG GUARANTEE
-    // CASE 1: Insert a single element at the end, and no reallocations happen.
-    if (this->end_ != this->end_of_capacity_ && position == end()) {
-      alloc_.construct(this->end_, value);
-      ++this->end_;
-    }
-
-    // BASIC GUARANTEE
-    // CASE 2: Insert a single element at the beginning or in the middle of the
-    // vector, and no reallocations happen.
-    else if (this->end_ != this->end_of_capacity_) {
-      alloc_.construct(this->end_, *(this->end_ - 1));
-      ++this->end_;
-      std::copy_backward(position, iterator(this->end_ - 2),
-                         iterator(this->end_ - 1));
-      // TEST: value_type tmp 와 같은 복사본이 필요한가?
-      *position = value;
-    }
-
-    // STRONG GUARANTEE
-    // CASE 3: Insert a single element when reallocations needed.
-    else {
-      const size_type old_capacity = capacity();
-      const size_type new_capacity = old_capacity ? old_capacity * 2 : 1;
-      iterator new_begin(alloc_.allocate(new_capacity));
-      iterator new_end(new_begin);
-
-      try {
-        new_end = std::uninitialized_copy(begin(), position, new_begin);
-        alloc_.construct(new_end.base(), value);
-        ++new_end;
-        new_end = std::uninitialized_copy(position, end(), new_end);
-      } catch (...) {
-        std::destroy(new_begin, new_end);
-        alloc_.deallocate(new_begin.base(), new_capacity);
-        throw std::exception("ft::vector::insert() exception occured.");
-      }
-      std::destroy(begin(), end());
-      alloc_.deallocate(this->begin_, old_capacity);
-      this->begin_ = new_begin.base();
-      this->end_ = new_end().base();
-      this->end_of_capacity_ = new_begin.base() + new_capacity;
-    }
-
-    return begin() + n;
-  }
-
-  /**
    * @brief Inserts a number of copies of the given data into the vector.
    *
    * @param position The position where the elements will be inserted.
@@ -420,8 +363,31 @@ class vector : private vector_base<T, Allocator> {
     }
   }
 
+  /**
+   * @brief Inserts the given value into the vector.
+   *
+   * @param position The position where the value will be inserted.
+   * @param value Data to be inserted.
+   * @return iterator An iterator that points to the inserted data. It can be
+   * changed from the original position if reallocation happened.
+   */
+  iterator insert(iterator position, const value_type &value) {
+    difference_type n = position - begin();
+
+    insert(position, 1, value);
+    return begin() + n;
+  }
+
   template <typename InputIterator>
-  void insert(iterator position, InputIterator first, InputIterator last);
+  void insert(iterator position,
+              typename enable_if<!is_integral<InputIterator>,
+                                 InputIterator::value>::type first,
+              InputIterator last) {
+    typedef typename iterator_traits<InputIterator>::iterator_category
+        iterator_category;
+    if (first == last) return;
+    _range_insert(position, first, last, iterator_category);
+  }
 
   // TODO: erase() 구현
   iterator erase(iterator position);
@@ -477,6 +443,64 @@ class vector : private vector_base<T, Allocator> {
     this->begin_ = alloc_.allocate(n);
     this->end_of_capacity_ = this->begin_ + n;
     this->end_ = std::uninitialized_copy(first, last, this->_begin);
+  }
+
+  template <typename InputIterator>
+  void _range_insert(iterator position, InputIterator first, InputIterator last,
+                     input_iterator_tag) {
+    for (; first != last; ++first) {
+      position = insert(position, *first);
+      ++position;
+    }
+  }
+
+  template <typename ForwardIterator>
+  void _range_insert(iterator position, ForwardIterator first,
+                     ForwardIterator last, forward_iterator_tag) {
+    difference_type n = std::distance(first, last);
+    size_type new_size = size() + n;
+
+    // CASE 1: No reallocations needed to insert new elements.
+    if (new_size <= capacity()) {
+      // STRONG GUARANTEE
+      // CASE 1-1: Insert new elements at the end of the vector.
+      if (position == end())
+        this->end_ = std::uninitialized_copy(first, last, position);
+
+      // BASIC GUARANTEE
+      // CASE 1-2: Insert new elements at the beginning or in the middle.
+      else {
+        this->end_ = std::uninitialized_copy(end() - n, end(), end());
+        std::copy_backward(position, iterator(this->end_ - n * 2),
+                           iterator(this->end_ - n));
+        std::copy(first, last, position);
+      }
+    }
+
+    // STRONG GUARANTEE
+    // CASE 2: Reallocations needed to insert new elements.
+    else {
+      const size_type old_capacity = capacity();
+      const size_type new_capacity = old_capacity ? old_capacity * 2 : 1;
+      if (new_capacity < new_size) new_capacity = new_size;
+      iterator new_begin(alloc_.allocate(new_capacity));
+      iterator new_end(new_begin);
+
+      try {
+        new_end = std::uninitialized_copy(begin(), position, new_begin);
+        new_end = std::uninitialized_copy(first, last, new_end);
+        new_end = std::uninitialized_copy(position, end(), new_end);
+      } catch (...) {
+        std::destroy(new_begin, new_end);
+        alloc_.deallocate(new_begin.base(), new_capacity);
+        throw std::exception("ft::vector::insert() exception occured.");
+      }
+      std::destroy(begin(), end());
+      alloc_.deallocate(this->begin_, old_capacity);
+      this->begin_ = new_begin.base();
+      this->end_ = new_end().base();
+      this->end_of_capacity_ = new_begin.base() + new_capacity;
+    }
   }
 };
 }  // namespace ft
