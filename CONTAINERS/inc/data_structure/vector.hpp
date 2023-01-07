@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/07 14:26:06 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/07 16:40:40 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -307,7 +307,13 @@ class vector : private vector_base<T, Allocator> {
   // TODO: clear() 구현
   void clear();
 
-  // TODO: insert() 구현
+  /**
+   * @brief Inserts the given value into the vector.
+   *
+   * @param position The position where the value will be inserted.
+   * @param value Data to be inserted.
+   * @return iterator An iterator that points to the inserted data.
+   */
   iterator insert(iterator position, const value_type &value) {
     size_type n = position - begin();
 
@@ -358,7 +364,62 @@ class vector : private vector_base<T, Allocator> {
     return begin() + n;
   }
 
-  void insert(iterator position, size_type n, const value_type &value);
+  /**
+   * @brief Inserts a number of copies of the given data into the vector.
+   *
+   * @param position The position where the elements will be inserted.
+   * @param n Number of elements to be inserted.
+   * @param value Data to be inserted.
+   */
+  void insert(iterator position, size_type n, const value_type &value) {
+    // NOTHROW
+    if (n == 0) return;
+
+    size_type new_size = size() + n;
+
+    // CASE 1: No reallocations needed to insert new elements.
+    if (new_size <= capacity()) {
+      // STRONG GUARANTEE
+      // CASE 1-1: Insert new elements at the end of the vector.
+      if (position == end())
+        this->end_ = std::uninitialized_fill_n(position, n, value);
+
+      // BASIC GUARANTEE
+      // CASE 1-2: Insert new elements at the beginning or in the middle.
+      else {
+        this->end_ = std::uninitialized_copy(end() - n, end(), end());
+        std::copy_backward(position, iterator(this->end_ - n * 2),
+                           iterator(this->end_ - n));
+        std::fill(position, position + n, value);
+      }
+    }
+
+    // STRONG GUARANTEE
+    // CASE 2: Reallocations needed to insert new elements.
+    else {
+      const size_type old_capacity = capacity();
+      const size_type new_capacity = old_capacity ? old_capacity * 2 : 1;
+      if (new_capacity < new_size) new_capacity = new_size;
+      iterator new_begin(alloc_.allocate(new_capacity));
+      iterator new_end(new_begin);
+
+      try {
+        new_end = std::uninitialized_copy(begin(), position, new_begin);
+        new_end = std::uninitialized_fill_n(new_end, n, value);
+        new_end = std::uninitialized_copy(position, end(), new_end);
+      } catch (...) {
+        std::destroy(new_begin, new_end);
+        alloc_.deallocate(new_begin.base(), new_capacity);
+        throw std::exception("ft::vector::insert() exception occured.");
+      }
+      std::destroy(begin(), end());
+      alloc_.deallocate(this->begin_, old_capacity);
+      this->begin_ = new_begin.base();
+      this->end_ = new_end().base();
+      this->end_of_capacity_ = new_begin.base() + new_capacity;
+    }
+  }
+
   template <typename InputIterator>
   void insert(iterator position, InputIterator first, InputIterator last);
 
