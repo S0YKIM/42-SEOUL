@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/07 13:58:15 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/07 14:26:06 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -333,9 +333,9 @@ class vector : private vector_base<T, Allocator> {
     // STRONG GUARANTEE
     // CASE 3: Insert a single element when reallocations needed.
     else {
-      const size_type old_size = size();
-      const size_type new_size = old_size != 0 ? old_size * 2 : 1;
-      iterator new_begin(alloc_.allocate(new_size));
+      const size_type old_capacity = capacity();
+      const size_type new_capacity = old_capacity ? old_capacity * 2 : 1;
+      iterator new_begin(alloc_.allocate(new_capacity));
       iterator new_end(new_begin);
 
       try {
@@ -345,14 +345,14 @@ class vector : private vector_base<T, Allocator> {
         new_end = std::uninitialized_copy(position, end(), new_end);
       } catch (...) {
         std::destroy(new_begin, new_end);
-        alloc_.deallocate(new_begin.base(), new_size);
+        alloc_.deallocate(new_begin.base(), new_capacity);
         throw std::exception("ft::vector::insert() exception occured.");
       }
       std::destroy(begin(), end());
-      alloc_.deallocate(this->begin_, capacity());
+      alloc_.deallocate(this->begin_, old_capacity);
       this->begin_ = new_begin.base();
       this->end_ = new_end().base();
-      this->end_of_capacity_ = new_begin.base() + new_size;
+      this->end_of_capacity_ = new_begin.base() + new_capacity;
     }
 
     return begin() + n;
@@ -366,41 +366,16 @@ class vector : private vector_base<T, Allocator> {
   iterator erase(iterator position);
   iterator erase(iterator first, iterator last);
 
+  // STRONG GUARANTEE
   /**
    * @brief Add a single element to the end of the vector.
    *
    * @param value Data to be added.
    */
   void push_back(const value_type &value) {
-    // STRONG GUARANTEE
     // Case 1: There is enough capacity left to add the data.
-    if (this->end_ != this->end_of_capacity_) {
-      alloc_.construct(this->end_, value);
-      ++this->end_;
-    }
-    // STRONG GUARANTEE
     // Case 2: Reallocation is needed to add the data.
-    else {
-      size_type old_size = size();
-      size_type new_size = old_size ? old_size * 2 : 1;
-      iterator new_begin(alloc_.allocate(new_size));
-      iterator new_end(new_begin);
-
-      try {
-        new_end = std::uninitialized_copy(begin(), end(), new_begin);
-        alloc_.construct(new_end, value);
-        ++new_end;
-      } catch (...) {
-        std::destroy(new_begin, new_end);
-        alloc_.deallocate(new_begin, new_size);
-        throw std::exception("ft::vector::push_back() exception occured.");
-      }
-      std::destroy(begin(), end());
-      alloc_.deallocate(this->begin_, capacity());
-      this->begin_ = new_begin.base();
-      this->end_ = new_end.base();
-      this->end_of_capacity_ = new_begin.base() + 1;
-    }
+    insert(end(), value);
   }
 
   // TODO: pop_back() 구현
