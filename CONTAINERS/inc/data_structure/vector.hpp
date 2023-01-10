@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/10 16:33:50 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/10 17:21:00 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,8 +153,15 @@ class vector : private vector_base<T, Allocator> {
     }
   }
 
-  template <class InputIt>
-  void assign(InputIt first, InputIt last);
+  template <class InputIterator>
+  void assign(typename enable_if<!is_integral<InputIterator>::value,
+                                 InputIterator>::type first,
+              InputIterator last) {
+    typedef typename iterator_traits<InputIterator>::iterator_category
+        iterator_category;
+
+    _range_assign(first, last, iterator_category());
+  }
 
   // SECTION: Get allocator
   // NOTHROW
@@ -588,6 +595,25 @@ class vector : private vector_base<T, Allocator> {
       swap(tmp);
     }
   }
+
+  template <typename InputIterator>
+  _range_assign(InputIterator first, InputIterator last, input_iterator_tag) {
+    iterator tmp(begin());
+
+    while (first != last && tmp != end()) {
+      *tmp = *first;
+      ++tmp;
+      ++first;
+    }
+    if (first == last)
+      erase(tmp, end());
+    else
+      insert(end(), first, last);
+  }
+
+  template <typename ForwardIterator>
+  _range_assign(ForwardIterator first, ForwardIterator last,
+                forward_iterator_tag) {}
 };
 }  // namespace ft
 
