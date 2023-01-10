@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/10 13:30:02 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/10 13:41:17 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -399,7 +399,7 @@ class vector : private vector_base<T, Allocator> {
   iterator erase(iterator position) {
     if (position + 1 != end_) std::copy(position + 1, end(), position);
     --this->end_;
-    alloc_.destroy();
+    alloc_.destroy(this->end_);
   }
 
   // NOTHROW: If the removed elements include the last element.
@@ -423,7 +423,7 @@ class vector : private vector_base<T, Allocator> {
 
   // NOTHROW
   /**
-   * @brief Erases all the elements.
+   * @brief Removes all the elements.
    */
   void clear() { erase(begin_, end_); }
 
@@ -439,8 +439,11 @@ class vector : private vector_base<T, Allocator> {
     insert(end(), value);
   }
 
-  // TODO: pop_back() 구현
-  void pop_back();
+  // NOTHROW: If the vector is not empty. Otherwise, undefined behavior.
+  /**
+   * @brief Removes the last element.
+   */
+  void pop_back() { erase(this->end_ - 1); }
 
   // TODO: resize() 구현
   void resize(size_type n, value_type value = value_type());
