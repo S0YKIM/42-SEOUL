@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/10 13:41:17 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/10 13:51:14 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -445,8 +445,18 @@ class vector : private vector_base<T, Allocator> {
    */
   void pop_back() { erase(this->end_ - 1); }
 
-  // TODO: resize() 구현
-  void resize(size_type n, value_type value = value_type());
+  /**
+   * @brief Resizes the vector to the specified number of elements.
+   *
+   * @param new_size Number of elements the vector should contain.
+   * @param value Data with which new elements should be populated.
+   */
+  void resize(size_type new_size, value_type value = value_type()) {
+    if (new_size < size())
+      erase(this->begin_ + new_size, this->end_);
+    else
+      insert(this->end_, new_size - size(), value);
+  }
 
   // NOTHROW if the allocators in both vectors compare equal.
   // Otherwise, it causes undefined behavior.
