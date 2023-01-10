@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/10 16:16:57 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/10 16:33:50 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,12 +128,28 @@ class vector : private vector_base<T, Allocator> {
   // TODO: operator = 구현
   vector &operator=(const vector &other);
 
-  // TODO: assign() 구현
+  // BASIC
+  // Undefined behavior if allocator_traits::construct is not supported.
+  /**
+   * @brief Assigns new contents to the vector.
+   *
+   * @param n Number of elements to be assigned
+   * @param value Value to be assigned
+   *
+   * Replaces its current contents with new contents, and modifies its size
+   * accordingly.
+   */
   void assign(size_type n, const T &value) {
     if (n > capacity()) {
       vector tmp(n, value);
 
       swap(tmp);
+    } else if (n > size()) {
+      std::fill(begin(), end(), value);
+      this->end_ = std::uninitialized_fill_n(this->end_, n - size(), value);
+    } else {
+      std::fill_n(this->begin_, n, value);
+      erase(this->begin_ + n, end());
     }
   }
 
@@ -335,7 +351,7 @@ class vector : private vector_base<T, Allocator> {
         this->end_ = std::uninitialized_copy(end() - n, end(), end());
         std::copy_backward(position, iterator(this->end_ - n * 2),
                            iterator(this->end_ - n));
-        std::fill(position, position + n, value);
+        std::fill_n(position, n, value);
       }
     }
 
@@ -348,7 +364,7 @@ class vector : private vector_base<T, Allocator> {
       vector<T> tmp(new_capacity);
 
       tmp.end_ = std::copy(begin(), position, tmp.begin_);
-      tmp.end_ = std::fill(tmp.end_, tmp.end_ + n, value);
+      tmp.end_ = std::fill_n(tmp.end_, n, value);
       tmp.end_ = std::copy(position, end(), tmp.end_);
       swap(tmp);
     }
