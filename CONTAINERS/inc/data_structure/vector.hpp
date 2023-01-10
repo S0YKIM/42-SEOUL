@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/10 16:07:03 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/10 16:16:57 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,9 @@ class vector : private vector_base<T, Allocator> {
   // TODO: assign() 구현
   void assign(size_type n, const T &value) {
     if (n > capacity()) {
+      vector tmp(n, value);
+
+      swap(tmp);
     }
   }
 
@@ -459,9 +462,9 @@ class vector : private vector_base<T, Allocator> {
    * @brief Swaps data with another vector.
    */
   void swap(vector &other) {
-    this->begin_ = other.begin_;
-    this->end_ = other.end_;
-    this->end_of_capacity_ = other.end_of_capacity_;
+    std::swap(this->begin_, other.begin_);
+    std::swap(this->end_, other.end_);
+    std::swap(this->end_of_capacity_, other.end_of_capacity_);
   }
   // !SECTION
 
