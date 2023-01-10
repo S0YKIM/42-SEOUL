@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/07 19:27:57 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/10 12:29:10 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -411,8 +411,16 @@ class vector : private vector_base<T, Allocator> {
   // TODO: resize() 구현
   void resize(size_type n, value_type value = value_type());
 
-  // TODO: swap() 구현
-  void swap(vector &other);
+  // NOTHROW if the allocators in both vectors compare equal.
+  // Otherwise, it causes undefined behavior.
+  /**
+   * @brief Swaps data with another vector.
+   */
+  void swap(vector &other) {
+    this->begin_ = other.begin_;
+    this->end_ = other.end_;
+    this->end_of_capacity_ = other.end_of_capacity_;
+  }
   // !SECTION
 
  private:
