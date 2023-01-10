@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/10 13:51:14 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/10 14:02:35 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,13 @@ class vector : private vector_base<T, Allocator> {
     this->end_ = std::uninitialized_fill_n(this->begin_, n, value);
   }
 
-  // TODO: getAlloc(), size() 구현
   /**
    * @brief Copy constructor of vector
    *
    * The size of storage will be the size of the source vector, not the capacity
    * of it. Therefore any extra memory in the source vector will not be copied.
    */
-  vector(const vector &other) : _base(other.getAlloc(), other.size()) {
+  vector(const vector &other) : _base(other.get_allocator(), other.size()) {
     this->end_ =
         std::uninitialzied_copy(other.begin(), other.end(), this->begin_);
   }
@@ -206,9 +205,6 @@ class vector : private vector_base<T, Allocator> {
    * @brief Returns the size of the largest possible vector.
    */
   size_type max_size() const { return this->alloc_.max_size(); }
-
-  // TODO: resize() 구현
-  void resize(size_type n, value_type value = value_type()) {}
 
   // NOTHROW
   /**
