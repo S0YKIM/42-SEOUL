@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/10 12:29:10 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/10 12:55:05 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ class vector : private vector_base<T, Allocator> {
   /**
    * @brief Destructor of vector
    */
-  ~vector() { std::destroy(this->begin_, this->end_); }
+  ~vector() { _range_destroy(this->begin_, this->end_); }
 
   // TODO: operator = 구현
   vector &operator=(const vector &other);
@@ -304,9 +304,6 @@ class vector : private vector_base<T, Allocator> {
   // !SECTION
 
   // SECTION: Modifiers
-  // TODO: clear() 구현
-  void clear();
-
   /**
    * @brief Inserts a number of copies of the given data into the vector.
    *
@@ -351,11 +348,11 @@ class vector : private vector_base<T, Allocator> {
         new_end = std::uninitialized_fill_n(new_end, n, value);
         new_end = std::uninitialized_copy(position, end(), new_end);
       } catch (...) {
-        std::destroy(new_begin, new_end);
+        _range_destroy(new_begin, new_end);
         alloc_.deallocate(new_begin.base(), new_capacity);
         throw std::exception("ft::vector::insert() exception occured.");
       }
-      std::destroy(begin(), end());
+      _range_destroy(begin(), end());
       alloc_.deallocate(this->begin_, old_capacity);
       this->begin_ = new_begin.base();
       this->end_ = new_end().base();
@@ -390,8 +387,16 @@ class vector : private vector_base<T, Allocator> {
   }
 
   // TODO: erase() 구현
-  iterator erase(iterator position);
+  iterator erase(iterator position) {
+    if (position + 1 != end_) std::copy(position + 1, end(), position);
+    --this->end_;
+    alloc_.destroy();
+  }
+
   iterator erase(iterator first, iterator last);
+
+  // TODO: clear() 구현
+  void clear();
 
   // STRONG GUARANTEE
   /**
@@ -424,6 +429,18 @@ class vector : private vector_base<T, Allocator> {
   // !SECTION
 
  private:
+  /**
+   * @brief Destroy the objects in the range of [first, last).
+   *
+   * @tparam ForwardIterator
+   * @param first
+   * @param last
+   */
+  template <typename ForwardIterator>
+  void _range_destroy(ForwardIterator first, ForwardIterator last) {
+    for (; first != last; ++first) alloc_.destroy(first);
+  }
+
   /**
    * @brief Initialize values of elements in range constructor.
    *
@@ -515,11 +532,11 @@ class vector : private vector_base<T, Allocator> {
         new_end = std::uninitialized_copy(first, last, new_end);
         new_end = std::uninitialized_copy(position, end(), new_end);
       } catch (...) {
-        std::destroy(new_begin, new_end);
+        _range_destroy(new_begin, new_end);
         alloc_.deallocate(new_begin.base(), new_capacity);
         throw std::exception("ft::vector::insert() exception occured.");
       }
-      std::destroy(begin(), end());
+      _range_destroy(begin(), end());
       alloc_.deallocate(this->begin_, old_capacity);
       this->begin_ = new_begin.base();
       this->end_ = new_end().base();
