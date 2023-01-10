@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/10 13:18:26 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/10 13:30:02 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -421,8 +421,11 @@ class vector : private vector_base<T, Allocator> {
     return first;
   }
 
-  // TODO: clear() 구현
-  void clear();
+  // NOTHROW
+  /**
+   * @brief Erases all the elements.
+   */
+  void clear() { erase(begin_, end_); }
 
   // STRONG
   /**
