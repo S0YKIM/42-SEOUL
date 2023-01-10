@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/10 12:55:05 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/10 13:18:26 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ class vector : private vector_base<T, Allocator> {
   typedef size_t size_type;
 
  public:
-  // STRONG GUARANTEE
+  // STRONG
   /**
    * @brief Default constructor creates no elements
    */
@@ -247,7 +247,7 @@ class vector : private vector_base<T, Allocator> {
 
   const reference operator[](size_type n) const { return *(begin() + n); }
 
-  // STRONG GUARANTEE
+  // STRONG
   /**
    * @brief Provides access to the data contained in the vector.
    *
@@ -319,12 +319,12 @@ class vector : private vector_base<T, Allocator> {
 
     // CASE 1: No reallocations needed to insert new elements.
     if (new_size <= capacity()) {
-      // STRONG GUARANTEE
+      // STRONG
       // CASE 1-1: Insert new elements at the end of the vector.
       if (position == end())
         this->end_ = std::uninitialized_fill_n(position, n, value);
 
-      // BASIC GUARANTEE
+      // BASIC
       // CASE 1-2: Insert new elements at the beginning or in the middle.
       else {
         this->end_ = std::uninitialized_copy(end() - n, end(), end());
@@ -334,7 +334,7 @@ class vector : private vector_base<T, Allocator> {
       }
     }
 
-    // STRONG GUARANTEE
+    // STRONG
     // CASE 2: Reallocations needed to insert new elements.
     else {
       const size_type old_capacity = capacity();
@@ -386,19 +386,45 @@ class vector : private vector_base<T, Allocator> {
     _range_insert(position, first, last, iterator_category);
   }
 
-  // TODO: erase() 구현
+  // NOTHROW: If the removed element is the last element.
+  // BASIC: Otherwise, the vector is guaranteed to end in a valid state.
+  // Undefined behavior if the position or range is invalid.
+  /**
+   * @brief Remove element at the given position.
+
+   *
+   * @param position Iterator pointing to the element to be erased.
+   * @return iterator An iterator pointing to the next element.
+   */
   iterator erase(iterator position) {
     if (position + 1 != end_) std::copy(position + 1, end(), position);
     --this->end_;
     alloc_.destroy();
   }
 
-  iterator erase(iterator first, iterator last);
+  // NOTHROW: If the removed elements include the last element.
+  // BASIC: Otherwise, the vector is guaranteed to end in a valid state.
+  // Undefined behavior if the position or range is invalid.
+  /**
+   * @brief Remove a range of elements.
+   *
+   * @param first
+   * @param last
+   * @return iterator
+   */
+  iterator erase(iterator first, iterator last) {
+    difference_type n = last - first;
+    iterator end_of_copy = std::copy(last, end(), first);
+
+    _range_destroy(end_of_copy, end());
+    this->end_ = this->end - n;
+    return first;
+  }
 
   // TODO: clear() 구현
   void clear();
 
-  // STRONG GUARANTEE
+  // STRONG
   /**
    * @brief Add a single element to the end of the vector.
    *
@@ -503,12 +529,12 @@ class vector : private vector_base<T, Allocator> {
 
     // CASE 1: No reallocations needed to insert new elements.
     if (new_size <= capacity()) {
-      // STRONG GUARANTEE
+      // STRONG
       // CASE 1-1: Insert new elements at the end of the vector.
       if (position == end())
         this->end_ = std::uninitialized_copy(first, last, position);
 
-      // BASIC GUARANTEE
+      // BASIC
       // CASE 1-2: Insert new elements at the beginning or in the middle.
       else {
         this->end_ = std::uninitialized_copy(end() - n, end(), end());
@@ -518,7 +544,7 @@ class vector : private vector_base<T, Allocator> {
       }
     }
 
-    // STRONG GUARANTEE
+    // STRONG
     // CASE 2: Reallocations needed to insert new elements.
     else {
       const size_type old_capacity = capacity();
