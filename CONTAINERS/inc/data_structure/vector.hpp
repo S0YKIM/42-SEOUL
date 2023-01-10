@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/10 15:48:17 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/10 16:07:03 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,13 @@ class vector : private vector_base<T, Allocator> {
   vector &operator=(const vector &other);
 
   // TODO: assign() 구현
-  void assign(size_type n, const T &value);
+  void assign(size_type n, const T &value) {
+    if (n > capacity()) {
+    }
+  }
+
+  template <class InputIt>
+  void assign(InputIt first, InputIt last);
 
   // SECTION: Get allocator
   // NOTHROW
@@ -336,11 +342,11 @@ class vector : private vector_base<T, Allocator> {
       const size_type old_capacity = capacity();
       const size_type new_capacity = old_capacity ? old_capacity * 2 : 1;
       if (new_capacity < new_size) new_capacity = new_size;
-      vector tmp(new_capacity);
+      vector<T> tmp(new_capacity);
 
-      tmp.end_ = std::uninitialized_copy(begin(), position, tmp.begin_);
-      tmp.end_ = std::uninitialized_fill_n(tmp.end_, n, value);
-      tmp.end_ = std::uninitialized_copy(position, end(), tmp.end_);
+      tmp.end_ = std::copy(begin(), position, tmp.begin_);
+      tmp.end_ = std::fill(tmp.end_, tmp.end_ + n, value);
+      tmp.end_ = std::copy(position, end(), tmp.end_);
       swap(tmp);
     }
   }
@@ -557,9 +563,9 @@ class vector : private vector_base<T, Allocator> {
       if (new_capacity < new_size) new_capacity = new_size;
       vector<T> tmp(new_capacity);
 
-      tmp.end_ = std::uninitialized_copy(begin(), position, tmp.begin_);
-      tmp.end_ = std::uninitialized_copy(first, last, tmp.end_);
-      tmp.end_ = std::uninitialized_copy(position, end(), tmp.end_);
+      tmp.end_ = std::copy(begin(), position, tmp.begin_);
+      tmp.end_ = std::copy(first, last, tmp.end_);
+      tmp.end_ = std::copy(position, end(), tmp.end_);
       swap(tmp);
     }
   }
