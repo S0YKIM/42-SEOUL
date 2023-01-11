@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/11 12:09:09 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/11 13:45:41 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,8 +260,26 @@ class vector : private vector_base<T, Allocator> {
    */
   bool empty() const { return begin() == end(); }
 
-  // TODO: reserve() 구현
-  void reserve(size_type n) {}
+  // STRONG: If no reallocations happen or if the type of the elements has
+  // either a non-thrwoing move constructor or a copy constructor.
+  // BASIC: Otherwise, the vector is guaranteed to end in a valid state.
+  /**
+   * @brief Preallocate enough memory for specifed number of elements.
+   *
+   * @param n Number of elements required.
+   */
+  void reserve(size_type n) {
+    if (n > max_size())
+      throw std::length_error(
+          "ft::vector::reserve() Cannot reserve more than max size.");
+    if (n > capacity()) {
+      vector tmp(n);
+
+      tmp.erase(tmp.begin_ + size(), tmp.end_);
+      std::copy(this->begin_, this->end_, tmp.begin_);
+      swap(tmp);
+    }
+  }
   // !SECTION
 
   // SECTION: Element access
@@ -374,6 +392,7 @@ class vector : private vector_base<T, Allocator> {
       if (new_capacity < new_size) new_capacity = new_size;
       vector tmp(new_capacity);
 
+      tmp.erase(tmp.begin() + new_size, tmp.end());
       tmp.end_ = std::copy(begin(), position, tmp.begin_);
       tmp.end_ = std::fill_n(tmp.end_, n, value);
       tmp.end_ = std::copy(position, end(), tmp.end_);
@@ -446,7 +465,7 @@ class vector : private vector_base<T, Allocator> {
   /**
    * @brief Removes all the elements.
    */
-  void clear() { erase(begin_, end_); }
+  void clear() { erase(this->begin_, this->end_); }
 
   // STRONG
   /**
@@ -593,6 +612,7 @@ class vector : private vector_base<T, Allocator> {
       if (new_capacity < new_size) new_capacity = new_size;
       vector tmp(new_capacity);
 
+      tmp.erase(tmp.begin() + new_size, tmp.end());
       tmp.end_ = std::copy(this->begin_, position, tmp.begin_);
       tmp.end_ = std::copy(first, last, tmp.end_);
       tmp.end_ = std::copy(position, this->end_, tmp.end_);
