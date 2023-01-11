@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/10 17:21:00 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/11 11:57:23 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -368,7 +368,7 @@ class vector : private vector_base<T, Allocator> {
       const size_type old_capacity = capacity();
       const size_type new_capacity = old_capacity ? old_capacity * 2 : 1;
       if (new_capacity < new_size) new_capacity = new_size;
-      vector<T> tmp(new_capacity);
+      vector tmp(new_capacity);
 
       tmp.end_ = std::copy(begin(), position, tmp.begin_);
       tmp.end_ = std::fill_n(tmp.end_, n, value);
@@ -568,7 +568,7 @@ class vector : private vector_base<T, Allocator> {
     if (new_size <= capacity()) {
       // STRONG
       // CASE 1-1: Insert new elements at the end of the vector.
-      if (position == end())
+      if (position == this->end_)
         this->end_ = std::uninitialized_copy(first, last, position);
 
       // BASIC
@@ -587,11 +587,11 @@ class vector : private vector_base<T, Allocator> {
       const size_type old_capacity = capacity();
       const size_type new_capacity = old_capacity ? old_capacity * 2 : 1;
       if (new_capacity < new_size) new_capacity = new_size;
-      vector<T> tmp(new_capacity);
+      vector tmp(new_capacity);
 
-      tmp.end_ = std::copy(begin(), position, tmp.begin_);
+      tmp.end_ = std::copy(this->begin_, position, tmp.begin_);
       tmp.end_ = std::copy(first, last, tmp.end_);
-      tmp.end_ = std::copy(position, end(), tmp.end_);
+      tmp.end_ = std::copy(position, this->end_, tmp.end_);
       swap(tmp);
     }
   }
@@ -600,20 +600,38 @@ class vector : private vector_base<T, Allocator> {
   _range_assign(InputIterator first, InputIterator last, input_iterator_tag) {
     iterator tmp(begin());
 
-    while (first != last && tmp != end()) {
+    while (first != last && tmp != this->end_) {
       *tmp = *first;
       ++tmp;
       ++first;
     }
     if (first == last)
-      erase(tmp, end());
+      erase(tmp, this->end_);
     else
-      insert(end(), first, last);
+      insert(this->end_, first, last);
   }
 
   template <typename ForwardIterator>
   _range_assign(ForwardIterator first, ForwardIterator last,
-                forward_iterator_tag) {}
+                forward_iterator_tag) {
+    difference_type new_size = std::distance(first, last);
+
+    if (new_size > capacity()) {
+      vector tmp(first, last);
+
+      swap(tmp);
+    } else if (new_size > size()) {
+      iterator mid = std::advance(first, size());
+
+      std::copy(first, mid, this->begin_);
+      this->end_ = std::uninitialized_copy(mid, last, this->end_);
+    } else {
+      iterator copy_end;
+
+      std::copy(first, last, this->begin_);
+      erase(this->begin + new_size, this->end_);
+    }
+  }
 };
 }  // namespace ft
 
