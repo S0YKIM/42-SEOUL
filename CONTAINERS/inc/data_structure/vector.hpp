@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/11 19:46:48 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/11 20:17:07 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -600,18 +600,19 @@ class vector : private vector_base<T, Allocator> {
                      ForwardIterator last, std::forward_iterator_tag) {
     difference_type n = std::distance(first, last);
     size_type new_size = size() + n;
+    pointer pos = this->begin_ + (position - begin());
 
     // CASE 1: No reallocations needed to insert new elements.
     if (new_size <= capacity()) {
       // STRONG
       // CASE 1-1: Insert new elements at the end of the vector.
-      if (position == this->end_)
-        this->end_ = std::uninitialized_copy(first, last, position);
+      if (position == end())
+        this->end_ = std::uninitialized_copy(first, last, pos);
 
       // BASIC
       // CASE 1-2: Insert new elements at the beginning or in the middle.
       else {
-        this->end_ = std::uninitialized_copy(end() - n, end(), end());
+        this->end_ = std::uninitialized_copy(end() - n, end(), this->end_);
         std::copy_backward(position, iterator(this->end_ - n * 2),
                            iterator(this->end_ - n));
         std::copy(first, last, position);
@@ -628,9 +629,9 @@ class vector : private vector_base<T, Allocator> {
 
       tmp.begin_ = tmp.alloc_.allocate(new_capacity);
       tmp.end_of_capacity_ = tmp.begin_ + new_capacity;
-      tmp.end_ = std::uninitialized_copy(this->begin_, position, tmp.begin_);
+      tmp.end_ = std::uninitialized_copy(begin(), position, tmp.begin_);
       tmp.end_ = std::uninitialized_copy(first, last, tmp.end_);
-      tmp.end_ = std::uninitialized_copy(position, this->end_, tmp.end_);
+      tmp.end_ = std::uninitialized_copy(position, end(), tmp.end_);
       swap(tmp);
     }
   }
@@ -661,7 +662,7 @@ class vector : private vector_base<T, Allocator> {
 
       swap(tmp);
     } else if (new_size > size()) {
-      iterator mid = first;
+      ForwardIterator mid = first;
 
       std::advance(mid, size());
       std::copy(first, mid, this->begin_);
