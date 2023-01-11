@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/11 17:19:53 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/11 19:46:48 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ class vector : private vector_base<T, Allocator> {
   /**
    * @brief Destructor of vector
    */
-  ~vector() { _range_destroy(this->begin_, this->end_); }
+  ~vector() { _range_destroy(begin(), end()); }
 
   // BASIC
   // Undefined behavior if value_type is not copy assignable.
@@ -159,7 +159,7 @@ class vector : private vector_base<T, Allocator> {
       this->end_ = std::uninitialized_fill_n(this->end_, n - size(), value);
     } else {
       std::fill_n(this->begin_, n, value);
-      erase(this->begin_ + n, end());
+      erase(begin() + n, end());
     }
   }
 
@@ -471,7 +471,7 @@ class vector : private vector_base<T, Allocator> {
     iterator end_of_copy = std::copy(last, end(), first);
 
     _range_destroy(end_of_copy, end());
-    this->end_ = this->end - n;
+    this->end_ -= n;
     return first;
   }
 
@@ -538,7 +538,7 @@ class vector : private vector_base<T, Allocator> {
    */
   template <typename ForwardIterator>
   void _range_destroy(ForwardIterator first, ForwardIterator last) {
-    for (; first != last; ++first) this->alloc_.destroy(first);
+    for (; first != last; ++first) this->alloc_.destroy(first.base());
   }
 
   /**
@@ -654,22 +654,23 @@ class vector : private vector_base<T, Allocator> {
   template <typename ForwardIterator>
   void _range_assign(ForwardIterator first, ForwardIterator last,
                      std::forward_iterator_tag) {
-    difference_type new_size = std::distance(first, last);
+    size_t new_size = std::distance(first, last);
 
     if (new_size > capacity()) {
       vector tmp(first, last);
 
       swap(tmp);
     } else if (new_size > size()) {
-      iterator mid = std::advance(first, size());
+      iterator mid = first;
 
+      std::advance(mid, size());
       std::copy(first, mid, this->begin_);
       this->end_ = std::uninitialized_copy(mid, last, this->end_);
     } else {
       iterator copy_end;
 
       std::copy(first, last, this->begin_);
-      erase(this->begin + new_size, this->end_);
+      erase(begin() + new_size, end());
     }
   }
 };
