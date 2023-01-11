@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 10:55:02 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/05 12:34:21 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/11 16:23:43 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ struct enable_if {};
 
 template <typename T>
 struct enable_if<true, T> {
-  typedef T type
+  typedef T type;
 };
 
 template <typename T, T v>
@@ -67,9 +67,6 @@ template <>
 struct _is_integral<long int> : public true_type {};
 
 template <>
-struct _is_integral<long long int> : public true_type {};
-
-template <>
 struct _is_integral<unsigned char> : public true_type {};
 
 template <>
@@ -80,9 +77,6 @@ struct _is_integral<unsigned int> : public true_type {};
 
 template <>
 struct _is_integral<unsigned long int> : public true_type {};
-
-template <>
-struct _is_integral<unsigned long long int> : public true_type {};
 
 /**
  * @brief Remove const and volatile keyword from the given type
