@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/11 13:45:41 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/11 15:47:55 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ class vector_base {
    * @brief Deallocate the storage of vector
    */
   ~vector_base() {
-    if (begin_) alloc.deallocate(begin_, end_of_capacity_ - begin_);
+    if (begin_) alloc_.deallocate(begin_, end_of_capacity_ - begin_);
   }
 };
 
@@ -81,13 +81,16 @@ class vector : private vector_base<T, Allocator> {
 
  public:
   // STRONG
+  // Undefined behavior if allocator_traits::construct is not supported with the
+  // apporpriate arguments for the element constructions.
   /**
    * @brief Default constructor creates no elements
    */
   explicit vector(const allocator_type &a = allocator_type()) : _base(a) {}
 
+  // STRONG
   /**
-   * @brief Create a vector with copies of an exemplar element
+   * @brief Creates a vector with copies of an exemplar element.
    *
    * @param n The number of elements to initially create
    * @param value An element to copy
@@ -98,6 +101,7 @@ class vector : private vector_base<T, Allocator> {
     this->end_ = std::uninitialized_fill_n(this->begin_, n, value);
   }
 
+  // STRONG
   /**
    * @brief Copy constructor of vector
    *
@@ -109,6 +113,8 @@ class vector : private vector_base<T, Allocator> {
         std::uninitialzied_copy(other.begin(), other.end(), this->begin_);
   }
 
+  // STRONG
+  // Undefined behavior if the range specifed by [first, last) is not valid.
   template <typename InputIterator>
   vector(typename enable_if<!is_integral<InputIterator>::value,
                             InputIterator>::type first,
@@ -157,6 +163,7 @@ class vector : private vector_base<T, Allocator> {
     }
   }
 
+  // BASIC
   template <class InputIterator>
   void assign(typename enable_if<!is_integral<InputIterator>::value,
                                  InputIterator>::type first,
@@ -273,10 +280,11 @@ class vector : private vector_base<T, Allocator> {
       throw std::length_error(
           "ft::vector::reserve() Cannot reserve more than max size.");
     if (n > capacity()) {
-      vector tmp(n);
+      vector tmp;
 
-      tmp.erase(tmp.begin_ + size(), tmp.end_);
-      std::copy(this->begin_, this->end_, tmp.begin_);
+      tmp.begin_ = tmp.alloc_.allocate(n);
+      tmp.end_of_capacity_ = tmp.begin_ + n;
+      tmp.end_ = std::uninitialized_copy(this->begin_, this->end_, tmp.begin_);
       swap(tmp);
     }
   }
@@ -390,12 +398,13 @@ class vector : private vector_base<T, Allocator> {
       const size_type old_capacity = capacity();
       const size_type new_capacity = old_capacity ? old_capacity * 2 : 1;
       if (new_capacity < new_size) new_capacity = new_size;
-      vector tmp(new_capacity);
+      vector tmp;
 
-      tmp.erase(tmp.begin() + new_size, tmp.end());
-      tmp.end_ = std::copy(begin(), position, tmp.begin_);
-      tmp.end_ = std::fill_n(tmp.end_, n, value);
-      tmp.end_ = std::copy(position, end(), tmp.end_);
+      tmp.begin_ = tmp.alloc_.allocate(new_capacity);
+      tmp.end_of_capacity_ = tmp.begin_ + new_capacity;
+      tmp.end_ = std::uninitialized_copy(begin(), position, tmp.begin_);
+      tmp.end_ = std::uninitialized_fill_n(tmp.end_, n, value);
+      tmp.end_ = std::uninitialzied_copy(position, end(), tmp.end_);
       swap(tmp);
     }
   }
@@ -551,9 +560,9 @@ class vector : private vector_base<T, Allocator> {
   void _range_initialize(ForwardIterator first, ForwardIterator last,
                          forward_iterator_tag) {
     size_type n = std::distance(first, last);
-    this->begin_ = alloc_.allocate(n);
+    this->begin_ = this->alloc_.allocate(n);
     this->end_of_capacity_ = this->begin_ + n;
-    this->end_ = std::uninitialized_copy(first, last, this->_begin);
+    this->end_ = std::uninitialized_copy(first, last, this->begin_);
   }
 
   /**
@@ -610,18 +619,20 @@ class vector : private vector_base<T, Allocator> {
       const size_type old_capacity = capacity();
       const size_type new_capacity = old_capacity ? old_capacity * 2 : 1;
       if (new_capacity < new_size) new_capacity = new_size;
-      vector tmp(new_capacity);
+      vector tmp;
 
-      tmp.erase(tmp.begin() + new_size, tmp.end());
-      tmp.end_ = std::copy(this->begin_, position, tmp.begin_);
-      tmp.end_ = std::copy(first, last, tmp.end_);
-      tmp.end_ = std::copy(position, this->end_, tmp.end_);
+      tmp.begin_ = tmp.alloc_.allocate(new_capacity);
+      tmp.end_of_capacity_ = tmp.begin_ + new_capacity;
+      tmp.end_ = std::uninitialized_copy(this->begin_, position, tmp.begin_);
+      tmp.end_ = std::uninitialized_copy(first, last, tmp.end_);
+      tmp.end_ = std::uninitialized_copy(position, this->end_, tmp.end_);
       swap(tmp);
     }
   }
 
   template <typename InputIterator>
-  _range_assign(InputIterator first, InputIterator last, input_iterator_tag) {
+  void _range_assign(InputIterator first, InputIterator last,
+                     input_iterator_tag) {
     iterator tmp(begin());
 
     while (first != last && tmp != this->end_) {
@@ -636,8 +647,8 @@ class vector : private vector_base<T, Allocator> {
   }
 
   template <typename ForwardIterator>
-  _range_assign(ForwardIterator first, ForwardIterator last,
-                forward_iterator_tag) {
+  void _range_assign(ForwardIterator first, ForwardIterator last,
+                     forward_iterator_tag) {
     difference_type new_size = std::distance(first, last);
 
     if (new_size > capacity()) {
