@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/11 11:57:23 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/11 12:09:09 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,12 @@ class vector : private vector_base<T, Allocator> {
    */
   ~vector() { _range_destroy(this->begin_, this->end_); }
 
-  // TODO: operator = 구현
-  vector &operator=(const vector &other);
+  // BASIC
+  // Undefined behavior if value_type is not copy assignable.
+  vector &operator=(const vector &other) {
+    if (this != &other) assign(other.begin(), other.end());
+    return *this;
+  }
 
   // BASIC
   // Undefined behavior if allocator_traits::construct is not supported.
