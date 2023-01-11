@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/11 15:47:55 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/11 17:19:53 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ class vector : private vector_base<T, Allocator> {
   typedef typename allocator_type::const_pointer const_pointer;
   typedef vector_iterator<pointer> iterator;
   typedef vector_iterator<const_pointer> const_iterator;
-  typedef reverse_iterator<iterator> reverse_iterator;
-  typedef reverse_iterator<const_iterator> const_reverse_iterator;
+  typedef ft::reverse_iterator<iterator> reverse_iterator;
+  typedef ft::reverse_iterator<const_iterator> const_reverse_iterator;
 
   typedef ptrdiff_t difference_type;
   typedef size_t size_type;
@@ -110,7 +110,7 @@ class vector : private vector_base<T, Allocator> {
    */
   vector(const vector &other) : _base(other.get_allocator(), other.size()) {
     this->end_ =
-        std::uninitialzied_copy(other.begin(), other.end(), this->begin_);
+        std::uninitialized_copy(other.begin(), other.end(), this->begin_);
   }
 
   // STRONG
@@ -118,7 +118,7 @@ class vector : private vector_base<T, Allocator> {
   template <typename InputIterator>
   vector(typename enable_if<!is_integral<InputIterator>::value,
                             InputIterator>::type first,
-         InputIterator last, const allocator type &a = allocator_type())
+         InputIterator last, const allocator_type &a = allocator_type())
       : _base(a) {
     typedef typename iterator_traits<InputIterator>::iterator_category
         iterator_category;
@@ -356,9 +356,9 @@ class vector : private vector_base<T, Allocator> {
    * @return Read/write pointer
    * @return Read-only (constant) pointer
    */
-  value_type *data() { return begin_; }
+  value_type *data() { return this->begin_; }
 
-  const value_type *data() const { return begin_; }
+  const value_type *data() const { return this->begin_; }
   // !SECTION
 
   // SECTION: Modifiers
@@ -375,17 +375,22 @@ class vector : private vector_base<T, Allocator> {
 
     size_type new_size = size() + n;
 
+    // typename iterator_traits<iterator>::value_type v;
+
     // CASE 1: No reallocations needed to insert new elements.
     if (new_size <= capacity()) {
       // STRONG
       // CASE 1-1: Insert new elements at the end of the vector.
-      if (position == end())
-        this->end_ = std::uninitialized_fill_n(position, n, value);
+      if (position == end()) {
+        std::uninitialized_fill_n(position, n, value);
+        this->end_ += n;
+      }
 
       // BASIC
       // CASE 1-2: Insert new elements at the beginning or in the middle.
       else {
-        this->end_ = std::uninitialized_copy(end() - n, end(), end());
+        std::uninitialized_copy(end() - n, end(), end());
+        this->end_ += n;
         std::copy_backward(position, iterator(this->end_ - n * 2),
                            iterator(this->end_ - n));
         std::fill_n(position, n, value);
@@ -396,7 +401,7 @@ class vector : private vector_base<T, Allocator> {
     // CASE 2: Reallocations needed to insert new elements.
     else {
       const size_type old_capacity = capacity();
-      const size_type new_capacity = old_capacity ? old_capacity * 2 : 1;
+      size_type new_capacity = old_capacity ? old_capacity * 2 : 1;
       if (new_capacity < new_size) new_capacity = new_size;
       vector tmp;
 
@@ -404,7 +409,7 @@ class vector : private vector_base<T, Allocator> {
       tmp.end_of_capacity_ = tmp.begin_ + new_capacity;
       tmp.end_ = std::uninitialized_copy(begin(), position, tmp.begin_);
       tmp.end_ = std::uninitialized_fill_n(tmp.end_, n, value);
-      tmp.end_ = std::uninitialzied_copy(position, end(), tmp.end_);
+      tmp.end_ = std::uninitialized_copy(position, end(), tmp.end_);
       swap(tmp);
     }
   }
@@ -426,13 +431,13 @@ class vector : private vector_base<T, Allocator> {
 
   template <typename InputIterator>
   void insert(iterator position,
-              typename enable_if<!is_integral<InputIterator>,
-                                 InputIterator::value>::type first,
+              typename enable_if<!is_integral<InputIterator>::value,
+                                 InputIterator>::type first,
               InputIterator last) {
     typedef typename iterator_traits<InputIterator>::iterator_category
         iterator_category;
     if (first == last) return;
-    _range_insert(position, first, last, iterator_category);
+    _range_insert(position, first, last, iterator_category());
   }
 
   // NOTHROW: If the removed element is the last element.
@@ -446,9 +451,9 @@ class vector : private vector_base<T, Allocator> {
    * @return iterator An iterator pointing to the next element.
    */
   iterator erase(iterator position) {
-    if (position + 1 != end_) std::copy(position + 1, end(), position);
+    if (position + 1 != this->end_) std::copy(position + 1, end(), position);
     --this->end_;
-    alloc_.destroy(this->end_);
+    this->alloc_.destroy(this->end_);
   }
 
   // NOTHROW: If the removed elements include the last element.
@@ -533,7 +538,7 @@ class vector : private vector_base<T, Allocator> {
    */
   template <typename ForwardIterator>
   void _range_destroy(ForwardIterator first, ForwardIterator last) {
-    for (; first != last; ++first) alloc_.destroy(first);
+    for (; first != last; ++first) this->alloc_.destroy(first);
   }
 
   /**
@@ -545,7 +550,7 @@ class vector : private vector_base<T, Allocator> {
    */
   template <typename InputIterator>
   void _range_initialize(InputIterator first, InputIterator last,
-                         input_iterator_tag) {
+                         std::input_iterator_tag) {
     for (; first != last; ++first) push_back(*first);
   }
 
@@ -558,7 +563,7 @@ class vector : private vector_base<T, Allocator> {
    */
   template <typename ForwardIterator>
   void _range_initialize(ForwardIterator first, ForwardIterator last,
-                         forward_iterator_tag) {
+                         std::forward_iterator_tag) {
     size_type n = std::distance(first, last);
     this->begin_ = this->alloc_.allocate(n);
     this->end_of_capacity_ = this->begin_ + n;
@@ -575,7 +580,7 @@ class vector : private vector_base<T, Allocator> {
    */
   template <typename InputIterator>
   void _range_insert(iterator position, InputIterator first, InputIterator last,
-                     input_iterator_tag) {
+                     std::input_iterator_tag) {
     for (; first != last; ++first) {
       position = insert(position, *first);
       ++position;
@@ -592,7 +597,7 @@ class vector : private vector_base<T, Allocator> {
    */
   template <typename ForwardIterator>
   void _range_insert(iterator position, ForwardIterator first,
-                     ForwardIterator last, forward_iterator_tag) {
+                     ForwardIterator last, std::forward_iterator_tag) {
     difference_type n = std::distance(first, last);
     size_type new_size = size() + n;
 
@@ -617,7 +622,7 @@ class vector : private vector_base<T, Allocator> {
     // CASE 2: Reallocations needed to insert new elements.
     else {
       const size_type old_capacity = capacity();
-      const size_type new_capacity = old_capacity ? old_capacity * 2 : 1;
+      size_type new_capacity = old_capacity ? old_capacity * 2 : 1;
       if (new_capacity < new_size) new_capacity = new_size;
       vector tmp;
 
@@ -632,7 +637,7 @@ class vector : private vector_base<T, Allocator> {
 
   template <typename InputIterator>
   void _range_assign(InputIterator first, InputIterator last,
-                     input_iterator_tag) {
+                     std::input_iterator_tag) {
     iterator tmp(begin());
 
     while (first != last && tmp != this->end_) {
@@ -648,7 +653,7 @@ class vector : private vector_base<T, Allocator> {
 
   template <typename ForwardIterator>
   void _range_assign(ForwardIterator first, ForwardIterator last,
-                     forward_iterator_tag) {
+                     std::forward_iterator_tag) {
     difference_type new_size = std::distance(first, last);
 
     if (new_size > capacity()) {

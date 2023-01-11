@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 13:50:36 by sokim             #+#    #+#             */
-/*   Updated: 2022/12/29 15:40:36 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/11 16:10:03 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class reverse_iterator
   Iter current;
 
  public:
-  typedef typename iterator_traits<Iter> traits;
+  typedef iterator_traits<Iter> traits;
 
   typedef typename traits::difference_type difference_type;
   typedef typename traits::reference reference;

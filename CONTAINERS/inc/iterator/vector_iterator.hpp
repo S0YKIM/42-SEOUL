@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 21:11:36 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/06 11:24:41 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/11 17:13:23 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class vector_iterator
                       typename iterator_traits<Iter>::pointer,
                       typename iterator_traits<Iter>::reference> {
  public:
-  typedef typename iterator_traits<Iter> traits;
+  typedef iterator_traits<Iter> traits;
 
   typedef typename traits::iterator_category iterator_category;
   typedef typename traits::value_type value_type;
@@ -73,7 +73,7 @@ class vector_iterator
     return *this;
   }
 
-  vector_iterator oprator--(int) {
+  vector_iterator operator--(int) {
     vector_iterator tmp(_current);
 
     --_current;
@@ -157,9 +157,7 @@ template <typename IterType>
 inline vector_iterator<IterType> operator+(
     const typename vector_iterator<IterType>::difference_type n,
     const vector_iterator<IterType> &i) {
-  vector_iterator tmp(n + i.base());
-
-  return tmp;
+  return vector_iterator<IterType>(n + i.base());
 }  // !SECTION
 }  // namespace ft
 #endif
