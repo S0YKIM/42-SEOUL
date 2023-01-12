@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 20:07:15 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/12 21:00:33 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/12 21:23:06 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int main() {
   std::cout << "* [3] - Map                            *" << std::endl;
   std::cout << "* [4] - Set                            *" << std::endl;
   std::cout << "****************************************" << std::endl;
+  std::cout << std::endl;
   std::cin >> option;
 
   switch (option) {
