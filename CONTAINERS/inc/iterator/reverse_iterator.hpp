@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 13:50:36 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/11 16:10:03 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/12 18:09:19 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,8 @@ class reverse_iterator
     return *tmp;
   }
 
-  pointer operator->() const {
-    Iter tmp = current;
-
-    --tmp;
-    return tmp;
-  }  // !SECTION
-
-  // SECTION: Subscript operator
-  reference operator[](difference_type n) const {
-    Iter tmp = current - n;
-
-    return *tmp;
-  }  // !SECTION
+  pointer operator->() const { return &(operator*()); }
+  // !SECTION
 
   // SECTION: Increment and decrement operators
   reverse_iterator &operator++() {
@@ -104,9 +93,7 @@ class reverse_iterator
 
   // SECTION: Arithmetic operators
   reverse_iterator operator+(difference_type n) const {
-    reverse_iterator tmp(current - n);
-
-    return tmp;
+    return reverse_iterator(current - n);
   }
 
   reverse_iterator &operator+=(difference_type n) {
@@ -115,52 +102,58 @@ class reverse_iterator
   }
 
   reverse_iterator operator-(difference_type n) const {
-    reverse_iterator tmp(current + n);
-
-    return tmp;
+    return reverse_iterator(current + n);
   }
 
   reverse_iterator &operator-=(difference_type n) {
     current += n;
     return *this;
   }  // !SECTION
+
+  // SECTION: Subscript operator
+  reference operator[](difference_type n) const {
+    Iter tmp = current - n;
+
+    return *(reverse_iterator(tmp));
+  }
+  // !SECTION
 };
 
 // NOTE: Non-member functions
 // SECTION: Relational operators
-template <typename IterTypeL, typename IterTypeR>
-inline bool operator==(const reverse_iterator<IterTypeL> &lhs,
-                       const reverse_iterator<IterTypeR> &rhs) {
+template <typename Iter>
+inline bool operator==(const reverse_iterator<Iter> &lhs,
+                       const reverse_iterator<Iter> &rhs) {
   return lhs.base() == rhs.base();
 }
 
-template <typename IterTypeL, typename IterTypeR>
-inline bool operator!=(const reverse_iterator<IterTypeL> &lhs,
-                       const reverse_iterator<IterTypeR> &rhs) {
+template <typename Iter>
+inline bool operator!=(const reverse_iterator<Iter> &lhs,
+                       const reverse_iterator<Iter> &rhs) {
   return lhs.base() != rhs.base();
 }
 
-template <typename IterTypeL, typename IterTypeR>
-inline bool operator<(const reverse_iterator<IterTypeL> &lhs,
-                      const reverse_iterator<IterTypeR> &rhs) {
+template <typename Iter>
+inline bool operator<(const reverse_iterator<Iter> &lhs,
+                      const reverse_iterator<Iter> &rhs) {
   return lhs.base() > rhs.base();
 }
 
-template <typename IterTypeL, typename IterTypeR>
-inline bool operator<=(const reverse_iterator<IterTypeL> &lhs,
-                       const reverse_iterator<IterTypeR> &rhs) {
+template <typename Iter>
+inline bool operator<=(const reverse_iterator<Iter> &lhs,
+                       const reverse_iterator<Iter> &rhs) {
   return lhs.base() >= rhs.base();
 }
 
-template <typename IterTypeL, typename IterTypeR>
-inline bool operator>(const reverse_iterator<IterTypeL> &lhs,
-                      const reverse_iterator<IterTypeR> &rhs) {
+template <typename Iter>
+inline bool operator>(const reverse_iterator<Iter> &lhs,
+                      const reverse_iterator<Iter> &rhs) {
   return lhs.base() < rhs.base();
 }
 
-template <typename IterTypeL, typename IterTypeR>
-inline bool operator>=(const reverse_iterator<IterTypeL> &lhs,
-                       const reverse_iterator<IterTypeR> &rhs) {
+template <typename Iter>
+inline bool operator>=(const reverse_iterator<Iter> &lhs,
+                       const reverse_iterator<Iter> &rhs) {
   return lhs.base() <= rhs.base();
 }  // !SECTION
 
