@@ -6,11 +6,11 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 20:07:15 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/12 20:29:12 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/12 21:00:33 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include "test.hpp"
 
 int main() {
   int option = 0;
@@ -27,7 +27,7 @@ int main() {
 
   switch (option) {
     case 1:
-      std::cout << "1" << std::endl;
+      test_vector();
       break;
     case 2:
       std::cout << "2" << std::endl;
