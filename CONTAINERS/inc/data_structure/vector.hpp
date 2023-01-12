@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/12 16:42:56 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/12 17:00:13 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -705,6 +705,34 @@ inline bool operator<(const vector<T, Allocator> &lhs,
                                       rhs.end());
 }
 
+template <typename T, typename Allocator>
+inline bool operator!=(const vector<T, Allocator> &lhs,
+                       const vector<T, Allocator> &rhs) {
+  return !(lhs == rhs);
+}
+
+template <typename T, typename Allocator>
+inline bool operator>(const vector<T, Allocator> &lhs,
+                      const vector<T, Allocator> &rhs) {
+  return rhs < lhs;
+}
+
+template <typename T, typename Allocator>
+inline bool operator<=(const vector<T, Allocator> &lhs,
+                       const vector<T, Allocator> &rhs) {
+  return !(rhs < lhs);
+}
+
+template <typename T, typename Allocator>
+inline bool operator>=(const vector<T, Allocator> &lhs,
+                       const vector<T, Allocator> &rhs) {
+  return !(lhs < rhs);
+}
+
+template <typename T, typename Allocator>
+inline void swap(vector<T, Allocator> &lhs, vector<T, Allocator> &rhs) {
+  lhs.swap(rhs);
+}
 }  // namespace ft
 
 #endif
