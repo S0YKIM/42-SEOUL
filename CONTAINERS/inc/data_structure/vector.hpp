@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/12 15:46:00 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/12 15:49:15 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -677,6 +677,12 @@ class vector : private vector_base<T, Allocator> {
   }
 };
 
+/**
+ * @brief Vector equality comparison.
+ *
+ * Vectors are considered equivalent if their sizes are qual, and if
+ * corresponding elements compare equal.
+ */
 template <typename T, typename Allocator>
 inline bool operator==(const vector<T, Allocator> &lhs,
                        const vector<T, Allocator> &rhs) {
