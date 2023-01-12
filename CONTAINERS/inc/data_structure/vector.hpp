@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/11 20:17:07 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/12 14:12:44 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -303,7 +303,7 @@ class vector : private vector_base<T, Allocator> {
    */
   reference operator[](size_type n) { return *(begin() + n); }
 
-  const reference operator[](size_type n) const { return *(begin() + n); }
+  const_reference operator[](size_type n) const { return *(begin() + n); }
 
   // STRONG
   /**
