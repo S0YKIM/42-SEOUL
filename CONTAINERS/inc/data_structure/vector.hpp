@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/12 17:00:13 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/12 20:48:40 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,13 @@
 #define VECTOR_HPP
 
 #include <memory>
-
+// std::allocator<T>::construct, destroy
+// std::uninitialized_fill, std::uninitialized_fill_n
+// std::uninitialized_copy, std::uninitialized_copy_n
+#include <algorithm>
+// std::fill, std::fill_n
+// std::copy, std::copy_backward
+// std::equal, std::lexicographical_compare
 #include "reverse_iterator.hpp"  // reverse_iterator
 #include "type_traits.hpp"       // is_integral, enable_if
 #include "vector_iterator.hpp"   // vector_iterator
