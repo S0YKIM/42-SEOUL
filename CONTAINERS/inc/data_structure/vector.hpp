@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/12 15:00:51 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/12 15:34:11 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -512,9 +512,9 @@ class vector : private vector_base<T, Allocator> {
    */
   void resize(size_type new_size, value_type value = value_type()) {
     if (new_size < size())
-      erase(this->begin_ + new_size, this->end_);
+      erase(begin() + new_size, end());
     else
-      insert(this->end_, new_size - size(), value);
+      insert(end(), new_size - size(), value);
   }
 
   // NOTHROW if the allocators in both vectors compare equal.
