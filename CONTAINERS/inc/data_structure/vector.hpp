@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/12 14:56:51 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/12 15:00:51 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -451,9 +451,10 @@ class vector : private vector_base<T, Allocator> {
    * @return iterator An iterator pointing to the next element.
    */
   iterator erase(iterator position) {
-    if (position + 1 != this->end_) std::copy(position + 1, end(), position);
+    if (position + 1 != end()) std::copy(position + 1, end(), position);
     --this->end_;
     this->alloc_.destroy(this->end_);
+    return position;
   }
 
   // NOTHROW: If the removed elements include the last element.
