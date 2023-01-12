@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/12 15:35:02 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/12 15:46:00 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -676,6 +676,13 @@ class vector : private vector_base<T, Allocator> {
     }
   }
 };
+
+template <typename T, typename Allocator>
+inline bool operator==(const vector<T, Allocator> &lhs,
+                       const vector<T, Allocator> &rhs) {
+  return lhs.size() == rhs.size() &&
+         std::equal(lhs.begin(), lhs.end(), rhs.begin());
+}
 }  // namespace ft
 
 #endif
