@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/12 15:34:11 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/12 15:35:02 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -498,7 +498,7 @@ class vector : private vector_base<T, Allocator> {
   /**
    * @brief Removes the last element.
    */
-  void pop_back() { erase(this->end_ - 1); }
+  void pop_back() { erase(end() - 1); }
 
   // NOTHROW: If new_size is less than or equal to the size of the vector.
   // STRONG: If new_size is greater than the size of the vector and the type of
