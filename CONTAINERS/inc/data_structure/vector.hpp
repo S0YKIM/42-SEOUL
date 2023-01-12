@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/12 15:49:15 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/12 16:42:56 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ class vector_base {
   ~vector_base() {
     if (begin_) alloc_.deallocate(begin_, end_of_capacity_ - begin_);
   }
-};
+};  // class vector_base
 
 template <typename T, typename Allocator = std::allocator<T> >
 class vector : private vector_base<T, Allocator> {
@@ -675,8 +675,10 @@ class vector : private vector_base<T, Allocator> {
       erase(begin() + new_size, end());
     }
   }
-};
+};  // class vector
 
+// NOTE: Non-member functions
+// NOTE: Relational operators
 /**
  * @brief Vector equality comparison.
  *
@@ -689,6 +691,20 @@ inline bool operator==(const vector<T, Allocator> &lhs,
   return lhs.size() == rhs.size() &&
          std::equal(lhs.begin(), lhs.end(), rhs.begin());
 }
+
+/**
+ * @brief Vector ordering relation.
+ *
+ * It returns true if the range on the left-hand side is lexicographically less
+ * than the range on the right-hand side.
+ */
+template <typename T, typename Allocator>
+inline bool operator<(const vector<T, Allocator> &lhs,
+                      const vector<T, Allocator> &rhs) {
+  return std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(),
+                                      rhs.end());
+}
+
 }  // namespace ft
 
 #endif
