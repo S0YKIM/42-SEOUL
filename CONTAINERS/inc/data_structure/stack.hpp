@@ -6,19 +6,17 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:49:23 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/04 15:30:09 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/17 14:36:14 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STACK_HPP
 #define STACK_HPP
 
-#include <stack>
-#include <vector.hpp>
-#include <vector>
+#include "vector.hpp"
 
 namespace ft {
-template <typename T, typename Container = std::vector<T> >
+template <typename T, typename Container = ft::vector<T> >
 class stack;
 
 template <typename T, typename Container>
