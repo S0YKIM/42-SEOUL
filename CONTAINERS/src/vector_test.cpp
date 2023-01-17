@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 20:32:00 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/17 12:39:29 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/17 12:46:14 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,21 @@ void test_vector() {
   print_info(v);
 
   std::cout << "****************************************" << std::endl;
-  std::cout << "*          Subscript operator          *" << std::endl;
+  std::cout << "*             Element Access           *" << std::endl;
   std::cout << "****************************************" << std::endl;
-  std::cout << "- Change the data in the second element by []." << std::endl
+  std::cout << "- Change the data in the 2nd element by []." << std::endl
             << std::endl;
   v[1] = 42;
+  print_info(v);
+
+  std::cout << "- Change the data in the 8th element by at()." << std::endl
+            << std::endl;
+  v.at(7) = 42;
+  print_info(v);
+
+  std::cout << "- Change the data in the 1st element by front()." << std::endl
+            << std::endl;
+  v.front() = 42;
   print_info(v);
 
   std::cout << "****************************************" << std::endl;
@@ -91,7 +101,7 @@ void test_vector() {
   print_info(v);
 
   std::cout << "- Resize to 5." << std::endl << std::endl;
-  v.resize(5, 42);
+  v.resize(5, 0);
   print_info(v);
 
   std::cout << "****************************************" << std::endl;
