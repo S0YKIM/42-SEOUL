@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/12 20:48:40 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/17 12:22:27 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -648,15 +648,15 @@ class vector : private vector_base<T, Allocator> {
                      std::input_iterator_tag) {
     iterator tmp(begin());
 
-    while (first != last && tmp != this->end_) {
+    while (first != last && tmp != end()) {
       *tmp = *first;
       ++tmp;
       ++first;
     }
     if (first == last)
-      erase(tmp, this->end_);
+      erase(tmp, end());
     else
-      insert(this->end_, first, last);
+      insert(end(), first, last);
   }
 
   template <typename ForwardIterator>
