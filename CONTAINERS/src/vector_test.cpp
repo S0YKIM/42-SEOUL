@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 20:32:00 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/17 12:46:14 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/17 14:33:44 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,5 +153,26 @@ void test_vector() {
   std::cout << "****************************************" << std::endl;
   print_info(tmp);
 
-  system("leaks containers");
+  // system("leaks containers");
+}
+
+void test_const_vector() {
+  const ft::vector<int> v(5, 42);
+
+  print_info(v);
+
+  std::cout << "****************************************" << std::endl;
+  std::cout << "*             Element Access           *" << std::endl;
+  std::cout << "****************************************" << std::endl;
+  std::cout << "- v[1]: ";
+  std::cout << v[1] << std::endl << std::endl;
+  try {
+    std::cout << "- v.at(1): ";
+    std::cout << v.at(1) << std::endl << std::endl;
+    std::cout << "- v.at(7): ";
+    std::cout << v.at(7) << std::endl << std::endl;
+  } catch (...) {
+    std::cout << "Exception: Index out of range.\n\n";
+  }
+  // system("leaks containers");
 }

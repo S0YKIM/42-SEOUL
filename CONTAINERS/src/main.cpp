@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 20:07:15 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/12 21:23:06 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/17 14:33:56 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int main() {
   switch (option) {
     case 1:
       test_vector();
+      // test_const_vector();
       break;
     case 2:
       std::cout << "2" << std::endl;
