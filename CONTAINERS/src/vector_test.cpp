@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 20:32:00 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/17 14:49:46 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/17 14:52:43 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,17 @@ void test_vector() {
   std::cout << "*                tmp                   *" << std::endl;
   std::cout << "****************************************" << std::endl;
   print_info(tmp);
+
+  std::cout << "****************************************" << std::endl;
+  std::cout << "*         Relational Operators         *" << std::endl;
+  std::cout << "****************************************" << std::endl;
+  std::cout << "- Compare two vectors \"v\" and \"other\"\n\n";
+  if (v == tmp)
+    std::cout << "v == tmp\n\n";
+  else if (v < tmp)
+    std::cout << "v < tmp\n\n";
+  else if (v > tmp)
+    std::cout << "v > tmp\n\n";
 }
 
 void test_const_vector() {
