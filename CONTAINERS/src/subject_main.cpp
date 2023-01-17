@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   subject_main.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:30:21 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/11 17:32:14 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/17 15:11:15 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,9 @@ int main(int argc, char** argv) {
   //   std::cout << std::endl;
   end = time(NULL);
   result = end - start;
-  std::cout << "Execution time: " << result << " seconds"
-            << "\n";
+  std::cout << "****************************************" << std::endl;
+  std::cout << "*           Execution Time             *" << std::endl;
+  std::cout << "****************************************" << std::endl;
+  std::cout << "Execution time: " << result << " seconds/n";
   return (0);
 }
