@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 20:07:15 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/17 15:23:51 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/17 15:49:42 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "test.hpp"
 
-#if 0  // CREATE A REAL STL EXAMPLE
+#if 1  // CREATE A REAL STL EXAMPLE
 #include <map>
 #include <stack>
 #include <vector>
@@ -34,7 +34,6 @@ int main() {
   time_t start, end;
   time_t result;
 
-  start = time(NULL);
   int option = 0;
 
   std::cout << "****************************************" << std::endl;
@@ -47,6 +46,7 @@ int main() {
   std::cout << "****************************************" << std::endl;
   std::cout << std::endl;
   std::cin >> option;
+  start = time(NULL);
 
   switch (option) {
     case 1:
