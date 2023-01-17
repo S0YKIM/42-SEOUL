@@ -6,7 +6,7 @@
 #    By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 19:27:06 by sokim             #+#    #+#              #
-#    Updated: 2023/01/12 20:42:52 by sokim            ###   ########.fr        #
+#    Updated: 2023/01/17 14:34:07 by sokim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,9 @@ fclean : clean
 re :
 	make fclean
 	make all
+
+debug : $(OBJS)
+	$(CXX) -g3 -fsanitize=address -o $(NAME) $(OBJS) $(INC_FLAGS)
 
 $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $(OBJS) $(INC_FLAGS)
