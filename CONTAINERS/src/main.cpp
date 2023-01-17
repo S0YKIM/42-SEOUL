@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 20:07:15 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/17 14:33:56 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/17 14:50:56 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ int main() {
       std::cout << "Please enter a valid number." << std::endl;
       break;
   }
+  // system("leaks containers");
   return 0;
 }
