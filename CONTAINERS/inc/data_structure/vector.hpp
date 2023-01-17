@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:50:01 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/17 12:22:27 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/17 15:48:19 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 #include <algorithm>
 // std::fill, std::fill_n
 // std::copy, std::copy_backward
-// std::equal, std::lexicographical_compare
+// std::lexicographical_compare
+#include "algorithm.hpp"         // ft::equal
 #include "reverse_iterator.hpp"  // reverse_iterator
 #include "type_traits.hpp"       // is_integral, enable_if
 #include "vector_iterator.hpp"   // vector_iterator
@@ -695,7 +696,7 @@ template <typename T, typename Allocator>
 inline bool operator==(const vector<T, Allocator> &lhs,
                        const vector<T, Allocator> &rhs) {
   return lhs.size() == rhs.size() &&
-         std::equal(lhs.begin(), lhs.end(), rhs.begin());
+         ft::equal(lhs.begin(), lhs.end(), rhs.begin());
 }
 
 /**
