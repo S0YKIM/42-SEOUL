@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/19 18:33:13 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/19 18:38:37 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,13 @@ struct _rb_tree_node_base {
     return node;
   }
 };
+
+template <typename value_type>
+struct _rb_tree_node : public rb_tree_node_base {
+  typedef _rb_tree_node<value_type>* _link_type;
+  value_type _value;
+};
+
 }  // namespace ft
 
 #endif
