@@ -6,12 +6,15 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/19 18:38:37 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/19 18:54:42 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RB_TREE_HPP
 #define RB_TREE_HPP
+
+#include <cstddef>  // std::ptrdiff_t
+#include <iterator>
 
 namespace ft {
 enum _rb_tree_color { RED, BLACK };
@@ -48,6 +51,14 @@ struct _rb_tree_node : public rb_tree_node_base {
   value_type _value;
 };
 
+struct _rb_tree_base_iterator {
+  typedef _rb_tree_node_base::_base_ptr _base_ptr;
+  typedef std::bidirectional_iterator_tag iterator_category;
+  typedef std::random_access_iterator_tag iterator_category;
+  typedef std::ptrdiff_t difference_type;
+
+  _base_ptr _node;
+};
 }  // namespace ft
 
 #endif
