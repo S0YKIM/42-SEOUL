@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:33:29 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/20 15:33:53 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/20 15:47:35 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,21 @@ struct _rb_tree_base_iterator {
       _node = tmp;
     }
   }
+};
+
+template <typename Val, typename Ref, typename Ptr>
+struct _rb_tree_iterator : public _rb_tree_base_iterator {
+  typedef Val value_type;
+  typedef Ref reference;
+  typedef Ptr pointer;
+  typedef _rb_tree_iterator<Val, Val&, Val*> iterator;
+  typedef _rb_tree_iterator<Val, const Val&, const Val*> const_iterator;
+  typedef _rb_tree_iterator<Val, Ref, Ptr> self;
+  typedef _rb_tree_node<Val>* link_type;
+
+  _rb_tree_iterator() {}
+  _rb_tree_iterator(_rb_tree_node_base* node) { _node = node; }
+  _rb_tree_iterator(const iterator& it) { _node = it._node; }
 };
 }  // namespace ft
 
