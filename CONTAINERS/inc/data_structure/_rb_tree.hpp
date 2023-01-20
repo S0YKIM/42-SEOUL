@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/20 14:14:32 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/20 15:12:40 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ struct _rb_tree_node : public rb_tree_node_base {
 struct _rb_tree_base_iterator {
   typedef _rb_tree_node_base::_base_ptr _base_ptr;
   typedef std::bidirectional_iterator_tag iterator_category;
-  typedef std::random_access_iterator_tag iterator_category;
   typedef std::ptrdiff_t difference_type;
 
   _base_ptr _node;
@@ -70,12 +69,34 @@ struct _rb_tree_base_iterator {
       _node = _node->_right_child;
       while (_node->_left_child) _node = _node->_left_child;
     } else {
-      _base_ptr p = _node->_parent;
-      while (_node == p->_right_child) {
-        _node = p;
-        p = p->_parent;
+      _base_ptr tmp = _node->_parent;
+      while (_node == tmp->_right_child) {
+        _node = tmp;
+        tmp = tmp->_parent;
       }
-      if (_node->_right_child != p) _node = p;
+      if (_node->_right_child != tmp) _node = tmp;
+    }
+  }
+
+  /**
+   * @brief Decrement the base iterator.
+   *
+   * If you decrement the header node, then it will become the rightmost node.
+   */
+  void _decrement() {
+    if (_node->_color == RED && _node->_parent->_parent == _node)
+      _node = _node->_right_child;
+    else if (_node->_left_child) {
+      _base_ptr tmp = _node->_left_child;
+      while (tmp->_right_child) tmp = tmp->_right_child;
+      _node = tmp;
+    } else {
+      _base_ptr tmp = _node->_parent;
+      while (_node == tmp->_left_child) {
+        _node = tmp;
+        tmp = tmp->_parent;
+      }
+      _node = tmp;
     }
   }
 };
