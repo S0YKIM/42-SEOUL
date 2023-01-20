@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/19 18:54:42 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/20 14:14:32 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,26 @@ struct _rb_tree_base_iterator {
   typedef std::ptrdiff_t difference_type;
 
   _base_ptr _node;
+
+  /**
+   * @brief Increment the base iterator.
+   *
+   * If you increment the rightmost node, then it will become the header node
+   * which represents nil node.
+   */
+  void _increment() {
+    if (_node->_right_child) {
+      _node = _node->_right_child;
+      while (_node->_left_child) _node = _node->_left_child;
+    } else {
+      _base_ptr p = _node->_parent;
+      while (_node == p->_right_child) {
+        _node = p;
+        p = p->_parent;
+      }
+      if (_node->_right_child != p) _node = p;
+    }
+  }
 };
 }  // namespace ft
 
