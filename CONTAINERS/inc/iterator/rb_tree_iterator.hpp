@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:33:29 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/21 20:48:45 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/21 20:50:15 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,26 @@ inline bool operator==(
     const _rb_tree_iterator<Val, Val&, Val*>& lhs,
     const _rb_tree_iterator<Val, const Val&, const Val*>& rhs) {
   lhs._node == rhs._node;
+}
+
+template <typename Val, typename Ref, typename Ptr>
+inline bool operator!=(const _rb_tree_iterator<Val, Ref, Ptr>& lhs,
+                       const _rb_tree_iterator<Val, Ref, Ptr>& rhs) {
+  lhs._node != rhs._node;
+}
+
+template <typename Val>
+inline bool operator!=(
+    const _rb_tree_iterator<Val, const Val&, const Val*>& lhs,
+    const _rb_tree_iterator<Val, Val&, Val*>& rhs) {
+  lhs._node != rhs._node;
+}
+
+template <typename Val>
+inline bool operator!=(
+    const _rb_tree_iterator<Val, Val&, Val*>& lhs,
+    const _rb_tree_iterator<Val, const Val&, const Val*>& rhs) {
+  lhs._node != rhs._node;
 }
 
 }  // namespace ft
