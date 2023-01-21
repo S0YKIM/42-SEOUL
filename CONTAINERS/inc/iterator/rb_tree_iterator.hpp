@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:33:29 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/20 15:47:35 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/21 20:48:45 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,56 @@ struct _rb_tree_iterator : public _rb_tree_base_iterator {
   _rb_tree_iterator() {}
   _rb_tree_iterator(_rb_tree_node_base* node) { _node = node; }
   _rb_tree_iterator(const iterator& it) { _node = it._node; }
+
+  // SECTION: Operator overloading
+  reference operator*() const { return static_cast<link_type>(_node)->_value; }
+
+  pointer operator->() const { return &(operator*()); }
+
+  self& operator++() {
+    _increment();
+    return *this;
+  }
+
+  self operator++(int) {
+    self tmp = *this;
+    _increment();
+    return tmp;
+  }
+
+  self& operator--() {
+    _decrement();
+    return *this;
+  }
+
+  self operator--() {
+    self tmp = *this;
+    _decrement();
+    return tmp;
+  }  // !SECTION
 };
+
+// SECTION: Non-member function
+template <typename Val, typename Ref, typename Ptr>
+inline bool operator==(const _rb_tree_iterator<Val, Ref, Ptr>& lhs,
+                       const _rb_tree_iterator<Val, Ref, Ptr>& rhs) {
+  lhs._node == rhs._node;
+}
+
+template <typename Val>
+inline bool operator==(
+    const _rb_tree_iterator<Val, const Val&, const Val*>& lhs,
+    const _rb_tree_iterator<Val, Val&, Val*>& rhs) {
+  lhs._node == rhs._node;
+}
+
+template <typename Val>
+inline bool operator==(
+    const _rb_tree_iterator<Val, Val&, Val*>& lhs,
+    const _rb_tree_iterator<Val, const Val&, const Val*>& rhs) {
+  lhs._node == rhs._node;
+}
+
 }  // namespace ft
 
 #endif
