@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/24 21:34:37 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/24 21:38:28 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,20 @@ class _rb_tree {
       throw std::exception(
           "ft::_rb_tree::_create_node() Failed to create node.");
     }
+    return tmp;
+  }
+
+  /**
+   * @brief Clone the given node.
+   *
+   * @param other The node to be cloned
+   * @return link_type The address of the clone node
+   */
+  link_type _clone_node(const_link_type other) {
+    link_type tmp = _create_node(other->_value);
+    tmp->_color = other->_color;
+    tmp->_left_child = 0;
+    tmp->_right_child = 0;
     return tmp;
   }
 };
