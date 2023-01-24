@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:33:29 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/21 20:50:15 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/24 16:33:58 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ struct _rb_tree_node_base {
 };
 
 template <typename value_type>
-struct _rb_tree_node : public rb_tree_node_base {
+struct _rb_tree_node : public _rb_tree_node_base {
   typedef _rb_tree_node<value_type>* _link_type;
   value_type _value;
 };
@@ -136,7 +136,7 @@ struct _rb_tree_iterator : public _rb_tree_base_iterator {
     return *this;
   }
 
-  self operator--() {
+  self operator--(int) {
     self tmp = *this;
     _decrement();
     return tmp;
