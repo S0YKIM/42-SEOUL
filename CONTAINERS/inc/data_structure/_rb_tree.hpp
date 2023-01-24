@@ -6,12 +6,14 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/24 21:44:04 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/24 22:14:40 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RB_TREE_HPP
 #define RB_TREE_HPP
+
+#include <exception>
 
 #include "rb_tree_iterator.hpp"
 
@@ -55,13 +57,36 @@ class _rb_tree {
   typedef ptrdiff_t difference_type;
   typedef Alloc allocator_type;
 
-  // TODO: Implement struct _rb_tree_impl
+ protected:
+  /**
+   * @brief Contains the actual data(key_compare, header)
+   *
+   * @tparam Compare Functor to compare keys
+   */
+  template <typename KeyCompare>
+  struct _rb_tree_impl : public node_allocator {
+    KeyCompare key_compare;
+    _rb_tree_node_base header;
+    size_type node_count;
+
+    _rb_tree_impl(const node_allocator& a = node_allocator(),
+                  const KeyCompare& comp = KeyCompare())
+        : node_allocator(a), key_compare(comp), header(), node_count(0) {
+      header._color = RED;
+      header._parent = 0;
+      header._left_child = &header;
+      header._right_child = &header;
+    }
+  };
+
+  _rb_tree_impl<Compare> _impl;
+
   node_allocator& get_node_allocator() {
-    return *static_cast<node_allocator*>(&this->_impl);
+    return *static_cast<node_allocator*>(&_impl);
   }
 
   const node_allocator& get_node_allocator() const {
-    return *static_cast<node_allocator*>(&this->_impl);
+    return *static_cast<node_allocator*>(&_impl);
   }
 
   allocator_type get_allocator() const {
@@ -74,7 +99,7 @@ class _rb_tree {
    *
    * @return _rb_tree_node* The address of the node allocated
    */
-  _rb_tree_node* _get_node() { _impl._node_allocator::allocate(1); }
+  _rb_tree_node* _get_node() { _impl.node_allocator::allocate(1); }
 
   /**
    * @brief Deallocate the given node.
@@ -82,7 +107,7 @@ class _rb_tree {
    * @param node The node to be deallocated
    */
   void _put_node(_rb_tree_node* node) {
-    _impl._node_allocator::deallocate(node, 1);
+    _impl.node_allocator::deallocate(node, 1);
   }
 
   /**
@@ -95,10 +120,9 @@ class _rb_tree {
     link_type tmp = _get_node();
     try {
       get_allocator().construct(&tmp->_value, value);
-    } catch (...) {
+    } catch (std::exception& e) {
       _put_node(tmp);
-      throw std::exception(
-          "ft::_rb_tree::_create_node() Failed to create node.");
+      throw e;
     }
     return tmp;
   }
