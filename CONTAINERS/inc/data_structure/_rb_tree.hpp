@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/24 21:38:28 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/24 21:44:04 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,16 @@ class _rb_tree {
     tmp->_left_child = 0;
     tmp->_right_child = 0;
     return tmp;
+  }
+
+  /**
+   * @brief Destroy the node.
+   *
+   * @param node
+   */
+  void _destroy_node(link_type node) {
+    get_allocator().destroy(&node->_value);
+    _put_node(node);
   }
 };
 }  // namespace ft
