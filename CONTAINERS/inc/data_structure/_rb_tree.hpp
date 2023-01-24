@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/24 16:39:43 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/24 17:30:06 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ inline void _rb_tree_rotate_right(_rb_tree_node_base* node,
 
 void _rb_tree_rebalance_after_insertion(_rb_tree_node_base* node,
                                         _rb_tree_node_base*& root);
+
+_rb_tree_node_base* _rb_tree_rebalance_for_erase(
+    _rb_tree_node_base* node, _rb_tree_node_base*& root,
+    _rb_tree_node_base*& leftmost, _rb_tree_node_base*& rightmost);
 
 // TODO: Implement _rb_tree
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
