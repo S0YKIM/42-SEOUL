@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/24 22:14:40 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 12:13:16 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,13 @@ class _rb_tree {
    */
   template <typename KeyCompare>
   struct _rb_tree_impl : public node_allocator {
-    KeyCompare key_compare;
-    _rb_tree_node_base header;
-    size_type node_count;
+    KeyCompare _key_compare;
+    _rb_tree_node_base _header;
+    size_type _node_count;
 
     _rb_tree_impl(const node_allocator& a = node_allocator(),
                   const KeyCompare& comp = KeyCompare())
-        : node_allocator(a), key_compare(comp), header(), node_count(0) {
+        : node_allocator(a), _key_compare(comp), _header(), _node_count(0) {
       header._color = RED;
       header._parent = 0;
       header._left_child = &header;
@@ -149,6 +149,44 @@ class _rb_tree {
   void _destroy_node(link_type node) {
     get_allocator().destroy(&node->_value);
     _put_node(node);
+  }
+
+  /**
+   * @brief Get the reference of the root node base.
+   */
+  _base_ptr& _root() { return _impl._header._parent; }
+  const_base_ptr& _root() const { return _impl._header._parent; }
+
+  /**
+   * @brief Get the reference of the leftmost node base.
+   */
+  _base_ptr& _leftmost() { return _impl._header._left_child; }
+  const_base_ptr& _leftmost() const { return _impl._header._left_child; }
+
+  /**
+   * @brief Get the reference of the rightmost node base.
+   */
+  _base_ptr& _rightmost() { return _impl._header._right_child; }
+  const_base_ptr& _rightmost() const { return _impl._header._right_child; }
+
+  /**
+   * @brief Get the address of the root node.
+   *
+   * @return link_type _rb_tree_node*
+   */
+  link_type _begin() { return static_cast<link_type>(_impl._header._parent); }
+  const_link_type _begin() const {
+    return static_cast<const_link_type>(_impl._header._parent);
+  }
+
+  /**
+   * @brief Get the address of the nil node(==header node).
+   *
+   * @return link_type _rb_tree_node*
+   */
+  link_type _end() { return static_cast<link_type>(_impl._header); }
+  const_link_type _end() const {
+    return static_cast<const_link_type>(_impl._header);
   }
 };
 }  // namespace ft
