@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 12:29:32 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 12:37:14 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,7 @@ class _rb_tree {
   link_type _end() { return static_cast<link_type>(_impl._header); }
   const_link_type _end() const {
     return static_cast<const_link_type>(_impl._header);
-  }  // !SECTION
+  }
 
   /**
    * @brief Get the value of the given node.
@@ -199,6 +199,10 @@ class _rb_tree {
    * @return const_reference
    */
   static const_reference _value(const_link_type node) { return node->_value; }
+
+  static const_reference _value(_const_base_ptr node) {
+    return static_cast<const_link_type>(node)->_value;
+  }
 
   /**
    * @brief Get the key of the given node.
@@ -210,6 +214,10 @@ class _rb_tree {
    * Second, get the key of the given node by the functor KeyOfValue().
    */
   static const key_type _key(const_link_type node) {
+    return KeyOfValue()(_value(node));
+  }
+
+  static const key_type _key(_const_base_ptr node) {
     return KeyOfValue()(_value(node));
   }
 
@@ -240,6 +248,34 @@ class _rb_tree {
   static const_link_type _right(_const_base_ptr node) {
     return static_cast<const_link_type>(node->_right_child);
   }
+
+  /**
+   * @brief Get the node which has the smallest key below the given node.
+   *
+   * @param node
+   * @return _base_ptr
+   */
+  static _base_ptr _minimum(_base_ptr node) {
+    return _rb_tree_node_base::minimum(node);
+  }
+
+  static _const_base_ptr minimum(_const_base_ptr node) {
+    return _rb_tree_node_base::minimum(node);
+  }
+
+  /**
+   * @brief Get the node which has the biggest key below the given node.
+   *
+   * @param node
+   * @return _base_ptr
+   */
+  static _base_ptr _maximum(_base_ptr node) {
+    return _rb_tree_node_base::maximum(node);
+  }
+
+  static _const_base_ptr maximum(_const_base_ptr node) {
+    return _rb_tree_node_base::maximum(node);
+  }  // !SECTION
 };
 
 }  // namespace ft
