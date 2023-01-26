@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 19:39:37 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 19:53:19 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <exception>  // std::exception
 
+#include "pair.hpp"
 #include "rb_tree_iterator.hpp"
 
 namespace ft {
