@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 12:37:14 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 15:26:40 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ class _rb_tree {
     _rb_tree_impl(const node_allocator& a = node_allocator(),
                   const KeyCompare& comp = KeyCompare())
         : node_allocator(a), _key_compare(comp), _header(), _node_count(0) {
-      header._color = RED;
-      header._parent = 0;
-      header._left_child = &header;
-      header._right_child = &header;
+      _header._color = RED;
+      _header._parent = 0;
+      _header._left_child = &_header;
+      _header._right_child = &_header;
     }
   };
 
@@ -158,19 +158,19 @@ class _rb_tree {
    * @brief Get the reference of the root node base.
    */
   _base_ptr& _root() { return _impl._header._parent; }
-  const_base_ptr& _root() const { return _impl._header._parent; }
+  _const_base_ptr& _root() const { return _impl._header._parent; }
 
   /**
    * @brief Get the reference of the leftmost node base.
    */
   _base_ptr& _leftmost() { return _impl._header._left_child; }
-  const_base_ptr& _leftmost() const { return _impl._header._left_child; }
+  _const_base_ptr& _leftmost() const { return _impl._header._left_child; }
 
   /**
    * @brief Get the reference of the rightmost node base.
    */
   _base_ptr& _rightmost() { return _impl._header._right_child; }
-  const_base_ptr& _rightmost() const { return _impl._header._right_child; }
+  _const_base_ptr& _rightmost() const { return _impl._header._right_child; }
 
   /**
    * @brief Get the address of the root node.
@@ -213,11 +213,11 @@ class _rb_tree {
    * First, get the value of the given node by _value().
    * Second, get the key of the given node by the functor KeyOfValue().
    */
-  static const key_type _key(const_link_type node) {
+  static const key_type& _key(const_link_type node) {
     return KeyOfValue()(_value(node));
   }
 
-  static const key_type _key(_const_base_ptr node) {
+  static const key_type& _key(_const_base_ptr node) {
     return KeyOfValue()(_value(node));
   }
 
@@ -227,7 +227,7 @@ class _rb_tree {
    * @param node
    * @return link_type
    */
-  static link_type _left(_base_ptr node) {
+  static link_type& _left(_base_ptr node) {
     return static_cast<link_type>(node->_left_child);
   }
 
@@ -241,7 +241,7 @@ class _rb_tree {
    * @param node
    * @return link_type
    */
-  static link_type _right(_base_ptr node) {
+  static link_type& _right(_base_ptr node) {
     return static_cast<link_type>(node->_right_child);
   }
 
@@ -276,8 +276,19 @@ class _rb_tree {
   static _const_base_ptr maximum(_const_base_ptr node) {
     return _rb_tree_node_base::maximum(node);
   }  // !SECTION
+
+ public:
+  typedef _rb_tree_iterator<value_type> iterator;
+  typedef _rb_tree_const_iterator<value_type> const_iterator;
+
+  typedef std::reverse_iterator<iterator> reverse_iterator;
+  typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
+
+ private:
+  iterator _insert(_base_ptr x, _base_ptr y, const value_type& value);
+
+  const_iterator _insert(_const_base_ptr x, _const_base_ptr y,
+                         const value_type& value);
 };
-
 }  // namespace ft
-
 #endif
