@@ -6,15 +6,15 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:33:29 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 13:11:06 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 19:47:12 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RB_TREE_ITERATOR_HPP
 #define RB_TREE_ITERATOR_HPP
 
-#include <cstddef>  // std::ptrdiff_t
-#include <iterator>
+#include <cstddef>   // std::ptrdiff_t
+#include <iterator>  // std::bidirectional_iterator_tag
 
 namespace ft {
 enum _rb_tree_color { RED, BLACK };
