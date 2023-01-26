@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:49:41 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 21:36:11 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 21:57:30 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ class map {
 
   // TODO: _rb_tree::insert() 구현
   /**
-   * @brief Range constructor [first, last).
+   * @brief Range constructor from range [first, last).
    *
    * @tparam InputIterator
    * @param first
@@ -182,9 +182,64 @@ class map {
   // !SECTION
 
   // SECTION: Modifiers
-  void clear();
-  pair<iterator, bool> insert(const value_type& value);
-  iterator insert(iterator pos, const value_type& value);
+  // NOTHROW
+  /**
+   * @brief Erases all elements from the map.
+   *
+   * After this call, size() returns 0.
+   */
+  void clear() { _base.clear(); }
+
+  // STRONG
+  // Undefined behavior if allocator_traits::construct is not supported with the
+  // appropriate arguments for the element constructions, or if an invalid
+  // position is specified.
+  /**
+   * @brief Inserts a pair into map.
+   *
+   * @param value The pair to be copied to the inserted element
+   * @return pair<iterator, bool>
+   *
+   * Returns a pair, with its member 'first' is set to an iterator pointing to
+   * either the newly inserted element or to the element with an equivalent key
+   * in the map. Another member 'second' is set to true if a new element was
+   * inserted or false if an equivalent key already existed.
+   */
+  pair<iterator, bool> insert(const value_type& value) {
+    return _base.insert(value);
+  }
+
+  // STRONG
+  /**
+   * @brief Inserts a pair into map using a hint position.
+   *
+   * @param pos A hint for the position where the element can be inserted
+   * @param value The pair to be copied to the inserted element
+   * @return iterator
+   *
+   * Inserts value in the position as close as possible to the position just
+   * prior to pos.
+   */
+  iterator insert(iterator pos, const value_type& value) {
+    return _base.insert(pos, value);
+  }
+
+  // BASIC
+  /**
+   * @brief Inserts elements from range [first, last).
+   *
+   * @tparam InputIterator
+   * @param first
+   * @param last
+   *
+   * If multiple elements in the range have keys that compare equivalent, it is
+   * unspecified which element is inserted.
+   */
+  template <typename InputIterator>
+  void insert(InputIterator first, InputIterator last) {
+    _base.insert(first, last);
+  }
+
   void erase(iterator pos);
   void erase(iterator first, iterator last);
   void swap(map& other);
