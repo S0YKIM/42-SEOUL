@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:49:41 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 22:04:16 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 22:07:04 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,7 +269,15 @@ class map {
    */
   size_type erase(const key_type& key) { return _base.erase(key); }
 
-  void swap(map& other);
+  // TODO: _rb_tree::swap() 구현
+  // NOTHROW If the allocators in both containers compare equal.
+  // Otherwise, undefined behavior.
+  /**
+   * @brief Exchange the contents of the maps.
+   *
+   * @param other
+   */
+  void swap(map& other) { _base.swap(other._base); }
   // !SECTION
 
   // SECTION: Lookup
