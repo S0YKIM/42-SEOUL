@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:06:25 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 19:17:02 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 19:24:13 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ struct pair {
       second = other.second;
     }
     return *this;
+  }
+
+  void swap(pair& other) {
+    std::swap(first, other.first);
+    std::swap(second, other.second);
   }
 };
 }  // namespace ft
