@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 16:43:55 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 17:37:45 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ class _rb_tree {
   typedef ptrdiff_t difference_type;
   typedef Alloc allocator_type;
 
+  typedef _rb_tree<Key, Val, KeyOfValue, Compare, Alloc> self;
+
  protected:
   // NOTE: Structure _rb_tree_impl
   /**
@@ -93,6 +95,45 @@ class _rb_tree {
 
   allocator_type get_allocator() const {
     return allocator_type(get_node_allocator());
+  }
+
+ public:
+  _rb_tree() {}
+
+  _rb_tree(const Compare& comp) : _impl(allocator_type(), comp) {}
+
+  _rb_tree(const Compare& comp, const allocator_type& a) : _impl(a, comp) {}
+
+  _rb_tree(const _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& other)
+      : _impl(other.get_node_allocator(), other._impl._key_compare) {
+    if (other._root()) {
+      _root() = _copy(other._begin(), _end());
+      _leftmost() = _minimum(_root());
+      _rightmost() = _maximum(_root());
+      _impl._node_count = other._impl._node_count;
+    }
+  }
+
+  ~_rb_tree() { _erase(_begin()); }
+
+  self& operator=(const self& other) {
+    if (this != &other) {
+      // TODO: clear() 구현
+      clear();
+      _impl._node_count = 0;
+      _impl._key_compare = other._impl._key_compare;
+      if (other._root() == 0) {
+        _root() = 0;
+        _leftmost() = _end();
+        _rightmost() = _end();
+      } else {
+        _root() = _copy(other._root(), _end());
+        _leftmost() = _minimum(_root());
+        _rightmost() = _maximum(_root());
+        _impl._node_count = other._impl._node_count;
+      }
+    }
+    return *this;
   }
 
  protected:
@@ -154,7 +195,7 @@ class _rb_tree {
     _put_node(node);
   }  // !SECTION
 
-  // SECTION: Element access
+  // SECTION: Protected functions to access
   /**
    * @brief Get the reference of the root node base.
    */
@@ -178,9 +219,9 @@ class _rb_tree {
    *
    * @return link_type _rb_tree_node*
    */
-  link_type _begin() { return static_cast<link_type>(_impl._header._parent); }
+  link_type _begin() { return static_cast<link_type>(&_impl._header._parent); }
   const_link_type _begin() const {
-    return static_cast<const_link_type>(_impl._header._parent);
+    return static_cast<const_link_type>(&_impl._header._parent);
   }
 
   /**
@@ -188,9 +229,9 @@ class _rb_tree {
    *
    * @return link_type _rb_tree_node*
    */
-  link_type _end() { return static_cast<link_type>(_impl._header); }
+  link_type _end() { return static_cast<link_type>(&_impl._header); }
   const_link_type _end() const {
-    return static_cast<const_link_type>(_impl._header);
+    return static_cast<const_link_type>(&_impl._header);
   }
 
   /**
@@ -309,21 +350,41 @@ class _rb_tree {
   void _erase(link_type x);
 
  public:
-  _rb_tree() {}
+  // SECTION: Accessors
+  Compare key_comp() const { return _impl._key_compare; }
 
-  _rb_tree(const Compare& comp) : _impl(allocator_type(), comp) {}
+  iterator begin() { return iterator(static_cast<link_type>(_leftmost())); }
 
-  _rb_tree(const Compare& comp, const allocator_type& a) : _impl(a, comp) {}
-
-  _rb_tree(const _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& other)
-      : _impl(other.get_node_allocator(), other._impl._key_compare) {
-    if (other._root()) {
-      _root() = _copy(other._begin(), _end());
-      _leftmost() = _minimum(_root());
-      _rightmost() = _maximum(_root());
-      _impl._node_count = other._impl._node_count;
-    }
+  const_iterator begin() const {
+    return const_iterator(static_cast<const_link_type>(_leftmost()));
   }
+
+  iterator end() { return iterator(static_cast<link_type>(_impl._header)); }
+
+  const_iterator end() const {
+    return const_iterator(static_cast<const_link_type>(_impl._header));
+  }
+
+  reverese_iterator rbegin() { return reverse_iterator(end()); }
+
+  const_reverse_iterator rbegin() const {
+    return const_reverse_iterator(end());
+  }
+
+  reverese_iterator rend() { return reverse_iterator(begin()); }
+
+  const_reverse_iterator rend() const {
+    return const_reverse_iterator(begin());
+  }
+
+  bool empty() const { return _impl._node_count == 0; }
+
+  size_type size() const { return _impl._node_count; }
+
+  size_type max_size() const { return get_allocator().max_size(); }
+  // !SECTION
+
+  void swap(_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& other);
 };
 }  // namespace ft
 #endif
