@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:49:41 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 21:14:53 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 21:25:43 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,57 @@ class map {
    * @return allocator_type
    */
   allocator_type get_allocator() const { return _base.get_allocator(); }
+
+  // SECTION: Element access
+  T& at(const Key& key) {}
+  T& operator[](const Key& key) {}
+  // !SECTION
+
+  // SECTION: Iterators
+  iterator begin() {}
+  const_iterator begin() const {}
+
+  iterator end() {}
+  const_iterator end() const {}
+
+  reverse_iterator rbegin() {}
+  const_reverse_iterator rbegin() const {}
+
+  reverse_iterator rend() {}
+  const_reverse_iterator rend() const {}
+  // !SECTION
+
+  // SECTION: Size and capacity
+  bool empty() const;
+  size_type size() const;
+  size_type max_size() const;
+  // !SECTION
+
+  // SECTION: Modifiers
+  void clear();
+  pair<iterator, bool> insert(const value_type& value);
+  iterator insert(iterator pos, const value_type& value);
+  void erase(iterator pos);
+  void erase(iterator first, iterator last);
+  void swap(map& other);
+  // !SECTION
+
+  // SECTION: Lookup
+  size_type count(const Key& key) const;
+  iterator find(const Key& key);
+  const_iterator find(const Key& key) const;
+  pair<iterator, iterator> equal_range(const Key& key);
+  pair<const_iterator, const_iterator> equal_range(const Key& key) const;
+  iterator lower_bound(const Key& key);
+  const_iterator lower_bound(const Key& key) const;
+  iterator upper_bound(const Key& key);
+  const_iterator upper_bound(const Key& key) const;
+  // !SECTION
+
+  // SECTION: Observers
+  key_compare key_comp() const;
+  map::value_compare value_comp() const;
+  // !SECTION
 };
 }  // namespace ft
 
