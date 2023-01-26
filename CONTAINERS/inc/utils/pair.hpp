@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:06:25 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 19:09:19 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 19:17:02 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,21 @@ struct pair {
 
   first_type first;
   second_type second;
+
+  pair() : first(), second() {}
+
+  template <typename T, typename U>
+  pair(const pair<T, U>& other) : first(other.first), second(other.second) {}
+
+  pair(const first_type& a, const second_type& b) : first(a), second(b) {}
+
+  pair& operator=(const pair& other) {
+    if (this != &other) {
+      first = other.first;
+      second = other.second;
+    }
+    return *this;
+  }
 };
 }  // namespace ft
 
