@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:06:25 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 19:32:03 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 19:37:08 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,21 @@ bool operator<=(const pair<T1, T2> &lhs, const pair<T1, T2> &rhs) {
 template <typename T1, typename T2>
 void swap(pair<T1, T2> &x, pair<T1, T2> &y) {
   x.swap(y);
+}
+
+/**
+ * @brief Constructs a pair object with its first element set to x and its
+ * second element set to y.
+ *
+ * @tparam T1
+ * @tparam T2
+ * @param x
+ * @param y
+ * @return pair<T1, T2>
+ */
+template <typename T1, typename T2>
+pair<T1, T2> make_pair(T1 x, T2 y) {
+  return pair<T1, T2>(x, y);
 }
 }  // namespace ft
 
