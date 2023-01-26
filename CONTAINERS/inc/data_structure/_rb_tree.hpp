@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 12:13:16 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 12:24:48 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ class _rb_tree {
 
   _rb_tree_impl<Compare> _impl;
 
+  // NOTE: Member functions
   node_allocator& get_node_allocator() {
     return *static_cast<node_allocator*>(&_impl);
   }
@@ -94,6 +95,7 @@ class _rb_tree {
   }
 
  protected:
+  // SECTION: Node management
   /**
    * @brief Allocate a node.
    *
@@ -149,8 +151,9 @@ class _rb_tree {
   void _destroy_node(link_type node) {
     get_allocator().destroy(&node->_value);
     _put_node(node);
-  }
+  }  // !SECTION
 
+  // SECTION: Element access
   /**
    * @brief Get the reference of the root node base.
    */
@@ -187,8 +190,30 @@ class _rb_tree {
   link_type _end() { return static_cast<link_type>(_impl._header); }
   const_link_type _end() const {
     return static_cast<const_link_type>(_impl._header);
+  }  // !SECTION
+
+  /**
+   * @brief Get the value of the given node.
+   *
+   * @param node
+   * @return const_reference
+   */
+  static const_reference _value(const_link_type node) { return node->_value; }
+
+  /**
+   * @brief Get the key of the given node.
+   *
+   * @param node
+   * @return const key_type
+   *
+   * First, get the value of the given node by _value().
+   * Second, get the key of the given node by the functor KeyOfValue().
+   */
+  static const key_type _key(const_link_type node) {
+    return KeyOfValue()(_value(node));
   }
 };
+
 }  // namespace ft
 
 #endif
