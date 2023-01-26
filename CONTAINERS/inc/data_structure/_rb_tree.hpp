@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 16:12:17 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 16:26:10 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -304,6 +304,8 @@ class _rb_tree {
 
   // TODO: _M_insert_lower() 구현?
   link_type _copy(const_link_type x, link_type p);
+
+  void _erase(link_type x);
 };
 }  // namespace ft
 #endif

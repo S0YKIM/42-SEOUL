@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:29:36 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 16:19:59 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 16:29:46 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -402,12 +402,31 @@ _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::_copy(const_link_type x,
       p = y;
       x = _left(x);
     }
-  }
-  // TODO: _erase() 구현
-  catch (const std::exception& e) {
+  } catch (const std::exception& e) {
     _erase(top);
     throw e;
   }
   return top;
+}
+
+/**
+ * @brief Erase the given node from the tree including its child nodes.
+ *
+ * @tparam Key
+ * @tparam Val
+ * @tparam KeyOfValue
+ * @tparam Compare
+ * @tparam Alloc
+ * @param x
+ */
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+void _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::_erase(link_type x) {
+  while (x) {
+    _erase(_right(x));
+    link_type y = _left(x);
+    _destroy_node(x);
+    x = y;
+  }
 }
 }  // namespace ft
