@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 15:44:21 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 16:12:17 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ class _rb_tree {
     link_type tmp = _get_node();
     try {
       get_allocator().construct(&tmp->_value, value);
-    } catch (std::exception& e) {
+    } catch (const std::exception& e) {
       _put_node(tmp);
       throw e;
     }
@@ -301,6 +301,9 @@ class _rb_tree {
 
   const_iterator _insert(_const_base_ptr x, _const_base_ptr y,
                          const value_type& value);
+
+  // TODO: _M_insert_lower() 구현?
+  link_type _copy(const_link_type x, link_type p);
 };
 }  // namespace ft
 #endif

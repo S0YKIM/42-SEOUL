@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:29:36 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 16:00:06 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 16:19:59 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -366,5 +366,48 @@ _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::_insert(
   // Update the size of the rbtree.
   ++_impl._node_count;
   return const_iterator(node);
+}
+
+/**
+ * @brief Copy the given node including its sub-tree and add them to the tree.
+ *
+ * @tparam Key
+ * @tparam Val
+ * @tparam KeyOfValue
+ * @tparam Compare
+ * @tparam Alloc
+ * @param x The node to be copied.
+ * @param p The node which will be the parent of a new node.
+ * @return _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::link_type
+ */
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::link_type
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::_copy(const_link_type x,
+                                                      link_type p) {
+  link_type top = _clone_node(x);
+  top->_parent = p;
+
+  try {
+    // Recur until it copies all the nodes
+    if (x->_right_child) top->_right_child = _copy(_right(x), top);
+    p = top;
+    x = _left(x);
+
+    while (x) {
+      link_type y = _clone_node(x);
+      p->_left_child = y;
+      y->_parent = p;
+      if (x->_right_child) y->_right_child = _copy(_right(x), y);
+      p = y;
+      x = _left(x);
+    }
+  }
+  // TODO: _erase() 구현
+  catch (const std::exception& e) {
+    _erase(top);
+    throw e;
+  }
+  return top;
 }
 }  // namespace ft
