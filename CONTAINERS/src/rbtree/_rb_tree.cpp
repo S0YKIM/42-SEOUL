@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:29:36 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 15:57:03 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 16:00:06 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -339,5 +339,32 @@ template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
 typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::const_iterator
 _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::_insert(
-    _const_base_ptr x, _const_base_ptr y, const value_type& value) {}
+    _const_base_ptr x, _const_base_ptr y, const value_type& value) {
+  link_type node;
+
+  // Case 1: Add the new node as the left child of y.
+  if (y == &_impl._header || x || _key_compare(KeyOfValue()(value), _key(y))) {
+    node = _create_node(value);
+    _left(y) = node;
+    if (y == &_impl._header) {
+      _root() = node;
+      _rightmost() = node;
+    } else if (y == _leftmost())
+      _leftmost() = node;
+  }
+  // Case 2: Add the new node as the right child of y.
+  else {
+    node = _create_node(value);
+    _right(y) = node;
+    if (y == _rightmost()) _rightmost() = node;
+  }
+  _parent(node) = y;
+  _left(node) = 0;
+  _right(node) = 0;
+  // Check if it still satisfies the properties of rbtree after insertion.
+  _rb_tree_rebalance_after_insertion(node, _impl._header._parent);
+  // Update the size of the rbtree.
+  ++_impl._node_count;
+  return const_iterator(node);
+}
 }  // namespace ft
