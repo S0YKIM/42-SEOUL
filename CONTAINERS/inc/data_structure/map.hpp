@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:49:41 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 20:36:28 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 21:08:45 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ class map {
 
   typedef value_type& reference;
   typedef const value_type& const_reference;
-  typedef typename Allocator::pointer pointer;
-  typedef typename Allocator::const_pointer const_pointer;
+  typedef typename allocator_type::pointer pointer;
+  typedef typename allocator_type::const_pointer const_pointer;
 
  private:
   typedef _rb_tree<key_type, value_type, ft::select_first<value_type>,
                    key_compare, allocator_type>
       base_structure;
-  base_structure base;
+  base_structure _base;
 
  public:
   typedef typename base::iterator iterator;
@@ -62,6 +62,40 @@ class map {
       return comp(x.first, y.first);
     }
   };
+
+  // STRONG
+  // Undefined behavior if allocator_traits::construct is not supported with the
+  // appropriate arguments for the element constructions, or if the range
+  // specified by [first,last) is not valid,
+  /**
+   * @brief Empty container constructor(default constructor).
+   */
+  map() : _base() {}
+  explicit map(const Compare& comp, const Alloc a = Alloc()) : _base(comp, a) {}
+
+  // TODO: _rb_tree::insert() 구현
+  /**
+   * @brief Range constructor [first, last).
+   *
+   * @tparam InputIterator
+   * @param first
+   * @param last
+   * @param comp
+   * @param a
+   */
+  template <typename InputIterator>
+  map(InputIterator first, InputIterator last, const Compare& comp = Compare(),
+      const Alloc& a = Alloc())
+      : _base(comp, a) {
+    _base.insert(first, last);
+  }
+
+  /**
+   * @brief Copy constructor.
+   *
+   * @param other
+   */
+  map(const map& other) : _base(other._base) {}
 };
 }  // namespace ft
 
