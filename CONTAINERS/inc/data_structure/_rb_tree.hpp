@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 12:24:48 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 12:29:32 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,6 +211,34 @@ class _rb_tree {
    */
   static const key_type _key(const_link_type node) {
     return KeyOfValue()(_value(node));
+  }
+
+  /**
+   * @brief Get the left child of the given node.
+   *
+   * @param node
+   * @return link_type
+   */
+  static link_type _left(_base_ptr node) {
+    return static_cast<link_type>(node->_left_child);
+  }
+
+  static const_link_type _left(_const_base_ptr node) {
+    return static_cast<const_link_type>(node->_left_child);
+  }
+
+  /**
+   * @brief Get the right child of the given node.
+   *
+   * @param node
+   * @return link_type
+   */
+  static link_type _right(_base_ptr node) {
+    return static_cast<link_type>(node->_right_child);
+  }
+
+  static const_link_type _right(_const_base_ptr node) {
+    return static_cast<const_link_type>(node->_right_child);
   }
 };
 
