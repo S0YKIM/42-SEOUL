@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:49:41 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 21:57:30 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 22:04:16 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,8 +240,35 @@ class map {
     _base.insert(first, last);
   }
 
-  void erase(iterator pos);
-  void erase(iterator first, iterator last);
+  // STRONG
+  // Undefined behavior if an invalid position or range is specified.
+  /**
+   * @brief Removes the element at pos.
+   *
+   * @param pos
+   */
+  void erase(iterator pos) { _base.erase(pos); }
+
+  // BASIC
+  /**
+   * @brief Removes the elements in the range [first, last).
+   *
+   * @param first
+   * @param last
+   */
+  void erase(iterator first, iterator last) {
+    while (first != last) _base.erase(first++);
+  }
+
+  // STRONG
+  /**
+   * @brief Removes the element (if one exists) with the key equivalent to key.
+   *
+   * @param key
+   * @return size_type
+   */
+  size_type erase(const key_type& key) { return _base.erase(key); }
+
   void swap(map& other);
   // !SECTION
 
