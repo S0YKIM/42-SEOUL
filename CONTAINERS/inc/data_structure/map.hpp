@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:49:41 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 21:25:43 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 21:32:16 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,18 +120,41 @@ class map {
   T& operator[](const Key& key) {}
   // !SECTION
 
+  // NOTHROW
+  /**
+   * @brief Returns iterator to the first element.
+   */
   // SECTION: Iterators
-  iterator begin() {}
-  const_iterator begin() const {}
+  iterator begin() { return _base.begin(); }
+  const_iterator begin() const { return _base.begin(); }
 
-  iterator end() {}
-  const_iterator end() const {}
+  // NOTHROW
+  /**
+   * @brief Returns iterator to the element following the last element.
+   *
+   * @return iterator
+   */
+  iterator end() { return _base.end(); }
+  const_iterator end() const { return _base.end(); }
 
-  reverse_iterator rbegin() {}
-  const_reverse_iterator rbegin() const {}
+  // NOTHROW
+  /**
+   * @brief Returns reverse iterator pointing to the last element in the map.
+   *
+   * @return reverse_iterator
+   */
+  reverse_iterator rbegin() { return _base.rbegin(); }
+  const_reverse_iterator rbegin() const { return _base.rbegin(); }
 
-  reverse_iterator rend() {}
-  const_reverse_iterator rend() const {}
+  // NOTHROW
+  /**
+   * @brief Returns reverse iterator pointing to the element right before the
+   * first element in the map.
+   *
+   * @return reverse_iterator
+   */
+  reverse_iterator rend() { return _base.rend(); }
+  const_reverse_iterator rend() const { return _base.rend(); }
   // !SECTION
 
   // SECTION: Size and capacity
