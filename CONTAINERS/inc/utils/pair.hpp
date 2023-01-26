@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:06:25 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 19:29:44 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 19:32:03 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,15 @@ bool operator>=(const pair<T1, T2> &lhs, const pair<T1, T2> &rhs) {
   return !(lhs < rhs);
 }
 
-template <class _T1, class _T2>
-bool operator<=(const pair<_T1, _T2> &lhs, const pair<_T1, _T2> &rhs) {
+template <typename T1, typename T2>
+bool operator<=(const pair<T1, T2> &lhs, const pair<T1, T2> &rhs) {
   return !(rhs < lhs);
 }
 
+template <typename T1, typename T2>
+void swap(pair<T1, T2> &x, pair<T1, T2> &y) {
+  x.swap(y);
+}
 }  // namespace ft
 
 #endif
