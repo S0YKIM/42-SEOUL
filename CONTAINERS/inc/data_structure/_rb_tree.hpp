@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 17:37:45 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 17:52:24 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -365,13 +365,13 @@ class _rb_tree {
     return const_iterator(static_cast<const_link_type>(_impl._header));
   }
 
-  reverese_iterator rbegin() { return reverse_iterator(end()); }
+  reverse_iterator rbegin() { return reverse_iterator(end()); }
 
   const_reverse_iterator rbegin() const {
     return const_reverse_iterator(end());
   }
 
-  reverese_iterator rend() { return reverse_iterator(begin()); }
+  reverse_iterator rend() { return reverse_iterator(begin()); }
 
   const_reverse_iterator rend() const {
     return const_reverse_iterator(begin());
@@ -384,7 +384,10 @@ class _rb_tree {
   size_type max_size() const { return get_allocator().max_size(); }
   // !SECTION
 
+  // SECTION: Modifiers
   void swap(_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& other);
+
+  // !SECTION
 };
 }  // namespace ft
 #endif

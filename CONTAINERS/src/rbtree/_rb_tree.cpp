@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:29:36 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 16:41:04 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 18:06:27 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -428,6 +428,58 @@ void _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::_erase(link_type x) {
     _destroy_node(x);
     x = y;
   }
+}
+
+/**
+ * @brief Swap two rbtrees. For example, A.swap(B)
+ *
+ * @tparam Key
+ * @tparam Val
+ * @tparam KeyOfValue
+ * @tparam Compare
+ * @tparam Alloc
+ * @param other
+ */
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+void _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::swap(
+    _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& other) {
+  // A is empty.
+  if (_root() == 0) {
+    // B is not empty.
+    if (other._root() != 0) {
+      _root() = other._root();
+      _leftmost() = other._leftmost();
+      _rightmost() = other._rightmost();
+      _root()->_parent = _end();
+
+      other._root() = 0;
+      other._leftmost() = other._end();
+      other._rightmost() = other._end();
+    }
+  }
+  // A is not empty but B is empty.
+  else if (other._root() == 0) {
+    other._root() = _root();
+    other._leftmost() = _leftmost();
+    other._rightmost() = _rightmost();
+    other._root()->_parent = other._end();
+
+    _root() = 0;
+    _leftmost() = _end();
+    _rightmost() = _end();
+  }
+  // Both A and B are not empty.
+  else {
+    std::swap(_root(), other._root());
+    std::swap(_leftmost(), other._leftmost());
+    std::swap(_rightmost(), other._rightmost());
+
+    _root()->_parent = _end();
+    other._root()->_parent = other._end();
+  }
+  std::swap(_impl._node_count, other._impl._node_count);
+  std::swap(_impl._key_compare, other._impl._key_compare);
 }
 
 }  // namespace ft
