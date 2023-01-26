@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:49:41 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 21:08:45 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 21:14:53 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,24 @@ class map {
    * @param other
    */
   map(const map& other) : _base(other._base) {}
+
+  /**
+   * @brief Assignment operator.
+   *
+   * @param other
+   * @return map&
+   */
+  map& operator=(const map& other) {
+    _base = other._base;
+    return *this;
+  }
+
+  /**
+   * @brief Get the copy of allocator object
+   *
+   * @return allocator_type
+   */
+  allocator_type get_allocator() const { return _base.get_allocator(); }
 };
 }  // namespace ft
 
