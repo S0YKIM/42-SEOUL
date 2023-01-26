@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:06:25 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 19:37:08 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 20:10:28 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,23 @@ template <typename T1, typename T2>
 pair<T1, T2> make_pair(T1 x, T2 y) {
   return pair<T1, T2>(x, y);
 }
+
+/**
+ * @brief Functor class used as KeyOfValue.
+ *
+ * @tparam pair
+ *
+ * By overloading operator(), it can operate like a function even if it is a
+ * struct(or class). It returns a key of the given pair.
+ * Usage example: select_first(pairName)
+ */
+template <typename pair>
+struct select_first {
+  typename pair::first_type &operator()(pair &x) const { return x.first; }
+  const typename pair::first_type &operator()(const pair &x) const {
+    return x.first;
+  }
+};
 }  // namespace ft
 
 #endif
