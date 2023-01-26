@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 16:26:10 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 16:43:55 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ class _rb_tree {
   typedef Alloc allocator_type;
 
  protected:
+  // NOTE: Structure _rb_tree_impl
   /**
    * @brief Contains the actual data(key_compare, header)
    *
@@ -306,6 +307,23 @@ class _rb_tree {
   link_type _copy(const_link_type x, link_type p);
 
   void _erase(link_type x);
+
+ public:
+  _rb_tree() {}
+
+  _rb_tree(const Compare& comp) : _impl(allocator_type(), comp) {}
+
+  _rb_tree(const Compare& comp, const allocator_type& a) : _impl(a, comp) {}
+
+  _rb_tree(const _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& other)
+      : _impl(other.get_node_allocator(), other._impl._key_compare) {
+    if (other._root()) {
+      _root() = _copy(other._begin(), _end());
+      _leftmost() = _minimum(_root());
+      _rightmost() = _maximum(_root());
+      _impl._node_count = other._impl._node_count;
+    }
+  }
 };
 }  // namespace ft
 #endif

@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:29:36 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 16:29:46 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 16:41:04 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -369,7 +369,7 @@ _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::_insert(
 }
 
 /**
- * @brief Copy the given node including its sub-tree and add them to the tree.
+ * @brief Clone the given node including its sub-tree.
  *
  * @tparam Key
  * @tparam Val
@@ -429,4 +429,5 @@ void _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::_erase(link_type x) {
     x = y;
   }
 }
+
 }  // namespace ft
