@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:29:36 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/24 20:27:18 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 15:57:03 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -288,4 +288,56 @@ _rb_tree_node_base* _rb_tree_rebalance_for_erase(
   // Return the node to be erased to deallocate outside
   return y;
 }
+
+/**
+ * @brief Insert a new node with the given value to the tree.
+ *
+ * @tparam Key
+ * @tparam Val
+ * @tparam KeyOfValue
+ * @tparam Compare
+ * @tparam Alloc
+ * @param x Usually 0, sometimes leftmost or rightmost node.
+ * @param y Address of a node which is going to be the parent of the new node.
+ * @param value The value which the new node will have.
+ * @return _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::iterator
+ */
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::iterator
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::_insert(
+    _base_ptr x, _base_ptr y, const value_type& value) {
+  link_type node;
+
+  // Case 1: Add the new node as the left child of y.
+  if (y == &_impl._header || x || _key_compare(KeyOfValue()(value), _key(y))) {
+    node = _create_node(value);
+    _left(y) = node;
+    if (y == &_impl._header) {
+      _root() = node;
+      _rightmost() = node;
+    } else if (y == _leftmost())
+      _leftmost() = node;
+  }
+  // Case 2: Add the new node as the right child of y.
+  else {
+    node = _create_node(value);
+    _right(y) = node;
+    if (y == _rightmost()) _rightmost() = node;
+  }
+  _parent(node) = y;
+  _left(node) = 0;
+  _right(node) = 0;
+  // Check if it still satisfies the properties of rbtree after insertion.
+  _rb_tree_rebalance_after_insertion(node, _impl._header._parent);
+  // Update the size of the rbtree.
+  ++_impl._node_count;
+  return iterator(node);
+}
+
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::const_iterator
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::_insert(
+    _const_base_ptr x, _const_base_ptr y, const value_type& value) {}
 }  // namespace ft
