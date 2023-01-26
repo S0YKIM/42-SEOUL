@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:49:41 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 21:32:16 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/26 21:36:11 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,9 +158,27 @@ class map {
   // !SECTION
 
   // SECTION: Size and capacity
-  bool empty() const;
-  size_type size() const;
-  size_type max_size() const;
+  // NOTHROW
+  /**
+   * @brief Checks if the map is empty.
+   */
+  bool empty() const { return _base.empty(); }
+
+  // NOTHROW
+  /**
+   * @brief Returns the number of elements in the map.
+   *
+   * @return size_type
+   */
+  size_type size() const { return _base.size(); }
+
+  // NOTHROW
+  /**
+   * @brief Returns the maximum number of elements the map is able to hold.
+   *
+   * @return size_type
+   */
+  / size_type max_size() const { return _base.max_size(); }
   // !SECTION
 
   // SECTION: Modifiers
