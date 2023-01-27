@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:49:41 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/27 17:03:45 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/27 17:22:53 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -281,9 +281,28 @@ class map {
   // !SECTION
 
   // SECTION: Lookup
-  size_type count(const Key& key) const;
-  iterator find(const Key& key);
-  const_iterator find(const Key& key) const;
+  // STRONG
+  /**
+   * @brief Returns the number of elements with key equivalent to the given key.
+   *
+   * @param key
+   * @return size_type
+   */
+  size_type count(const Key& key) const { return _base.count(key); }
+
+  // STRONG
+  /**
+   * @brief Tries to locate an element with which the key matches.
+   *
+   * @param key
+   * @return iterator
+   *
+   * If successful, it returns an iterator pointing to the element.
+   * Otherwise, it returns the past-the-end iterator.
+   */
+  iterator find(const Key& key) { return _base.find(key); }
+  const_iterator find(const Key& key) const { return _base.find(key); }
+
   pair<iterator, iterator> equal_range(const Key& key);
   pair<const_iterator, const_iterator> equal_range(const Key& key) const;
   iterator lower_bound(const Key& key);
