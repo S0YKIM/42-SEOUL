@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:49:41 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/27 17:22:53 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/27 17:27:38 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -303,8 +303,25 @@ class map {
   iterator find(const Key& key) { return _base.find(key); }
   const_iterator find(const Key& key) const { return _base.find(key); }
 
-  pair<iterator, iterator> equal_range(const Key& key);
-  pair<const_iterator, const_iterator> equal_range(const Key& key) const;
+  // STRONG
+  /**
+   * @brief Returns a range containing all elements with the given key in the
+   * container.
+   *
+   * @param key
+   * @return pair<iterator, iterator>
+   *
+   * Since map guarantees that every key is unique, the length of the range is
+   * always 0 or 1.
+   */
+  pair<iterator, iterator> equal_range(const Key& key) {
+    return _base.equal_range(key);
+  }
+
+  pair<const_iterator, const_iterator> equal_range(const Key& key) const {
+    return _base.equal_range(key);
+  }
+
   iterator lower_bound(const Key& key);
   const_iterator lower_bound(const Key& key) const;
   iterator upper_bound(const Key& key);
