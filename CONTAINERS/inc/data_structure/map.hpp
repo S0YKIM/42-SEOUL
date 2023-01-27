@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:49:41 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/27 17:27:38 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/27 17:31:55 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -322,10 +322,33 @@ class map {
     return _base.equal_range(key);
   }
 
-  iterator lower_bound(const Key& key);
-  const_iterator lower_bound(const Key& key) const;
-  iterator upper_bound(const Key& key);
-  const_iterator upper_bound(const Key& key) const;
+  // STRONG
+  /**
+   * @brief Returns an iterator pointing to the first element that is not less
+   * than (i.e. greater or equal to) the given key.
+   *
+   * @param key
+   * @return iterator
+   */
+  iterator lower_bound(const Key& key) { return _base.lower_bound(key); }
+
+  const_iterator lower_bound(const Key& key) const {
+    return _base.lower_bound(key);
+  }
+
+  // STRONG
+  /**
+   * @brief Returns an iterator pointing to the first element that is greater
+   * than the given key.
+   *
+   * @param key
+   * @return iterator
+   */
+  iterator upper_bound(const Key& key) { return _base.upper_bound(key); }
+
+  const_iterator upper_bound(const Key& key) const {
+    return _base.upper_bound(key);
+  }
   // !SECTION
 
   // SECTION: Observers
