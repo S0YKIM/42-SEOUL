@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:49:41 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 22:07:04 by sokim            ###   ########.fr       */
+/*   Updated: 2023/01/27 17:03:45 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,8 +293,23 @@ class map {
   // !SECTION
 
   // SECTION: Observers
-  key_compare key_comp() const;
-  map::value_compare value_comp() const;
+  // STRONG
+  /**
+   * @brief Returns the function object that compares the keys.
+   *
+   * @return key_compare
+   */
+  key_compare key_comp() const { return _base.key_comp(); }
+
+  // STRONG
+  /**
+   * @brief Returns a function object that compares objects of type
+   * map::value_type (key-value pairs) by using key_comp to compare the
+   * first components of the pairs.
+   *
+   * @return value_compare Nested class of map class
+   */
+  value_compare value_comp() const { return value_compare(_base.key_comp()); }
   // !SECTION
 };
 }  // namespace ft
