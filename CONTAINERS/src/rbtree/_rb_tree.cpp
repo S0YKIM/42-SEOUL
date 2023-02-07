@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:29:36 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 18:06:27 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/07 16:10:00 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -481,5 +481,50 @@ void _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::swap(
   std::swap(_impl._node_count, other._impl._node_count);
   std::swap(_impl._key_compare, other._impl._key_compare);
 }
+
+/**
+ * @brief Insert a new pair to the tree.
+ *
+ * @param value pair(key, value) type
+ * @return pair<typename _rb_tree<Key, Val, KeyOfValue, Compare,
+ * Alloc>::iterator, bool>
+ */
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+pair<typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::iterator, bool>
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::insert(
+    const value_type& value) {
+  link_type y = _end();
+  link_type x = _root();
+  bool comp = true;
+  while (x) {
+    y = x;
+    // default: std::less<Key>
+    comp = key_comp(KeyOfValue()(value), _key(x));
+    x = comp ? _left(x) : _right(x);
+  }
+  iterator it = iterator(y);
+  if (comp) {
+    if (it == begin())
+      return make_pair(_insert(x, y, value), true);
+    else
+      --it;
+  }
+  if (key_comp(_key(it._node), KeyOfValue()(value)))
+    return make_pair(_insert(x, y, value), true);
+  return make_pair(it, false);
+}
+
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::iterator
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::insert(
+    iterator pos, const value_type& value) {}
+
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+template <typename InputIterator>
+void _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::insert(
+    InputIterator first, InputIterator last) {}
 
 }  // namespace ft

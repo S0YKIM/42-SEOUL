@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 19:53:19 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/07 14:27:34 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -387,6 +387,13 @@ class _rb_tree {
 
   // SECTION: Modifiers
   void swap(_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& other);
+
+  pair<iterator, bool> insert(const value_type& value);
+
+  iterator insert(iterator pos, const value_type& value);
+
+  template <typename InputIterator>
+  void insert(InputIterator first, InputIterator last);
 
   // !SECTION
 };
