@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:49:41 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/27 17:31:55 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/07 12:32:21 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,24 @@ class map {
   allocator_type get_allocator() const { return _base.get_allocator(); }
 
   // SECTION: Element access
+  /**
+   * @brief Returns a reference to its mapped value.
+   *
+   * @param key
+   * @return T&
+   *
+   * If k matches the key of an element in the container, the function returns a
+   * reference to its mapped value. If k does not match the key of any element
+   * in the container, the function inserts a new element with that key and
+   * returns a reference to its mapped value.
+   */
+  T& operator[](const Key& key) {
+    iterator it = find(key);
+    if (it == end()) it = insert(it, make_pair(key, T()));
+    return it->second;
+  }
+
   T& at(const Key& key) {}
-  T& operator[](const Key& key) {}
   // !SECTION
 
   // NOTHROW
