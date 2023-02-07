@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:29:36 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/07 16:54:54 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/07 16:58:27 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -563,10 +563,18 @@ _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::insert(
   }
 }
 
+/**
+ * @brief Range insertion from range of [first, last).
+ *
+ * @param first
+ * @param last
+ */
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
 template <typename InputIterator>
 void _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::insert(
-    InputIterator first, InputIterator last) {}
+    InputIterator first, InputIterator last) {
+  for (; first != last; ++first) insert(*first);
+}
 
 }  // namespace ft
