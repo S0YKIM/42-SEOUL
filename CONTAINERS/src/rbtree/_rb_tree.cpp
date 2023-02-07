@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:29:36 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/07 16:10:00 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/07 16:54:54 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -486,8 +486,12 @@ void _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::swap(
  * @brief Insert a new pair to the tree.
  *
  * @param value pair(key, value) type
- * @return pair<typename _rb_tree<Key, Val, KeyOfValue, Compare,
- * Alloc>::iterator, bool>
+ * @return pair<iterator, bool>
+ *
+ * If there was the same key in the tree already, it doesn't insert a new node.
+ * Instead, it returns a pair that is consist of (iterator to already existing
+ * node, false). Otherwise, it inserts a new node and returns a pair that is
+ * consist of (iterator to a new node, true).
  */
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
@@ -515,11 +519,49 @@ _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::insert(
   return make_pair(it, false);
 }
 
+/**
+ * @brief Insert a new pair to the tree with hint position given.
+ *
+ * @param pos Hint position to help insertion to be more efficient
+ * @param value pair<iterator, bool>
+ * @return iterator
+ */
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
 typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::iterator
 _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::insert(
-    iterator pos, const value_type& value) {}
+    iterator pos, const value_type& value) {
+  if (pos._node == _impl._header._left_child) {
+    // begin()
+    if (size() > 0 && key_comp(KeyOfValue()(value), _key(pos._node)))
+      return _insert(pos._node, pos._node, value);
+    // (1) The tree is empty or (2) The given key is bigger than leftmost
+    // In this case, the hint position is no use.
+    else
+      return insert(value).first;
+  } else if (pos._node == _impl._header) {
+    // end()
+    if (key_comp(_key(_rightmost()), KeyOfValue()(value)))
+      return _insert(0, _rightmost(), value);
+    // In this case, the hint position is no use.
+    else
+      return insert(value).first;
+  } else {
+    iterator before = pos;
+    --before;
+    // before < value < pos
+    if (key_comp(_key(before._node), KeyOfValue()(value)) &&
+        key_comp(KeyOfValue()(value), _key(pos._node))) {
+      if (_right(before._node) == 0)
+        return _insert(0, before._node, value);
+      else
+        return _insert(pos._node, pos._node, value);
+    }
+    // In this case, the hint position is no use.
+    else
+      return insert(value).first;
+  }
+}
 
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
