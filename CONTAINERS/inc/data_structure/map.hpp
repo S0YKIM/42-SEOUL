@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:49:41 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/07 12:40:56 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/07 17:04:33 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ class map {
   map() : _base() {}
   explicit map(const Compare& comp, const Alloc a = Alloc()) : _base(comp, a) {}
 
-  // TODO: _rb_tree::insert() 구현
   /**
    * @brief Range constructor from range [first, last).
    *
@@ -135,7 +134,7 @@ class map {
   }
 
   /**
-   * @brief
+   * @brief Returns a reference to its mapped value.
    *
    * @param key
    * @return T&
@@ -300,7 +299,6 @@ class map {
    */
   size_type erase(const key_type& key) { return _base.erase(key); }
 
-  // TODO: _rb_tree::swap() 구현
   // NOTHROW If the allocators in both containers compare equal.
   // Otherwise, undefined behavior.
   /**
