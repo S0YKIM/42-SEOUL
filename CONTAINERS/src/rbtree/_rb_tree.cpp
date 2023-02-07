@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:29:36 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/07 17:09:17 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/07 17:21:21 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -585,7 +585,11 @@ void _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::insert(
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
 void _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::erase(iterator pos) {
-  _erase(pos._node);
+  link_type y = static_cast<link_type>(_rb_tree_rebalance_for_erase(
+      pos._node, _impl._header._parent, _impl._header._left_child,
+      _impl._header._right_child));
+  _erase(y);
+  --_impl._node_count;
 }
 
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
