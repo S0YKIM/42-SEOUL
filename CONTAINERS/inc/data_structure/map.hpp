@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:49:41 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/07 12:32:21 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/07 12:40:56 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define MAP_HPP
 
 #include <cstddef>     // std::ptrdiff_t
+#include <exception>   // std::out_of_range
 #include <functional>  // std::less
 #include <memory>      // std::allocator
 
@@ -133,7 +134,21 @@ class map {
     return it->second;
   }
 
-  T& at(const Key& key) {}
+  /**
+   * @brief
+   *
+   * @param key
+   * @return T&
+   *
+   * Has the same behavior when an element with the key exists, but throws an
+   * exception when it does not.
+   */
+  T& at(const Key& key) {
+    iterator it = find(key);
+    if (it == end())
+      throw std::out_of_range("ft::map::at There is no key matching.");
+    return it->second;
+  }
   // !SECTION
 
   // NOTHROW
