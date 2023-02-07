@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:29:36 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/07 16:58:27 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/07 17:09:17 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -577,4 +577,29 @@ void _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::insert(
   for (; first != last; ++first) insert(*first);
 }
 
+/**
+ * @brief Erase one node.
+ *
+ * @param pos Iterator to the node to be erased
+ */
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+void _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::erase(iterator pos) {
+  _erase(pos._node);
+}
+
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::size_type
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::erase(const key_type& x) {}
+
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+void _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::erase(iterator first,
+                                                           iterator last) {}
+
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+void _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::erase(
+    const key_type* first, const key_type* last) {}
 }  // namespace ft
