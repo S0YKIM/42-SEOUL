@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:29:36 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 13:43:26 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 16:03:15 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -382,10 +382,10 @@ _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::_insert(
  */
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
-typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::link_type
-_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::_copy(const_link_type x,
-                                                      link_type p) {
-  link_type top = _clone_node(x);
+typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::_base_ptr
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::_copy(_const_base_ptr x,
+                                                      _base_ptr p) {
+  link_type top = _clone_node(static_cast<const_link_type>(x));
   top->_parent = p;
 
   try {

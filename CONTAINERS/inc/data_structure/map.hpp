@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:49:41 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 13:59:18 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 16:01:46 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 namespace ft {
 template <typename Key, typename T, typename Compare = std::less<Key>,
-          typename Alloc = std::allocator<pair<const Key, T> > >
+          typename Alloc = std::allocator<ft::pair<const Key, T> > >
 class map {
  public:
   typedef Key key_type;
@@ -130,7 +130,7 @@ class map {
    */
   T& operator[](const Key& key) {
     iterator it = find(key);
-    if (it == end()) it = insert(it, make_pair(key, T()));
+    if (it == end()) it = insert(it, ft::make_pair(key, T()));
     return it->second;
   }
 

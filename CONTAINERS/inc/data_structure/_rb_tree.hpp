@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 14:33:04 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 16:00:11 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,13 @@ class _rb_tree {
    * @tparam Compare Functor to compare keys
    */
   template <typename KeyCompare>
-  struct _rb_tree_impl : public node_allocator {
+  struct _rb_tree_impl {
     KeyCompare _key_compare;
     _rb_tree_node_base _header;
     size_type _node_count;
 
-    _rb_tree_impl(const node_allocator& a = node_allocator(),
-                  const KeyCompare& comp = KeyCompare())
-        : node_allocator(a), _key_compare(comp), _header(), _node_count(0) {
+    _rb_tree_impl(const KeyCompare& comp = KeyCompare())
+        : _key_compare(comp), _header(), _node_count(0) {
       _header._color = RED;
       _header._parent = 0;
       _header._left_child = &_header;
@@ -85,29 +84,21 @@ class _rb_tree {
   };
 
   _rb_tree_impl<Compare> _impl;
+  node_allocator _alloc;
 
   // NOTE: Member functions
-  node_allocator& get_node_allocator() {
-    return *static_cast<node_allocator*>(&_impl);
-  }
+  node_allocator& get_node_allocator() { return _alloc; }
 
-  const node_allocator& get_node_allocator() const {
-    return *static_cast<node_allocator*>(&_impl);
-  }
-
-  allocator_type get_allocator() const {
-    return allocator_type(get_node_allocator());
-  }
+  const node_allocator& get_node_allocator() const { return _alloc; }
 
  public:
-  _rb_tree() {}
+  _rb_tree() : _impl(), _alloc() {}
 
-  _rb_tree(const Compare& comp) : _impl(allocator_type(), comp) {}
-
-  _rb_tree(const Compare& comp, const allocator_type& a) : _impl(a, comp) {}
+  _rb_tree(const Compare& comp, const node_allocator& a = node_allocator())
+      : _impl(comp), _alloc(a) {}
 
   _rb_tree(const _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& other)
-      : _impl(other.get_node_allocator(), other._impl._key_compare) {
+      : _impl(other._impl), _alloc(other._alloc) {
     if (other._root()) {
       _root() = _copy(other._begin(), _end());
       _leftmost() = _minimum(_root());
@@ -120,7 +111,6 @@ class _rb_tree {
 
   self& operator=(const self& other) {
     if (this != &other) {
-      // TODO: clear() 구현
       clear();
       _impl._node_count = 0;
       _impl._key_compare = other._impl._key_compare;
@@ -145,16 +135,14 @@ class _rb_tree {
    *
    * @return _rb_tree_node* The address of the node allocated
    */
-  _rb_tree_node* _get_node() { _impl.node_allocator::allocate(1); }
+  _rb_tree_node* _get_node() { _alloc.allocate(1); }
 
   /**
    * @brief Deallocate the given node.
    *
    * @param node The node to be deallocated
    */
-  void _put_node(_rb_tree_node* node) {
-    _impl.node_allocator::deallocate(node, 1);
-  }
+  void _put_node(_rb_tree_node* node) { _alloc.deallocate(node, 1); }
 
   /**
    * @brief Create a node with the given value.
@@ -165,7 +153,7 @@ class _rb_tree {
   link_type _create_node(const value_type& value) {
     link_type tmp = _get_node();
     try {
-      get_allocator().construct(&tmp->_value, value);
+      _alloc.construct(&tmp->_value, value);
     } catch (const std::exception& e) {
       _put_node(tmp);
       throw e;
@@ -193,7 +181,7 @@ class _rb_tree {
    * @param node
    */
   void _destroy_node(link_type node) {
-    get_allocator().destroy(&node->_value);
+    _alloc.destroy(&node->_value);
     _put_node(node);
   }  // !SECTION
 
@@ -346,7 +334,7 @@ class _rb_tree {
   const_iterator _insert(_const_base_ptr x, _const_base_ptr y,
                          const value_type& value);
 
-  link_type _copy(const_link_type x, link_type p);
+  _base_ptr _copy(_const_base_ptr x, _base_ptr p);
 
   void _erase(link_type x);
 
@@ -382,7 +370,7 @@ class _rb_tree {
 
   size_type size() const { return _impl._node_count; }
 
-  size_type max_size() const { return get_allocator().max_size(); }
+  size_type max_size() const { return _alloc.max_size(); }
   // !SECTION
 
   // SECTION: Modifiers
@@ -405,7 +393,7 @@ class _rb_tree {
 
   void clear() {
     if (_impl._node_count != 0) {
-      _erase(_root());
+      _erase(static_cast<link_type>(_root()));
       _root() = 0;
       _leftmost() = _end();
       _rightmost() = _end();
