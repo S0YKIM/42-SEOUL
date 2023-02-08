@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 10:36:28 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 10:44:24 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -411,6 +411,25 @@ class _rb_tree {
       _impl._node_count = 0;
     }
   }
+  // !SECTION
+  // SECTION: Search
+  iterator find(const key_type& x);
+
+  const_iterator find(const key_type& x) const;
+
+  size_type count(const key_type& x) const;
+
+  iterator lower_bound(const key_type& x);
+
+  const_iterator lower_bound(const key_type& x) const;
+
+  iterator upper_bound(const key_type& x);
+
+  const_iterator upper_bound(const key_type& x) const;
+
+  pair<iterator, iterator> equal_range(const key_type& x);
+
+  pair<const_iterator, const_iterator> equal_range(const key_type& x) const;
   // !SECTION
 };
 }  // namespace ft
