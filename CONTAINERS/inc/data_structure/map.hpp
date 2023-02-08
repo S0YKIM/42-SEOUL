@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:49:41 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/07 17:04:33 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 13:39:30 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -399,7 +399,57 @@ class map {
    */
   value_compare value_comp() const { return value_compare(_base.key_comp()); }
   // !SECTION
+
+  template <typename K1, typename T1, typename C1, typename A1>
+  friend bool operator==(const map<K1, T1, C1, A1>& lhs,
+                         const map<K1, T1, C1, A1>& rhs);
+
+  template <typename K1, typename T1, typename C1, typename A1>
+  friend bool operator<(const map<K1, T1, C1, A1>& lhs,
+                        const map<K1, T1, C1, A1>& rhs);
 };
+
+template <typename Key, typename T, typename Compare, typename Allocator>
+inline bool operator==(const map<Key, T, Compare, Allocator>& lhs,
+                       const map<Key, T, Compare, Allocator>& rhs) {
+  return lhs._base == rhs._base;
+}
+
+template <typename Key, typename T, typename Compare, typename Allocator>
+inline bool operator<(const map<Key, T, Compare, Allocator>& lhs,
+                      const map<Key, T, Compare, Allocator>& rhs) {
+  return lhs._base < rhs._base;
+}
+
+template <typename Key, typename T, typename Compare, typename Allocator>
+inline bool operator!=(const map<Key, T, Compare, Allocator>& lhs,
+                       const map<Key, T, Compare, Allocator>& rhs) {
+  return !(lhs == rhs);
+}
+
+template <typename Key, typename T, typename Compare, typename Allocator>
+inline bool operator>(const map<Key, T, Compare, Allocator>& lhs,
+                      const map<Key, T, Compare, Allocator>& rhs) {
+  return rhs < lhs;
+}
+
+template <typename Key, typename T, typename Compare, typename Allocator>
+inline bool operator<=(const map<Key, T, Compare, Allocator>& lhs,
+                       const map<Key, T, Compare, Allocator>& rhs) {
+  return !(rhs < lhs);
+}
+
+template <typename Key, typename T, typename Compare, typename Allocator>
+inline bool operator>=(const map<Key, T, Compare, Allocator>& lhs,
+                       const map<Key, T, Compare, Allocator>& rhs) {
+  return !(lhs < rhs);
+}
+
+template <typename Key, typename T, typename Compare, typename Allocator>
+inline void swap(map<Key, T, Compare, Allocator>& lhs,
+                 map<Key, T, Compare, Allocator>& rhs) {
+  lhs.swap(rhs);
+}
 }  // namespace ft
 
 #endif
