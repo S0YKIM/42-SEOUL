@@ -6,13 +6,14 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 12:08:56 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 13:20:33 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RB_TREE_HPP
 #define RB_TREE_HPP
 
+#include <algorithm>  // std::lexicographical_compare
 #include <exception>  // std::exception
 
 #include "pair.hpp"
@@ -32,7 +33,6 @@ _rb_tree_node_base* _rb_tree_rebalance_for_erase(
     _rb_tree_node_base* node, _rb_tree_node_base*& root,
     _rb_tree_node_base*& leftmost, _rb_tree_node_base*& rightmost);
 
-// TODO: Implement _rb_tree
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc = std::allocator<Val> >
 class _rb_tree {
@@ -431,6 +431,67 @@ class _rb_tree {
 
   pair<const_iterator, const_iterator> equal_range(const Key& k) const;
   // !SECTION
+
+  friend bool operator==(const _rb_tree& lhs, const _rb_tree& rhs);
+
+  friend bool operator<(const _rb_tree& lhs, const _rb_tree& rhs);
 };
+
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+inline bool operator==(
+    const _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& lhs,
+    const _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& rhs) {
+  return lhs.size() == rhs.size() &&
+         ft::equal(lhs.begin(), lhs.end(), rhs.begin());
+}
+
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+inline bool operator<(
+    const _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& lhs,
+    const _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& rhs) {
+  return std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(),
+                                      rhs.end());
+}
+
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+inline bool operator!=(
+    const _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& lhs,
+    const _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& rhs) {
+  return !(lhs == rhs);
+}
+
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+inline bool operator>(
+    const _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& lhs,
+    const _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& rhs) {
+  return y < x;
+}
+
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+inline bool operator<=(
+    const _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& lhs,
+    const _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& rhs) {
+  return !(y < x);
+}
+
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+inline bool operator>=(
+    const _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& lhs,
+    const _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& rhs) {
+  return !(x < y);
+}
+
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+inline void swap(_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& lhs,
+                 _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& rhs) {
+  lhs.swap(rhs);
+}
 }  // namespace ft
 #endif
