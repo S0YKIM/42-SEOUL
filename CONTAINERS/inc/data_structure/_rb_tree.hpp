@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 13:42:46 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 14:33:04 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,26 +202,26 @@ class _rb_tree {
    * @brief Get the reference of the root node base.
    */
   _base_ptr& _root() { return _impl._header._parent; }
-  _const_base_ptr& _root() const { return _impl._header._parent; }
+  _const_base_ptr _root() const { return _impl._header._parent; }
 
   /**
    * @brief Get the reference of the leftmost node base.
    */
   _base_ptr& _leftmost() { return _impl._header._left_child; }
-  _const_base_ptr& _leftmost() const { return _impl._header._left_child; }
+  _const_base_ptr _leftmost() const { return _impl._header._left_child; }
 
   /**
    * @brief Get the reference of the rightmost node base.
    */
   _base_ptr& _rightmost() { return _impl._header._right_child; }
-  _const_base_ptr& _rightmost() const { return _impl._header._right_child; }
+  _const_base_ptr _rightmost() const { return _impl._header._right_child; }
 
   /**
    * @brief Get the address of the root node.
    *
    * @return link_type _rb_tree_node*
    */
-  link_type _begin() { return static_cast<link_type>(&_impl._header._parent); }
+  link_type _begin() { return static_cast<link_type>(_impl._header._parent); }
   const_link_type _begin() const {
     return static_cast<const_link_type>(&_impl._header._parent);
   }
@@ -360,10 +360,10 @@ class _rb_tree {
     return const_iterator(static_cast<const_link_type>(_leftmost()));
   }
 
-  iterator end() { return iterator(static_cast<link_type>(_impl._header)); }
+  iterator end() { return iterator(static_cast<link_type>(&_impl._header)); }
 
   const_iterator end() const {
-    return const_iterator(static_cast<const_link_type>(_impl._header));
+    return const_iterator(static_cast<const_link_type>(&_impl._header));
   }
 
   reverse_iterator rbegin() { return reverse_iterator(end()); }

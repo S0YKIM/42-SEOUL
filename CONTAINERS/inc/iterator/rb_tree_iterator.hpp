@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:33:29 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/26 19:47:12 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 14:00:22 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,49 +245,49 @@ struct _rb_tree_const_iterator {
 template <typename Val>
 inline bool operator==(const _rb_tree_iterator<Val>& lhs,
                        const _rb_tree_iterator<Val>& rhs) {
-  lhs._node == rhs._node;
+  return lhs._node == rhs._node;
 }
 
 template <typename Val>
 inline bool operator==(const _rb_tree_const_iterator<Val>& lhs,
                        const _rb_tree_const_iterator<Val>& rhs) {
-  lhs._node == rhs._node;
+  return lhs._node == rhs._node;
 }
 
 template <typename Val>
 inline bool operator==(const _rb_tree_iterator<Val>& lhs,
                        const _rb_tree_const_iterator<Val>& rhs) {
-  lhs._node == rhs._node;
+  return lhs._node == rhs._node;
 }
 
 template <typename Val>
 inline bool operator==(const _rb_tree_const_iterator<Val>& lhs,
                        const _rb_tree_iterator<Val>& rhs) {
-  lhs._node == rhs._node;
+  return lhs._node == rhs._node;
 }
 
 template <typename Val>
 inline bool operator!=(const _rb_tree_iterator<Val>& lhs,
                        const _rb_tree_iterator<Val>& rhs) {
-  lhs._node != rhs._node;
+  return lhs._node != rhs._node;
 }
 
 template <typename Val>
 inline bool operator!=(const _rb_tree_const_iterator<Val>& lhs,
                        const _rb_tree_const_iterator<Val>& rhs) {
-  lhs._node != rhs._node;
+  return lhs._node != rhs._node;
 }
 
 template <typename Val>
 inline bool operator!=(const _rb_tree_iterator<Val>& lhs,
                        const _rb_tree_const_iterator<Val>& rhs) {
-  lhs._node != rhs._node;
+  return lhs._node != rhs._node;
 }
 
 template <typename Val>
 inline bool operator!=(const _rb_tree_const_iterator<Val>& lhs,
                        const _rb_tree_iterator<Val>& rhs) {
-  lhs._node != rhs._node;
+  return lhs._node != rhs._node;
 }
 }  // namespace ft
 

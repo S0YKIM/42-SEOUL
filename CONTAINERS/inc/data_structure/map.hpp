@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:49:41 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 13:39:30 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 13:59:18 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@
 #include "_rb_tree.hpp"
 
 namespace ft {
-template <class Key, class T, class Compare = std::less<Key>,
-          class Allocator = std::allocator<pair<const Key, T>>>
+template <typename Key, typename T, typename Compare = std::less<Key>,
+          typename Alloc = std::allocator<pair<const Key, T> > >
 class map {
  public:
   typedef Key key_type;
   typedef T mapped_type;
   typedef pair<const Key, T> value_type;
   typedef Compare key_compare;
-  typedef Allocator allocator_type;
+  typedef Alloc allocator_type;
 
   typedef size_t size_type;
   typedef std::ptrdiff_t difference_type;
@@ -46,10 +46,11 @@ class map {
   base_structure _base;
 
  public:
-  typedef typename base::iterator iterator;
-  typedef typename base::const_iterator const_iterator;
-  typedef typename base::reverse_iterator reverse_iterator;
-  typedef typename base::const_reverse_iterator const_reverse_iterator;
+  typedef typename base_structure::iterator iterator;
+  typedef typename base_structure::const_iterator const_iterator;
+  typedef typename base_structure::reverse_iterator reverse_iterator;
+  typedef
+      typename base_structure::const_reverse_iterator const_reverse_iterator;
 
   class value_compare {
     friend class map<Key, T, Compare, Alloc>;
@@ -208,7 +209,7 @@ class map {
    *
    * @return size_type
    */
-  / size_type max_size() const { return _base.max_size(); }
+  size_type max_size() const { return _base.max_size(); }
   // !SECTION
 
   // SECTION: Modifiers
@@ -409,45 +410,45 @@ class map {
                         const map<K1, T1, C1, A1>& rhs);
 };
 
-template <typename Key, typename T, typename Compare, typename Allocator>
-inline bool operator==(const map<Key, T, Compare, Allocator>& lhs,
-                       const map<Key, T, Compare, Allocator>& rhs) {
+template <typename Key, typename T, typename Compare, typename Alloc>
+inline bool operator==(const map<Key, T, Compare, Alloc>& lhs,
+                       const map<Key, T, Compare, Alloc>& rhs) {
   return lhs._base == rhs._base;
 }
 
-template <typename Key, typename T, typename Compare, typename Allocator>
-inline bool operator<(const map<Key, T, Compare, Allocator>& lhs,
-                      const map<Key, T, Compare, Allocator>& rhs) {
+template <typename Key, typename T, typename Compare, typename Alloc>
+inline bool operator<(const map<Key, T, Compare, Alloc>& lhs,
+                      const map<Key, T, Compare, Alloc>& rhs) {
   return lhs._base < rhs._base;
 }
 
-template <typename Key, typename T, typename Compare, typename Allocator>
-inline bool operator!=(const map<Key, T, Compare, Allocator>& lhs,
-                       const map<Key, T, Compare, Allocator>& rhs) {
+template <typename Key, typename T, typename Compare, typename Alloc>
+inline bool operator!=(const map<Key, T, Compare, Alloc>& lhs,
+                       const map<Key, T, Compare, Alloc>& rhs) {
   return !(lhs == rhs);
 }
 
-template <typename Key, typename T, typename Compare, typename Allocator>
-inline bool operator>(const map<Key, T, Compare, Allocator>& lhs,
-                      const map<Key, T, Compare, Allocator>& rhs) {
+template <typename Key, typename T, typename Compare, typename Alloc>
+inline bool operator>(const map<Key, T, Compare, Alloc>& lhs,
+                      const map<Key, T, Compare, Alloc>& rhs) {
   return rhs < lhs;
 }
 
-template <typename Key, typename T, typename Compare, typename Allocator>
-inline bool operator<=(const map<Key, T, Compare, Allocator>& lhs,
-                       const map<Key, T, Compare, Allocator>& rhs) {
+template <typename Key, typename T, typename Compare, typename Alloc>
+inline bool operator<=(const map<Key, T, Compare, Alloc>& lhs,
+                       const map<Key, T, Compare, Alloc>& rhs) {
   return !(rhs < lhs);
 }
 
-template <typename Key, typename T, typename Compare, typename Allocator>
-inline bool operator>=(const map<Key, T, Compare, Allocator>& lhs,
-                       const map<Key, T, Compare, Allocator>& rhs) {
+template <typename Key, typename T, typename Compare, typename Alloc>
+inline bool operator>=(const map<Key, T, Compare, Alloc>& lhs,
+                       const map<Key, T, Compare, Alloc>& rhs) {
   return !(lhs < rhs);
 }
 
-template <typename Key, typename T, typename Compare, typename Allocator>
-inline void swap(map<Key, T, Compare, Allocator>& lhs,
-                 map<Key, T, Compare, Allocator>& rhs) {
+template <typename Key, typename T, typename Compare, typename Alloc>
+inline void swap(map<Key, T, Compare, Alloc>& lhs,
+                 map<Key, T, Compare, Alloc>& rhs) {
   lhs.swap(rhs);
 }
 }  // namespace ft
