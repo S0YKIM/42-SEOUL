@@ -6,7 +6,7 @@
 #    By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 19:27:06 by sokim             #+#    #+#              #
-#    Updated: 2023/01/24 16:37:11 by sokim            ###   ########.fr        #
+#    Updated: 2023/02/08 18:06:17 by sokim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,9 @@ CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
 SRCS = src/test/main.cpp \
+	src/rbtree/_rb_tree.cpp \
 	src/test/vector_test.cpp \
-	src/rbtree/_rb_tree.cpp
+	src/test/map_test.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 DATA_STRUCTURE_DIR = inc/data_structure
