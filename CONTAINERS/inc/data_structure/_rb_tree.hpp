@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 10:44:24 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 12:08:56 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -396,11 +396,11 @@ class _rb_tree {
 
   void erase(iterator pos);
 
-  size_type erase(const key_type& x);
+  size_type erase(const Key& x);
 
   void erase(iterator first, iterator last);
 
-  void erase(const key_type* first, const key_type* last);
+  void erase(const Key* first, const Key* last);
 
   void clear() {
     if (_impl._node_count != 0) {
@@ -413,23 +413,23 @@ class _rb_tree {
   }
   // !SECTION
   // SECTION: Search
-  iterator find(const key_type& x);
+  iterator find(const Key& k);
 
-  const_iterator find(const key_type& x) const;
+  const_iterator find(const Key& k) const;
 
-  size_type count(const key_type& x) const;
+  size_type count(const Key& k) const;
 
-  iterator lower_bound(const key_type& x);
+  iterator lower_bound(const Key& k);
 
-  const_iterator lower_bound(const key_type& x) const;
+  const_iterator lower_bound(const Key& k) const;
 
-  iterator upper_bound(const key_type& x);
+  iterator upper_bound(const Key& k);
 
-  const_iterator upper_bound(const key_type& x) const;
+  const_iterator upper_bound(const Key& k) const;
 
-  pair<iterator, iterator> equal_range(const key_type& x);
+  pair<iterator, iterator> equal_range(const Key& k);
 
-  pair<const_iterator, const_iterator> equal_range(const key_type& x) const;
+  pair<const_iterator, const_iterator> equal_range(const Key& k) const;
   // !SECTION
 };
 }  // namespace ft
