@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:29:36 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 11:04:25 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 11:16:21 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -593,7 +593,7 @@ void _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::erase(iterator pos) {
 }
 
 /**
- * @brief Erase every node which has a key same as the given key.
+ * @brief Erase every node which has the same key as the given key.
  *
  * @param x Key
  * @return _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::size_type
@@ -611,10 +611,21 @@ _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::erase(const key_type& x) {
   return n;
 }
 
+/**
+ * @brief Erase in the range of [first, last).
+ *
+ * @param first
+ * @param last
+ */
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
 void _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::erase(iterator first,
-                                                           iterator last) {}
+                                                           iterator last) {
+  if (first == begin() && last == end())
+    clear();
+  else
+    while (first != last) erase(first++);
+}
 
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
