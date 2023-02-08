@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:10:18 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 21:54:21 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 22:05:18 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 namespace ft {
 template <typename value_type>
 struct identity {
-  T& operator()(value_type& x) const { return x; }
-  const T& operator()(const value_type& x) const { return x; }
+  value_type& operator()(value_type& x) const { return x; }
+  const value_type& operator()(const value_type& x) const { return x; }
 };
 
 template <typename Key, typename Compare = std::less<Key>,
@@ -315,7 +315,9 @@ class set {
    * @param key
    * @return iterator
    */
-  iterator lower_bound(const Key& key) const { return _base.lower_bound(key); }
+  iterator lower_bound(const Key& key) const {
+    return const_cast<iterator>(_base.lower_bound(key));
+  }
 
   // STRONG
   /**
@@ -352,8 +354,7 @@ class set {
                          const set<K1, C1, A1>& rhs);
 
   template <typename K1, typename C1, typename A1>
-  friend bool operator<(const set<K1, T1, C1, A1>& lhs,
-                        const set<K1, T1, C1, A1>& rhs);
+  friend bool operator<(const set<K1, C1, A1>& lhs, const set<K1, C1, A1>& rhs);
 };
 
 template <typename Key, typename Compare, typename Alloc>
