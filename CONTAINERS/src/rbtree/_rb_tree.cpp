@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:29:36 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 12:38:36 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 13:04:01 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -715,6 +715,7 @@ _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::count(const Key& k) const {
 
 /**
  * @brief Find node which is smallest among the nodes that are bigger than k.
+ * (Including k)
  *
  * @param k Key to be searched
  * @return iterator
@@ -767,16 +768,55 @@ _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::lower_bound(
   return const_iterator(y);
 }
 
+/**
+ * @brief Find node which is smallest among the nodes that are bigger than k.
+ * (Not including k)
+ *
+ * @param k Key to be searched
+ * @return iterator
+ */
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
 typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::iterator
-_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::upper_bound(const Key& k) {}
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::upper_bound(const Key& k) {
+  link_type y = _end();
+  link_type x = _root();
+
+  while (x) {
+    // k < x
+    if (key_comp(k, _key(x))) {
+      y = x;
+      x = _left(x);
+    }
+    // k >= x
+    else
+      x = _right(x);
+  }
+
+  return iterator(y);
+}
 
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
 typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::const_iterator
 _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::upper_bound(
-    const Key& k) const {}
+    const Key& k) const {
+  link_type y = _end();
+  link_type x = _root();
+
+  while (x) {
+    // k < x
+    if (key_comp(k, _key(x))) {
+      y = x;
+      x = _left(x);
+    }
+    // k >= x
+    else
+      x = _right(x);
+  }
+
+  return const_iterator(y);
+}
 
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
