@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:29:36 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/07 17:24:14 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 11:04:25 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -592,10 +592,24 @@ void _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::erase(iterator pos) {
   --_impl._node_count;
 }
 
+/**
+ * @brief Erase every node which has a key same as the given key.
+ *
+ * @param x Key
+ * @return _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::size_type
+ *
+ * Since this is not a multimap but a map, there might be only one or no node to
+ * be erased.
+ */
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
 typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::size_type
-_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::erase(const key_type& x) {}
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::erase(const key_type& x) {
+  pair<iterator, iterator> range = equal_range(x);
+  size_type n = std::distance(p.first, p.second);
+  erase(p.first, p.second);
+  return n;
+}
 
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
@@ -606,4 +620,58 @@ template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
 void _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::erase(
     const key_type* first, const key_type* last) {}
+
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::iterator
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::find(const key_type& x) {}
+
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::const_iterator
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::find(const key_type& x) const {}
+
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::size_type
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::count(const key_type& x) const {
+}
+
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::iterator
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::lower_bound(const key_type& x) {
+}
+
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::const_iterator
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::lower_bound(
+    const key_type& x) const {}
+
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::iterator
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::upper_bound(const key_type& x) {
+}
+
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::const_iterator
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::upper_bound(
+    const key_type& x) const {}
+
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+pair<typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::iterator,
+     typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::iterator>
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::equal_range(const key_type& x) {
+}
+
+template <typename Key, typename Val, typename KeyOfValue, typename Compare,
+          typename Alloc>
+pair<typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::const_iterator,
+     typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::const_iterator>
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::equal_range(
+    const key_type& x) const {}
 }  // namespace ft
