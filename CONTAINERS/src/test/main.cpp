@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 20:07:15 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/17 15:49:42 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 16:05:27 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int main() {
       std::cout << "2" << std::endl;
       break;
     case 3:
-      std::cout << "3" << std::endl;
+      test_map();
       break;
     case 4:
       std::cout << "4" << std::endl;
