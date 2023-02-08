@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:29:36 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 11:16:21 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 11:59:25 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -627,10 +627,18 @@ void _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::erase(iterator first,
     while (first != last) erase(first++);
 }
 
+/**
+ * @brief Erase in the range of [first, last) by key.
+ *
+ * @param first
+ * @param last
+ */
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
 void _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::erase(
-    const key_type* first, const key_type* last) {}
+    const key_type* first, const key_type* last) {
+  while (first != last) earse(*first++);
+}
 
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
