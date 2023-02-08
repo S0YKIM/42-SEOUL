@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:29:36 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 13:04:01 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 13:08:43 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -818,16 +818,26 @@ _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::upper_bound(
   return const_iterator(y);
 }
 
+/**
+ * @brief Find the range of nodes which have the same key as k.
+ *
+ * @param k Key to be searched
+ * @return pair<iterator, iterator>
+ */
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
 pair<typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::iterator,
      typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::iterator>
-_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::equal_range(const Key& k) {}
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::equal_range(const Key& k) {
+  return ft::make_pair(lower_bound(key), upper_bound(key));
+}
 
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
 pair<typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::const_iterator,
      typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::const_iterator>
 _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::equal_range(
-    const Key& k) const {}
+    const Key& k) const {
+  return ft::make_pair(lower_bound(key), upper_bound(key));
+}
 }  // namespace ft
