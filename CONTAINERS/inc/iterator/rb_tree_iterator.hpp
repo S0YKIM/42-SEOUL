@@ -6,14 +6,14 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:33:29 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 14:00:22 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 16:45:40 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RB_TREE_ITERATOR_HPP
 #define RB_TREE_ITERATOR_HPP
 
-#include <cstddef>   // std::ptrdiff_t
+#include <cstddef>   // std::ptrdiff_t, std::size_t
 #include <iterator>  // std::bidirectional_iterator_tag
 
 namespace ft {
@@ -35,30 +35,32 @@ struct _rb_tree_node_base {
   _base_ptr _left_child;
   _base_ptr _right_child;
 
-  static _base_ptr minimum(_base_ptr node) {
+  static _base_ptr _minimum(_base_ptr node) {
     while (node->_left_child) node = node->_left_child;
     return node;
   }
 
-  static _const_base_ptr minimum(_const_base_ptr node) {
+  static _const_base_ptr _minimum(_const_base_ptr node) {
     while (node->_left_child) node = node->_left_child;
     return node;
   }
 
-  static _base_ptr maximum(_base_ptr node) {
+  static _base_ptr _maximum(_base_ptr node) {
     while (node->_right_child) node = node->_right_child;
     return node;
   }
 
-  static _const_base_ptr maximum(_const_base_ptr node) {
+  static _const_base_ptr _maximum(_const_base_ptr node) {
     while (node->_right_child) node = node->_right_child;
     return node;
   }
 };
 
-template <typename value_type>
+template <typename Val>
 struct _rb_tree_node : public _rb_tree_node_base {
-  typedef _rb_tree_node<value_type>* _link_type;
+  typedef _rb_tree_node<Val>* link_type;
+  typedef Val value_type;
+
   value_type _value;
 };
 
@@ -168,7 +170,7 @@ struct _rb_tree_const_iterator {
   base_ptr _node;
 
   _rb_tree_const_iterator() : _node() {}
-  explicit _rb_tree_const_iterator(link_type node) : _node(node) {}
+  explicit _rb_tree_const_iterator(base_ptr node) : _node(node) {}
   _rb_tree_const_iterator(const iterator& it) : _node(it._node) {}
 
   /**
