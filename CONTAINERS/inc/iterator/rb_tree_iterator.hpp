@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:33:29 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 16:45:40 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 19:09:15 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ struct _rb_tree_node : public _rb_tree_node_base {
   typedef Val value_type;
 
   value_type _value;
+
+  _rb_tree_node(value_type value = value_type()) : _value(value) {}
 };
 
 template <typename Val>

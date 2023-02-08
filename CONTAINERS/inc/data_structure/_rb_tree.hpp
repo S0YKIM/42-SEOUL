@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 18:57:12 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 19:16:37 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ class _rb_tree {
    *
    * @return _rb_tree_node* The address of the node allocated
    */
-  _rb_tree_node* _get_node() { _alloc.allocate(1); }
+  _rb_tree_node* _get_node() { return _alloc.allocate(1); }
 
   /**
    * @brief Deallocate the given node.
@@ -153,7 +153,7 @@ class _rb_tree {
   link_type _create_node(const value_type& value) {
     link_type tmp = _get_node();
     try {
-      _alloc.construct(&tmp->_value, value);
+      _alloc.construct(tmp, value);
     } catch (const std::exception& e) {
       _put_node(tmp);
       throw e;
@@ -353,8 +353,7 @@ class _rb_tree {
     link_type node;
 
     // Case 1: Add the new node as the left child of y.
-    if (y == &_impl._header || x ||
-        _key_compare(KeyOfValue()(value), _key(y))) {
+    if (y == &_impl._header || x || key_comp()(KeyOfValue()(value), _key(y))) {
       node = _create_node(value);
       y->_left_child = node;
       if (y == &_impl._header) {
@@ -549,24 +548,24 @@ class _rb_tree {
    */
   pair<iterator, bool> insert(const value_type& value) {
     link_type y = _end();
-    link_type x = _root();
+    link_type x = _begin();
     bool comp = true;
     while (x) {
       y = x;
       // default: std::less<Key>
-      comp = key_comp(KeyOfValue()(value), _key(x));
+      comp = key_comp()(KeyOfValue()(value), _key(x));
       x = comp ? _left(x) : _right(x);
     }
     iterator it = iterator(y);
     if (comp) {
       if (it == begin())
-        return make_pair(_insert(x, y, value), true);
+        return ft::make_pair(_insert(x, y, value), true);
       else
         --it;
     }
-    if (key_comp(_key(it._node), KeyOfValue()(value)))
-      return make_pair(_insert(x, y, value), true);
-    return make_pair(it, false);
+    if (key_comp()(_key(it._node), KeyOfValue()(value)))
+      return ft::make_pair(_insert(x, y, value), true);
+    return ft::make_pair(it, false);
   }
 
   /**
