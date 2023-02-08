@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 13:34:11 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 13:42:46 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 #include <algorithm>  // std::lexicographical_compare
 #include <exception>  // std::exception
 
-#include "pair.hpp"
-#include "rb_tree_iterator.hpp"
+#include "algorithm.hpp"         // ft::equal
+#include "pair.hpp"              // ft::pair
+#include "rb_tree_iterator.hpp"  // ft::rb_tree_iterator
 
 namespace ft {
 inline void _rb_tree_rotate_left(_rb_tree_node_base* node,
@@ -464,7 +465,7 @@ template <typename Key, typename Val, typename KeyOfValue, typename Compare,
 inline bool operator>(
     const _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& lhs,
     const _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& rhs) {
-  return y < x;
+  return rhs < lhs;
 }
 
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
@@ -472,7 +473,7 @@ template <typename Key, typename Val, typename KeyOfValue, typename Compare,
 inline bool operator<=(
     const _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& lhs,
     const _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& rhs) {
-  return !(y < x);
+  return !(rhs < lhs);
 }
 
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
@@ -480,7 +481,7 @@ template <typename Key, typename Val, typename KeyOfValue, typename Compare,
 inline bool operator>=(
     const _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& lhs,
     const _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>& rhs) {
-  return !(x < y);
+  return !(lhs < rhs);
 }
 
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
