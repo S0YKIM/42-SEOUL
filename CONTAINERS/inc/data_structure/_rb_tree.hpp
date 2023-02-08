@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/07 14:27:34 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 10:36:28 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -345,7 +345,6 @@ class _rb_tree {
   const_iterator _insert(_const_base_ptr x, _const_base_ptr y,
                          const value_type& value);
 
-  // TODO: _M_insert_lower() 구현?
   link_type _copy(const_link_type x, link_type p);
 
   void _erase(link_type x);
@@ -395,6 +394,23 @@ class _rb_tree {
   template <typename InputIterator>
   void insert(InputIterator first, InputIterator last);
 
+  void erase(iterator pos);
+
+  size_type erase(const key_type& x);
+
+  void erase(iterator first, iterator last);
+
+  void erase(const key_type* first, const key_type* last);
+
+  void clear() {
+    if (_impl._node_count != 0) {
+      _erase(_root());
+      _root() = 0;
+      _leftmost() = _end();
+      _rightmost() = _end();
+      _impl._node_count = 0;
+    }
+  }
   // !SECTION
 };
 }  // namespace ft
