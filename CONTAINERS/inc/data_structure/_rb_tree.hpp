@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 13:20:33 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 13:34:11 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -431,10 +431,6 @@ class _rb_tree {
 
   pair<const_iterator, const_iterator> equal_range(const Key& k) const;
   // !SECTION
-
-  friend bool operator==(const _rb_tree& lhs, const _rb_tree& rhs);
-
-  friend bool operator<(const _rb_tree& lhs, const _rb_tree& rhs);
 };
 
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
