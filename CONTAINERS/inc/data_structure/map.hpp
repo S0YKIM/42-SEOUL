@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:49:41 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 16:01:46 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 21:47:58 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ class map {
   // STRONG
   // Undefined behavior if allocator_traits::construct is not supported with the
   // appropriate arguments for the element constructions, or if the range
-  // specified by [first,last) is not valid,
+  // specified by [first,last) is not valid.
   /**
    * @brief Empty container constructor(default constructor).
    */
@@ -110,7 +110,7 @@ class map {
   }
 
   /**
-   * @brief Get the copy of allocator object
+   * @brief Get the copy of allocator object.
    *
    * @return allocator_type
    */
@@ -151,11 +151,11 @@ class map {
   }
   // !SECTION
 
+  // SECTION: Iterators
   // NOTHROW
   /**
    * @brief Returns iterator to the first element.
    */
-  // SECTION: Iterators
   iterator begin() { return _base.begin(); }
   const_iterator begin() const { return _base.begin(); }
 
@@ -314,6 +314,7 @@ class map {
   // STRONG
   /**
    * @brief Returns the number of elements with key equivalent to the given key.
+   * (1 or 0)
    *
    * @param key
    * @return size_type
