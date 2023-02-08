@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:29:36 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 12:15:16 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 12:24:45 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -662,20 +662,41 @@ _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::find(const Key& k) {
     // k > x
     else
       x = _right(x);
-
-    iterator it = iterator(y);
-    // There is no node that has the same key.
-    if (it == end() || key_comp(k, _key(it._node))) return end();
-    // Found the node we were looking for.
-    else
-      return it;
   }
+
+  iterator it = iterator(y);
+  // There is no node that has the same key.
+  if (it == end() || key_comp(k, _key(it._node))) return end();
+  // Found the node we were looking for.
+  else
+    return it;
 }
 
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
 typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::const_iterator
-_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::find(const Key& x) const {}
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::find(const Key& x) const {
+  link_type y = _end();
+  link_type x = _root();
+
+  while (x) {
+    // k <= x
+    if (!key_comp(_key(x), k)) {
+      y = x;
+      x = _left(x);
+    }
+    // k > x
+    else
+      x = _right(x);
+  }
+
+  const_iterator it = const_iterator(y);
+  // There is no node that has the same key.
+  if (it == end() || key_comp(k, _key(it._node))) return end();
+  // Found the node we were looking for.
+  else
+    return it;
+}
 
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
