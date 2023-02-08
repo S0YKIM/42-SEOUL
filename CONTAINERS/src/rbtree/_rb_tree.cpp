@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:29:36 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 11:59:25 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 12:15:16 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -596,7 +596,7 @@ void _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::erase(iterator pos) {
  * @brief Erase every node which has the same key as the given key.
  *
  * @param x Key
- * @return _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::size_type
+ * @return size_type The number of nodes erased (0 or 1)
  *
  * Since this is not a multimap but a map, there might be only one or no node to
  * be erased.
@@ -604,7 +604,7 @@ void _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::erase(iterator pos) {
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
 typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::size_type
-_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::erase(const key_type& x) {
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::erase(const Key& x) {
   pair<iterator, iterator> range = equal_range(x);
   size_type n = std::distance(p.first, p.second);
   erase(p.first, p.second);
@@ -635,62 +635,85 @@ void _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::erase(iterator first,
  */
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
-void _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::erase(
-    const key_type* first, const key_type* last) {
-  while (first != last) earse(*first++);
+void _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::erase(const Key* first,
+                                                           const Key* last) {
+  while (first != last) erase(*first++);
 }
 
+/**
+ * @brief Find the node of which key is same as k.
+ *
+ * @param k Key to be searched
+ * @return iterator
+ */
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
 typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::iterator
-_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::find(const key_type& x) {}
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::find(const Key& k) {
+  link_type y = _end();
+  link_type x = _root();
+
+  while (x) {
+    // k <= x
+    if (!key_comp(_key(x), k)) {
+      y = x;
+      x = _left(x);
+    }
+    // k > x
+    else
+      x = _right(x);
+
+    iterator it = iterator(y);
+    // There is no node that has the same key.
+    if (it == end() || key_comp(k, _key(it._node))) return end();
+    // Found the node we were looking for.
+    else
+      return it;
+  }
+}
 
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
 typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::const_iterator
-_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::find(const key_type& x) const {}
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::find(const Key& x) const {}
 
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
 typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::size_type
-_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::count(const key_type& x) const {
-}
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::count(const Key& x) const {}
 
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
 typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::iterator
-_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::lower_bound(const key_type& x) {
-}
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::lower_bound(const Key& x) {}
 
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
 typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::const_iterator
 _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::lower_bound(
-    const key_type& x) const {}
+    const Key& x) const {}
 
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
 typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::iterator
-_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::upper_bound(const key_type& x) {
-}
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::upper_bound(const Key& x) {}
 
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
 typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::const_iterator
 _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::upper_bound(
-    const key_type& x) const {}
+    const Key& x) const {}
 
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
 pair<typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::iterator,
      typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::iterator>
-_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::equal_range(const key_type& x) {
-}
+_rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::equal_range(const Key& x) {}
 
 template <typename Key, typename Val, typename KeyOfValue, typename Compare,
           typename Alloc>
 pair<typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::const_iterator,
      typename _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::const_iterator>
 _rb_tree<Key, Val, KeyOfValue, Compare, Alloc>::equal_range(
-    const key_type& x) const {}
+    const Key& x) const {}
 }  // namespace ft
