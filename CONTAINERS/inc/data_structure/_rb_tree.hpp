@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:10:51 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 19:16:37 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/08 19:29:50 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -578,15 +578,15 @@ class _rb_tree {
   iterator insert(iterator pos, const value_type& value) {
     if (pos._node == _impl._header._left_child) {
       // begin()
-      if (size() > 0 && key_comp(KeyOfValue()(value), _key(pos._node)))
+      if (size() > 0 && key_comp()(KeyOfValue()(value), _key(pos._node)))
         return _insert(pos._node, pos._node, value);
       // (1) The tree is empty or (2) The given key is bigger than leftmost
       // In this case, the hint position is no use.
       else
         return insert(value).first;
-    } else if (pos._node == _impl._header) {
+    } else if (pos._node == &_impl._header) {
       // end()
-      if (key_comp(_key(_rightmost()), KeyOfValue()(value)))
+      if (key_comp()(_key(_rightmost()), KeyOfValue()(value)))
         return _insert(0, _rightmost(), value);
       // In this case, the hint position is no use.
       else
@@ -595,8 +595,8 @@ class _rb_tree {
       iterator before = pos;
       --before;
       // before < value < pos
-      if (key_comp(_key(before._node), KeyOfValue()(value)) &&
-          key_comp(KeyOfValue()(value), _key(pos._node))) {
+      if (key_comp()(_key(before._node), KeyOfValue()(value)) &&
+          key_comp()(KeyOfValue()(value), _key(pos._node))) {
         if (_right(before._node) == 0)
           return _insert(0, before._node, value);
         else
