@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:10:18 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/09 12:29:59 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/09 12:47:29 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -290,7 +290,9 @@ class set {
    * If successful, it returns an iterator pointing to the element.
    * Otherwise, it returns the past-the-end iterator.
    */
-  iterator find(const Key& key) const { return _base.find(key); }
+  iterator find(const Key& key) { return _base.find(key); }
+
+  const_iterator find(const Key& key) const { return _base.find(key); }
 
   // STRONG
   /**
@@ -303,7 +305,11 @@ class set {
    * Since set guarantees that every key is unique, the length of the range is
    * always 0 or 1.
    */
-  pair<iterator, iterator> equal_range(const Key& key) const {
+  pair<iterator, iterator> equal_range(const Key& key) {
+    return _base.equal_range(key);
+  }
+
+  pair<const_iterator, const_iterator> equal_range(const Key& key) const {
     return _base.equal_range(key);
   }
 
