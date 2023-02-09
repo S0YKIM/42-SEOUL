@@ -6,7 +6,7 @@
 #    By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 19:27:06 by sokim             #+#    #+#              #
-#    Updated: 2023/02/08 20:46:39 by sokim            ###   ########.fr        #
+#    Updated: 2023/02/09 13:51:04 by sokim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,11 @@ NAME = containers
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
-SRCS = src/test/main.cpp \
+SRCS = src/rbtree/_rb_tree.cpp \
+	src/test/main.cpp \
 	src/test/vector_test.cpp \
-	src/test/map_test.cpp
+	src/test/map_test.cpp \
+	src/test/set_test.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 DATA_STRUCTURE_DIR = inc/data_structure
