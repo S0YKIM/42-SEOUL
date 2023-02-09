@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 20:07:15 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/09 13:57:32 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/09 14:05:45 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "test.hpp"
 
-#if 1  // CREATE A REAL STL EXAMPLE
+#if 0  // CREATE A REAL STL EXAMPLE
 #include <map>
 #include <stack>
 #include <vector>
