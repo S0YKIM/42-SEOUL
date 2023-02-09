@@ -6,15 +6,14 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:30:21 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/17 15:11:15 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/09 14:48:20 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <deque>
 #include <iostream>
 #include <string>
-
-#if 1  // CREATE A REAL STL EXAMPLE
+#if 0  // CREATE A REAL STL EXAMPLE
 #include <map>
 #include <stack>
 #include <vector>
@@ -55,25 +54,26 @@ class MutantStack : public ft::stack<T> {
 };
 
 int main(int argc, char** argv) {
-  time_t start, end;
-  time_t result;
-
-  start = time(NULL);
   if (argc != 2) {
     std::cerr << "Usage: ./test seed" << std::endl;
     std::cerr << "Provide a seed please" << std::endl;
     std::cerr << "Count value:" << COUNT << std::endl;
     return 1;
   }
+
+  time_t start, end;
+  time_t result;
+
   const int seed = atoi(argv[1]);
   srand(seed);
 
+  start = time(NULL);
   ft::vector<std::string> vector_str;
   ft::vector<int> vector_int;
   ft::stack<int> stack_int;
   ft::vector<Buffer> vector_buffer;
   ft::stack<Buffer, std::deque<Buffer> > stack_deq_buffer;
-  //   ft::map<int, int> map_int;
+  ft::map<int, int> map_int;
 
   for (int i = 0; i < COUNT; i++) {
     vector_buffer.push_back(Buffer());
@@ -95,32 +95,32 @@ int main(int argc, char** argv) {
     // NORMAL ! :P
   }
 
-  //   for (int i = 0; i < COUNT; ++i) {
-  //     map_int.insert(ft::make_pair(rand(), rand()));
-  //   }
+  for (int i = 0; i < COUNT; ++i) {
+    map_int.insert(ft::make_pair(rand(), rand()));
+  }
 
-  //   int sum = 0;
-  //   for (int i = 0; i < 10000; i++) {
-  //     int access = rand();
-  //     sum += map_int[access];
-  //   }
-  //   std::cout << "should be constant with the same seed: " << sum <<
-  //   std::endl;
+  int sum = 0;
+  for (int i = 0; i < 10000; i++) {
+    int access = rand();
+    sum += map_int[access];
+  }
+  std::cout << "should be constant with the same seed: " << sum << std::endl;
 
-  //   { ft::map<int, int> copy = map_int; }
-  //   MutantStack<char> iterable_stack;
-  //   for (char letter = 'a'; letter <= 'z'; letter++)
-  //   iterable_stack.push(letter); for (MutantStack<char>::iterator it =
-  //   iterable_stack.begin();
-  //        it != iterable_stack.end(); it++) {
-  //     std::cout << *it;
-  //   }
-  //   std::cout << std::endl;
+  { ft::map<int, int> copy = map_int; }
+  MutantStack<char> iterable_stack;
+  for (char letter = 'a'; letter <= 'z'; letter++) iterable_stack.push(letter);
+  for (MutantStack<char>::iterator it = iterable_stack.begin();
+       it != iterable_stack.end(); it++) {
+    std::cout << *it;
+  }
+  std::cout << std::endl;
+
   end = time(NULL);
   result = end - start;
   std::cout << "****************************************" << std::endl;
   std::cout << "*           Execution Time             *" << std::endl;
   std::cout << "****************************************" << std::endl;
-  std::cout << "Execution time: " << result << " seconds/n";
+  std::cout << "Execution time: " << result << " seconds\n";
+  // system("leaks containers");
   return (0);
 }
