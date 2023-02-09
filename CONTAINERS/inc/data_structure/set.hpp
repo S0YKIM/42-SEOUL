@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:10:18 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/09 12:02:12 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/09 12:29:59 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,7 +211,7 @@ class set {
    * prior to pos.
    */
   iterator insert(iterator pos, const value_type& value) {
-    return _base.insert(pos, value);
+    return _base.insert(pos._const_cast(), value);
   }
 
   // BASIC
@@ -237,7 +237,7 @@ class set {
    *
    * @param pos
    */
-  void erase(iterator pos) { _base.erase(pos); }
+  void erase(iterator pos) { _base.erase(pos._const_cast()); }
 
   // BASIC
   /**
@@ -247,7 +247,7 @@ class set {
    * @param last
    */
   void erase(iterator first, iterator last) {
-    while (first != last) _base.erase(first++);
+    while (first != last) _base.erase((first++)._const_cast());
   }
 
   // STRONG
