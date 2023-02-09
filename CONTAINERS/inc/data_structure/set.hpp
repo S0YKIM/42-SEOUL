@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:10:18 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 22:05:18 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/09 12:02:12 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,8 @@ class set {
   typedef Compare value_compare;
   typedef Alloc allocator_type;
 
-  typedef size_t size_type;
+  typedef std::size_t size_type;
   typedef std::ptrdiff_t difference_type;
-
-  typedef value_type& reference;
-  typedef const value_type& const_reference;
-  typedef typename allocator_type::pointer pointer;
-  typedef typename allocator_type::const_pointer const_pointer;
 
  private:
   typedef _rb_tree<key_type, value_type, ft::identity<value_type>, key_compare,
@@ -52,9 +47,14 @@ class set {
   base_structure _base;
 
  public:
-  typedef typename base_structure::iterator iterator;
+  typedef typename base_structure::const_pointer pointer;
+  typedef typename base_structure::const_pointer const_pointer;
+  typedef typename base_structure::const_reference reference;
+  typedef typename base_structure::const_reference const_reference;
+
+  typedef typename base_structure::const_iterator iterator;
   typedef typename base_structure::const_iterator const_iterator;
-  typedef typename base_structure::reverse_iterator reverse_iterator;
+  typedef typename base_structure::const_reverse_iterator reverse_iterator;
   typedef
       typename base_structure::const_reverse_iterator const_reverse_iterator;
 
@@ -315,10 +315,11 @@ class set {
    * @param key
    * @return iterator
    */
-  iterator lower_bound(const Key& key) const {
-    return const_cast<iterator>(_base.lower_bound(key));
-  }
+  iterator lower_bound(const Key& key) { return _base.lower_bound(key); }
 
+  const_iterator lower_bound(const Key& key) const {
+    return _base.lower_bound(key);
+  }
   // STRONG
   /**
    * @brief Returns an iterator pointing to the first element that is greater
@@ -327,7 +328,11 @@ class set {
    * @param key
    * @return iterator
    */
-  iterator upper_bound(const Key& key) const { return _base.upper_bound(key); }
+  iterator upper_bound(const Key& key) { return _base.upper_bound(key); }
+
+  const_iterator upper_bound(const Key& key) const {
+    return _base.upper_bound(key);
+  }
   // !SECTION
 
   // SECTION: Observers
