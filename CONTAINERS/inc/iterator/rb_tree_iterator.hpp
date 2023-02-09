@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:33:29 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 19:09:15 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/09 12:27:37 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,16 @@ struct _rb_tree_iterator {
   base_ptr _node;
 
   _rb_tree_iterator() : _node() {}
-  _rb_tree_iterator(link_type node) : _node(node) {}
+
+  explicit _rb_tree_iterator(base_ptr node) : _node(node) {}
+
+  _rb_tree_iterator(const self& other) : _node(other._node) {}
 
   /**
    * @brief Increment the iterator.
    *
-   * If you increment the rightmost node, then it will become the header node
-   * which represents nil node.
+   * If you increment the rightmost node, then it will
+   * become the header node which represents nil node.
    */
   void _increment() {
     if (_node->_right_child) {
@@ -243,6 +246,15 @@ struct _rb_tree_const_iterator {
     _decrement();
     return tmp;
   }  // !SECTION
+
+  /**
+   * @brief Const iterator to iterator casting
+   *
+   * @return iterator
+   */
+  iterator _const_cast() const {
+    return iterator(const_cast<typename iterator::base_ptr>(_node));
+  }
 };
 
 // SECTION: Non-member function
