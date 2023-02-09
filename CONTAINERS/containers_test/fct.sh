@@ -41,7 +41,7 @@ ${EOC}"
 compile () {
 	# 1=file 2=define used {ft/std} 3=output_file 4?=compile_log
 	macro_name=$(echo "USING_${2}" | awk '{ print toupper($0) }')
-	compile_cmd="$CC $CFLAGS -o ${3} -I./$include_path -I./$include_iterator_path -I./$include_utils_path -D ${macro_name} ${1}"
+	compile_cmd="$CC $CFLAGS -o ${3} -I./$include_path -I./$include_iterator_path -I./$include_utils_path  ../src/rbtree/_rb_tree.cpp -D ${macro_name} ${1} "
 	if [ -n "$4" ]; then
 		compile_cmd+=" &>${4}"
 	fi
