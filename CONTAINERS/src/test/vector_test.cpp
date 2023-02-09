@@ -6,15 +6,14 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 20:32:00 by sokim             #+#    #+#             */
-/*   Updated: 2023/01/17 15:21:30 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/09 13:42:49 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.hpp"
 
+#include <iostream>
 #include <sstream>
-
-#include "test.hpp"
 
 template <typename Iter>
 static void print_vector(Iter it, Iter ite) {

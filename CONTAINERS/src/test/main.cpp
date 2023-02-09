@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 20:07:15 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 16:05:27 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/09 13:55:40 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int main() {
   switch (option) {
     case 1:
       test_vector();
-      // test_const_vector();
       break;
     case 2:
       std::cout << "2" << std::endl;
@@ -60,7 +59,7 @@ int main() {
       test_map();
       break;
     case 4:
-      std::cout << "4" << std::endl;
+      test_set();
       break;
     default:
       std::cout << "Please enter a valid number." << std::endl;

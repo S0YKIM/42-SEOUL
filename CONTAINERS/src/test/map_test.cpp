@@ -6,17 +6,16 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 20:32:00 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/09 13:19:48 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/09 13:42:35 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.hpp"
 
+#include <iostream>
 #include <sstream>
 #include <string>
 #include <vector>
-
-#include "test.hpp"
 
 #define PRINT_RED "\033[0;31m"
 #define PRINT_GREEN "\033[0;32m"
