@@ -6,7 +6,7 @@
 /*   By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 20:32:00 by sokim             #+#    #+#             */
-/*   Updated: 2023/02/08 19:42:24 by sokim            ###   ########.fr       */
+/*   Updated: 2023/02/09 13:19:48 by sokim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,32 @@ void test_map() {
   m.insert(v.begin(), v.end());
   print_rb_tree(m.end());
 
-  // std::cout << "****************************************" << std::endl;
-  // std::cout << "*                 Insert               *" << std::endl;
-  // std::cout << "****************************************" << std::endl;
-  // std::cout << "- Insert 'a' to 'c'." << std::endl << std::endl;
-  // m.insert(ft::make_pair(1, "a"));
-  // m.insert(ft::make_pair(2, "b"));
-  // m.insert(ft::make_pair(3, "c"));
+  std::cout << "****************************************" << std::endl;
+  std::cout << "*                 Erase                *" << std::endl;
+  std::cout << "****************************************" << std::endl;
+  std::cout << "- Erase the leftmost node (1, 'a').\n\n";
+  m.erase(m.begin());
+  print_rb_tree(m.end());
+
+  std::cout << "- Erase the node (3, 'c').\n\n";
+  m.erase(3);
+  print_rb_tree(m.end());
+
+  std::cout << "****************************************" << std::endl;
+  std::cout << "*                 Count                *" << std::endl;
+  std::cout << "****************************************" << std::endl;
+  std::cout << "- Count the number of nodes of which key is 4.\n\n";
+  std::cout << m.count(4) << std::endl << std::endl;
+
+  std::cout << "****************************************" << std::endl;
+  std::cout << "*                 Swap                *" << std::endl;
+  std::cout << "****************************************" << std::endl;
+  std::cout << "- Create another map.\n\n";
+  ft::map<int, std::string> other(v.begin(), v.end());
+  print_rb_tree(other.end());
+
+  std::cout << "- Swap two maps.\n\n";
+  swap(m, other);
+  print_rb_tree(m.end());
+  print_rb_tree(other.end());
 }
