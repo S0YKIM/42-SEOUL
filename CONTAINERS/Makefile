@@ -6,7 +6,7 @@
 #    By: sokim <sokim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 19:27:06 by sokim             #+#    #+#              #
-#    Updated: 2023/02/09 14:02:14 by sokim            ###   ########.fr        #
+#    Updated: 2023/02/09 14:45:12 by sokim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,10 @@ SRCS = src/rbtree/_rb_tree.cpp \
 	src/test/stack_test.cpp
 OBJS = $(SRCS:.cpp=.o)
 
+SRCS_SUBJECT = src/rbtree/_rb_tree.cpp \
+	src/test/subject_main.cpp
+OBJS_SUBJECT = $(SRCS_SUBJECT:.cpp=.o)
+
 DATA_STRUCTURE_DIR = inc/data_structure
 ITERATOR_DIR = inc/iterator
 UTILS_DIR = inc/utils
@@ -35,7 +39,7 @@ INC_FLAGS = -I $(DATA_STRUCTURE_DIR) -I $(ITERATOR_DIR) -I $(UTILS_DIR) -I $(TES
 all : $(NAME)
 
 clean :
-	rm -rf $(OBJS)
+	rm -rf $(OBJS) $(OBJS_SUBJECT)
 
 fclean : clean
 	rm -rf $(NAME)
@@ -46,6 +50,9 @@ re :
 
 debug : $(OBJS)
 	$(CXX) -g3 -fsanitize=address -o $(NAME) $(OBJS) $(INC_FLAGS)
+
+subject : $(OBJS_SUBJECT)
+	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS_SUBJECT) $(INC_FLAGS)
 
 $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $(OBJS) $(INC_FLAGS)
