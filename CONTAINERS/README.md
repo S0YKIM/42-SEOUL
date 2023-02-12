@@ -1,12 +1,12 @@
 <div align="center">
-  <img src="https://github.com/S0YKIM/Cub3d/blob/main/img/cube.jpg" height="128px" alt="cub3d" >
+  <img src="https://github.com/S0YKIM/42-SEOUL/blob/main/CONTAINERS/images/container-ship-6631117_1920.jpg" height="128px" alt="containers" >
   <h1>Containers</h1>
   <p> Reimplement the containers in C++ </p>
 </div>
 </br>
 
 ## 🎬 Preview
-![](https://github.com/S0YKIM/Cub3d/blob/main/img/simulation.gif?raw=true)
+![](https://github.com/S0YKIM/42-SEOUL/blob/main/CONTAINERS/images/Screen%20Shot%202023-02-12%20at%202.38.53%20PM.png)
 </br></br></br>
 
 ## 🚀 Notes
