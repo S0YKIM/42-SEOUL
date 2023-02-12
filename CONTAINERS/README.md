@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://github.com/S0YKIM/42-SEOUL/blob/main/CONTAINERS/images/container-ship-6631117_1920.jpg" height="128px" alt="containers" >
   <h1>Containers</h1>
-  <p> Reimplement the containers in C++ </p>
+  <p> Implement the containers of the C++ STL </p>
 </div>
 </br>
 
@@ -59,3 +59,9 @@ $ ./containers
 [4] - Test Set class
 ```
 </br>
+
+## 👀 References
+[cppreference](https://en.cppreference.com/w/)
+</br>
+[cplusplus](https://cplusplus.com/)
+</br></br></br>
