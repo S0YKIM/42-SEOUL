@@ -1,8 +1,5 @@
 # CPP Module 04
 
-
-[![sokim's 42 CPP Module 04 Score](https://badge42.vercel.app/api/v2/cl1sxc9pb003009jgq7f86utb/project/2656727)](https://github.com/JaeSeoKim/badge42)
-
 > Subtype polymorphism, abstract classes, interfaces
 
 🗒️ [Developer note](https://pouncing-elbow-0a4.notion.site/Module-04-69f3ff54dad44bdb8f5febb849a2b81d)
