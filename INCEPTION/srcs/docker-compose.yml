@@ -1,0 +1,18 @@
+# Latest version (23.02.19)
+version: "3.8"
+
+# Containers orchestrated by Docker Compose
+services:
+  # MariaDB
+  mariadb:
+    container_name: mariadb
+    # TODO: 이미지명 뒤의 태그 뭐로 하지?
+    image: mariadb:inception
+    build: ./requirements/mariadb
+    init: true
+    networks:
+      - ft_bridge
+    env_file:
+      - .env
+    # TODO: volumes
+    # TODO: healthcheck
