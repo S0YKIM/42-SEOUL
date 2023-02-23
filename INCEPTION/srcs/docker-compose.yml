@@ -17,8 +17,19 @@ services:
       - .env
     restart: "always"
 
-# Network Bridge for Orchestrated Containers
+# Network bridge for orchestrated containers
 networks:
   ft_bridge:
     name: ft_bridge
     driver: bridge
+
+# Volumes mounted from host directory for serviced containers
+volumes:
+  db_vol:
+    name: db_vol
+    driver: local
+    driver_opts:
+      # Volume Binding
+      device: ${VOLUME_PATH}/mariadb
+      o: bind
+      type: volume
