@@ -1,5 +1,5 @@
-# Base Image (The penultimate stable version Debian 10)
-FROM debian:buster
+# Base Image (The penultimate stable version)
+FROM apline:3.16
 
 # Port Number
 EXPOSE 3306
@@ -15,7 +15,7 @@ COPY ./tools/entrypoint.sh .
 
 # TODO: CMD 뒤의 명령어
 # Health Check
-HEALTHCHECK --start-period=3s --interval=10s --timeout=30s --retries=5 CMD [명령어]
+HEALTHCHECK --start-period=3s --interval=10s --timeout=30s --retries=5 CMD pgrep tini
 
 # Command to Be Executed
 ENTRYPOINT ["./entrypoint.sh"]
