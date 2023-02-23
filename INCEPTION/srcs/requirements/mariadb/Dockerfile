@@ -13,9 +13,11 @@ RUN apt-get update && apt-get install -y \
 # Copy the Entrypoint Script
 COPY ./tools/entrypoint.sh .
 
-# TODO: CMD 뒤의 명령어
 # Health Check
-HEALTHCHECK --start-period=3s --interval=10s --timeout=30s --retries=5 CMD pgrep tini
+HEALTHCHECK --start-period=3s --interval=10s --timeout=30s --retries=5 CMD pgrep tini && mariadb-admin ping
 
-# Command to Be Executed
+# Command To Be Executed
 ENTRYPOINT ["./entrypoint.sh"]
+
+# Command To Be Executed (added to entrypoint)
+CMD ["mariadb"]
