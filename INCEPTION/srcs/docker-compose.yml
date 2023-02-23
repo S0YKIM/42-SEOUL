@@ -6,13 +6,19 @@ services:
   # MariaDB
   mariadb:
     container_name: mariadb
-    # TODO: 이미지명 뒤의 태그 뭐로 하지?
-    image: mariadb:inception
     build: ./requirements/mariadb
+    image: ft_mariadb
     init: true
     networks:
       - ft_bridge
+    volumes:
+      - db_vol:/var/lib/mysql
     env_file:
       - .env
-    # TODO: volumes
-    # TODO: healthcheck
+    restart: "always"
+
+# Network Bridge for Orchestrated Containers
+networks:
+  ft_bridge:
+    name: ft_bridge
+    driver: bridge
