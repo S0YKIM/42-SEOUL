@@ -16,5 +16,8 @@ COPY ./tools/entrypoint.sh .
 # Command To Be Executed
 ENTRYPOINT ["./entrypoint.sh"]
 
+# Health Check
+HEALTHCHECK --start-period=3s --interval=10s --timeout=30s --retries=5 CMD pgrep tini && mariadb-admin ping
+
 # Command To Be Executed (added to entrypoint)
-CMD ["mariadb"]
+CMD ["mysqld_safe"]
