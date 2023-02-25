@@ -5,16 +5,24 @@ version: "3.8"
 services:
   # MariaDB
   mariadb:
+    # Container name
     container_name: mariadb
+    # Dockerfile location
     build: ./requirements/mariadb
+    # Image name
     image: ft_mariadb
+    # Dumb init
     init: true
+    # Network
     networks:
       - ft_bridge
+    # Volume binding
     volumes:
       - db_vol:/var/lib/mysql
+    # Environment variables
     env_file:
       - .env
+    # Keep the service active
     restart: "always"
 
 # Network bridge for orchestrated containers
@@ -25,11 +33,14 @@ networks:
 
 # Volumes mounted from host directory for serviced containers
 volumes:
+  # Volume for MariaDB
   db_vol:
     name: db_vol
     driver: local
     driver_opts:
-      # Volume Binding
-      device: ${VOLUME_PATH}/mariadb
+      # Path to be bound
+      device: ${VOLUME_PATH}/db_vol
+      # Mount option
       o: bind
-      type: volume
+      # Volume Type
+      type: none
