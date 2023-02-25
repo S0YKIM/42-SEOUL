@@ -1,17 +1,20 @@
 # Base Image (The penultimate stable version)
-FROM apline:3.16
+FROM debian:buster
 
 # Port Number
 EXPOSE 3306
 
 # Package Installation
-RUN apt-get update && apt-get install -y \
-	mairadb-server \
-	vim \
-	procps
+RUN apt-get update && apt-get upgrade && \
+	apt-get install -y mariadb-server && \
+	apt-get install -y vim && \
+	apt-get install -y procps
+RUN ls
 
 # Copy the Entrypoint Script
 COPY ./tools/entrypoint.sh .
+
+RUN chmod +x /entrypoint.sh
 
 # Command To Be Executed
 ENTRYPOINT ["./entrypoint.sh"]
