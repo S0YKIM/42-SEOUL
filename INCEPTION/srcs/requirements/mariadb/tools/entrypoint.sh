@@ -1,15 +1,17 @@
 #!/bin/sh
 
 # Exit if any command fails
-set -e
+set -ex
 
 # Check whether system table is already setup or not
 if [ ! -d $DB_PATH/$DB_NAME ];
 then
 	# Install mariadb according to my.cnf
+	echo "Install MariaDB."
 	mariadb-install-db
 
 	# Execute mariaDB server as background process
+	echo "Run MariaDB server."
 	/usr/bin/mysqld_safe &
 
 	# Create database and user
@@ -26,5 +28,6 @@ else
 	echo "Target database already exists.";
 fi
 
-# Run mariaDB server by Dumb Init
-exec $@;
+# Run mariaDB server as PID 1
+# To receive any signals sent to the container
+exec "$@";
