@@ -16,7 +16,6 @@ RUN set -eux && \
 	chmod 777 /run/mysqld /var/lib/mysql /var/log/mysql;
 
 # Copy the config file and entrypoint Script
-COPY ./conf/my.cnf /etc/mysql/mariadb.conf.d/
 COPY ./tools/entrypoint.sh .
 
 RUN chmod +x entrypoint.sh
