@@ -11,7 +11,7 @@ services:
     build: ./requirements/mariadb
     # Image name
     image: ft_mariadb
-    # Dumb init
+    # Docker init
     init: true
     # Network
     networks:
@@ -26,6 +26,37 @@ services:
     configs:
       - source: mariadb_config
         target: /etc/my.cnf
+    # Keep the service active
+    restart: "always"
+
+  # WordPress
+  wordpress:
+    # Container name
+    container_name: wordpress
+    # Dockerfile location
+    build: ./requirements/wordpress
+    # Image name
+    image: ft_wordpress
+    # Docker init
+    init: true
+    # Network
+    networks:
+      - ft_bridge
+    # Volume binding
+    volumes:
+      - wp_vol:/var/www/sokim.42.fr
+    # Environment variables
+    env_file:
+      - .env
+    # Configuration settings
+    configs:
+      - source: wordpress_config
+        target: /etc/php8/php-fpm.d/www.conf
+      - source: wordpress_fpm_config
+        target: /etc/php8/php.ini
+    depends_on:
+      mariadb:
+        condition: service_healthy
     # Keep the service active
     restart: "always"
 
@@ -48,8 +79,22 @@ volumes:
       o: bind
       # Volume Type
       type: none
+  wp_vol:
+    name: wp_vol
+    driver: local
+    driver_opts:
+      # Path to be bound
+      device: ${VOLUME_PATH}/wp_vol
+      # Mount option
+      o: bind
+      # Volume Type
+      type: none
 
 # Configuration files
 configs:
   mariadb_config:
     file: ./requirements/mariadb/conf/my.cnf
+  wordpress_config:
+    file: ./requirements/wordpress/conf/www.conf
+  wordpress_fpm_config:
+    file: ./requirements/wordpress/conf/php.ini
