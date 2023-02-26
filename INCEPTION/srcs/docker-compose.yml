@@ -22,6 +22,10 @@ services:
     # Environment variables
     env_file:
       - .env
+    # Configuration settings
+    configs:
+      - source: mariadb_config
+        target: /etc/my.cnf
     # Keep the service active
     restart: "always"
 
@@ -44,3 +48,8 @@ volumes:
       o: bind
       # Volume Type
       type: none
+
+# Configuration files
+configs:
+  mariadb_config:
+    file: ./requirements/mariadb/conf/my.cnf
