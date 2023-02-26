@@ -4,7 +4,7 @@
 set -ex
 
 # Check whether system table is already setup or not
-if [ ! -d $DB_PATH/$DB_NAME ];
+if [ ! -d $DB_PATH/$DB_NAME ]
 then
 	# Install Mariadb according to my.cnf
 	echo "Install MariaDB."
