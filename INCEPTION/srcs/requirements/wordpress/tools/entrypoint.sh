@@ -4,7 +4,7 @@
 set -ex
 
 # Check whether wordpress is already setup or not
-if [ ! -d $WP_PATH/wp-config.php ]
+if [ ! -d $WP_PATH ]
 then
 	# Make directory /var/www/html
 	mkdir -p $WP_PATH
@@ -39,5 +39,5 @@ else
 	echo "Wordpress is already set up.";
 fi
 
-# Run WordPress server as foreground process
+# Run php-fpm server as foreground process
 exec "$@";
