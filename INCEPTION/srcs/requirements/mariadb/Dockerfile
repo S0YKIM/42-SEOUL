@@ -15,16 +15,16 @@ RUN set -eux && \
 	chown -R mysql:mysql /run/mysqld /var/lib/mysql /var/log/mysql && \
 	chmod 777 /run/mysqld /var/lib/mysql /var/log/mysql;
 
-# Copy the config file and entrypoint Script
+# Copy entrypoint script
 COPY ./tools/entrypoint.sh .
 
 RUN chmod +x entrypoint.sh
 
-# Command To Be Executed
+# Command to be executed
 ENTRYPOINT ["./entrypoint.sh"]
 
-# Health Check
+# Health check
 HEALTHCHECK --start-period=3s --interval=10s --timeout=30s --retries=5 CMD ps | grep docker-init && mariadb-admin ping
 
-# Command To Be Executed (added to entrypoint)
+# Command to be executed (added to entrypoint)
 CMD ["mysqld"]
