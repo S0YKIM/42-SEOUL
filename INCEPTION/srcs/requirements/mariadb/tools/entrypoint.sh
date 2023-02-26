@@ -29,8 +29,8 @@ then
 	mariadb-admin -uroot -p$MARIADB_ADMIN_PWD shutdown
 	echo "MariaDB initialization has done!"
 else
-	echo "Target database already exists.";
+	echo "Target database already exists."
 fi
 
 # Run MariaDB server as foreground process
-exec "$@";
+exec "$@"
