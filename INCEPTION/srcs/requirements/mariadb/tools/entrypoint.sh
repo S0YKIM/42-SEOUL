@@ -12,9 +12,13 @@ then
 
 	# Execute mariaDB server as background process
 	echo "Run MariaDB server."
-	/usr/bin/mysqld_safe &
+	"$@" &
+
+	# Wait until mariaDB server is ready
+	mariadb-admin ping --wait=1 --connect_timeout=30
 
 	# Create database and user
+	echo "Create MariaDB database and user."
 	mariadb -u root -e "CREATE DATABASE IF NOT EXISTS $DB_NAME; \
 	CREATE USER IF NOT EXISTS 'root'@'localhost'; \
 	GRANT ALL ON *.* TO 'root'@'localhost' IDENTIFIED BY '$MARIADB_ADMIN_PWD' WITH GRANT OPTION; \
