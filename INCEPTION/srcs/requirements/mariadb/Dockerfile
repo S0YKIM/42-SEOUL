@@ -25,7 +25,7 @@ RUN chmod +x entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]
 
 # Health Check
-HEALTHCHECK --start-period=3s --interval=10s --timeout=30s --retries=5 CMD pgrep tini && mariadb-admin ping
+HEALTHCHECK --start-period=3s --interval=10s --timeout=30s --retries=5 CMD ps | grep docker-init && mariadb-admin ping
 
 # Command To Be Executed (added to entrypoint)
 CMD ["mysqld"]
