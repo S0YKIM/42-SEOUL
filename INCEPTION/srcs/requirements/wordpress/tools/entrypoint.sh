@@ -30,10 +30,16 @@ then
 					--admin_email=$WP_ADMIN_MAIL \
 					--skip-email \
 					--allow-root
+	
+	# Create user
 	wp user create $WP_USER_USER $WP_USER_MAIL \
 					--role=editor \
 					--user_pass=$WP_USER_PWD \
 					--allow-root
+	
+	# Install WordPress theme
+	wp theme install twentysixteen --activate
+
 	echo "WordPress setup has done successfully."
 else
 	echo "Wordpress is already set up.";
