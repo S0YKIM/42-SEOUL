@@ -7,8 +7,13 @@ EXPOSE 9000
 # Package installation
 RUN set -eux && \
 	apk update && \
-	mkdir -p /var/www/html/wordpress && \
 	apk add --no-cache php8 php8-fpm php8-mysqli php8-gd php8-cli php8-phar mysql-client wget;
+
+# Make directory and change owner to www-data
+RUN set -eux && \
+	mkdir -p /var/www/html/wordpress /run/php && \
+	chown -R www-data:www-data /var/www/html/wordpress && \
+	chmod 777 /var/www/html/wordpress;
 
 RUN set -eux && \
 	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
