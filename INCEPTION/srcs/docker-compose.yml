@@ -16,9 +16,9 @@ services:
     # Network
     networks:
       - ft_bridge
-    # Volume binding
+    # Bind mount
     volumes:
-      - db_vol:/var/lib/mysql
+      - ${VOLUME_PATH}/db_vol:/var/lib/mysql
     # Environment variables
     env_file:
       - .env
@@ -42,9 +42,9 @@ services:
     # Network
     networks:
       - ft_bridge
-    # Volume binding
+    # Bind mount
     volumes:
-      - wp_vol:/var/www/html/wordpress
+      - ${VOLUME_PATH}/wp_vol:/var/www/html/wordpress
     # Environment variables
     env_file:
       - .env
@@ -65,30 +65,6 @@ networks:
   ft_bridge:
     name: ft_bridge
     driver: bridge
-
-# Volumes mounted from host directory for serviced containers
-volumes:
-  # Volume for MariaDB
-  db_vol:
-    name: db_vol
-    driver: local
-    driver_opts:
-      # Path to be bound
-      device: ${VOLUME_PATH}/db_vol
-      # Mount option
-      o: bind
-      # Volume Type
-      type: none
-  wp_vol:
-    name: wp_vol
-    driver: local
-    driver_opts:
-      # Path to be bound
-      device: ${VOLUME_PATH}/wp_vol
-      # Mount option
-      o: bind
-      # Volume Type
-      type: none
 
 # Configuration files
 configs:
