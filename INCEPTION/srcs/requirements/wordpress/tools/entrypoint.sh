@@ -4,8 +4,8 @@
 set -ex
 
 # Check whether wordpress is already setup or not
-if [ ! -f $WP_PATH/wp-config.php ]
-then
+while [ ! -f $WP_PATH/wp-config.php ];
+do
 	# Move to /var/www/html/wordpress
 	cd $WP_PATH
 
@@ -18,9 +18,6 @@ then
 					--dbpass=$MARIADB_PWD \
 					--dbhost=$DB_HOST \
 					--allow-root
-	
-	# Create database based on wp-config.php
-	wp db create
 
 	# Create WordPress table in the database
 	wp core install --url=$DOMAIN_NAME \
@@ -41,9 +38,7 @@ then
 	wp theme install twentysixteen --activate
 
 	echo "WordPress setup has done successfully."
-else
-	echo "Wordpress is already set up.";
-fi
+done
 
 # Run php-fpm server as foreground process
 exec "$@";
