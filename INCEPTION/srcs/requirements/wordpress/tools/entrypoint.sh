@@ -3,11 +3,15 @@
 # Exit if any command fails
 set -ex
 
+# Change ownership of /var/www/html/wordpress
+chown -R www-data:www-data $WP_PATH
+chmod 777 $WP_PATH
+
 # Check whether wordpress is already setup or not
-if [ ! -d $WP_PATH ]
+if [ ! -f $WP_PATH/wp-config.php ]
 then
-	# Make directory /var/www/html
-	mkdir -p $WP_PATH
+	# Move to /var/www/html/wordpress
+	cd $WP_PATH
 
 	# Download core files
 	wp core download --allow-root
