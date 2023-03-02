@@ -3,10 +3,6 @@
 # Exit if any command fails
 set -ex
 
-# Change ownership of /var/www/html/wordpress
-chown -R www-data:www-data $WP_PATH
-chmod 777 $WP_PATH
-
 # Check whether wordpress is already setup or not
 if [ ! -f $WP_PATH/wp-config.php ]
 then
