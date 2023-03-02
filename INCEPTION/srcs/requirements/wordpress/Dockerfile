@@ -4,16 +4,16 @@ FROM alpine:3.16
 # Port number
 EXPOSE 9000
 
-# Create directory
-RUN mkdir -p /var/www/html/wordpress
-
-WORKDIR /var/www
-
 # Package installation
 RUN set -eux && \
 	apk update && \
-	apk add --no-cache php8 php8-fpm php8-mysqli wget && \
-	wget https://wordpress.org/latest.tar.gz | tar -xzvf latest.tar.gz;
+	mkdir -p /var/www/html/wordpress && \
+	apk add --no-cache php8 php8-fpm php8-mysqli php8-gd php8-cli php8-phar mysql-client wget;
+
+RUN set -eux && \
+	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+	chmod +x wp-cli.phar && \
+	mv wp-cli.phar /usr/local/bin/wp;
 
 # Copy entrypoint script
 COPY ./tools/entrypoint.sh .
@@ -27,4 +27,4 @@ ENTRYPOINT ["./entrypoint.sh"]
 HEALTHCHECK --start-period=3s --interval=10s --timeout=30s --retries=5 CMD ps | grep docker-init
 
 # Command to be executed (added to entrypoint)
-CMD ["php-fpm8.1", "-F"]
+CMD ["php-fpm8", "-F"]
