@@ -7,7 +7,10 @@ EXPOSE 9000
 # Package installation
 RUN set -eux && \
 	apk update && \
-	apk add --no-cache php8 php8-fpm php8-mysqli php8-gd php8-cli php8-phar mysql-client wget;
+	apk add --no-cache php8 php8-fpm php8-mysqli php8-common php8-iconv php8-tokenizer php8-gd php8-cli php8-phar mysql-client wget;
+
+# Create user www-data
+RUN adduser -u 82 -D -S -G www-data www-data
 
 # Make directory and change owner to www-data
 RUN set -eux && \
