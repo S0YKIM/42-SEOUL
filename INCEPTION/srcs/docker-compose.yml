@@ -52,8 +52,6 @@ services:
     configs:
       - source: wordpress_fpm_config
         target: /etc/php8/php-fpm.d/www.conf
-      - source: wordpress_config
-        target: /etc/php8/php.ini
     depends_on:
       mariadb:
         condition: service_healthy
@@ -70,7 +68,5 @@ networks:
 configs:
   mariadb_config:
     file: ./requirements/mariadb/conf/my.cnf
-  wordpress_config:
-    file: ./requirements/wordpress/conf/www.conf
   wordpress_fpm_config:
-    file: ./requirements/wordpress/conf/php.ini
+    file: ./requirements/wordpress/conf/www.conf
