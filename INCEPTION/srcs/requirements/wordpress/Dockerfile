@@ -4,11 +4,16 @@ FROM alpine:3.16
 # Port number
 EXPOSE 9000
 
+# Create directory
+RUN mkdir -p /var/www/html/wordpress
+
+WORKDIR /var/www
+
 # Package installation
 RUN set -eux && \
-	apk update
-
-# TODO: 필요한 소프트웨어 추가 설치
+	apk update && \
+	apk add --no-cache php8 php8-fpm php8-mysqli wget && \
+	wget https://wordpress.org/latest.tar.gz | tar -xzvf latest.tar.gz;
 
 # Copy entrypoint script
 COPY ./tools/entrypoint.sh .
