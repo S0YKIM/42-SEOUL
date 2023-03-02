@@ -18,7 +18,7 @@ services:
       - ft_bridge
     # Bind mount
     volumes:
-      - ${VOLUME_PATH}/db_vol:/var/lib/mysql
+      - ${VOLUME_PATH}/db_vol:${DB_PATH}
     # Environment variables
     env_file:
       - .env
@@ -44,7 +44,7 @@ services:
       - ft_bridge
     # Bind mount
     volumes:
-      - ${VOLUME_PATH}/wp_vol:/var/www/html/wordpress
+      - ${VOLUME_PATH}/wp_vol:${WP_PATH}
     # Environment variables
     env_file:
       - .env
