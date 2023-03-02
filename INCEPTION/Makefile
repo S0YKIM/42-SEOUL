@@ -6,8 +6,6 @@ VOLUME_PATH = /Users/soyeon/Desktop/data
 
 .PHONY : all
 all : build
-	@ mkdir -p $(VOLUME_PATH)/db_vol
-	@ mkdir -p $(VOLUME_PATH)/wp_vol
 	@ sudo docker compose -f $(COMPOSE_SRC) up
 
 .PHONY : build
