@@ -50,7 +50,7 @@ services:
       - .env
     # Configuration settings
     configs:
-      - source: wordpress_fpm_config
+      - source: wordpress_config
         target: /etc/php8/php-fpm.d/www.conf
     # Guarantee the sequence
     depends_on:
@@ -81,10 +81,11 @@ services:
     # Configuration settings
     configs:
       - source: nginx_config
-        target: /etc/nginx/nginx.conf
+        target: /etc/nginx/conf.d/sokim.42.fr.conf
     # Guarantee the sequence
     depends_on:
       - wordpress
+    # Port forwarding to host OS
     ports:
       - "443:443"
     # Keep the service active
@@ -100,7 +101,7 @@ networks:
 configs:
   mariadb_config:
     file: ./requirements/mariadb/conf/my.cnf
-  wordpress_fpm_config:
+  wordpress_config:
     file: ./requirements/wordpress/conf/www.conf
   nginx_config:
-    file: ./requirements/nginx/conf/nginx.conf
+    file: ./requirements/nginx/conf/sokim.42.fr.conf
