@@ -52,9 +52,41 @@ services:
     configs:
       - source: wordpress_fpm_config
         target: /etc/php8/php-fpm.d/www.conf
+    # Guarantee the sequence
     depends_on:
       mariadb:
         condition: service_healthy
+    # Keep the service active
+    restart: "always"
+
+  # NginX
+  nginx:
+    # Container name
+    container_name: nginx
+    # Dockerfile location
+    build: ./requirements/nginx
+    # Image name
+    image: ft_nginx:inception
+    # Docker init
+    init: true
+    # Network
+    networks:
+      - ft_bridge
+    # Bind mount
+    volumes:
+      - ${VOLUME_PATH}/wp_vol:${WP_PATH}
+    # Environment variables
+    env_file:
+      - .env
+    # Configuration settings
+    configs:
+      - source: nginx_config
+        target: /etc/nginx/nginx.conf
+    # Guarantee the sequence
+    depends_on:
+      - wordpress
+    ports:
+      - "443:443"
     # Keep the service active
     restart: "always"
 
@@ -70,3 +102,5 @@ configs:
     file: ./requirements/mariadb/conf/my.cnf
   wordpress_fpm_config:
     file: ./requirements/wordpress/conf/www.conf
+  nginx_config:
+    file: ./requirements/nginx/conf/nginx.conf
