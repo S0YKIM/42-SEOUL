@@ -33,9 +33,6 @@ do
 					--role=editor \
 					--user_pass=$WP_USER_PWD \
 					--allow-root
-	
-	# Install WordPress theme
-	wp theme install twentysixteen --activate
 
 	echo "WordPress setup has done successfully."
 done
