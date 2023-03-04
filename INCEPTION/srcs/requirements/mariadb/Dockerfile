@@ -7,7 +7,7 @@ EXPOSE 3306
 # Package installation
 RUN set -eux && \
 	apk update && \
-	apk add --no-cache mariadb mariadb-client vim && \
+	apk add mariadb mariadb-client vim && \
 	# Allow running the mysql daemon
 	rm -rf /var/lib/mysql && \
 	mkdir -p /run/mysqld /var/lib/mysql /var/log/mysql && \
