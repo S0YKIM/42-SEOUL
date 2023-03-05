@@ -80,7 +80,9 @@ services:
       - .env
     # Configuration settings
     configs:
-      - source: nginx_config
+      - source: nginx_global_config
+        target: /etc/nginx/nginx.conf
+      - source: nginx_42_config
         target: /etc/nginx/conf.d/sokim.42.fr.conf
     # Guarantee the sequence
     depends_on:
@@ -103,5 +105,7 @@ configs:
     file: ./requirements/mariadb/conf/my.cnf
   wordpress_config:
     file: ./requirements/wordpress/conf/www.conf
-  nginx_config:
+  nginx_global_config:
+    file: ./requirements/nginx/conf/nginx.conf
+  nginx_42_config:
     file: ./requirements/nginx/conf/sokim.42.fr.conf
