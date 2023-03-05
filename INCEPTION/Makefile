@@ -6,6 +6,8 @@ VOLUME_PATH = /home/sokim/data
 
 .PHONY : all
 all : build
+	@ mkdir -p $(VOLUME_PATH)/db_volume;
+	@ mkdir -p $(VOLUME_PATH)/wp_volume; 
 	@ sudo docker compose -f $(COMPOSE_SRC) up
 
 .PHONY : build
