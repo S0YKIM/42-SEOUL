@@ -2,7 +2,7 @@ NAME = inception
 
 COMPOSE_SRC = ./srcs/docker-compose.yml
 
-VOLUME_PATH = /Users/soyeon/Desktop/data
+VOLUME_PATH = /home/sokim/data
 
 .PHONY : all
 all : build
