@@ -18,7 +18,7 @@ services:
       - ft_bridge
     # Bind mount
     volumes:
-      - ${VOLUME_PATH}/db_vol:${DB_PATH}
+      - db_volume:${DB_PATH}
     # Environment variables
     env_file:
       - .env
@@ -44,7 +44,7 @@ services:
       - ft_bridge
     # Bind mount
     volumes:
-      - ${VOLUME_PATH}/wp_vol:${WP_PATH}
+      - wp_volume:${WP_PATH}
     # Environment variables
     env_file:
       - .env
@@ -109,3 +109,18 @@ configs:
     file: ./requirements/nginx/conf/nginx.conf
   nginx_42_config:
     file: ./requirements/nginx/conf/sokim.42.fr.conf
+
+# Volume binding
+volumes:
+  db_volume:
+    name: db_volume
+    driver_opts:
+      type: none
+      o: bind
+      device: ${VOLUME_PATH}/db_volume
+  wp_volume:
+    name: wp_volume
+    driver_opts:
+      type: none
+      o: bind
+      device: ${VOLUME_PATH}/wp_volume
