@@ -8,15 +8,15 @@ VOLUME_PATH = /home/sokim/data
 all : build
 	@ mkdir -p $(VOLUME_PATH)/db_volume;
 	@ mkdir -p $(VOLUME_PATH)/wp_volume; 
-	@ sudo docker compose -f $(COMPOSE_SRC) up
+	@ docker compose -f $(COMPOSE_SRC) up
 
 .PHONY : build
 build :
-	@ sudo docker compose -f $(COMPOSE_SRC) build --progress=plain
+	@ docker compose -f $(COMPOSE_SRC) build --progress=plain
 
 .PHONY : clean
 clean :
-	@ sudo docker compose -f $(COMPOSE_SRC) down \
+	@ docker compose -f $(COMPOSE_SRC) down \
 	--remove-orphans --rmi all -v
 
 .PHONY : fclean
