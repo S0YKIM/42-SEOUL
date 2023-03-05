@@ -74,7 +74,7 @@ services:
       - ft_bridge
     # Bind mount
     volumes:
-      - ${VOLUME_PATH}/wp_vol:${WP_PATH}
+      - wp_volume:${WP_PATH}
     # Environment variables
     env_file:
       - .env
