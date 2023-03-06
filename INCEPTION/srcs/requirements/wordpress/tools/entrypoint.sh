@@ -30,7 +30,6 @@ do
 	
 	# Create user
 	wp user create $WP_USER_USER $WP_USER_MAIL \
-					--role=editor \
 					--user_pass=$WP_USER_PWD \
 					--allow-root
 
