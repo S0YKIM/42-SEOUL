@@ -14,6 +14,14 @@ all : build
 build :
 	@ docker compose -f $(COMPOSE_SRC) build --progress=plain
 
+.PHONY : stop
+stop :
+	@ docker compose -f $(COMPOSE_SRC) stop
+
+.PHONY : restart
+restart :
+	@ docker compose -f $(COMPOSE_SRC) restart
+
 .PHONY : clean
 clean :
 	@ docker compose -f $(COMPOSE_SRC) down \
