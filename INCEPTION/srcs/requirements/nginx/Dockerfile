@@ -12,13 +12,16 @@ RUN set -eux && \
 # Make directory for wordpress
 RUN mkdir -p /var/www/html/wordpress
 
-# OpenSSL setting
-RUN mkdir openssl
+# Copy entrypoint script
+COPY ./tools/entrypoint.sh .
 
-RUN openssl req -x509 -newkey rsa:4096 -nodes \
-	-out /openssl/sokim.42.fr.crt \
-	-keyout /openssl/sokim.42.fr.key \
-	-subj "/C=KR/ST=Seoul/L=Gaepo/O=InnovationAcademy/OU=42Seoul/CN=sokim.42.fr"
+RUN chmod +x entrypoint.sh
 
 # Command to be executed
+ENTRYPOINT ["./entrypoint.sh"]
+
+# Health check
+HEALTHCHECK --start-period=3s --interval=10s --timeout=30s --retries=5 CMD ps | grep docker-init
+
+# Command to be executed (added to entrypoint)
 CMD ["nginx", "-g", "daemon off;"]
