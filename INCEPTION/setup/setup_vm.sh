@@ -13,5 +13,3 @@ sudo apt-get install \
     curl \
     gnupg \
     lsb-release
-
-exit 0
