@@ -20,10 +20,10 @@ then
 	# Create database and user
 	echo "Create MariaDB database and user."
 	mariadb -u root -e "CREATE DATABASE IF NOT EXISTS $DB_NAME; \
-	CREATE USER IF NOT EXISTS 'root'@'localhost'; \
-	GRANT ALL ON *.* TO 'root'@'localhost' IDENTIFIED BY '$MARIADB_ADMIN_PWD' WITH GRANT OPTION; \
+	CREATE USER IF NOT EXISTS 'root'@'localhost' IDENTIFIED BY '$MARIADB_ADMIN_PWD'; \
+	GRANT ALL ON *.* TO 'root'@'localhost' WITH GRANT OPTION; \
 	CREATE USER IF NOT EXISTS '$MARIADB_USER'@'%' IDENTIFIED BY '$MARIADB_PWD'; \
-	GRANT ALL ON $DB_NAME.* TO '$MARIADB_USER'@'%' IDENTIFIED BY '$MARIADB_PWD';"
+	GRANT ALL ON $DB_NAME.* TO '$MARIADB_USER'@'%'"
 
 	# Stop MariaDB server
 	mariadb-admin -uroot -p$MARIADB_ADMIN_PWD shutdown
