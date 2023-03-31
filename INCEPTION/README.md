@@ -12,6 +12,8 @@
 - This project aims to broaden your knowledge of `system administration` by using Docker.
 - You will virtualize several Docker images, creating them in your new personal virtual machine.
 
+</br>
+
 ## 🚀 Notes
 
 [🔗 노션 정리](https://www.notion.so/Inception-7f84d764bf764bfa8f9fce660f4bf58d?pvs=4)
