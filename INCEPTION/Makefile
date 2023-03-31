@@ -2,29 +2,29 @@ NAME = inception
 
 COMPOSE_SRC = ./srcs/docker-compose.yml
 
-VOLUME_PATH = /home/sokim/data
+VOLUME_PATH = /Users/soyeon/desktop
 
 .PHONY : all
 all : build
 	@ mkdir -p $(VOLUME_PATH)/db_volume;
 	@ mkdir -p $(VOLUME_PATH)/wp_volume; 
-	@ docker compose -f $(COMPOSE_SRC) up
+	@ sudo docker compose -f $(COMPOSE_SRC) up
 
 .PHONY : build
 build :
-	@ docker compose -f $(COMPOSE_SRC) build --progress=plain
+	@ sudo docker compose -f $(COMPOSE_SRC) build --progress=plain
 
 .PHONY : stop
 stop :
-	@ docker compose -f $(COMPOSE_SRC) stop
+	@ sudo docker compose -f $(COMPOSE_SRC) stop
 
 .PHONY : restart
 restart :
-	@ docker compose -f $(COMPOSE_SRC) restart
+	@ sudo docker compose -f $(COMPOSE_SRC) restart
 
 .PHONY : clean
 clean :
-	@ docker compose -f $(COMPOSE_SRC) down \
+	@ sudo docker compose -f $(COMPOSE_SRC) down \
 	--remove-orphans --rmi all -v
 
 .PHONY : fclean
